@@ -1,0 +1,50 @@
+.navwrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+.logowrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logotext p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0 5px;
+  background-image: linear-gradient(
+    90deg,
+    hsla(333, 100%, 53%, 1) 0%,
+    hsla(33, 94%, 57%, 1) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+}
+.logoicon {
+  color: var(--primary);
+  font-size: 1.5rem;
+}
+.navul {
+  display: flex;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+}
+.navul li {
+  margin: 0 10px;
+  font-weight: bold;
+}
+.link {
+  font-size: 0.9rem;
+}
+.notificatn_icon {
+  font-size: 1.2rem;
+}
+.profile_img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}

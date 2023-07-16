@@ -1,0 +1,19 @@
+.btnstyle {
+  padding: 10px 25px;
+  font-weight: bold;
+}
+.primaryBtn {
+  background: linear-gradient(
+    90deg,
+    hsla(333, 100%, 53%, 1) 0%,
+    hsla(33, 94%, 57%, 1) 100%
+  );
+  border-radius: 20px;
+  color: var(--white);
+  border: 1px solid var(--red);
+}
+.outlineBtn {
+  border-radius: 20px;
+  color: var(--black);
+  border: 1px solid var(--black);
+}
