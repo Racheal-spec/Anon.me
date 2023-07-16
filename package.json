@@ -24,6 +24,9 @@
     "react-icons": "^4.10.1",
     "tsconfig-paths": "^4.2.0"
   },
+  "prisma": {
+    "seed": "ts-node -P tsconfig-seed.json -r tsconfig-paths/register --transpileOnly prisma/seed.ts"
+  },
   "devDependencies": {
     "@types/node": "^20.4.1",
     "prisma": "^4.16.2",
