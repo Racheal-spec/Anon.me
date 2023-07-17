@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import styles from "./navbar.module.css";
 import { TfiWrite } from "react-icons/tfi";
@@ -6,9 +7,13 @@ import Image from "next/image";
 import { GrNotification } from "react-icons/gr";
 import profileimg from "../../Assets/profileimg.png";
 import { BsFillPersonFill } from "react-icons/bs";
+import { useRouter } from "next/navigation";
+import { CREATEPOST, HOME, LOGIN, REGISTER } from "@/app/Routes";
 
 const Navbar = () => {
-  const isUserLoggedIn = true;
+  const isUserLoggedIn = false;
+  const route = useRouter();
+
   return (
     <div className={styles.navwrapper}>
       <div className={styles.logowrapper}>
@@ -60,16 +65,20 @@ const Navbar = () => {
         ) : (
           <>
             <li>
-              <Link href="/">Home</Link>
+              <Link href={HOME}>Home</Link>
             </li>
             <li>
-              <Link href="/createpost">Start Writing</Link>
+              <Link href={CREATEPOST}>Start Writing</Link>
             </li>
             <li>
-              <Button primary>Sign Up</Button>
+              <Button primary onClick={() => route.push(REGISTER)}>
+                Sign Up
+              </Button>
             </li>
             <li>
-              <Button outline>Login</Button>
+              <Button outline onClick={() => route.push(LOGIN)}>
+                Login
+              </Button>
             </li>
           </>
         )}

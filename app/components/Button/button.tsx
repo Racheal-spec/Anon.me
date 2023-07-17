@@ -1,30 +1,32 @@
 import React, { FC, ReactNode } from "react";
 import styles from "./button.module.css";
 import classNames from "classnames";
+import { ButtonProp } from "@/app/Types/global";
 
-type ButtonProp = {
-  title: string;
-  outline: boolean;
-  primary: boolean;
-  props: {
-    className: string;
-  };
-  children: ReactNode;
-};
 const Button: FC<Partial<ButtonProp>> = ({
   title,
   outline,
   primary,
   children,
-  //   ...props
+  onMouseEnter,
+  onMouseLeave,
+  disabled,
+  onClick,
+  type,
+  ...props
 }) => {
   return (
     <div>
       <button
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        disabled={disabled}
+        onClick={onClick}
+        {...props}
         className={classNames(styles.btnstyle, {
           [styles.outlineBtn]: Boolean(outline),
           [styles.primaryBtn]: Boolean(primary),
-          //   [props?.props?.className!]: true,
+          [props?.props?.className!]: true,
         })}
       >
         {children}

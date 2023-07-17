@@ -3,11 +3,11 @@ import { db } from "../app/services/db";
 async function main() {
   const user = await db.user.upsert({
     where: {
-      email: "tomi@email.com",
+      uniqueid: "1234",
     },
     update: {},
     create: {
-      email: "tomi@email.com",
+      uniqueid: "1234",
       anonname: "person",
       password: "password",
       isAdmin: false,
@@ -23,7 +23,7 @@ async function main() {
   });
   const newpost = await db.post.upsert({
     where: {
-      authorId: user.id,
+      id: "334",
     },
     update: {},
     create: {

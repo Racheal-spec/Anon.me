@@ -1,4 +1,5 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
+import { UserProp } from "../Types/user";
 
 type APIProp = {
   url: string;
@@ -6,12 +7,6 @@ type APIProp = {
   body?: UserProp;
   json: boolean;
 };
-
-interface UserProp {
-  username: string;
-  password: string;
-  email: string;
-}
 
 export const fetcher: FC<APIProp> = async ({
   url,
