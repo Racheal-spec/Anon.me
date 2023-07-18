@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { UserProp } from "./user";
 
 export type CardProp = {
   children: ReactNode;
@@ -25,4 +26,10 @@ export type ButtonProp = {
 };
 export type modeProp = {
   mode: string;
+};
+export type APIProp = {
+  url: string;
+  method: string;
+  body?: UserProp;
+  json: boolean;
 };

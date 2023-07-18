@@ -9,25 +9,30 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^4.16.2",
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
+    "bcrypt": "^5.1.0",
+    "classnames": "^2.3.2",
+    "cookie": "^0.5.0",
     "eslint": "8.45.0",
     "eslint-config-next": "13.4.10",
+    "jose": "^4.14.4",
     "next": "13.4.10",
+    "next-auth": "^4.22.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.1.6",
-    "classnames": "^2.3.2",
-    "@prisma/client": "^4.16.2",
-    "next-auth": "^4.22.1",
     "react-icons": "^4.10.1",
-    "tsconfig-paths": "^4.2.0"
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "5.1.6"
   },
   "prisma": {
     "seed": "ts-node -P tsconfig-seed.json -r tsconfig-paths/register --transpileOnly prisma/seed.ts"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
+    "@types/cookie": "^0.5.1",
     "@types/node": "^20.4.1",
     "prisma": "^4.16.2",
     "ts-node": "^10.9.1",

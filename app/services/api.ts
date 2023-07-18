@@ -1,12 +1,6 @@
 import { FC, ReactNode } from "react";
 import { UserProp } from "../Types/user";
-
-type APIProp = {
-  url: string;
-  method: string;
-  body?: UserProp;
-  json: boolean;
-};
+import { APIProp } from "../Types/global";
 
 export const fetcher: FC<APIProp> = async ({
   url,

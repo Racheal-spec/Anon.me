@@ -1,5 +1,6 @@
 export interface UserProp {
   anonname: string;
   password: string;
-  uniqueid?: string;
+  uniqueid: string;
+  id?: string;
 }
