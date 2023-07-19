@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 import { UserProp } from "../Types/user";
 import { APIProp } from "../Types/global";
 
@@ -16,6 +16,7 @@ export const fetcher: FC<APIProp> = async ({
       "Content-Type": "application/json",
     },
   });
+
   if (!res.ok) {
     throw new Error("API Error");
   }
@@ -28,18 +29,18 @@ export const fetcher: FC<APIProp> = async ({
 export const register: FC<UserProp> = async (user) => {
   return fetcher({
     url: "/api/register",
-    method: "POST",
+    method: "post",
     body: user,
-    json: false,
+    json: true,
   });
 };
 
-export const signin: FC<UserProp> = async (user) => {
+export const login: FC<UserProp> = async (user) => {
   return fetcher({
-    url: "/api/signin",
+    url: "/api/login",
     method: "POST",
     body: user,
-    json: false,
+    json: true,
   });
 };
 
@@ -47,6 +48,6 @@ export const getallposts = async () => {
   return fetcher({
     url: "/api/posts",
     method: "GET",
-    json: false,
+    json: true,
   });
 };

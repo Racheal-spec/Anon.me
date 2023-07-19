@@ -1,7 +1,7 @@
+import { db } from "@/app/services/db";
 import { NextApiRequest, NextApiResponse } from "next";
-import { db } from "../services/db";
 
-export async function getposts(req: NextApiRequest, res: NextApiResponse) {
+export async function GET(req: NextApiRequest, res: NextApiResponse) {
   try {
     //get prisma to get the post
     const data = await db.post.findMany();

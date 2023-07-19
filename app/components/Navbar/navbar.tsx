@@ -8,7 +8,7 @@ import { GrNotification } from "react-icons/gr";
 import profileimg from "../../Assets/profileimg.png";
 import { BsFillPersonFill } from "react-icons/bs";
 import { useRouter } from "next/navigation";
-import { CREATEPOST, HOME, LOGIN, REGISTER } from "@/app/Routes";
+import { CREATEPOST, FEED, HOME, LOGIN, REGISTER } from "@/app/RoutesUrl";
 
 const Navbar = () => {
   const isUserLoggedIn = false;
@@ -29,17 +29,17 @@ const Navbar = () => {
         {isUserLoggedIn ? (
           <>
             <li>
-              <Link className={styles.link} href="/">
+              <Link className={styles.link} href={HOME}>
                 Home
               </Link>
             </li>
             <li>
-              <Link className={styles.link} href="/createpost">
+              <Link className={styles.link} href={CREATEPOST}>
                 Start Writing
               </Link>
             </li>
             <li>
-              <Link className={styles.link} href="/feed">
+              <Link className={styles.link} href={FEED}>
                 My Feed
               </Link>
             </li>

@@ -15,7 +15,7 @@ export const createJWT = (user: UserProp) => {
   return new SignJWT({
     payload: {
       id: user.id,
-      uniqueId: user.uniqueid,
+      uniqueid: user.uniqueid,
     },
   })
     .setProtectedHeader({ alg: "HS256", typ: "JWT" })
@@ -30,14 +30,15 @@ export const validateJWT = async (jwt: string) => {
     jwt,
     new TextEncoder().encode(process.env.JWT_SECRET)
   );
-  //console.log(payload.payload)
-  return payload;
+  console.log(`jwtpayload: ${payload}`);
+  return payload.payload;
 };
 
 export const getUserFromCookie = async (cookies: any) => {
   const jwt = cookies.get(process.env.COOKIE_NAME);
-
-  const { id } = await validateJWT(jwt.value);
+  console.log(`cookies: ${cookies}`);
+  const id = await validateJWT(jwt.value);
+  console.log(`idcookie: ${id}`);
 
   const user = await db.user.findUnique({
     where: {
