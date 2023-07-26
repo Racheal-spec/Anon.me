@@ -42,20 +42,21 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
   const router = useRouter();
   //using usecallbacks to optimize against rerenders. unless one of the dependencies change, thesame function is used accross multiple components
   const handleSubmit = useCallback(
-    async (e) => {
+    async (e: { preventDefault: () => void }) => {
       e.preventDefault();
       try {
         if (mode === "register") {
           await register(formState);
+
           console.log("yolo");
         } else {
           await login(formState);
         }
-        router.replace("/");
       } catch (error) {
         setError(`Unable to ${mode}`);
       } finally {
         setFormState(state);
+        router.replace("/home");
       }
     },
     [formState.anonname, formState.password, formState.uniqueid]
@@ -73,7 +74,7 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
               <Input
                 placeholder="anonymous name"
                 className=""
-                value={formState.anonname}
+                value={formState.anonname as string}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setFormState((el) => ({ ...el, anonname: e.target.value }))
                 }
@@ -99,7 +100,7 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
               placeholder="password"
               className=""
               value={formState.password}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              onChange={(e) =>
                 setFormState((el) => ({ ...el, password: e.target.value }))
               }
             />

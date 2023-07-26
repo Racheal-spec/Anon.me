@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import styles from "./navbar.module.css";
 import { TfiWrite } from "react-icons/tfi";
@@ -7,12 +6,14 @@ import Image from "next/image";
 import { GrNotification } from "react-icons/gr";
 import profileimg from "../../Assets/profileimg.png";
 import { BsFillPersonFill } from "react-icons/bs";
-import { useRouter } from "next/navigation";
 import { CREATEPOST, FEED, HOME, LOGIN, REGISTER } from "@/app/RoutesUrl";
+import { getUser } from "../../services/userdata";
+import { userapi } from "@/app/services/api";
 
-const Navbar = () => {
-  const isUserLoggedIn = false;
-  const route = useRouter();
+const Navbar = async () => {
+  // const user = await getUser();
+  const userdata = await userapi();
+  console.log(userdata);
 
   return (
     <div className={styles.navwrapper}>
@@ -23,10 +24,11 @@ const Navbar = () => {
         <div className={styles.logotext}>
           <p>Anon</p>
         </div>
+        {userdata?.anonname && <h3>hello {userdata?.anonname}</h3>}
       </div>
 
       <ul className={styles.navul}>
-        {isUserLoggedIn ? (
+        {userdata ? (
           <>
             <li>
               <Link className={styles.link} href={HOME}>
@@ -71,13 +73,13 @@ const Navbar = () => {
               <Link href={CREATEPOST}>Start Writing</Link>
             </li>
             <li>
-              <Button primary onClick={() => route.push(REGISTER)}>
-                Sign Up
+              <Button primary>
+                <Link href={REGISTER}> Sign Up</Link>
               </Button>
             </li>
             <li>
-              <Button outline onClick={() => route.push(LOGIN)}>
-                Login
+              <Button outline>
+                <Link href={LOGIN}>Login</Link>
               </Button>
             </li>
           </>

@@ -11,7 +11,7 @@ export async function POST(req: Request) {
         uniqueid: body.uniqueid,
       },
     });
-    const jwt = await createJWT(user);
+    const jwt = await createJWT(user!);
     if (!user) {
       return NextResponse.json(user, {
         status: 401,

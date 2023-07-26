@@ -1,8 +1,11 @@
 import React from "react";
 import style from "../createpost/page.module.css";
 import Button from "../../components/Button/button";
+import { getUser } from "@/app/services/userdata";
 
-const Createpost = () => {
+const Createpost = async () => {
+  const user = await getUser();
+
   return (
     <div>
       <div className={style.post_div}>

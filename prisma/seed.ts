@@ -1,3 +1,4 @@
+import { hashPassword } from "@/app/services/Auth";
 import { db } from "../app/services/db";
 
 async function main() {
@@ -9,7 +10,7 @@ async function main() {
     create: {
       uniqueid: "1234",
       anonname: "person",
-      password: "password",
+      password: await hashPassword("password"),
       isAdmin: false,
       posts: {
         create: new Array(4).fill(1).map((_, i) => ({

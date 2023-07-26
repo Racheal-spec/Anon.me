@@ -7,8 +7,9 @@ export type CardProp = {
 };
 export type InputProp = {
   className: string;
-  //   placeholder: string;
-  //   value:
+  placeholder?: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 export type ButtonProp = {
   title: string;
@@ -23,6 +24,11 @@ export type ButtonProp = {
   onMouseLeave: (event: React.MouseEvent<HTMLButtonElement>) => void;
   disabled: boolean;
   onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  backgroundColor: {
+    control: string;
+  };
+  label: string;
+  size: string;
 };
 export type modeProp = {
   mode: string;

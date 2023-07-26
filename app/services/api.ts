@@ -44,6 +44,13 @@ export const login: FC<UserProp> = async (user) => {
   });
 };
 
+export const userapi: FC<UserProp> = async () => {
+  return fetcher({
+    url: `${process.env.BASE_URL}/api/user`,
+    method: "GET",
+    json: true,
+  });
+};
 export const getallposts = async () => {
   return fetcher({
     url: "/api/posts",

@@ -9,6 +9,7 @@ export async function POST(req: Request, res: Response) {
     //get prisma to create a user
     if (req.method === "POST") {
       const body = await req.json();
+      ``;
       const user = await db.user.create({
         data: {
           anonname: body.anonname,
@@ -21,8 +22,6 @@ export async function POST(req: Request, res: Response) {
 
       const jwt = await createJWT(user);
       if (user) {
-        console.log("jwwww");
-
         return NextResponse.json(user, {
           status: 201,
           headers: {
