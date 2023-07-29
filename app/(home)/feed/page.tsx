@@ -5,8 +5,9 @@ const getPosts = async () => {
   // let url = process.env.BASE_URL as string;
   // console.log(url);
   //http://localhost:3000/api/getposts
-  const res = await fetch("http://localhost:3000/api/getposts");
+  const res = await fetch("http://localhost:3000/api/data/posts");
   if (!res.ok) {
+    console.log("feeeeed");
     console.log(res);
   }
   return await res.json();

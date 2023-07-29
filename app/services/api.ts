@@ -22,13 +22,14 @@ export const fetcher: FC<APIProp> = async ({
   }
   if (json) {
     const data = await res.json();
+    console.log(`data: ${JSON.stringify(data)}`);
     return data;
   }
 };
 
 export const register: FC<UserProp> = async (user) => {
   return fetcher({
-    url: "/api/register",
+    url: "/api/data/register",
     method: "post",
     body: user,
     json: true,
@@ -37,7 +38,7 @@ export const register: FC<UserProp> = async (user) => {
 
 export const login: FC<UserProp> = async (user) => {
   return fetcher({
-    url: "/api/login",
+    url: "/api/data/login",
     method: "POST",
     body: user,
     json: true,
@@ -46,14 +47,14 @@ export const login: FC<UserProp> = async (user) => {
 
 export const userapi: FC<UserProp> = async () => {
   return fetcher({
-    url: `${process.env.BASE_URL}/api/user`,
+    url: `${process.env.BASE_URL}/api/auth/user`,
     method: "GET",
     json: true,
   });
 };
 export const getallposts = async () => {
   return fetcher({
-    url: "/api/posts",
+    url: "/api/data/posts",
     method: "GET",
     json: true,
   });

@@ -24,6 +24,7 @@
       "@/services": ["./services/*"],
       "@/Assets": ["./Assets/*"],
       "@/components": ["./components/*"],
+      "@/app": ["./app/*"],
       "@/types": ["./Types"]
     }
   },

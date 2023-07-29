@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import styles from "./navbar.module.css";
 import { TfiWrite } from "react-icons/tfi";
@@ -6,15 +7,33 @@ import Image from "next/image";
 import { GrNotification } from "react-icons/gr";
 import profileimg from "../../Assets/profileimg.png";
 import { BsFillPersonFill } from "react-icons/bs";
-import { CREATEPOST, FEED, HOME, LOGIN, REGISTER } from "@/app/RoutesUrl";
-import { getUser } from "../../services/userdata";
-import { userapi } from "@/app/services/api";
+import { CREATEPOST, FEED, HOME, LOGIN, REGISTER } from "../../RoutesUrl";
+import { useEffect } from "react";
 
-const Navbar = async () => {
-  // const user = await getUser();
-  const userdata = await userapi();
-  console.log(userdata);
+const getUsers = async () => {
+  // let url = process.env.BASE_URL as string;
+  // console.log(url);
+  //http://localhost:3000/api/getposts
+  const res = await fetch("http://localhost:3000/api/auth/user");
+  if (!res.ok) {
+    console.log("userrrrsss");
+    console.log(res);
+  }
+  return await res.json();
+};
+const Navbar = () => {
+  // const userdata = await getUser();
+  //const userdata = await userapi();
+  // console.log(`userdataaaa: ${JSON.stringify(userdata)}`);
 
+  const handleuser = async () => {
+    let data = await getUsers();
+    console.log(data);
+  };
+  useEffect(() => {
+    handleuser();
+  }, []);
+  let userdata = {};
   return (
     <div className={styles.navwrapper}>
       <div className={styles.logowrapper}>
@@ -24,11 +43,11 @@ const Navbar = async () => {
         <div className={styles.logotext}>
           <p>Anon</p>
         </div>
-        {userdata?.anonname && <h3>hello {userdata?.anonname}</h3>}
+        {/* {userdata?.annoname && <h3>hello {userdata?.anonname}</h3>} */}
       </div>
 
       <ul className={styles.navul}>
-        {userdata ? (
+        {userdata.status === "200" ? (
           <>
             <li>
               <Link className={styles.link} href={HOME}>
@@ -82,6 +101,11 @@ const Navbar = async () => {
                 <Link href={LOGIN}>Login</Link>
               </Button>
             </li>
+            {/* <li>
+              <Button primary onClick={handleuser}>
+                User
+              </Button>
+            </li> */}
           </>
         )}
       </ul>

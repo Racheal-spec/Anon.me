@@ -13,7 +13,6 @@ const Button: FC<Partial<ButtonProp>> = ({
   disabled,
   onClick,
   type,
-  label,
   ...props
 }) => {
   return (

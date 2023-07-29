@@ -9,7 +9,7 @@ export async function POST(req: Request, res: Response) {
     //get prisma to create a user
     if (req.method === "POST") {
       const body = await req.json();
-      ``;
+
       const user = await db.user.create({
         data: {
           anonname: body.anonname,
@@ -18,10 +18,11 @@ export async function POST(req: Request, res: Response) {
         },
       });
       //Why cookies instead of local storage? Using cookies here because (i) it reduces the work on the clientside
-      //(ii) The nextjs middleware that I'm going to be using has no access to local storage becuase it happens outside of the computer/server i.e on the edge
+      //(ii) The nextjs middleware that I'm going to be using has no access to local storage becuase it happens outside of the computer/server i.e on the edge runtime
 
       const jwt = await createJWT(user);
       if (user) {
+        user.password = undefined!;
         return NextResponse.json(user, {
           status: 201,
           headers: {

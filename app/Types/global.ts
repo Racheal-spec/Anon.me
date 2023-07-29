@@ -24,11 +24,8 @@ export type ButtonProp = {
   onMouseLeave: (event: React.MouseEvent<HTMLButtonElement>) => void;
   disabled: boolean;
   onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  backgroundColor: {
-    control: string;
-  };
-  label: string;
   size: string;
+  variant: { control: string };
 };
 export type modeProp = {
   mode: string;

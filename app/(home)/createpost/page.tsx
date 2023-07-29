@@ -2,10 +2,12 @@ import React from "react";
 import style from "../createpost/page.module.css";
 import Button from "../../components/Button/button";
 import { getUser } from "@/app/services/userdata";
+import { userapi } from "@/app/services/api";
 
 const Createpost = async () => {
-  const user = await getUser();
-
+  // const user = await getUser();
+  //const userdata = await userapi();
+  //console.log(`userdata: ${JSON.stringify(userdata)}`);
   return (
     <div>
       <div className={style.post_div}>

@@ -34,18 +34,17 @@ export const validateJWT = async (jwt: string) => {
   return payload.payload;
 };
 
-export const getUserFromCookie = async (cookies: any) => {
-  const jwt = cookies.get(process.env.COOKIE_NAME);
-  if (jwt) {
-    const { id } = await validateJWT(jwt?.value);
-    console.log(`jwtttttt: ${jwt}`);
-    //   console.log(`idcookie: ${id}`);
+// export const getUserFromCookie = async (cookies: any) => {
+//   const jwt = cookies.get(process.env.COOKIE_NAME);
+//   if (jwt) {
+//     const { id } = await validateJWT(jwt?.value);
+//     // console.log(`jwtttttt: ${jwt}`);
 
-    const user = await db.user.findUnique({
-      where: {
-        id,
-      },
-    });
-    return user;
-  }
-};
+//     const user = await db.user.findUnique({
+//       where: {
+//         id: id as string,
+//       },
+//     });
+//     return user;
+//   }
+// };

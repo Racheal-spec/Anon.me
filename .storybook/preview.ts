@@ -9,18 +9,18 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
-    nextjs: {
-      appDirectory: true,
-      navigation: {
-        pathname: "/profile",
-        query: {
-          user: "santa",
-        },
-      },
-      // router: {
-      //   basePath: '/profile'
-      // }
-    },
+    // nextjs: {
+    //   appDirectory: true,
+    //   navigation: {
+    //     pathname: "/profile",
+    //     query: {
+    //       user: "santa",
+    //     },
+    //   },
+    //   // router: {
+    //   //   basePath: '/profile'
+    //   // }
+    // },
   },
 };
 
