@@ -5,14 +5,7 @@ import { cookies } from "next/headers";
 import { useEffect } from "react";
 import { userapi } from "@/app/services/api";
 
-export default async function Home() {
-  const handleuser = async () => {
-    let data = await userapi();
-    console.log(`handleuser: ${data}`);
-  };
-  useEffect(() => {
-    handleuser();
-  }, []);
+export default function Home() {
   return (
     <main className={styles.main}>
       <div className={styles.description}>
