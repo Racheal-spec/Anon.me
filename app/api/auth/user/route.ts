@@ -14,7 +14,7 @@ export async function GET(req: Request) {
 
   const usercookies = cookies().get(process.env.COOKIE_NAME as string);
   const jwt = usercookies?.value;
-  console.log(`jwt: ${jwt}`);
+  // console.log(`jwt: ${jwt}`);
   if (!jwt) {
     return NextResponse.json({
       status: 401,
@@ -34,10 +34,16 @@ export async function GET(req: Request) {
         if (user) {
           // revalidatePath(req.url);
           user.password = undefined!;
-          return NextResponse.json(user, {
-            status: 200,
-            statusText: "User data collected Successfully!",
-          });
+          return NextResponse.json(
+            {
+              status: "ok",
+              data: user,
+            },
+            {
+              status: 200,
+              statusText: "User data collected Successfully!",
+            }
+          );
         }
       }
     }

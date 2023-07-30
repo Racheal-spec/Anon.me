@@ -33,19 +33,25 @@ export async function POST(req: Request) {
     if (isUser) {
       const jwt = await createJWT(user);
       user.password = undefined!;
-      return NextResponse.json(user, {
-        status: 200,
-        headers: {
-          "Set-Cookie":
-            //Below is the cookie i'M Setting
-            serialize(process.env.COOKIE_NAME as string, jwt, {
-              httpOnly: true,
-              path: "/",
-              maxAge: 60 * 6 * 24 * 7,
-            }),
+      return NextResponse.json(
+        {
+          status: "ok",
+          data: user,
         },
-        statusText: "Login Successful!",
-      });
+        {
+          status: 200,
+          headers: {
+            "Set-Cookie":
+              //Below is the cookie i'M Setting
+              serialize(process.env.COOKIE_NAME as string, jwt, {
+                httpOnly: true,
+                path: "/",
+                maxAge: 60 * 6 * 24 * 7,
+              }),
+          },
+          statusText: "Login Successful!",
+        }
+      );
     } else {
       return NextResponse.json(user, {
         status: 402,

@@ -3,4 +3,5 @@ export interface UserProp {
   password: string;
   uniqueid: string;
   id?: string;
+  status?: string;
 }

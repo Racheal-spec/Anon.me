@@ -6,18 +6,25 @@ import { DASHBOARD } from "@/app/RoutesUrl";
 import { UseClickOutside } from "@/hooks/ClickOutside";
 import { eventType } from "../Navbar/navbar";
 
+const deleteUser = async () => {
+  // let url = process.env.BASE_URL as string;
+  // console.log(url);
+  //http://localhost:3000/api/getposts
+  const res = await fetch("http://localhost:3000/api/auth/logout");
+  if (!res.ok) {
+    console.log(res);
+  }
+  return await res.json();
+};
 const Profile = ({ handleProfile }) => {
   let router = useRouter();
 
   const ref = UseClickOutside(handleProfile);
   console.log(ref);
+
   const SignOutUser = async () => {
-    // let signout = await supabase.auth.signOut();
-    // if (signout) {
-    //   window.location.reload();
-    //   toast.success("You have successfully signed out!");
-    //   router("/");
-    // }
+    await deleteUser();
+    console.log("deletee");
   };
   return (
     <div className={style.profileDiv} ref={ref}>

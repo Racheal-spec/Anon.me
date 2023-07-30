@@ -63,7 +63,7 @@ const Navbar = () => {
       </div>
 
       <ul className={styles.navul}>
-        {userdata ? (
+        {userdata.status === "ok" ? (
           <>
             <li>
               <Link className={styles.link} href={HOME}>

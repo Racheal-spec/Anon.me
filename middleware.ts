@@ -17,7 +17,6 @@ export const validateJWT = async (jwt: string) => {
     jwt,
     new TextEncoder().encode(process.env.JWT_SECRET)
   );
-  console.log(`jwtpayload: ${payload.payload}`);
   return payload.payload;
 };
 
@@ -35,6 +34,7 @@ export default async function middleware(req: NextRequest) {
     pathname.startsWith("/login") ||
     pathname.startsWith("/register") ||
     pathname.startsWith("/home") ||
+    pathname.startsWith("/feed") ||
     PUBLIC_FILE.test(pathname)
   ) {
     return NextResponse.next();
@@ -56,11 +56,9 @@ export default async function middleware(req: NextRequest) {
   }
 
   try {
-    // console.log(`jwt: ${jwt}`);
     if (jwt) {
       const { uniqueid } = await validateJWT(jwt);
 
-      //console.log(uniqueid);
       const requestHeaders = new Headers(req.headers);
       const response = NextResponse.next({
         request: {
@@ -69,9 +67,6 @@ export default async function middleware(req: NextRequest) {
         },
       });
       response.headers.set("x-user-id", uniqueid);
-      //(req as AuthenticatedRequest).user = { id: uniqueid };
-      // NextResponse.next();
-
       return response;
     } else {
       req.nextUrl.pathname = "/login";

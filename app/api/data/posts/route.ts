@@ -7,9 +7,15 @@ export async function GET(req: Request, res: NextResponse) {
     //get prisma to get the post
     const data = await db.post.findMany();
     console.log(data);
-    return NextResponse.json(data, {
-      status: 200,
-    });
+    return NextResponse.json(
+      {
+        status: "ok",
+        data: data,
+      },
+      {
+        status: 200,
+      }
+    );
     // return res.status(200).json(data);
   } catch (error) {
     return NextResponse.json({
