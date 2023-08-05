@@ -33,6 +33,6 @@ export type modeProp = {
 export type APIProp = {
   url: string;
   method: string;
-  body?: UserProp;
+  body?: {};
   json: boolean;
 };

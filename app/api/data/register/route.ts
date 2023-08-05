@@ -15,12 +15,14 @@ export async function POST(req: Request, res: Response) {
           anonname: body.anonname,
           uniqueid: body.uniqueid,
           password: await hashPassword(body.password),
+          photo: body.photo,
         },
       });
       //Why cookies instead of local storage? Using cookies here because (i) it reduces the work on the clientside
       //(ii) The nextjs middleware that I'm going to be using has no access to local storage becuase it happens outside of the computer/server i.e on the edge runtime
 
       const jwt = await createJWT(user);
+
       if (user) {
         user.password = undefined!;
         return NextResponse.json(
@@ -41,11 +43,17 @@ export async function POST(req: Request, res: Response) {
             },
           }
         );
+      } else {
+        return NextResponse.json(user, {
+          status: 500,
+        });
       }
     }
   } catch (error) {
-    console.log(`error: ${res}`);
-
+    console.log(`error: ${NextResponse.error().status}`);
+    return NextResponse.json({
+      status: 500,
+    });
     // res.status(500);
     // res.json({});
   }

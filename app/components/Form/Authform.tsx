@@ -48,9 +48,10 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
         if (mode === "register") {
           await register(formState);
 
-          console.log("yolo");
+          console.log(formState);
         } else {
           await login(formState);
+          console.log(formState);
         }
       } catch (error) {
         setError(`Unable to ${mode}`);

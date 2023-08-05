@@ -59,11 +59,11 @@ const Navbar = () => {
         <div className={styles.logotext}>
           <p>Anon</p>
         </div>
-        {userdata.anonname && <h3>hello {userdata?.anonname}</h3>}
+        {userdata?.data?.anonname && <h3>hello {userdata?.data?.anonname}</h3>}
       </div>
 
       <ul className={styles.navul}>
-        {userdata.status === "ok" ? (
+        {userdata?.status === "ok" ? (
           <>
             <li>
               <Link className={styles.link} href={HOME}>

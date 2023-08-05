@@ -4,8 +4,14 @@ import { UserProp } from "../Types/user";
 import { db } from "./db";
 
 export const hashPassword = (password: string) => bcrypt.hash(password, 10);
-export const comparePasswords = (plaintextPwd: string, hashedPwd: string) =>
-  bcrypt.compare(plaintextPwd, hashedPwd);
+export const comparePasswords = async (
+  plaintextPwd: string,
+  hashedPwd: string
+) => {
+  const pwd = await bcrypt.hash(plaintextPwd, 10);
+  console.log(pwd, hashedPwd);
+  return bcrypt.compare(plaintextPwd, hashedPwd);
+};
 
 export const createJWT = (user: UserProp) => {
   const iat = Math.floor(Date.now() / 1000);
@@ -14,8 +20,8 @@ export const createJWT = (user: UserProp) => {
 
   return new SignJWT({
     payload: {
-      id: user.id,
-      uniqueid: user.uniqueid,
+      id: user?.id,
+      uniqueid: user?.uniqueid,
     },
   })
     .setProtectedHeader({ alg: "HS256", typ: "JWT" })

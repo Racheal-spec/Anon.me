@@ -1,9 +1,9 @@
-import { getUserFromCookie } from "@/app/services/Auth";
-import { cookies } from "next/headers";
+// import { getUserFromCookie } from "@/app/services/Auth";
+// import { cookies } from "next/headers";
 
-export async function getUser() {
-  const user = await getUserFromCookie(cookies());
+// export async function getUser() {
+//   const user = await getUserFromCookie(cookies());
 
-  // console.log(user);
-  return user;
-}
+//   // console.log(user);
+//   return user;
+// }
