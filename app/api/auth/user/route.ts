@@ -29,6 +29,9 @@ export async function GET(req: Request) {
           where: {
             uniqueid: uniqueid,
           },
+          include: {
+            posts: true,
+          },
         });
 
         if (user) {

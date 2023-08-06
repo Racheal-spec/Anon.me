@@ -92,3 +92,27 @@ export const createpost: FC<postType> = async (post) => {
     json: true,
   });
 };
+
+export const getsinglepost = async () => {
+  return fetcher({
+    url: "/api/data/posts/:id",
+    method: "GET",
+    json: true,
+  });
+};
+
+export const publishPost = async () => {
+  return fetcher({
+    url: "/api/data/posts/publish/:id",
+    method: "PUT",
+    json: true,
+  });
+};
+
+export const editPost = async () => {
+  return fetcher({
+    url: "/api/data/post/edit/:id",
+    method: "GET",
+    json: true,
+  });
+};

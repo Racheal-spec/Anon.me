@@ -21,13 +21,7 @@ export async function POST(req: Request) {
           author: { connect: { uniqueid: uniqueid } },
         },
       });
-
-      // const post = {
-      //   title: "first blog",
-      //   content: "first blog contentsss",
-      // };
-      //return NextResponse.json(post);
-      console.log(post);
+      //  console.log(post);
       if (!post) {
         return NextResponse.json({
           message: "post creation failed!",
@@ -60,9 +54,9 @@ export async function POST(req: Request) {
       }
     }
   } catch (error) {
-    // let res = NextResponse.next();
-    //return res.status;
-    console.log(error);
-    return NextResponse.json({ message: "Error creating post" });
+    let res = NextResponse.next();
+    return res.status;
+    // console.log(error);
+    // return NextResponse.json({ message: "Error creating post" });
   }
 }

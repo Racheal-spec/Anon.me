@@ -2,16 +2,7 @@
 import React, { useState } from "react";
 import style from "../createpost/page.module.css";
 import Button from "../../components/Button/button";
-const newPosts = async (post) => {
-  // let url = process.env.BASE_URL as string;
-  // console.log(url);
-  //http://localhost:3000/api/getposts
-  const res = await fetch("http://localhost:3000/api/data/createpost");
-  if (!res.ok) {
-    console.log(res);
-  }
-  return await res.json(post);
-};
+
 const Createpost = () => {
   const initialState = {
     title: "",
@@ -20,9 +11,26 @@ const Createpost = () => {
     author: "",
   };
   const [post, setPost] = useState(initialState);
-  const newData = async () => {
-    const data = await newPosts(post);
-    console.log(data);
+  const handleSubmit = async (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    console.log("heyyyyyy");
+    try {
+      const res = await fetch("http://localhost:3000/api/data/createpost", {
+        method: "post",
+        body: JSON.stringify({
+          title: post.title,
+          content: post.content,
+          excerpts: post.excerpts,
+          author: post.author,
+        }),
+      });
+      if (res.ok) {
+        const newpost = await res.json();
+        console.log(`newpost: ${newpost}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
   const handleChange = (event) => {
     const name = event?.target.name;
@@ -32,10 +40,7 @@ const Createpost = () => {
     });
     console.log(post);
   };
-  const handleSubmit = () => {
-    newData();
-    console.log(post);
-  };
+
   //console.log(`userdata: ${JSON.stringify(userdata)}`);
   return (
     <div>
@@ -48,6 +53,7 @@ const Createpost = () => {
             type="text"
             name="title"
             placeholder="your blog title here..."
+            value={post.title}
             onChange={handleChange}
           />
           <label className={style.label}>Post Excerpts</label>
@@ -55,6 +61,7 @@ const Createpost = () => {
             className={style.form_excerpts}
             placeholder="write excerpts..."
             name="excerpts"
+            value={post.excerpts}
             onChange={handleChange}
           />
           <label className={style.label}>Post</label>
@@ -62,6 +69,7 @@ const Createpost = () => {
             className={style.form_mainpost}
             placeholder="your post here..."
             name="content"
+            value={post.content}
             onChange={handleChange}
           />
           <Button primary type="submit">

@@ -3,3 +3,8 @@ export type postType = {
   excerpts: string;
   content: string;
 };
+export type ParamType = {
+  params: {
+    id: string;
+  };
+};

@@ -16,7 +16,7 @@ const Button: FC<Partial<ButtonProp>> = ({
   ...props
 }) => {
   return (
-    <div>
+    <div className={styles.root}>
       <button
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
