@@ -1,0 +1,16 @@
+.inputStyle {
+  padding: 14px 5px;
+  width: 100%;
+  margin: 8px 0;
+  border: none;
+  background-color: var(--formInputBg);
+  border-radius: 5px;
+  position: relative;
+}
+.inputStyle::placeholder {
+  color: var(--faintgrey);
+}
+.inputStyle:focus {
+  border: 2px solid var(--primary);
+  outline: none;
+}

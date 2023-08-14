@@ -1,0 +1,64 @@
+.formWrapper {
+  height: 100vh;
+  background: var(--bgGradient);
+}
+.formBg {
+  padding: 50px 60px;
+  border-radius: 8px;
+  width: 35%;
+  background-color: var(--white);
+  transform: translate(92%, 20%);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.btnContentDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btnIconDiv {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 5%;
+}
+.formheader {
+  color: var(--fadedblack);
+  text-align: center;
+  line-height: 1.2em;
+}
+.formtext {
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 10px 0;
+}
+.inputlabel {
+  margin-bottom: 20px;
+  font-size: 0.8rem;
+}
+.btnWrapper {
+  margin: 14px 0;
+}
+.formlinktext {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--grey);
+}
+.formlinktext span {
+  color: var(--primary);
+  margin: 0 5px;
+  text-decoration: underline;
+}
+.eyeIcon {
+  position: absolute;
+  right: 15%;
+  bottom: 35%;
+  color: var(--grey);
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1200px) {
+  .eyeIcon {
+    right: 22%;
+    bottom: 32%;
+  }
+}

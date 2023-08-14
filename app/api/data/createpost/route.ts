@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     if (req.method === "POST") {
       const { uniqueid } = await validateJWT(jwt);
       const body = await req.json();
-      console.log(jwt, uniqueid);
+      // console.log(jwt, uniqueid);
       const post = await db.post.create({
         data: {
           title: body.title,

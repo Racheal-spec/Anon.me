@@ -1,6 +1,8 @@
+import { Providers } from "../Providers";
 import Navbar from "../components/Navbar/navbar";
 import { MainContext } from "../context";
 import "../globals.css";
+import { poppins } from "../fonts";
 
 export const metadata = {
   title: "Anon.me",
@@ -13,12 +15,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={poppins.className}>
       <MainContext>
-        <body>
-          <Navbar />
-          {children}
-        </body>
+        <body>{children}</body>
       </MainContext>
     </html>
   );

@@ -1,28 +1,33 @@
 "use client";
 
-import { FC, useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { register, login } from "../../services/api";
 import { UserProp } from "../../Types/user";
 import Input from "../Input/Input";
 import Link from "next/link";
 import Button from "../Button/button";
-import { modeProp } from "@/app/Types/global";
+import style from "./authform.module.css";
+import InputField from "../Input/Input";
+import { BsArrowRight } from "react-icons/bs";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const registerUser = {
   linkurl: "/login",
-  linkText: "Already have an account",
-  header: "creeate a new account",
-  subheader: "whatever comes to mind",
+  linkText: "Already have an account?",
+  header: "Create a new account",
+  subheader:
+    " Join the anon blogging community  today and start sharing your unique perspective.",
   buttonText: "Register",
 };
 
 const logininUser = {
   linkurl: "/register",
 
-  linkText: "Don't have an account",
+  linkText: "Don't have an account?",
   header: "Welcome Back",
-  subheader: "Enter your credentials to signin",
+  subheader:
+    "We are so happy to have you here. Enter your credentials to signin",
   buttonText: "Login",
 };
 const initialStateReg = {
@@ -39,6 +44,7 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
   const state = mode === "register" ? initialStateReg : initialStateLogin;
   const [formState, setFormState] = useState<UserProp>(state);
   const [error, setError] = useState("");
+  const [show, setShow] = useState(false);
   const router = useRouter();
   //using usecallbacks to optimize against rerenders. unless one of the dependencies change, thesame function is used accross multiple components
   const handleSubmit = useCallback(
@@ -65,15 +71,21 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
 
   const content = mode === "register" ? registerUser : logininUser;
 
+  const handleShow = () => {
+    setShow(!show);
+  };
+
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className={style.formWrapper}>
+      <form onSubmit={handleSubmit} className={style.formBg}>
+        <h1 className={style.formheader}>{content.header}</h1>
+        <p className={style.formtext}>{content.subheader}</p>
         {mode === "register" && (
           <div>
             <div>
-              <div>Anon Name</div>
-              <Input
-                placeholder="anonymous name"
+              <label className={style.inputlabel}>Anon Name</label>
+              <InputField
+                placeholder="Anonymous name"
                 className=""
                 value={formState.anonname as string}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -85,9 +97,9 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
         )}
         <div>
           <div>
-            <div>UniqueId</div>
-            <Input
-              placeholder="unique id"
+            <label className={style.inputlabel}>UniqueId</label>
+            <InputField
+              placeholder="Unique ID"
               className=""
               value={formState.uniqueid}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -96,24 +108,46 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
             />
           </div>
           <div>
-            <div>Password</div>
-            <Input
-              placeholder="password"
+            <label className={style.inputlabel}>Password</label>
+
+            <InputField
+              placeholder="Password"
+              type={show ? "text" : "password"}
               className=""
               value={formState.password}
               onChange={(e) =>
                 setFormState((el) => ({ ...el, password: e.target.value }))
               }
             />
+            {show ? (
+              <AiFillEye className={style.eyeIcon} onClick={handleShow} />
+            ) : (
+              <AiFillEyeInvisible
+                className={style.eyeIcon}
+                onClick={handleShow}
+              />
+            )}
           </div>
           <div>
             <div>
-              <span>
-                <Link href={content.linkurl}>{content.linkText}</Link>
-              </span>
+              <Button
+                rectPrimary
+                props={{ className: style.btnWrapper }}
+                type="submit"
+              >
+                <div className={style.btnContentDiv}>
+                  <div>{content.buttonText}</div>
+                  <div className={style.btnIconDiv}>
+                    <BsArrowRight fontSize={"1.3rem"} />
+                  </div>
+                </div>
+              </Button>
             </div>
-            <div>
-              <Button type="submit">{content.buttonText}</Button>
+            <div className={style.formlinktext}>
+              {content.linkText}
+              <span>
+                <Link href={content.linkurl}>Sign In</Link>
+              </span>
             </div>
           </div>
         </div>

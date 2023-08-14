@@ -2,30 +2,24 @@ import { ParamType } from "@/app/Types/posts";
 import { db } from "@/app/services/db";
 import { NextResponse } from "next/server";
 
-export async function PUT(req: Request, { params }: ParamType) {
+export async function DELETE(req: Request, { params }: ParamType) {
   const postid = params?.id;
-  const body = await req.json();
   try {
-    const post = await db.post.update({
+    const post = await db.post.delete({
       where: {
         id: postid,
-      },
-      data: {
-        title: body.title,
-        content: body.content,
-        excerpts: body.excerpts,
       },
     });
     if (!post) {
       return NextResponse.json({
         message:
-          "Error getting post: Check that you are passing the correct id!",
+          "Error deleting post: Check that you are passing the correct id!",
       });
     }
     if (post) {
       return NextResponse.json(post, {
         status: 200,
-        statusText: "Post Edited!",
+        statusText: "ok",
       });
     }
   } catch (error) {

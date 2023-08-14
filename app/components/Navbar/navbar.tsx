@@ -8,9 +8,11 @@ import { GrNotification } from "react-icons/gr";
 import profileimg from "../../Assets/profileimg.png";
 import { BsFillPersonFill } from "react-icons/bs";
 import { CREATEPOST, FEED, HOME, LOGIN, REGISTER } from "../../RoutesUrl";
-import { useEffect, useRef, useState } from "react";
-import { UserProp } from "@/app/Types/user";
+import { useEffect, useState } from "react";
 import Profile from "../Profile/profile";
+import { userValue } from "@/app/context/userContext";
+import { Types } from "@/app/context/userReducer";
+import { getUsers } from "@/app/ClientApi/Api";
 
 export type eventType = {
   onClick: (
@@ -18,26 +20,25 @@ export type eventType = {
   ) => void;
   // handleProfile: (e: React.MouseEvent<HTMLElement>) => void;
 };
-const getUsers = async () => {
-  // let url = process.env.BASE_URL as string;
-  // console.log(url);
-  //http://localhost:3000/api/getposts
-  const res = await fetch("http://localhost:3000/api/auth/user");
-  if (!res.ok) {
-    console.log(res);
-  }
-  return await res.json();
-};
+
 const Navbar = () => {
   //================HOOKS========================//
-  const [userdata, setUserData] = useState<UserProp>({});
+  //const [userdata, setUserData] = useState<UserProp>({});
   const [show, setShow] = useState(false);
+  const [state, dispatch] = userValue();
+  console.log(state);
 
   //===============HANDLERS=====================//
   const handleuser = async () => {
     let data = await getUsers();
-    console.log(data);
-    setUserData(data);
+    dispatch({
+      type: Types.GetUser,
+      payload: {
+        user: data,
+      },
+    });
+
+    // setUserData(data);
   };
 
   const handleProfile = (e: eventType) => {
@@ -59,11 +60,13 @@ const Navbar = () => {
         <div className={styles.logotext}>
           <p>Anon</p>
         </div>
-        {userdata?.data?.anonname && <h3>hello {userdata?.data?.anonname}</h3>}
+        {state.user?.data?.anonname && (
+          <h3>hello {state.user?.data?.anonname}</h3>
+        )}
       </div>
 
       <ul className={styles.navul}>
-        {userdata?.status === "ok" ? (
+        {state.user?.status === "ok" ? (
           <>
             <li>
               <Link className={styles.link} href={HOME}>

@@ -9,6 +9,10 @@ export type InputProp = {
   className: string;
   placeholder?: string;
   value: string;
+  type?: string;
+  props?: {
+    icon: JSX.Element;
+  };
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 export type ButtonProp = {
@@ -18,6 +22,7 @@ export type ButtonProp = {
   props: {
     className: string;
   };
+  rectPrimary: boolean;
   type: string;
   children: ReactNode;
   onMouseEnter: (event: React.MouseEvent<HTMLButtonElement>) => void;

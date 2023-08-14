@@ -30,31 +30,10 @@ export const fetcher: FC<APIProp> = async ({
   }
 };
 
-// export const createfetcher = async ({ url, method, body, json = true }) => {
-//   const res = await fetch(url, {
-//     method,
-//     ...(body && { body: JSON.stringify(body) }),
-//     headers: {
-//       Accept: "application/json",
-//       "Content-Type": "application/json",
-//     },
-//   });
-
-//   if (!res.ok) {
-//     console.log("not okkkk");
-//     throw new Error("API Error");
-//   }
-//   if (json) {
-//     const data = await res.json();
-//     console.log(`data: ${JSON.stringify(data)}`);
-//     return NextResponse.json(data);
-//   }
-// };
-
 export const register: FC<UserProp> = async (user) => {
   return fetcher({
     url: "/api/data/register",
-    method: "post",
+    method: "POST",
     body: user,
     json: true,
   });
@@ -109,10 +88,11 @@ export const publishPost = async () => {
   });
 };
 
-export const editPost = async () => {
+export const editPost: FC<postType> = async (post) => {
   return fetcher({
     url: "/api/data/post/edit/:id",
     method: "GET",
+    body: post,
     json: true,
   });
 };

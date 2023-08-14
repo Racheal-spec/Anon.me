@@ -7,6 +7,7 @@ const Button: FC<Partial<ButtonProp>> = ({
   title,
   outline,
   primary,
+  rectPrimary,
   children,
   onMouseEnter,
   onMouseLeave,
@@ -26,6 +27,7 @@ const Button: FC<Partial<ButtonProp>> = ({
         className={classNames(styles.btnstyle, {
           [styles.outlineBtn]: Boolean(outline),
           [styles.primaryBtn]: Boolean(primary),
+          [styles.rectPrimaryBtn]: Boolean(rectPrimary),
           [props?.props?.className!]: true,
         })}
       >

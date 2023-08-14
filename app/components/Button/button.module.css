@@ -2,21 +2,43 @@
   cursor: pointer;
 }
 .btnstyle {
-  padding: 10px 25px;
+  padding: 12px 25px;
   font-weight: bold;
+  cursor: pointer;
 }
 .primaryBtn {
-  background: linear-gradient(
-    90deg,
-    hsla(333, 100%, 53%, 1) 0%,
-    hsla(33, 94%, 57%, 1) 100%
-  );
+  background: var(--mainGradient);
   border-radius: 20px;
   color: var(--white);
   border: 1px solid var(--red);
 }
+.rectPrimaryBtn {
+  background: var(--mainGradient);
+  border: none;
+  color: var(--white);
+  width: 100%;
+  transition: 0.5s;
+  position: relative;
+}
+.primaryBtn:hover,
+.rectPrimaryBtn:hover {
+  background: var(--switchBgGradient);
+
+  box-shadow: rgba(255, 112, 176, 0.726) 0px 2px 8px 0px,
+    rgba(252, 195, 125, 0.653) 0px 2px 8px 0px;
+}
+
 .outlineBtn {
   border-radius: 20px;
   color: var(--black);
   border: 1px solid var(--black);
+}
+
+@keyframes bgcolor {
+  0% {
+    background: var(--mainGradient);
+  }
+  100% {
+    background: var(--switchBgGradient);
+  }
 }
