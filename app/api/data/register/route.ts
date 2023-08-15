@@ -3,19 +3,34 @@ import { serialize } from "cookie";
 import { db } from "@/app/services/db";
 import { createJWT, hashPassword } from "@/app/services/Auth";
 import { NextResponse } from "next/server";
-
+import { RegisterUserSchema } from "@/app/services/validations/user.schema";
+import { ZodError } from "zod";
 export async function POST(req: Request, res: Response) {
   try {
     //get prisma to create a user
     if (req.method === "POST") {
       const body = await req.json();
+      const data = RegisterUserSchema.parse(body);
+
+      const uniquename = await db.user.findFirst({
+        where: {
+          anonname: data.anonname,
+        },
+      });
+
+      if (uniquename?.anonname === data.anonname) {
+        return NextResponse.json({
+          status: 403,
+          message: `The anonname "${data.anonname}" has already been choosen`,
+        });
+      }
 
       const user = await db.user.create({
         data: {
-          anonname: body.anonname,
-          uniqueid: body.uniqueid,
-          password: await hashPassword(body.password),
-          photo: body.photo,
+          anonname: data.anonname,
+          uniqueid: data.uniqueid,
+          password: await hashPassword(data.password),
+          photo: data.photo,
         },
       });
       //Why cookies instead of local storage? Using cookies here because (i) it reduces the work on the clientside
@@ -43,17 +58,18 @@ export async function POST(req: Request, res: Response) {
             },
           }
         );
-      } else {
-        return NextResponse.json(user, {
-          status: 500,
-        });
       }
     }
   } catch (error) {
-    console.log(`error: ${NextResponse.error().status}`);
-    return NextResponse.json({
-      status: 500,
-    });
+    if (error instanceof ZodError) {
+      return NextResponse.json({
+        message: error.issues.map((el) => el.message),
+      });
+    }
+    // console.log(`error: ${NextResponse.error().status}`);
+    // return NextResponse.json({
+    //   status: 500,
+    // });
     // res.status(500);
     // res.json({});
   }

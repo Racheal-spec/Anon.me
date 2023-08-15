@@ -32,7 +32,8 @@
     "react-icons": "^4.10.1",
     "react-toastify": "^9.1.3",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "zod": "^3.21.4"
   },
   "prisma": {
     "seed": "ts-node -P tsconfig-seed.json -r tsconfig-paths/register --transpileOnly prisma/seed.ts"
