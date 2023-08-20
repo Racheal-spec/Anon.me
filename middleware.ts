@@ -39,20 +39,38 @@ export default async function middleware(req: NextRequest) {
   ) {
     return NextResponse.next();
   }
-
+  const res = NextResponse;
   if (
-    // !jwt
-    !jwt &&
-    (pathname.startsWith("/api/auth") ||
-      pathname.startsWith("/api/auth/logout"))
+    !jwt
+    // !jwt &&
+    // (pathname.startsWith("/api/auth") ||
+    //   pathname.startsWith(
+    //     "/api/auth/logout" || pathname.startsWith("/createpost")
+    //   ))
   ) {
-    //req.nextUrl.pathname = "/login";
-    //return NextResponse.redirect(req.nextUrl);
-    return NextResponse.json({
-      status: 401,
-      statusText:
-        "You are not logged in. Please provide a token to gain accessssssssssss.",
-    });
+    console.log(`pathhhh: ${req.nextUrl}`);
+    req.nextUrl.pathname = "/login";
+    res.json(
+      {
+        status: 401,
+        message:
+          "You are not logged in. Please provide a token to gain access.",
+      },
+      {
+        status: 401,
+      }
+    );
+    return res.redirect(req.nextUrl);
+    // return NextResponse.json(
+    //   {
+    //     status: 401,
+    //     message:
+    //       "You are not logged in. Please provide a token to gain access.",
+    //   },
+    //   {
+    //     status: 401,
+    //   }
+    // );
   }
 
   try {
@@ -68,12 +86,10 @@ export default async function middleware(req: NextRequest) {
       });
       response.headers.set("x-user-id", uniqueid);
       return response;
-    } else {
-      req.nextUrl.pathname = "/login";
-      return NextResponse.redirect(req.nextUrl);
     }
   } catch (e) {
     console.error(e);
+    // return NextResponse.next();
     req.nextUrl.pathname = "/login";
     return NextResponse.redirect(req.nextUrl);
   }

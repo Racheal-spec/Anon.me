@@ -2,50 +2,152 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 0;
+  padding: 10px 20px;
+  position: relative;
 }
 .logowrapper {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
-.logotext p {
-  font-size: 1.5rem;
+.logotext {
+  font-size: 1.8rem;
   font-weight: bold;
   padding: 0 5px;
-  background-image: linear-gradient(
-    90deg,
-    hsla(333, 100%, 53%, 1) 0%,
-    hsla(33, 94%, 57%, 1) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 200% auto;
+  composes: textGradient from "../../globalstyles/sharedcss.css";
 }
 .logoicon {
   color: var(--primary);
   font-size: 1.5rem;
 }
-.navul {
+.navstyle {
   display: flex;
-  list-style: none;
-  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  left: -100%;
+  transition: all 0.5s ease;
+  flex-direction: column;
+  list-style-type: none;
+}
+.active {
+  background: var(--formInputBg);
+  flex-direction: column;
+  left: 0;
+  transition: all 0.5s ease;
+  top: 0%;
+  width: 76%;
+  height: 100vh;
+  z-index: 999;
   align-items: center;
+  justify-content: center;
 }
-.navul li {
+.menuicon {
+  display: block;
+  position: relative;
+  z-index: 999999;
+  right: 70%;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.menuiconclose {
+  right: 100%;
+  cursor: pointer;
   margin: 0 10px;
-  font-weight: bold;
 }
-.link {
-  font-size: 0.9rem;
+.menuprofilediv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.notificatn_icon {
-  font-size: 1.2rem;
+.hrstyle {
+  color: var(--dividercolor);
+}
+.navstyle li {
+  margin: 10px 0;
+  color: var(--black);
+}
+.searchLi {
+  position: relative;
+}
+.searchicon {
+  position: absolute;
+  right: 2%;
+  bottom: 14%;
+}
+.display {
+  display: none;
+}
+.divider {
+  width: 250px;
+  color: var(--dividercolor);
 }
 .profile_img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   border: 1px solid var(--secondary);
+  cursor: pointer;
+}
+
+/**========================MEDIA QUERIES==================================**/
+
+@media screen and (min-width: 768px) {
+  /* For desktop: */
+  .navwrapper {
+    padding: 10px 60px;
+  }
+  .navstyle {
+    list-style: none;
+    position: static;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* flex-direction: row; */
+
+    /* position: static;
+    z-index: 999;
+    top: 0; */
+    /* right: 0;
+    left: -100; */
+
+    flex-direction: row;
+    width: 100%;
+    height: 0;
+
+    /* width: 100%;
+    height: 0vh; */
+  }
+  .navstyle li {
+    margin: 0 8px;
+  }
+  .menuicon {
+    display: none;
+  }
+  /* .searchLi {
+    position: relative;
+  }
+  .searchicon {
+    position: absolute;
+    right: 2%;
+    bottom: 14%;
+  } */
+  .link {
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .divider {
+    height: 35px;
+    width: 0;
+    color: var(--dividercolor);
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
 }

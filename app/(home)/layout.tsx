@@ -1,6 +1,8 @@
+import { getUsers } from "../ClientApi/Api";
 import Navbar from "../components/Navbar/navbar";
 import { MainContext } from "../context";
-import "../globals.css";
+import { poppins } from "../fonts";
+import "../globalstyles/globals.css";
 
 export const metadata = {
   title: "Anon.me",
@@ -13,11 +15,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={poppins.className}>
       <MainContext>
         <body>
           <Navbar />
-          {children}
+          <div className="globalpadding">{children}</div>
         </body>
       </MainContext>
     </html>

@@ -7,10 +7,10 @@ export type CardProp = {
 };
 export type InputProp = {
   className: string;
-  placeholder?: string;
+  placeholder: string;
   value: string;
-  type?: string;
-  props?: {
+  type: string;
+  props: {
     icon: JSX.Element;
   };
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

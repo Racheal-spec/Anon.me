@@ -2,13 +2,13 @@ import { serialize } from "cookie";
 import { db } from "@/app/services/db";
 import { comparePasswords, createJWT } from "@/app/services/Auth";
 import { NextResponse } from "next/server";
-import { LoginUserSchema } from "@/app/services/validations/user.schema";
+import { UserSchema } from "@/app/services/validations/user.schema";
 import { ZodError } from "zod";
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const data = LoginUserSchema.parse(body);
+    const data = UserSchema.parse(body);
     if (req.method === "POST") {
       const user = await db.user.findUnique({
         where: {
@@ -23,7 +23,7 @@ export async function POST(req: Request) {
           {
             status: 401,
             data: user,
-            statusText:
+            message:
               "Invalid login: check that you are using the correct uniqueid",
           },
           {
@@ -63,16 +63,27 @@ export async function POST(req: Request) {
           }
         );
       } else {
-        return NextResponse.json({
-          status: 500,
-        });
+        return NextResponse.json(
+          {
+            message:
+              "Invalid login: Make sure you are using the correct password",
+          },
+          {
+            status: 401,
+          }
+        );
       }
     }
   } catch (error) {
     if (error instanceof ZodError) {
-      return NextResponse.json({
-        message: error.issues.map((el) => el.message),
-      });
+      return NextResponse.json(
+        {
+          message: error.issues.map((el) => el.message),
+        },
+        {
+          status: 403,
+        }
+      );
     }
   }
 }

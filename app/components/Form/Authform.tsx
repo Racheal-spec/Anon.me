@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
-import { register, login } from "../../services/api";
+import { login, registeruser } from "../../services/api";
 import { UserProp } from "../../Types/user";
 import Input from "../Input/Input";
 import Link from "next/link";
@@ -11,6 +11,13 @@ import style from "./authform.module.css";
 import InputField from "../Input/Input";
 import { BsArrowRight } from "react-icons/bs";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  UserSchema,
+  UserSchemaType,
+} from "@/app/services/validations/user.schema";
+import { toast } from "react-toastify";
 
 const registerUser = {
   linkurl: "/login",
@@ -31,43 +38,58 @@ const logininUser = {
   buttonText: "Login",
 };
 const initialStateReg = {
-  uniqueid: "",
   anonname: "",
+  uniqueid: "",
+
   password: "",
 };
 const initialStateLogin = {
   uniqueid: "",
   password: "",
+  photo: "",
 };
 
 const Authform = ({ mode }: { mode: "register" | "login" }) => {
   const state = mode === "register" ? initialStateReg : initialStateLogin;
-  const [formState, setFormState] = useState<UserProp>(state);
   const [error, setError] = useState("");
   const [show, setShow] = useState(false);
   const router = useRouter();
-  //using usecallbacks to optimize against rerenders. unless one of the dependencies change, thesame function is used accross multiple components
-  const handleSubmit = useCallback(
-    async (e: { preventDefault: () => void }) => {
-      e.preventDefault();
-      try {
-        if (mode === "register") {
-          await register(formState);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<UserSchemaType>({
+    resolver: zodResolver(UserSchema),
+  });
 
-          console.log(formState);
-        } else {
-          await login(formState);
-          console.log(formState);
+  const handleFormSubmit: SubmitHandler<UserSchemaType> = async (state) => {
+    try {
+      console.log("lllll");
+      if (mode === "register") {
+        let result = await registeruser(state);
+
+        console.log(result);
+        if (result?.status === "created") {
+          router.replace("/home");
         }
-      } catch (error) {
-        setError(`Unable to ${mode}`);
-      } finally {
-        setFormState(state);
-        router.replace("/home");
+      } else {
+        let loginresult = await login(state);
+        console.log(state);
+        if (loginresult?.status === "ok") {
+          router.replace("/home");
+        }
       }
-    },
-    [formState.anonname, formState.password, formState.uniqueid]
-  );
+    } catch (error) {
+      console.error(error);
+      toast.error(`Unable to ${mode}`);
+    } finally {
+      // if (error) {
+      //   router.replace("/home");
+      // }
+      // setInputState(inputState);
+      // router.replace("/home");
+    }
+  };
 
   const content = mode === "register" ? registerUser : logininUser;
 
@@ -77,48 +99,60 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
 
   return (
     <div className={style.formWrapper}>
-      <form onSubmit={handleSubmit} className={style.formBg}>
+      <form onSubmit={handleSubmit(handleFormSubmit)} className={style.formBg}>
         <h1 className={style.formheader}>{content.header}</h1>
         <p className={style.formtext}>{content.subheader}</p>
         {mode === "register" && (
           <div>
             <div>
-              <label className={style.inputlabel}>Anon Name</label>
-              <InputField
+              <div className={style.inputlabel}>
+                <label>Anon Name</label>
+              </div>
+              <input
                 placeholder="Anonymous name"
-                className=""
-                value={formState.anonname as string}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setFormState((el) => ({ ...el, anonname: e.target.value }))
-                }
+                {...register("anonname")}
+                className={style.inputStyle}
               />
+              {errors.anonname && (
+                <span className={style.spanclass}>
+                  {errors.anonname.message}
+                </span>
+              )}
             </div>
           </div>
         )}
         <div>
-          <div>
-            <label className={style.inputlabel}>UniqueId</label>
-            <InputField
-              placeholder="Unique ID"
-              className=""
-              value={formState.uniqueid}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setFormState((el) => ({ ...el, uniqueid: e.target.value }))
-              }
-            />
+          <div className={style.inputlabel}>
+            <label>UniqueID</label>
           </div>
           <div>
-            <label className={style.inputlabel}>Password</label>
-
-            <InputField
+            <input
+              placeholder="Unique ID"
+              {...register("uniqueid")}
+              className={style.inputStyle}
+            />
+            {errors.uniqueid && (
+              <span className={style.spanclass}>{errors.uniqueid.message}</span>
+            )}
+          </div>
+          <div className={style.inputlabel}>
+            <label>Password</label>
+          </div>
+          <div className={style.pwdInputDiv}>
+            <input
               placeholder="Password"
               type={show ? "text" : "password"}
-              className=""
-              value={formState.password}
-              onChange={(e) =>
-                setFormState((el) => ({ ...el, password: e.target.value }))
-              }
+              {...register("password")}
+              className={style.inputStyle}
+              // className=""
+              // value={inputState.password}
+              // onChange={(e) =>
+              //   setInputState((el) => ({ ...el, password: e.target.value }))
+              // }
             />
+            {errors.password && (
+              <span className={style.spanclass}>{errors.password.message}</span>
+            )}
             {show ? (
               <AiFillEye className={style.eyeIcon} onClick={handleShow} />
             ) : (

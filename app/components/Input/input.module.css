@@ -1,7 +1,7 @@
 .inputStyle {
   padding: 14px 5px;
   width: 100%;
-  margin: 8px 0;
+
   border: none;
   background-color: var(--formInputBg);
   border-radius: 5px;
@@ -13,4 +13,19 @@
 .inputStyle:focus {
   border: 2px solid var(--primary);
   outline: none;
+}
+
+.InputSearch {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 120px;
+  padding: 4px 5px;
+}
+.InputSearch:focus {
+  border-bottom: 1px solid var(--primary);
+  outline: none;
+}
+.InputSearch::placeholder {
+  color: var(--faintgrey);
 }

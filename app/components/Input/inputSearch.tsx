@@ -2,7 +2,7 @@ import { InputProp } from "@/app/Types/global";
 import React, { FC } from "react";
 import style from "./input.module.css";
 
-const InputField: FC<Partial<InputProp>> = ({
+const InputSearch: FC<Partial<InputProp>> = ({
   className,
   placeholder,
   type,
@@ -10,7 +10,7 @@ const InputField: FC<Partial<InputProp>> = ({
 }) => {
   return (
     <input
-      className={style.inputStyle}
+      className={style.InputSearch}
       type={type}
       {...props}
       placeholder={placeholder}
@@ -18,4 +18,4 @@ const InputField: FC<Partial<InputProp>> = ({
   );
 };
 
-export default InputField;
+export default InputSearch;

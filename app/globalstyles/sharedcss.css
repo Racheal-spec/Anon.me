@@ -1,0 +1,11 @@
+.textGradient {
+  background-image: var(--textGradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+}
+.flex {
+  display: flex;
+  align-items: center;
+}

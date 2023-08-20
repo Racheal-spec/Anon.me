@@ -1,7 +1,9 @@
 export interface UserProp {
-  anonname?: string;
+  id: string;
+  createdAt: Date;
+  anonname: string;
   password: string;
+  isAdmin: boolean;
   uniqueid: string;
-  id?: string;
-  status?: string;
+  photo: string | null;
 }

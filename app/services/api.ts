@@ -1,8 +1,8 @@
 import { FC } from "react";
-import { UserProp } from "../Types/user";
 import { APIProp } from "../Types/global";
 import { postType } from "../Types/posts";
-import { NextResponse } from "next/server";
+import { UserSchemaType } from "./validations/user.schema";
+import { toast } from "react-toastify";
 
 export const fetcher: FC<APIProp> = async ({
   url,
@@ -20,17 +20,16 @@ export const fetcher: FC<APIProp> = async ({
   });
 
   if (!res.ok) {
-    console.log("not okkkk");
-    throw new Error("API Error");
+    console.log("not okkkk", res);
+    return res.json().then((data) => toast.error(data.message));
   }
   if (json) {
     const data = await res.json();
-    console.log(`data: ${JSON.stringify(data)}`);
     return data;
   }
 };
 
-export const register: FC<UserProp> = async (user) => {
+export const registeruser: FC<UserSchemaType> = async (user) => {
   return fetcher({
     url: "/api/data/register",
     method: "POST",
@@ -39,7 +38,7 @@ export const register: FC<UserProp> = async (user) => {
   });
 };
 
-export const login: FC<UserProp> = async (user) => {
+export const login: FC<UserSchemaType> = async (user) => {
   return fetcher({
     url: "/api/data/login",
     method: "POST",
@@ -48,7 +47,7 @@ export const login: FC<UserProp> = async (user) => {
   });
 };
 
-export const userapi: FC<UserProp> = async () => {
+export const userapi: FC<UserSchemaType> = async () => {
   return fetcher({
     url: `${process.env.BASE_URL}/api/auth/user`,
     method: "GET",
@@ -65,7 +64,7 @@ export const getallposts = async () => {
 
 export const createpost: FC<postType> = async (post) => {
   return fetcher({
-    url: "/api/data/createpost",
+    url: "/api/auth/createpost",
     method: "POST",
     body: post,
     json: true,
