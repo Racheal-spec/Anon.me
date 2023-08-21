@@ -1,0 +1,33 @@
+.compBorderWrapper {
+  border: 1px solid var(--bordercolor);
+  padding: 5px 10px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.compDiv {
+  padding: 10px;
+}
+.compDiv h3 {
+  text-align: center;
+  padding: 10px 20px;
+}
+.compDiv p {
+  text-align: center;
+  padding: 10px 0px;
+  font-size: 0.8rem;
+}
+@media screen and (min-width: 768px) {
+  /* For desktops: */
+  .compDiv {
+    padding: 20px 50px;
+  }
+  .compDiv h3 {
+    padding: 10px 40px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  /* For tablets: */
+}

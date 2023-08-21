@@ -1,15 +1,41 @@
 "use client";
 import { createContext, useContext, useReducer } from "react";
+import { ActionType, UserReducerType } from "../Types/reducerTypes";
+import UserReducer from "./userReducer";
 
-const UserContext = createContext();
+const UserContextType = {
+  user: null,
+};
+
+const UserContext = createContext<{
+  state: UserReducerType;
+  dispatch: React.Dispatch<ActionType>;
+}>({
+  state: UserContextType,
+  dispatch: () => null,
+});
 
 export const UserProvider = ({ children, reducer, initialState }) => {
-  const userreducer = useReducer(reducer, initialState);
+  //  const ProviderType = {
+  //   reducer: UserReducer(reducer),
+  // }
+  const [state, dispatch] = useReducer<typeof UserReducer>(
+    reducer,
+    initialState
+  );
   return (
-    <UserContext.Provider value={userreducer}>{children}</UserContext.Provider>
+    <UserContext.Provider value={{ state, dispatch }}>
+      {children}
+    </UserContext.Provider>
   );
 };
 
-export const userValue = () => useContext(UserContext);
+export const userValue = () => {
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error();
+  }
+  return context;
+};
 
 export default UserContext;

@@ -2,8 +2,9 @@
   border: 1px solid var(--bordercolor);
   padding: 5px 10px;
   width: 100%;
-  height: 100%;
+  height: auto;
   border-radius: 10px;
+  margin-bottom: 20px;
 }
 .cardDiv {
   display: flex;
@@ -84,9 +85,9 @@
     justify-content: center; */
   }
   .blogimg {
-    height: 20vh;
+    height: 15vh;
   }
   .imgDiv {
-    width: 100%;
+    width: 40%;
   }
 }

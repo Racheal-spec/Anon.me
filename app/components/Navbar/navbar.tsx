@@ -30,21 +30,22 @@ const Navbar = () => {
   //================HOOKS========================//
   //const [userdata, setUserData] = useState<UserProp>({});
   const [show, setShow] = useState(false);
-  const [state, dispatch] = userValue();
+  const { state, dispatch } = userValue();
   const [toggleDrawer, setToggleDrawer] = useState(true);
   const [windowDimension, setWindowDimension] = useState(0);
   const menuRef = useRef(null);
-  console.log(menuRef);
+  console.log(state);
 
   //===============HANDLERS=====================//
   const handleuser = async () => {
     let data = await getUsers();
-    dispatch({
-      type: Types.GetUser,
-      payload: {
-        user: data,
-      },
-    });
+    console.log(data);
+    if (dispatch) {
+      dispatch({
+        type: Types.GetUser,
+        payload: data,
+      });
+    }
   };
 
   const handleProfile = (e: eventType) => {
@@ -118,7 +119,7 @@ const Navbar = () => {
                 )}
               </div>
               {/**======================VIEW PROFILE================================ */}
-              {state.user?.user?.data ? (
+              {state.user ? (
                 <div className={styles.profile_img_div} onClick={handleProfile}>
                   {!profileimg ? (
                     <div className={styles.profile_img}>
@@ -242,7 +243,7 @@ const Navbar = () => {
                 </li>
 
                 {/**======================VIEW PROFILE================================ */}
-                {state.user?.user?.data ? (
+                {state.user ? (
                   <div
                     className={styles.profile_img_div}
                     onClick={handleProfile}

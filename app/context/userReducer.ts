@@ -8,14 +8,17 @@ export const initialVal: UserReducerType = {
 export enum Types {
   GetUser = "SET_USER",
 }
-const UserReducer = (state: UserReducerType, action: ActionType) => {
+const UserReducer = (
+  state: UserReducerType,
+  action: ActionType
+): UserReducerType => {
   switch (action.type) {
     case Types.GetUser:
       return {
         user: action.payload,
       };
     default:
-      break;
+      return state;
   }
 };
 

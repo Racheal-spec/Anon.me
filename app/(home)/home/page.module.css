@@ -3,9 +3,14 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 70px 0;
-  /* padding: 1rem;
-  min-height: 100vh; */
+  /* padding: 70px 0; */
+}
+.showheader {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 50px 0;
 }
 .fakeBtnWrapper {
   display: flex;
@@ -62,6 +67,10 @@
 @media screen and (min-width: 768px) {
   /* For desktops: */
   .main {
+    padding: 0px 100px;
+    position: relative;
+  }
+  .showheader {
     padding: 100px;
   }
   .fakeBtnWrapper p {
@@ -84,7 +93,10 @@
 @media (min-width: 768px) and (max-width: 1024px) {
   /* For tablets: */
   .main {
-    padding: 100px 20px;
+    padding: 0px 20px;
+  }
+  .showheader {
+    padding: 50px 0;
   }
   .blogGrid {
     grid-template-columns: 1fr;
