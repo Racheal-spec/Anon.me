@@ -1,17 +1,38 @@
 "use client";
 import { userValue } from "@/app/context/userContext";
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./page.module.css";
 import { MdArrowRightAlt } from "react-icons/md";
 import BorderCard from "@/app/components/BorderCard/BorderCard";
 import Trending from "@/app/components/Trending/Trending";
 import LoggedInBorderComp from "@/app/components/LoggedInBorderComp/LoggedInBorderComp";
+import { getPosts } from "@/app/ClientApi/Api";
+import { PostTypes } from "@/app/Types/reducerTypes";
+import { usePostValue } from "@/app/context/postContext";
+import { postType } from "@/app/Types/posts";
+import BookmarkSideComp from "@/app/components/BookmarkSideComp/BookmarkSideComp";
+import Tags from "@/app/components/Tags/Tags";
 
 const ShowHomeHeading = () => {
   const { state } = userValue();
+  const { poststate, postdispatch } = usePostValue();
+  const newData = async () => {
+    const data = await getPosts();
+    if (data) {
+      postdispatch({
+        type: PostTypes.GetPost,
+        payload: data,
+      });
+    }
+  };
+
+  useEffect(() => {
+    newData();
+  }, []);
+  console.log(poststate?.post?.data);
   return (
     <div>
-      {!state.user && (
+      {state?.user === null ? (
         <main className={styles.showheader}>
           <div className={styles.fakeBtnWrapper}>
             <div>
@@ -31,6 +52,8 @@ const ShowHomeHeading = () => {
             </p>
           </div>
         </main>
+      ) : (
+        ""
       )}
       <section className={styles.blogsection}>
         {!state.user && <h4 className={styles.headingh4}>Recent Blogs</h4>}
@@ -43,29 +66,31 @@ const ShowHomeHeading = () => {
                 description="Whether you seek advice during challenging times or simply want to let your creativity run wild, our community is here to embrace and support you. By nurturing these connections, you're not only finding solace but also nurturing your mental well-being."
               />
             )}
-            <BorderCard
-              title="Return to Normal: Why I Have Been Gone and When New Material is Coming!"
-              description="There are a few ways to co and using a time field. The time field could be collected at any frequency like per second, millisecond, minute, hour, etc. "
-            />
-            <BorderCard
-              title="Return to Normal: Why I Have Been Gone and When New Material is Coming!"
-              description="There are a few ways to co and using a time field. The time field could be collected at any frequency like per second, millisecond, minute, hour, etc. "
-            />
-            <BorderCard
-              title="Return to Normal: Why I Have Been Gone and When New Material is Coming!"
-              description="There are a few ways to co and using a time field. The time field could be collected at any frequency like per second, millisecond, minute, hour, etc. "
-            />
-            <BorderCard
-              title="Return to Normal: Why I Have Been Gone and When New Material is Coming!"
-              description="There are a few ways to co and using a time field. The time field could be collected at any frequency like per second, millisecond, minute, hour, etc. "
-            />
+            {poststate?.post.data &&
+              poststate?.post?.data?.map((val: postType) => (
+                <div key={val?.id}>
+                  <BorderCard title={val?.title} description={val?.excerpts} />
+                </div>
+              ))}
           </div>
+
           <div className={styles.trendingCard}>
-            <Trending
-              title="Return to Normal: Why I Have Been Gone"
-              name="Richard Norson"
-              date="22.10.2022"
-            />
+            <div>
+              <Trending
+                title="Return to Normal: Why I Have Been Gone"
+                name="Richard Norson"
+                date="22.10.2022"
+              />
+            </div>
+            <div>
+              <BookmarkSideComp
+                title="Richard Norton photorealistic rendering as real photos"
+                name="Rachel Tomi"
+              />
+            </div>
+            <div>
+              <Tags />
+            </div>
           </div>
         </div>
       </section>

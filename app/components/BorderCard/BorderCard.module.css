@@ -34,6 +34,10 @@
   justify-content: space-between;
   padding: 10px 0;
 }
+.descWrapper {
+  margin: 0px;
+  width: 100%;
+}
 .descDiv {
   padding: 10px 0;
 }
@@ -67,7 +71,6 @@
   }
   .descWrapper {
     margin: 0 40px;
-    width: 100%;
   }
   .cardDiv {
     /* composes: flex from "../../globalstyles/sharedcss.css"; */

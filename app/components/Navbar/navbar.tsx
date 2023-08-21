@@ -10,14 +10,14 @@ import { PiPencilLineFill } from "react-icons/pi";
 import { BiSearch } from "react-icons/bi";
 import { AiOutlineMenu } from "react-icons/ai";
 import { GrClose } from "react-icons/gr";
-import { CREATEPOST, FEED, HOME, LOGIN, REGISTER } from "../../RoutesUrl";
+import { BOOKMARKS, CREATEPOST, HOME, LOGIN, REGISTER } from "../../RoutesUrl";
 import { useEffect, useRef, useState } from "react";
 import Profile from "../Profile/profile";
 import { userValue } from "@/app/context/userContext";
-import { Types } from "@/app/context/userReducer";
 import { getUsers } from "@/app/ClientApi/Api";
 import InputSearch from "../Input/inputSearch";
 import classNames from "classnames";
+import { Types } from "@/app/Types/reducerTypes";
 
 export type eventType = {
   onClick: (
@@ -164,8 +164,12 @@ const Navbar = () => {
             </li>
 
             <li>
-              <Link className={styles.link} href={FEED} onClick={handleMenu}>
-                My Feed
+              <Link
+                className={styles.link}
+                href={BOOKMARKS}
+                onClick={handleMenu}
+              >
+                Bookmarks
               </Link>
             </li>
             <li>
@@ -214,8 +218,8 @@ const Navbar = () => {
                 </li>
 
                 <li>
-                  <Link className={styles.link} href={FEED}>
-                    My Feed
+                  <Link className={styles.link} href={BOOKMARKS}>
+                    Bookmarks
                   </Link>
                 </li>
                 <li>

@@ -2,7 +2,7 @@
   cursor: pointer;
 }
 .btnstyle {
-  padding: 12px 25px;
+  padding: 10px 25px;
   font-weight: bold;
   cursor: pointer;
 }
@@ -19,6 +19,13 @@
   width: 100%;
   transition: 0.5s;
   position: relative;
+}
+.pinkOutlineBtn {
+  border-radius: 20px;
+  color: var(--black);
+  border: 1px solid var(--secondaryLightPink);
+  width: 100%;
+  background: transparent;
 }
 .primaryBtn:hover,
 .rectPrimaryBtn:hover {

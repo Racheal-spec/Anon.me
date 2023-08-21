@@ -1,16 +1,40 @@
 "use client";
 
 import { createContext, useContext, useReducer } from "react";
+import { PostAction, PostStateType } from "../Types/reducerTypes";
+import PostReducer from "./postReducer";
 
-const PostContext = createContext();
-
-export const PostProvider = ({ children, PostReducer, initialPostState }) => {
-  const postreducer = useReducer(PostReducer, initialPostState);
-  return (
-    <PostContext.Provider value={postreducer}>{children}</PostContext.Provider>
-  );
+export const initialPostStateVal = {
+  post: {
+    data: [] || null,
+  },
 };
 
-export const usePostValue = () => useContext(PostContext);
+const PostContext = createContext<{
+  poststate: PostStateType;
+  postdispatch: React.Dispatch<PostAction>;
+}>({
+  poststate: initialPostStateVal,
+  postdispatch: () => [] || null,
+});
+
+export const PostProvider = ({ children, Reducer, initialPostState }) => {
+  const [poststate, postdispatch] = useReducer<typeof PostReducer>(
+    Reducer,
+    initialPostState
+  );
+  return (
+    <PostContext.Provider value={{ poststate, postdispatch }}>
+      {children}
+    </PostContext.Provider>
+  );
+};
+export const usePostValue = () => {
+  const context = useContext(PostContext);
+  if (!context) {
+    throw new Error();
+  }
+  return context;
+};
 
 export default PostContext;

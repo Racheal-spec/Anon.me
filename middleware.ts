@@ -40,15 +40,13 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.next();
   }
   const res = NextResponse;
-  if (
-    !jwt
-    // !jwt &&
-    // (pathname.startsWith("/api/auth") ||
-    //   pathname.startsWith(
-    //     "/api/auth/logout" || pathname.startsWith("/createpost")
-    //   ))
-  ) {
-    console.log(`pathhhh: ${req.nextUrl}`);
+
+  if (pathname === "/") {
+    req.nextUrl.pathname = "/home";
+    return NextResponse.redirect(req.nextUrl);
+  }
+
+  if (!jwt) {
     req.nextUrl.pathname = "/login";
     res.json(
       {
@@ -61,16 +59,6 @@ export default async function middleware(req: NextRequest) {
       }
     );
     return res.redirect(req.nextUrl);
-    // return NextResponse.json(
-    //   {
-    //     status: 401,
-    //     message:
-    //       "You are not logged in. Please provide a token to gain access.",
-    //   },
-    //   {
-    //     status: 401,
-    //   }
-    // );
   }
 
   try {

@@ -23,6 +23,7 @@ export type ButtonProp = {
     className: string;
   };
   rectPrimary: boolean;
+  pinkOutline: boolean;
   type: string;
   children: ReactNode;
   onMouseEnter: (event: React.MouseEvent<HTMLButtonElement>) => void;

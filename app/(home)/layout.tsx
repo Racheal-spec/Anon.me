@@ -1,4 +1,3 @@
-import { getUsers } from "../ClientApi/Api";
 import Navbar from "../components/Navbar/navbar";
 import { MainContext } from "../context";
 import { poppins } from "../fonts";

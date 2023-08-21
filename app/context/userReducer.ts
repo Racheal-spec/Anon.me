@@ -1,13 +1,10 @@
-import { ActionType, UserReducerType } from "../Types/reducerTypes";
+import { ActionType, Types, UserReducerType } from "../Types/reducerTypes";
 import { UserProp } from "../Types/user";
 
 export const initialVal: UserReducerType = {
   user: null,
 };
 
-export enum Types {
-  GetUser = "SET_USER",
-}
 const UserReducer = (
   state: UserReducerType,
   action: ActionType

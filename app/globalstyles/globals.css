@@ -8,12 +8,15 @@
   --fadedblack: #333333;
   --formInputBg: #f5f5f5;
   --grey: #666666;
+  --lightgrey: #d9d9d9;
   --deepblack: #000000;
   --faintgrey: #999999;
   --bordercolor: #dadddfac;
   --red: red;
   --dividercolor: #c4c4c430;
   --faintpink: #ffe2ec;
+  --tagspink: #ffebf2b8;
+  --secondaryLightPink: #ffbfd5;
   --bgGradient: linear-gradient(
     90deg,
     rgb(255, 112, 176) 0%,
