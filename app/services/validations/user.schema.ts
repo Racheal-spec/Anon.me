@@ -14,7 +14,7 @@ export const UserSchema = z.object({
       required_error: "A UniqueID is required",
     })
     .min(1, "UniqueID is required")
-    .startsWith("Anon")
+    .startsWith("anon")
     .regex(/([0-9])\d+/g),
   password: z
     .string({

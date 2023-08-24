@@ -14,3 +14,7 @@ export type ParamType = {
     id: string;
   };
 };
+export type postParamsType = {
+  take: number;
+  lastCursor: string;
+};

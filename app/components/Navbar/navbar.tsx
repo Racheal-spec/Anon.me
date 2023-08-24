@@ -14,7 +14,7 @@ import { BOOKMARKS, CREATEPOST, HOME, LOGIN, REGISTER } from "../../RoutesUrl";
 import { useEffect, useRef, useState } from "react";
 import Profile from "../Profile/profile";
 import { userValue } from "@/app/context/userContext";
-import { getUsers } from "@/app/ClientApi/Api";
+import { getUsers } from "@/app/Actions/Actions";
 import InputSearch from "../Input/inputSearch";
 import classNames from "classnames";
 import { Types } from "@/app/Types/reducerTypes";

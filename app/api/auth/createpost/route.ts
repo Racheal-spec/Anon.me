@@ -54,9 +54,9 @@ export async function POST(req: Request) {
       }
     }
   } catch (error) {
-    let res = NextResponse.next();
-    return res.status;
-    // console.log(error);
-    // return NextResponse.json({ message: "Error creating post" });
+    return NextResponse.json(
+      { message: "Error creating post" },
+      { status: 500 }
+    );
   }
 }

@@ -24,7 +24,7 @@ export async function GET(req: Request) {
   try {
     if (req.method === "GET") {
       if (jwt) {
-        const { uniqueid } = await validateJWT(jwt);
+        const { uniqueid } = await validateJWT(jwt) ;
         const user = await db.user.findUnique({
           where: {
             uniqueid: uniqueid,

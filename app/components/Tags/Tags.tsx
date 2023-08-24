@@ -10,8 +10,8 @@ const Tags = () => {
       </div>
       <p className={styles.desc}>All your set tags will appear here.</p>
       <div className={styles.tagWrapper}>
-        {tagsArray.map((tag) => (
-          <div className={styles.tagdiv}>
+        {tagsArray.map((tag, index) => (
+          <div className={styles.tagdiv} key={index}>
             <p>{tag}</p>
           </div>
         ))}

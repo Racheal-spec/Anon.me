@@ -16,9 +16,7 @@ const UserContext = createContext<{
 });
 
 export const UserProvider = ({ children, reducer, initialState }) => {
-  //  const ProviderType = {
-  //   reducer: UserReducer(reducer),
-  // }
+
   const [state, dispatch] = useReducer<typeof UserReducer>(
     reducer,
     initialState

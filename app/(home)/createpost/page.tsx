@@ -13,7 +13,6 @@ const Createpost = () => {
   const [post, setPost] = useState(initialState);
   const handleSubmit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
-    console.log("heyyyyyy");
     try {
       const res = await fetch("http://localhost:3000/api/data/createpost", {
         method: "post",

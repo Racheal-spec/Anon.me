@@ -9,6 +9,7 @@ datasource db {
 
 model User {
   id        String   @id @default(uuid())
+
   createdAt DateTime @default(now())
   anonname  String   @unique
   password  String
@@ -20,14 +21,15 @@ model User {
 
 model Post {
   id        String   @id @default(uuid())
+  intId   Int      @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   published Boolean  @default(false)
   title     String   @db.VarChar(165)
   content   String
   author    User       @relation(fields: [authorId], references: [uniqueid])
- // deleted   Boolean  @default(false)
-   deleted   DateTime?
+ deleted   Boolean  @default(false)
+  //  deleted   DateTime?
   excerpts  String   @default("") @db.VarChar(200)
   authorId   String
   //@@index([authorId,id])

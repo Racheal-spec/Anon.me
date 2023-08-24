@@ -71,7 +71,7 @@
     position: relative;
   }
   .showheader {
-    padding: 100px;
+    padding: 100px 20px;
   }
   .fakeBtnWrapper p {
     font-size: 0.75rem;
@@ -80,9 +80,22 @@
   .heading {
     font-size: 3rem;
     text-align: center;
+    width: 60%;
   }
   .description {
-    width: 60%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .headingh4 {
+    margin-bottom: 30px;
+  }
+  .description p {
+    width: 45%;
+    display: flex;
+    align-items: center;
   }
   .blogGrid {
     display: grid;

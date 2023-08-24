@@ -5,8 +5,18 @@ import profileimg from "../../Assets/profileimg.png";
 import { BsBookmark } from "react-icons/bs";
 import { AiOutlineLike } from "react-icons/ai";
 import { LiaCommentAlt } from "react-icons/lia";
-
-const BorderCard: FC = ({ title, description }) => {
+type BorderType = {
+  title: string;
+  description: string;
+  authorid: string;
+  createdAt: any;
+};
+const BorderCard = ({
+  title,
+  description,
+  authorid,
+  createdAt,
+}: BorderType) => {
   return (
     <div className={styles.cardWrapper}>
       <div className={styles.cardDiv}>
@@ -20,14 +30,14 @@ const BorderCard: FC = ({ title, description }) => {
         </div>
         <div className={styles.descWrapper}>
           <div className={styles.descDiv}>
-            <p>Date</p>
+            <p>{createdAt}</p>
             <h5>{title}</h5>
             <p>{description}</p>
           </div>
           <hr className={styles.hrstyles} />
           <div className={styles.subElementsDiv}>
             <div>
-              <p>Name</p>
+              <p>By: {authorid}</p>
             </div>
             <div className={styles.secondSubDiv}>
               <div className={styles.flex}>
