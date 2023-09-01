@@ -1,0 +1,87 @@
+.pageWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px 0;
+  text-transform: capitalize;
+}
+.pageWrapper h1 {
+  font-size: 1.8rem;
+  text-align: center;
+}
+.authorInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+.namedetails {
+  margin: 0 10px;
+}
+.anonname {
+  background-image: var(--textGradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+}
+.dateStyle {
+  font-size: 0.7rem;
+}
+.profileImg {
+  border-radius: 40%;
+}
+.moreicon {
+  font-size: 3.5rem;
+}
+.blogimage {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+.mainsection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.mainContent {
+  margin: 20px 0;
+}
+
+/**========================MEDIA QUERIES==================================**/
+
+@media screen and (min-width: 768px) {
+  /* For desktops: */
+  .pageWrapper {
+    padding: 50px 180px;
+  }
+  .pageWrapper h1 {
+    font-size: 2.8rem;
+    width: 100%;
+    text-align: center;
+  }
+  .blogimage {
+    width: 1000px;
+    height: 500px;
+    object-fit: cover;
+  }
+  .mainContent {
+    margin: 40px 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* For tablets: */
+  .pageWrapper {
+    padding: 50px 60px;
+  }
+  .blogimage {
+    width: 620px;
+    height: 400px;
+    object-fit: cover;
+  }
+  .mainContent {
+    margin: 40px 0;
+  }
+}

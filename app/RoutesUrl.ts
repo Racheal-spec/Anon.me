@@ -4,3 +4,4 @@ export const REGISTER = "/register";
 export const CREATEPOST = "/createpost";
 export const BOOKMARKS = "/bookmarks";
 export const DASHBOARD = "/dashboard";
+export const POSTDETAILS = (id: string) => `/post/${id}`;

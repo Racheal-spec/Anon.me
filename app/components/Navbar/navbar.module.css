@@ -98,23 +98,14 @@
 
 @media screen and (min-width: 768px) {
   /* For desktop: */
-  .navwrapper {
-    padding: 10px 60px;
-  }
+
   .navstyle {
     list-style: none;
     position: static;
-    background-color: red;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* flex-direction: row; */
-
-    /* position: static;
-    z-index: 999;
-    top: 0; */
-    /* right: 0;
-    left: -100; */
 
     flex-direction: row;
     width: 100%;

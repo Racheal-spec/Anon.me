@@ -9,6 +9,8 @@ import { BsFillBookmarkCheckFill } from "react-icons/bs";
 import { useBookmarkValue } from "@/app/context/bookmarkContext";
 import { bookmarkType } from "@/app/Types/posts";
 import { BookmarkTypes } from "@/app/Types/reducerTypes";
+import Link from "next/link";
+import { POSTDETAILS } from "@/app/RoutesUrl";
 
 const BorderCard = ({
   title,
@@ -35,7 +37,6 @@ const BorderCard = ({
         },
       });
     }
-    console.log("reacheddd");
   };
 
   useEffect(() => {
@@ -49,48 +50,50 @@ const BorderCard = ({
 
   return (
     <div className={styles.cardWrapper}>
-      <div className={styles.cardDiv}>
-        <div className={styles.imgDiv}>
-          <Image
-            src={profileimg}
-            priority={true}
-            className={styles.blogimg}
-            alt="blog-image"
-          />
-        </div>
-        <div className={styles.descWrapper}>
-          <div className={styles.descDiv}>
-            <p>{createdAt}</p>
-            <h5>{title}</h5>
-            <p>{excerpts}</p>
+      <Link href={POSTDETAILS(id as string)}>
+        <div className={styles.cardDiv}>
+          <div className={styles.imgDiv}>
+            <Image
+              src={profileimg}
+              priority={true}
+              className={styles.blogimg}
+              alt="blog-image"
+            />
           </div>
-          <hr className={styles.hrstyles} />
-          <div className={styles.subElementsDiv}>
-            <div>
-              <p>By: {authorId}</p>
+          <div className={styles.descWrapper}>
+            <div className={styles.descDiv}>
+              <p>{createdAt}</p>
+              <h5>{title}</h5>
+              <p>{excerpts}</p>
             </div>
-            <div className={styles.secondSubDiv}>
-              <div className={styles.flex}>
-                <LiaCommentAlt />
-                <p> 0 comments</p>
+            <hr className={styles.hrstyles} />
+            <div className={styles.subElementsDiv}>
+              <div>
+                <p>By: {authorId}</p>
               </div>
-              <div className={styles.flex}>
-                <AiOutlineLike />
-                <p>likes</p>
-              </div>
-              <div className={styles.flex}>
-                {bookmarked ? (
-                  <BsFillBookmarkCheckFill
-                    className={styles.disabledBookmark}
-                  />
-                ) : (
-                  <BsBookmark onClick={handleDispatch} />
-                )}
+              <div className={styles.secondSubDiv}>
+                <div className={styles.flex}>
+                  <LiaCommentAlt />
+                  <p> 0 comments</p>
+                </div>
+                <div className={styles.flex}>
+                  <AiOutlineLike />
+                  <p>likes</p>
+                </div>
+                <div className={styles.flex}>
+                  {bookmarked ? (
+                    <BsFillBookmarkCheckFill
+                      className={styles.disabledBookmark}
+                    />
+                  ) : (
+                    <BsBookmark onClick={handleDispatch} />
+                  )}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 };

@@ -22,6 +22,7 @@ export const validateJWT = async (jwt: string) => {
 
 export default async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
+  const regex = new RegExp("/post/*");
 
   //The block of code below checks to see if requests are from these urls, if they are, it runs.
   //i.e these are resources users are free to acesss
@@ -35,6 +36,7 @@ export default async function middleware(req: NextRequest) {
     pathname.startsWith("/register") ||
     pathname.startsWith("/home") ||
     pathname.startsWith("/feed") ||
+    regex.test(req.url) ||
     PUBLIC_FILE.test(pathname)
   ) {
     return NextResponse.next();
@@ -82,3 +84,16 @@ export default async function middleware(req: NextRequest) {
     return NextResponse.redirect(req.nextUrl);
   }
 }
+
+// export const config = {
+//   matcher: [
+//     /*
+//      * Match all request paths except for the ones starting with:
+//      * - api (API routes)
+//      * - _next/static (static files)
+//      * - _next/image (image optimization files)
+//      * - favicon.ico (favicon file)
+//      */
+//     "/((?!api|_next/static|_next/image|favicon.ico).*)",
+//   ],
+// };
