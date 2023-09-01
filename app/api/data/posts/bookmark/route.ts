@@ -13,6 +13,7 @@ export async function POST(req: Request) {
       const { uniqueid } = await validateJWT(jwt);
       const body = await req.json();
       // console.log(jwt, uniqueid);
+
       const post = await db.post.create({
         data: {
           title: body.title,
@@ -21,8 +22,9 @@ export async function POST(req: Request) {
           author: { connect: { uniqueid: uniqueid } },
         },
       },
+      )
       
-      );
+    //   );
       //  console.log(post);
       if (!post) {
         return NextResponse.json({

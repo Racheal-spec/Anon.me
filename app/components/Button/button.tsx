@@ -9,6 +9,7 @@ const Button: FC<Partial<ButtonProp>> = ({
   primary,
   rectPrimary,
   pinkOutline,
+  deepPinkOutline,
   children,
   onMouseEnter,
   onMouseLeave,
@@ -30,6 +31,7 @@ const Button: FC<Partial<ButtonProp>> = ({
           [styles.primaryBtn]: Boolean(primary),
           [styles.rectPrimaryBtn]: Boolean(rectPrimary),
           [styles.pinkOutlineBtn]: Boolean(pinkOutline),
+          [styles.deepPinkOutlineBtn]: Boolean(deepPinkOutline),
           [props?.props?.className!]: true,
         })}
       >

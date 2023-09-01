@@ -1,0 +1,22 @@
+.loginCompWrapper {
+  margin: 20px 0;
+}
+.loginCompDiv {
+  background: var(--bgGradient);
+  border-radius: 8px;
+  padding: 20px 25px;
+}
+.loginCompDiv h3 {
+  color: var(--black);
+}
+.loginCompDiv p {
+  font-size: 0.8rem;
+  margin: 10px 0;
+}
+.btnFlex {
+  display: flex;
+  padding: 10px 0;
+}
+.secondBtn {
+  margin: 0 10px;
+}

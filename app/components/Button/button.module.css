@@ -27,6 +27,13 @@
   width: 100%;
   background: transparent;
 }
+.deepPinkOutlineBtn {
+  border-radius: 20px;
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+  width: 100%;
+  background: transparent;
+}
 .primaryBtn:hover,
 .rectPrimaryBtn:hover {
   background: var(--switchBgGradient);

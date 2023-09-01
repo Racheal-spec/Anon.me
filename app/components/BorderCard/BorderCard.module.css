@@ -51,9 +51,14 @@
   display: flex;
   align-items: center;
   margin: 0 5px;
+  cursor: pointer;
 }
 .flex p {
   margin: 0 5px;
+}
+.disabledBookmark {
+  cursor: not-allowed;
+  color: var(--grey);
 }
 /**========================MEDIA QUERIES==================================**/
 

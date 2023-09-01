@@ -1,9 +1,9 @@
 :root {
   --max-width: 1100px;
-  --background-color-main: #ffffff;
   --primary: #f89b29;
   --secondary: #ff0f7b;
   --white: #ffffff;
+  --offwhite: #f8f8f8;
   --black: #0f0f0f;
   --fadedblack: #333333;
   --formInputBg: #f5f5f5;
@@ -50,10 +50,10 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: var(--background-color-main);
+  background: var(--offwhite);
 }
 .globalpadding {
-  padding: 0 10px;
+  padding: 0 20px;
 }
 a {
   color: inherit;

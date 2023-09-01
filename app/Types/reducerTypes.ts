@@ -1,4 +1,4 @@
-import { postType } from "./posts";
+import { bookmarkType, postType } from "./posts";
 import { UserProp } from "./user";
 
 export enum Types {
@@ -6,6 +6,9 @@ export enum Types {
 }
 export enum PostTypes {
   GetPost = "GET_POST",
+}
+export enum BookmarkTypes {
+  SetBookmarks = "SET_BOOKMARKS",
 }
 type SetUser = {
   type: Types.GetUser;
@@ -18,6 +21,16 @@ export type UserReducerType = {
 export type PostStateType = {
   post: {
     data: postType[] | null;
+  };
+};
+
+export type BookmarkStateType = {
+  data: bookmarkType[];
+};
+export type BookmarkAction = {
+  type: BookmarkTypes.SetBookmarks;
+  payload: {
+    data: bookmarkType;
   };
 };
 export type PostAction = {

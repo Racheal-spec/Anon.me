@@ -1,9 +1,20 @@
 export interface UserProp {
-  id: string;
-  createdAt: Date;
-  anonname: string;
-  password: string;
-  isAdmin: boolean;
-  uniqueid: string;
-  photo: string | null;
+  user: {
+    id: string;
+    createdAt: Date;
+    anonname: string;
+    password: string;
+    isAdmin: boolean;
+    uniqueid: string;
+    photo: string | null;
+  };
 }
+export type eventType = {
+  onClick: (
+    e: React.MouseEvent<HTMLLIElement> | React.MouseEvent<HTMLElement>
+  ) => void;
+};
+
+export type userType = {
+  user: () => UserProp;
+};

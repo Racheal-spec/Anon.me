@@ -1,0 +1,60 @@
+.cardWrapper {
+  border: 1px solid var(--faintgrey);
+  background-color: var(--white);
+  padding: 25px 20px;
+  width: 100%;
+}
+.profile_img {
+  border-radius: 50%;
+}
+.profileWrapper {
+  display: flex;
+  align-items: center;
+}
+.nameDiv {
+  margin-left: 20px;
+}
+.nameDiv h4 {
+  background-image: var(--textGradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+}
+.nameDiv p {
+  font-size: 0.8rem;
+}
+.mainHeading {
+  margin: 10px 0;
+}
+.desc {
+  font-size: 0.8rem;
+  margin: 10px 0;
+}
+.secondSubDiv {
+  display: flex;
+  font-size: 0.8rem;
+  justify-content: flex-end;
+}
+.flex {
+  display: flex;
+  align-items: center;
+  margin: 0 5px;
+}
+.flex p {
+  margin: 0 5px;
+}
+
+@media screen and (min-width: 768px) {
+  /* For desktops: */
+  /* .cardWrapper {
+    width: 30% !important;
+  } */
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* For tablets: */
+  /* .cardWrapper {
+    width: 50% !important;
+  } */
+}

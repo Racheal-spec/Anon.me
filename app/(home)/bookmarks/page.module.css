@@ -1,0 +1,33 @@
+.bookmarkWrapper {
+  padding: 20px 0;
+}
+.bookmarkWrapper h3 {
+  padding-bottom: 20px;
+}
+.cardWrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+@media screen and (min-width: 768px) {
+  /* For desktops: */
+  .bookmarkWrapper {
+    padding: 40px 160px;
+  }
+  .bookmarkWrapper h3 {
+    padding-bottom: 30px;
+  }
+  .cardWrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* For tablets: */
+  .bookmarkWrapper {
+    padding: 30px 0;
+  }
+  .cardWrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}

@@ -1,7 +1,6 @@
 .inputStyle {
   padding: 14px 5px;
   width: 100%;
-
   border: none;
   background-color: var(--formInputBg);
   border-radius: 5px;
@@ -21,6 +20,7 @@
   border-right: none;
   width: 120px;
   padding: 4px 5px;
+  background: transparent;
 }
 .InputSearch:focus {
   border-bottom: 1px solid var(--primary);

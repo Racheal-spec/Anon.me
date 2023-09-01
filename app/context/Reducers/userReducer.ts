@@ -1,4 +1,4 @@
-import { ActionType, Types, UserReducerType } from "../Types/reducerTypes";
+import { ActionType, Types, UserReducerType } from "../../Types/reducerTypes";
 
 export const initialVal: UserReducerType = {
   user: null,
@@ -11,6 +11,7 @@ const UserReducer = (
   switch (action.type) {
     case Types.GetUser:
       return {
+        ...state,
         user: action.payload,
       };
     default:

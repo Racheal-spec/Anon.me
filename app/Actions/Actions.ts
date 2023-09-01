@@ -1,4 +1,6 @@
-import { postParamsType } from "../Types/posts";
+import { bookmarkType, postParamsType } from "../Types/posts";
+import { BookmarkTypes } from "../Types/reducerTypes";
+import { useBookmarkValue } from "../context/bookmarkContext";
 
 export const getUsers = async () => {
   try {
@@ -25,3 +27,32 @@ export const getPosts = async ({ take, lastCursor }: postParamsType) => {
     console.log(error);
   }
 };
+
+// export const bookmarkDispatchAction = ({
+//   title,
+//   excerpts,
+//   id,
+//   authorId,
+//   createdAt,
+
+// }: bookmarkType) => {
+//   //const { bookmarkstate, bookmarkdispatch } = useBookmarkValue();
+//   if (dispatch) {
+//     dispatch({
+//       type: BookmarkTypes.SetBookmarks,
+//       payload: {
+//         data: [
+//           {
+//             title,
+//             excerpts,
+//             id,
+//             authorId,
+//             createdAt,
+//           },
+//         ],
+//       },
+//     });
+//     console.log(state);
+//     return;
+//   }
+// };

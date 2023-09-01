@@ -2,12 +2,12 @@
 
 import { createContext, useContext, useReducer } from "react";
 import { PostAction, PostStateType } from "../Types/reducerTypes";
-import PostReducer from "./postReducer";
+import PostReducer, { initialPostStateVal } from "./Reducers/postReducer";
 
-export const initialPostStateVal = {
-  post: {
-    data: [] || null,
-  },
+type PostContextType = {
+  children: JSX.Element;
+  Reducer: typeof PostReducer;
+  initialPostState: PostStateType;
 };
 
 const PostContext = createContext<{
@@ -18,11 +18,16 @@ const PostContext = createContext<{
   postdispatch: () => [] || null,
 });
 
-export const PostProvider = ({ children, Reducer, initialPostState }) => {
+export const PostProvider = ({
+  children,
+  Reducer,
+  initialPostState,
+}: PostContextType) => {
   const [poststate, postdispatch] = useReducer<typeof PostReducer>(
     Reducer,
     initialPostState
   );
+
   return (
     <PostContext.Provider value={{ poststate, postdispatch }}>
       {children}

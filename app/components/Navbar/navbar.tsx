@@ -18,13 +18,7 @@ import { getUsers } from "@/app/Actions/Actions";
 import InputSearch from "../Input/inputSearch";
 import classNames from "classnames";
 import { Types } from "@/app/Types/reducerTypes";
-
-export type eventType = {
-  onClick: (
-    e: React.MouseEvent<HTMLLIElement> | React.MouseEvent<HTMLElement>
-  ) => void;
-  // handleProfile: (e: React.MouseEvent<HTMLElement>) => void;
-};
+import { UserProp, eventType, userType } from "@/app/Types/user";
 
 const Navbar = () => {
   //================HOOKS========================//
@@ -34,12 +28,13 @@ const Navbar = () => {
   const [toggleDrawer, setToggleDrawer] = useState(true);
   const [windowDimension, setWindowDimension] = useState(0);
   const menuRef = useRef(null);
-  console.log(state);
+  // let state = handleuser();
 
-  //===============HANDLERS=====================//
-  const handleuser = async () => {
+  // console.log(state);
+
+  const fetchUser = async () => {
     let data = await getUsers();
-    console.log(data);
+
     if (dispatch) {
       dispatch({
         type: Types.GetUser,
@@ -58,11 +53,11 @@ const Navbar = () => {
     console.log(toggleDrawer);
   };
   //===============USEEFFECTS==================//
-
   useEffect(() => {
-    handleuser();
+    if (!state?.user) {
+      fetchUser();
+    }
   }, []);
-
   useEffect(() => {
     setWindowDimension(window.innerWidth);
   }, []);
@@ -119,7 +114,7 @@ const Navbar = () => {
                 )}
               </div>
               {/**======================VIEW PROFILE================================ */}
-              {state.user ? (
+              {state?.user ? (
                 <div className={styles.profile_img_div} onClick={handleProfile}>
                   {!profileimg ? (
                     <div className={styles.profile_img}>
@@ -247,7 +242,7 @@ const Navbar = () => {
                 </li>
 
                 {/**======================VIEW PROFILE================================ */}
-                {state.user ? (
+                {state?.user ? (
                   <div
                     className={styles.profile_img_div}
                     onClick={handleProfile}

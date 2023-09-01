@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type postType = {
   title: string;
   excerpts: string;
@@ -17,4 +19,12 @@ export type ParamType = {
 export type postParamsType = {
   take: number;
   lastCursor: string;
+};
+
+export type bookmarkType = {
+  title: string;
+  excerpts?: string;
+  id?: string;
+  createdAt: any;
+  authorId: string;
 };

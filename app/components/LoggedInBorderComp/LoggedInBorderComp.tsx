@@ -1,7 +1,11 @@
 import React, { FC } from "react";
 import styles from "./LoggedInComp.module.css";
 
-const LoggedInBorderComp: FC = ({ title, description }) => {
+type LoggedInBorderType = {
+  title: string;
+  description: string;
+};
+const LoggedInBorderComp = ({ title, description }: LoggedInBorderType) => {
   return (
     <div className={styles.compBorderWrapper}>
       <div className={styles.compDiv}>
