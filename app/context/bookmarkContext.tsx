@@ -9,8 +9,8 @@ type BookmarkContextType = {
 };
 
 export const initialBookState: BookmarkStateType = {
-  data: localStorage.getItem("bookmark")
-    ? JSON.parse(localStorage.getItem("bookmark")!)
+  data: localStorage?.getItem("bookmark")
+    ? JSON?.parse(localStorage.getItem("bookmark")!)
     : [],
 };
 

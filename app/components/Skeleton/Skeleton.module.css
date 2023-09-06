@@ -1,0 +1,116 @@
+.skeletonBorder {
+  border: 1px solid var(--bordercolor);
+  padding: 10px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+.hrstyles {
+  color: var(--dividercolor);
+  margin: 10px 0;
+}
+.firstMainDiv {
+  display: flex;
+  flex-direction: column;
+}
+.imageDiv {
+  width: 100%;
+  height: 16vh;
+  background-color: var(--lightgrey);
+  border-radius: 8px;
+}
+.descWrapper {
+  width: 100%;
+  padding: 20px 0;
+}
+.bottomDesc {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.rightsideStyle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 45%;
+}
+.date {
+  background-color: var(--lightgrey);
+  width: 10%;
+  padding: 2px;
+  border-radius: 10px;
+}
+.title {
+  background-color: var(--lightgrey);
+  width: 70%;
+  padding: 4px 0;
+  margin: 12px 0;
+  border-radius: 10px;
+}
+.desc {
+  background-color: var(--lightgrey);
+  width: 90%;
+  padding: 3px 0;
+  margin: 12px 0;
+  border-radius: 10px;
+}
+.name {
+  background-color: var(--lightgrey);
+  width: 15%;
+  padding: 2px;
+  border-radius: 10px;
+}
+
+.comments,
+.likes {
+  background-color: var(--lightgrey);
+  width: 35%;
+  padding: 2px;
+  border-radius: 10px;
+}
+.bookmark {
+  background-color: var(--lightgrey);
+  width: 6%;
+  padding: 9px;
+  border-radius: 6px;
+}
+.skeleton {
+  animation: skeleton-loading 1.5s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(202, 10%, 79%);
+  }
+  50% {
+    background-color: hsl(210, 3%, 85%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+/**========================MEDIA QUERIES==================================**/
+
+@media screen and (min-width: 768px) {
+  .skeletonBorder {
+    padding: 15px 20px;
+  }
+  .firstMainDiv {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .imageDiv {
+    width: 27%;
+  }
+  .descWrapper {
+    width: 70%;
+    margin-left: 30px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .firstMainDiv {
+    flex-direction: row;
+  }
+}

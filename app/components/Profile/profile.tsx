@@ -1,10 +1,10 @@
+"use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useRef, useState } from "react";
 import style from "./profile.module.css";
-import { DASHBOARD } from "@/app/RoutesUrl";
+import { DASHBOARD } from "@/app/Routes/RoutesUrl";
 import { UseClickOutside } from "@/hooks/ClickOutside";
-import { eventType } from "../Navbar/navbar";
 
 const deleteUser = async () => {
   // let url = process.env.BASE_URL as string;
@@ -23,8 +23,11 @@ const Profile = ({ handleProfile }) => {
   console.log(ref);
 
   const SignOutUser = async () => {
-    await deleteUser();
-    console.log("deletee");
+    let logout = await deleteUser();
+    if (logout) {
+      router.refresh();
+      console.log("deletee");
+    }
   };
   return (
     <div className={style.profileDiv} ref={ref}>

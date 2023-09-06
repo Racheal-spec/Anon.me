@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import { SignJWT, jwtVerify } from "jose";
-import { UserProp } from "../Types/user";
+import { AuthorProp, UserProp } from "../Types/user";
 import { db } from "./db";
 
 export const hashPassword = (password: string) => bcrypt.hash(password, 10);
@@ -13,7 +13,7 @@ export const comparePasswords = async (
   return bcrypt.compare(plaintextPwd, hashedPwd);
 };
 
-export const createJWT = (user: UserProp) => {
+export const createJWT = (user: AuthorProp) => {
   const iat = Math.floor(Date.now() / 1000);
   //token should expire a week from now
   const exp = iat + 60 * 60 * 24 * 7;

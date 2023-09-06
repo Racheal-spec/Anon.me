@@ -1,13 +1,14 @@
+export type AuthorProp = {
+  id: string;
+  createdAt: Date;
+  anonname: string;
+  password: string;
+  isAdmin: boolean;
+  uniqueid: string;
+  photo: string | null;
+};
 export interface UserProp {
-  user: {
-    id: string;
-    createdAt: Date;
-    anonname: string;
-    password: string;
-    isAdmin: boolean;
-    uniqueid: string;
-    photo: string | null;
-  };
+  user: AuthorProp;
 }
 export type eventType = {
   onClick: (

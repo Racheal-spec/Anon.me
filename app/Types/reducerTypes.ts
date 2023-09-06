@@ -6,11 +6,14 @@ export enum Types {
 }
 export enum PostTypes {
   GetPost = "GET_POST",
+  GetSinglePost = "GET_SINGLE_POST",
 }
 export enum BookmarkTypes {
   SetBookmarks = "SET_BOOKMARKS",
+  DeleteBookmarks = "DELETE_BOOKMARKS",
 }
-type SetUser = {
+
+export type ActionType = {
   type: Types.GetUser;
   payload: UserProp;
 };
@@ -19,16 +22,15 @@ export type UserReducerType = {
 };
 
 export type PostStateType = {
-  post: {
-    data: postType[] | null;
-  };
+  data: postType[] | null;
+  singlepost: postType;
 };
 
 export type BookmarkStateType = {
   data: bookmarkType[];
 };
 export type BookmarkAction = {
-  type: BookmarkTypes.SetBookmarks;
+  type: BookmarkTypes.SetBookmarks | BookmarkTypes.DeleteBookmarks;
   payload: {
     data: bookmarkType;
   };
@@ -39,4 +41,10 @@ export type PostAction = {
     data: postType[] | null;
   };
 };
-export type ActionType = SetUser;
+export type SinglePostAction = {
+  type: PostTypes.GetSinglePost;
+  payload: {
+    data: postType;
+  };
+};
+export type PostActionType = PostAction | SinglePostAction;

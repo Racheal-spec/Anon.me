@@ -9,6 +9,22 @@
   grid-template-columns: 1fr;
   gap: 14px;
 }
+.emptystateImgDiv {
+  transform: translate(0px, 50px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.emptystateImgDiv p {
+  width: 100%;
+  text-align: center;
+  color: var(--faintgrey);
+}
+.emptystateImg {
+  width: 100%;
+}
 @media screen and (min-width: 768px) {
   /* For desktops: */
   .bookmarkWrapper {

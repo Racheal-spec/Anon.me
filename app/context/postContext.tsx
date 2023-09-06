@@ -1,7 +1,5 @@
-"use client";
-
 import { createContext, useContext, useReducer } from "react";
-import { PostAction, PostStateType } from "../Types/reducerTypes";
+import { PostActionType, PostStateType } from "../Types/reducerTypes";
 import PostReducer, { initialPostStateVal } from "./Reducers/postReducer";
 
 type PostContextType = {
@@ -12,10 +10,10 @@ type PostContextType = {
 
 const PostContext = createContext<{
   poststate: PostStateType;
-  postdispatch: React.Dispatch<PostAction>;
+  postdispatch: React.Dispatch<PostActionType>;
 }>({
   poststate: initialPostStateVal,
-  postdispatch: () => [] || null,
+  postdispatch: () => null,
 });
 
 export const PostProvider = ({

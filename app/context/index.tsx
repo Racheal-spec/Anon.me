@@ -2,7 +2,6 @@
 import { UserProvider } from "./userContext";
 import UserReducer from "./Reducers/userReducer";
 import { initialVal } from "./Reducers/userReducer";
-import { ReactNode } from "react";
 import { PostProvider } from "./postContext";
 import PostReducer, { initialPostStateVal } from "./Reducers/postReducer";
 import { BookmarkProvider, initialBookState } from "./bookmarkContext";

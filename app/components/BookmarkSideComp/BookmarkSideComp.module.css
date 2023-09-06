@@ -19,6 +19,12 @@
 .dateDiv {
   margin: 0 20px;
 }
+.emptybookmarks {
+  text-align: center;
+  padding: 30px 0;
+  font-size: 0.8rem;
+  color: var(--faintgrey);
+}
 @media screen and (min-width: 768px) {
   /* For desktops: */
   .bookmarkCardWrapper {

@@ -2,20 +2,26 @@
 import Link from "next/link";
 import styles from "./navbar.module.css";
 import { TfiWrite } from "react-icons/tfi";
-import Button from "../Button/button";
+import Button from "../../uikits/Button/button";
 import Image from "next/image";
-import profileimg from "../../Assets/profileimg.png";
+import profileimg from "../../Assets/images/profileimg.png";
 import { BsFillPersonFill } from "react-icons/bs";
 import { PiPencilLineFill } from "react-icons/pi";
 import { BiSearch } from "react-icons/bi";
 import { AiOutlineMenu } from "react-icons/ai";
 import { GrClose } from "react-icons/gr";
-import { BOOKMARKS, CREATEPOST, HOME, LOGIN, REGISTER } from "../../RoutesUrl";
+import {
+  BOOKMARKS,
+  CREATEPOST,
+  HOME,
+  LOGIN,
+  REGISTER,
+} from "../../Routes/RoutesUrl";
 import { useEffect, useRef, useState } from "react";
 import Profile from "../Profile/profile";
 import { userValue } from "@/app/context/userContext";
-import { getUsers } from "@/app/Actions/Actions";
-import InputSearch from "../Input/inputSearch";
+import { getUsers } from "@/app/context/Actions/Actions";
+import InputSearch from "../../uikits/Input/inputSearch";
 import classNames from "classnames";
 import { Types } from "@/app/Types/reducerTypes";
 import { UserProp, eventType, userType } from "@/app/Types/user";
@@ -28,9 +34,6 @@ const Navbar = () => {
   const [toggleDrawer, setToggleDrawer] = useState(true);
   const [windowDimension, setWindowDimension] = useState(0);
   const menuRef = useRef(null);
-  // let state = handleuser();
-
-  // console.log(state);
 
   const fetchUser = async () => {
     let data = await getUsers();
@@ -50,7 +53,6 @@ const Navbar = () => {
   const handleMenu = () => {
     // if(menuRef.current  )
     setToggleDrawer(!toggleDrawer);
-    console.log(toggleDrawer);
   };
   //===============USEEFFECTS==================//
   useEffect(() => {

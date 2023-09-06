@@ -20,18 +20,17 @@ export async function POST(req: Request) {
           excerpts: body.excerpts,
           author: { connect: { uniqueid: uniqueid } },
         },
-      },
-      
-      );
-      //  console.log(post);
+        include: {
+          author: true,
+        },
+      });
       if (!post) {
         return NextResponse.json({
           message: "post creation failed!",
         });
       }
       if (post) {
-        console.log("createeee");
-        //return NextResponse.json(post);
+        post.author.password = undefined!;
         return NextResponse.json(
           {
             status: 201,

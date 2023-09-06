@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { AuthorProp } from "../user";
 
 export type postType = {
   title: string;
@@ -9,7 +10,8 @@ export type postType = {
   updatedAt: Date;
   published: boolean;
   deleted: null;
-  authorId: string;
+  authorId?: string;
+  author: AuthorProp;
 };
 export type ParamType = {
   params: {
@@ -21,10 +23,12 @@ export type postParamsType = {
   lastCursor: string;
 };
 
-export type bookmarkType = {
+type bookmarkProp = {
   title: string;
-  excerpts?: string;
-  id?: string;
+  excerpts: string;
+  id: string;
   createdAt: any;
-  authorId: string;
+  author: string;
 };
+
+export type bookmarkType = Partial<bookmarkProp>;

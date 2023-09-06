@@ -9,14 +9,14 @@ datasource db {
 
 model User {
   id        String   @id @default(uuid())
-
   createdAt DateTime @default(now())
   anonname  String   @unique
   password  String
   isAdmin   Boolean  @default(false)
   uniqueid  String   @unique
-  photo     String?  @default("")
+  photo     String?  
   posts     Post[]
+  comments  Comments[]
 }
 
 model Post {
@@ -27,10 +27,23 @@ model Post {
   published Boolean  @default(false)
   title     String   @db.VarChar(165)
   content   String
-  author    User       @relation(fields: [authorId], references: [uniqueid])
+  author    User       @relation(fields: [authorId], references: [id])
  deleted   Boolean  @default(false)
+ postimage  String?   
   //  deleted   DateTime?
   excerpts  String   @default("") @db.VarChar(200)
   authorId   String
+  comments   Comments[]
   //@@index([authorId,id])
+}
+
+model Comments {
+  id        String   @id @default(uuid())
+  text     String    
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  post       Post    @relation(fields: [postId], references: [id])
+  commenter    User    @relation(fields: [commenterId], references: [id])
+  commenterId  String
+  postId     String
 }

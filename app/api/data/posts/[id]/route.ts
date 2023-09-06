@@ -9,6 +9,9 @@ export async function GET(req: Request, { params }: ParamType) {
       where: {
         id: postid,
       },
+      include: {
+        author: true,
+      },
     });
     if (!post) {
       return NextResponse.json({
@@ -17,6 +20,7 @@ export async function GET(req: Request, { params }: ParamType) {
       });
     }
     if (post) {
+      post.author.password = undefined!;
       return NextResponse.json(post, {
         status: 200,
         statusText: "ok",

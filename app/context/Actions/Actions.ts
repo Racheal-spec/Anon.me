@@ -1,6 +1,4 @@
-import { bookmarkType, postParamsType } from "../Types/posts";
-import { BookmarkTypes } from "../Types/reducerTypes";
-import { useBookmarkValue } from "../context/bookmarkContext";
+import { postParamsType } from "../../Types/posts";
 
 export const getUsers = async () => {
   try {
@@ -8,7 +6,7 @@ export const getUsers = async () => {
     if (!res.ok) {
       console.log(res);
     }
-    return await res?.json();
+    return await res.json();
   } catch (error) {
     console.log(error);
   }
@@ -19,6 +17,17 @@ export const getPosts = async ({ take, lastCursor }: postParamsType) => {
     const res = await fetch(
       `http://localhost:3000/api/data/posts?take=${take}&lastCursor=${lastCursor}`
     );
+    if (!res.ok) {
+      console.log(res);
+    }
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+export const getSinglePost = async (id: string) => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/data/posts/${id}`);
     if (!res.ok) {
       console.log(res);
     }

@@ -1,3 +1,4 @@
+import ToastProvider from "../ToastProvider";
 import Navbar from "../components/Navbar/navbar";
 import { MainContext } from "../context";
 import { poppins } from "../fonts";
@@ -22,7 +23,7 @@ export default function RootLayout({
         <MainContext>
           <div className="globalpadding">
             <Navbar />
-            {children}
+            <ToastProvider>{children}</ToastProvider>
           </div>
         </MainContext>
       </body>

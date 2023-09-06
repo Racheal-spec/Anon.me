@@ -68,7 +68,7 @@
     padding: 15px 10px;
   }
   .blogimg {
-    height: 24vh;
+    height: 20vh;
     margin: 0 10px;
   }
   .imgDiv {
@@ -84,7 +84,7 @@
     justify-content: center;
   }
 }
-@media screen and (min-width: 600px) {
+@media (min-width: 768px) and (max-width: 1024px) {
   /* For tablets: */
   .cardDiv {
     /* composes: flex from "../../globalstyles/sharedcss.css"; */

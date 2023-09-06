@@ -1,5 +1,4 @@
 import { db } from "@/app/services/db";
-import { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request, res: NextResponse) {
@@ -21,6 +20,9 @@ export async function GET(req: Request, res: NextResponse) {
       }),
       orderBy: {
         intId: "desc",
+      },
+      include: {
+        author: true,
       },
     });
 
@@ -51,6 +53,7 @@ export async function GET(req: Request, res: NextResponse) {
         },
       }),
     });
+    data.map((val) => (val.author.password = undefined!));
     return NextResponse.json(
       {
         status: "ok",
@@ -64,11 +67,9 @@ export async function GET(req: Request, res: NextResponse) {
         status: 200,
       }
     );
-    // return res.status(200).json(data);
   } catch (error) {
     return NextResponse.json({
       status: error,
     });
-    //return res.status(500).json(error);
   }
 }

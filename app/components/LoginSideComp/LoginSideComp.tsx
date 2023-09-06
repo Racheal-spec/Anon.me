@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./LoginSideComp.module.css";
-import Button from "../Button/button";
+import Button from "../../uikits/Button/button";
 import Link from "next/link";
-import { LOGIN, REGISTER } from "@/app/RoutesUrl";
+import { LOGIN, REGISTER } from "@/app/Routes/RoutesUrl";
 
 const LoginSideComp = () => {
   return (

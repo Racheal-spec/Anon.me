@@ -87,7 +87,7 @@ export const publishPost = async () => {
   });
 };
 
-export const editPost: FC<postType["data"]> = async (post) => {
+export const editPost: FC<postType> = async (post) => {
   return fetcher({
     url: "/api/data/post/edit/:id",
     method: "GET",

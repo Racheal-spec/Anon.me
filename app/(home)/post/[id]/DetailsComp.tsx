@@ -1,17 +1,36 @@
 "use client";
 import { useParams } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./pages.module.css";
-import profileimg from "../../../Assets/profileimg.png";
+import profileimg from "../../../Assets/images/profileimg.png";
 import Image from "next/image";
 import { GrMore } from "react-icons/gr";
+import { getSinglePost } from "@/app/context/Actions/Actions";
+import { usePostValue } from "@/app/context/postContext";
+import { PostTypes } from "@/app/Types/reducerTypes";
 
 const DetailsComp = () => {
   let params = useParams();
-  console.log(params);
+  //console.log(params);
+  const { poststate, postdispatch } = usePostValue();
+
+  const fetchPost = async () => {
+    let data = await getSinglePost(params.id as string);
+
+    if (postdispatch) {
+      postdispatch({
+        type: PostTypes.GetSinglePost,
+        payload: data,
+      });
+    }
+  };
+  useEffect(() => {
+    fetchPost();
+  }, []);
+  console.log(poststate);
   return (
     <div className={styles.pageWrapper}>
-      <h1>Introducing a New Wizard for the Blogging Community</h1>
+      <h1>{poststate?.singlepost?.title}</h1>
       <div className={styles.authorInfo}>
         <div>
           <Image
@@ -24,10 +43,14 @@ const DetailsComp = () => {
         </div>
         <div className={styles.namedetails}>
           <div>
-            <h5 className={styles.anonname}>Anon name</h5>
+            <h5 className={styles.anonname}>
+              {poststate?.singlepost?.author?.anonname}
+            </h5>
           </div>
           <div>
-            <p className={styles.dateStyle}>20 September, 2023</p>
+            <p className={styles.dateStyle}>
+              {new Date(poststate?.singlepost?.createdAt)?.toDateString()}
+            </p>
           </div>
         </div>
       </div>
@@ -44,29 +67,7 @@ const DetailsComp = () => {
           />
         </div>
         <div className={styles.mainContent}>
-          <p>
-            Next.js 12 had significant features and improvements like the build
-            times 5x faster; another exciting feature released called Edge
-            Network allows you to deploy your functions in the Edge and increase
-            the execution speed. An extension of this feature is the support of
-            middleware in a Next.js application. A middleware is a function that
-            sits in front of your application routes. It is executed before the
-            request reaches the business logic associated with a route. Next.js
-            12 had significant features and improvements like the build times 5x
-            faster; another exciting feature released called Edge Network allows
-            you to deploy your functions in the Edge and increase the execution
-            speed. An extension of this feature is the support of middleware in
-            a Next.js application. A middleware is a function that sits in front
-            of your application routes. It is executed before the request
-            reaches the business logic associated with a route. Next.js 12 had
-            significant features and improvements like the build times 5x
-            faster; another exciting feature released called Edge Network allows
-            you to deploy your functions in the Edge and increase the execution
-            speed. An extension of this feature is the support of middleware in
-            a Next.js application. A middleware is a function that sits in front
-            of your application routes. It is executed before the request
-            reaches the business logic associated with a route.
-          </p>
+          <p>{poststate.singlepost.content}</p>
         </div>
       </section>
     </div>

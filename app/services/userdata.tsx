@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect } from "react";
-import { getUsers } from "../Actions/Actions";
+import { getUsers } from "../context/Actions/Actions";
 import { Types } from "../Types/reducerTypes";
 import { userValue } from "../context/userContext";
 

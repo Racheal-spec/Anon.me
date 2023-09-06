@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import styles from "./BorderCard.module.css";
 import Image from "next/image";
-import profileimg from "../../Assets/profileimg.png";
+import profileimg from "../../Assets/images/profileimg.png";
 import { BsBookmark } from "react-icons/bs";
 import { AiOutlineLike } from "react-icons/ai";
 import { LiaCommentAlt } from "react-icons/lia";
@@ -10,13 +10,14 @@ import { useBookmarkValue } from "@/app/context/bookmarkContext";
 import { bookmarkType } from "@/app/Types/posts";
 import { BookmarkTypes } from "@/app/Types/reducerTypes";
 import Link from "next/link";
-import { POSTDETAILS } from "@/app/RoutesUrl";
+import { POSTDETAILS } from "@/app/Routes/RoutesUrl";
+import { FormatDate } from "@/app/services/formatDate";
 
 const BorderCard = ({
   title,
   excerpts,
   id,
-  authorId,
+  author,
   createdAt,
 }: bookmarkType) => {
   const { bookmarkstate, bookmarkdispatch } = useBookmarkValue();
@@ -31,7 +32,7 @@ const BorderCard = ({
             title,
             excerpts,
             id,
-            authorId,
+            author,
             createdAt,
           },
         },
@@ -50,50 +51,50 @@ const BorderCard = ({
 
   return (
     <div className={styles.cardWrapper}>
-      <Link href={POSTDETAILS(id as string)}>
-        <div className={styles.cardDiv}>
-          <div className={styles.imgDiv}>
-            <Image
-              src={profileimg}
-              priority={true}
-              className={styles.blogimg}
-              alt="blog-image"
-            />
-          </div>
-          <div className={styles.descWrapper}>
+      <div className={styles.cardDiv}>
+        <div className={styles.imgDiv}>
+          <Image
+            src={profileimg}
+            priority={true}
+            className={styles.blogimg}
+            alt="blog-image"
+          />
+        </div>
+        <div className={styles.descWrapper}>
+          <Link href={POSTDETAILS(id as string)}>
             <div className={styles.descDiv}>
-              <p>{createdAt}</p>
+              <p>{FormatDate(createdAt)}</p>
               <h5>{title}</h5>
               <p>{excerpts}</p>
             </div>
-            <hr className={styles.hrstyles} />
-            <div className={styles.subElementsDiv}>
-              <div>
-                <p>By: {authorId}</p>
+          </Link>
+          <hr className={styles.hrstyles} />
+          <div className={styles.subElementsDiv}>
+            <div>
+              <p>By: {author}</p>
+            </div>
+            <div className={styles.secondSubDiv}>
+              <div className={styles.flex}>
+                <LiaCommentAlt />
+                <p> 0 comments</p>
               </div>
-              <div className={styles.secondSubDiv}>
-                <div className={styles.flex}>
-                  <LiaCommentAlt />
-                  <p> 0 comments</p>
-                </div>
-                <div className={styles.flex}>
-                  <AiOutlineLike />
-                  <p>likes</p>
-                </div>
-                <div className={styles.flex}>
-                  {bookmarked ? (
-                    <BsFillBookmarkCheckFill
-                      className={styles.disabledBookmark}
-                    />
-                  ) : (
-                    <BsBookmark onClick={handleDispatch} />
-                  )}
-                </div>
+              <div className={styles.flex}>
+                <AiOutlineLike />
+                <p>likes</p>
+              </div>
+              <div className={styles.flex}>
+                {bookmarked ? (
+                  <BsFillBookmarkCheckFill
+                    className={styles.disabledBookmark}
+                  />
+                ) : (
+                  <BsBookmark onClick={handleDispatch} />
+                )}
               </div>
             </div>
           </div>
         </div>
-      </Link>
+      </div>
     </div>
   );
 };

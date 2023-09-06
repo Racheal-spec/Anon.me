@@ -4,11 +4,11 @@ import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { login, registeruser } from "../../services/api";
 import { UserProp } from "../../Types/user";
-import Input from "../Input/Input";
+import Input from "../../uikits/Input/Input";
 import Link from "next/link";
-import Button from "../Button/button";
+import Button from "../../uikits/Button/button";
 import style from "./authform.module.css";
-import InputField from "../Input/Input";
+import InputField from "../../uikits/Input/Input";
 import { BsArrowRight } from "react-icons/bs";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -18,6 +18,8 @@ import {
   UserSchemaType,
 } from "@/app/services/validations/user.schema";
 import { toast } from "react-toastify";
+//import loader from "../../Assets/svgs/loader.svg";
+import Loader from "../Loader/Loader";
 
 const registerUser = {
   linkurl: "/login",
@@ -51,7 +53,7 @@ const initialStateLogin = {
 
 const Authform = ({ mode }: { mode: "register" | "login" }) => {
   const state = mode === "register" ? initialStateReg : initialStateLogin;
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   const router = useRouter();
   const {
@@ -61,19 +63,22 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
   } = useForm<UserSchemaType>({
     resolver: zodResolver(UserSchema),
   });
-
+  console.log(loading);
   const handleFormSubmit: SubmitHandler<UserSchemaType> = async (state) => {
     try {
       console.log("lllll");
       if (mode === "register") {
         let result = await registeruser(state);
-
+        setLoading(true);
         console.log(result);
         if (result?.status === "created") {
           router.replace("/home");
         }
       } else {
         let loginresult = await login(state);
+        if (!loginresult) {
+          setLoading(true);
+        }
         console.log(state);
         if (loginresult?.status === "ok") {
           router.replace("/home");
@@ -170,7 +175,9 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
                 type="submit"
               >
                 <div className={style.btnContentDiv}>
-                  <div>{content.buttonText}</div>
+                  <div>
+                    {loading === true ? <Loader /> : content.buttonText}
+                  </div>
                   <div className={style.btnIconDiv}>
                     <BsArrowRight fontSize={"1.3rem"} />
                   </div>

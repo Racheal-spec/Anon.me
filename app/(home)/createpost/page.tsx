@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import style from "../createpost/page.module.css";
-import Button from "../../components/Button/button";
+import Button from "../../uikits/Button/button";
 
 const Createpost = () => {
   const initialState = {
