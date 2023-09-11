@@ -1,12 +1,17 @@
+import { toast } from "react-toastify";
 import { postParamsType } from "../../Types/posts";
 
 export const getUsers = async () => {
   try {
     const res = await fetch("http://localhost:3000/api/auth/user");
     if (!res.ok) {
-      console.log(res);
+      let err = await res.json();
+      console.log(err);
+      toast.error(err.message);
     }
-    return await res.json();
+    if (res.ok) {
+      return await res.json();
+    }
   } catch (error) {
     console.log(error);
   }
@@ -18,7 +23,9 @@ export const getPosts = async ({ take, lastCursor }: postParamsType) => {
       `http://localhost:3000/api/data/posts?take=${take}&lastCursor=${lastCursor}`
     );
     if (!res.ok) {
-      console.log(res);
+      let err = await res.json();
+      console.log(err);
+      toast.error(err.message);
     }
     return await res.json();
   } catch (error) {
@@ -29,7 +36,46 @@ export const getSinglePost = async (id: string) => {
   try {
     const res = await fetch(`http://localhost:3000/api/data/posts/${id}`);
     if (!res.ok) {
-      console.log(res);
+      let err = await res.json();
+      console.log(err);
+      toast.error(err.message);
+    }
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const createNewPost = async (formdata: any) => {
+  try {
+    const res = await fetch("http://localhost:3000/api/auth/createpost", {
+      method: "POST",
+      body: formdata,
+      cache: "no-store",
+    });
+    if (!res.ok) {
+      let err = await res.json();
+      console.log(err);
+      toast.error(err.message);
+    }
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const setPublishPost = async (id: string) => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/data/posts/publish/${id}`,
+      {
+        method: "PUT",
+      }
+    );
+    if (!res.ok) {
+      let err = await res.json();
+      console.log(err);
+      toast.error(err.message);
     }
     return await res.json();
   } catch (error) {

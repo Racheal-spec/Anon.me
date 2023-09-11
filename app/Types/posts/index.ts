@@ -11,6 +11,7 @@ export type postType = {
   published: boolean;
   deleted: null;
   authorId?: string;
+  postimage?: string;
   author: AuthorProp;
 };
 export type ParamType = {
@@ -28,6 +29,7 @@ type bookmarkProp = {
   excerpts: string;
   id: string;
   createdAt: any;
+  postimage: string;
   author: string;
 };
 

@@ -3,7 +3,6 @@
 import { useCallback, useState } from "react";
 import { useRouter } from "next/navigation";
 import { login, registeruser } from "../../services/api";
-import { UserProp } from "../../Types/user";
 import Input from "../../uikits/Input/Input";
 import Link from "next/link";
 import Button from "../../uikits/Button/button";
@@ -53,7 +52,6 @@ const initialStateLogin = {
 
 const Authform = ({ mode }: { mode: "register" | "login" }) => {
   const state = mode === "register" ? initialStateReg : initialStateLogin;
-  const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   const router = useRouter();
   const {
@@ -63,36 +61,25 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
   } = useForm<UserSchemaType>({
     resolver: zodResolver(UserSchema),
   });
-  console.log(loading);
+  console.log(isSubmitting);
   const handleFormSubmit: SubmitHandler<UserSchemaType> = async (state) => {
     try {
       console.log("lllll");
       if (mode === "register") {
         let result = await registeruser(state);
-        setLoading(true);
-        console.log(result);
-        if (result?.status === "created") {
+        if (result) {
           router.replace("/home");
         }
       } else {
         let loginresult = await login(state);
-        if (!loginresult) {
-          setLoading(true);
-        }
-        console.log(state);
-        if (loginresult?.status === "ok") {
+        if (loginresult) {
           router.replace("/home");
         }
       }
+      // setLoading(true);
     } catch (error) {
       console.error(error);
       toast.error(`Unable to ${mode}`);
-    } finally {
-      // if (error) {
-      //   router.replace("/home");
-      // }
-      // setInputState(inputState);
-      // router.replace("/home");
     }
   };
 
@@ -155,9 +142,7 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
               //   setInputState((el) => ({ ...el, password: e.target.value }))
               // }
             />
-            {errors.password && (
-              <span className={style.spanclass}>{errors.password.message}</span>
-            )}
+
             {show ? (
               <AiFillEye className={style.eyeIcon} onClick={handleShow} />
             ) : (
@@ -167,6 +152,9 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
               />
             )}
           </div>
+          {errors.password && (
+            <span className={style.spanclass}>{errors.password.message}</span>
+          )}
           <div>
             <div>
               <Button
@@ -175,9 +163,13 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
                 type="submit"
               >
                 <div className={style.btnContentDiv}>
-                  <div>
-                    {loading === true ? <Loader /> : content.buttonText}
-                  </div>
+                  {content.buttonText}
+                  {isSubmitting && (
+                    <div className={style.loadingIcon}>
+                      <Loader color="#333333" />
+                    </div>
+                  )}
+
                   <div className={style.btnIconDiv}>
                     <BsArrowRight fontSize={"1.3rem"} />
                   </div>

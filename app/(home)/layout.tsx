@@ -1,9 +1,11 @@
+import { Suspense } from "react";
 import ToastProvider from "../ToastProvider";
 import Navbar from "../components/Navbar/navbar";
 import { MainContext } from "../context";
 import { poppins } from "../fonts";
 import "../globalstyles/globals.css";
 import { handleuser } from "../services/userdata";
+import Loading from "./Loading";
 
 export const metadata = {
   title: "Anon.me",
@@ -20,12 +22,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={poppins.className}>
       <body>
-        <MainContext>
-          <div className="globalpadding">
-            <Navbar />
-            <ToastProvider>{children}</ToastProvider>
-          </div>
-        </MainContext>
+        <Suspense fallback={<Loading />}>
+          <MainContext>
+            <div className="globalpadding">
+              <Navbar />
+              <ToastProvider>{children}</ToastProvider>
+            </div>
+          </MainContext>
+        </Suspense>
       </body>
     </html>
   );

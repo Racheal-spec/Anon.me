@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import style from "./profile.module.css";
 import { DASHBOARD } from "@/app/Routes/RoutesUrl";
 import { UseClickOutside } from "@/hooks/ClickOutside";
@@ -18,17 +18,22 @@ const deleteUser = async () => {
 };
 const Profile = ({ handleProfile }) => {
   let router = useRouter();
+  const [logout, setLogout] = useState(false);
 
   const ref = UseClickOutside(handleProfile);
-  console.log(ref);
+  console.log(logout);
 
   const SignOutUser = async () => {
-    let logout = await deleteUser();
+    await deleteUser();
+    setLogout(true);
+  };
+  useEffect(() => {
     if (logout) {
       router.refresh();
       console.log("deletee");
     }
-  };
+  }, [logout]);
+
   return (
     <div className={style.profileDiv} ref={ref}>
       <ul>

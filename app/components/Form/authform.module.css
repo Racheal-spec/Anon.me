@@ -78,3 +78,6 @@
   color: var(--red);
   font-size: 0.7rem;
 }
+.loadingIcon {
+  margin: 0 6px;
+}

@@ -12,21 +12,23 @@ const BookmarkSideComp = () => {
   return (
     <div className={styles.bookmarkCardWrapper}>
       <h4>Your Bookmarks</h4>
-      {bookmarkstate.data.length === 0 ? (
+      {bookmarkstate?.data?.length === 0 ? (
         <p className={styles.emptybookmarks}>No available bookmarks</p>
       ) : (
         <div className={styles.subDiv}>
           {bookmarkstate &&
-            bookmarkstate?.data?.map((post) => (
-              <div key={post.id}>
-                <h5>{post.title}</h5>
-                <div className={styles.smalldiv}>
-                  <div>
-                    <p>By {post.author}</p>
+            bookmarkstate?.data
+              ?.map((post) => (
+                <div key={post.id}>
+                  <h5>{post.title}</h5>
+                  <div className={styles.smalldiv}>
+                    <div>
+                      <p>By {post.author}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))
+              .slice(0, 4)}
         </div>
       )}
       <div>

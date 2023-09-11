@@ -6,6 +6,8 @@ import { poppins } from "../fonts";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ToastProvider from "../ToastProvider";
+import Loading from "./Loading";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "Anon.me",
@@ -19,11 +21,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={poppins.className}>
-      <MainContext>
-        <body>
-          <ToastProvider>{children}</ToastProvider>
-        </body>
-      </MainContext>
+      <body>
+        <Suspense fallback={<Loading />}>
+          <MainContext>
+            <ToastProvider>{children}</ToastProvider>
+          </MainContext>
+        </Suspense>
+      </body>
     </html>
   );
 }

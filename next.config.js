@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    serverComponentsExternalPackages: ["bcrypt"],
+  // experimental: {
+  //   serverComponentsExternalPackages: ["bcrypt"],
+  // },
+  images: {
+    domains: ["res.cloudinary.com"],
   },
 };
 

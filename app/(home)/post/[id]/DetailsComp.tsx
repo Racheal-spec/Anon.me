@@ -61,13 +61,19 @@ const DetailsComp = () => {
       <section className={styles.mainsection}>
         <div>
           <Image
-            src={profileimg}
+            src={
+              poststate?.singlepost?.postimage
+                ? poststate?.singlepost?.postimage
+                : profileimg
+            }
+            width={400}
+            height={200}
             className={styles.blogimage}
-            alt="user-profile-image"
+            alt="user-content-image"
           />
         </div>
         <div className={styles.mainContent}>
-          <p>{poststate.singlepost.content}</p>
+          <p>{poststate?.singlepost?.content}</p>
         </div>
       </section>
     </div>

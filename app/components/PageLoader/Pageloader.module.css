@@ -1,0 +1,6 @@
+.loaderstyle {
+  margin: auto;
+  background: var(--bgGradient);
+  display: block;
+  shape-rendering: auto;
+}

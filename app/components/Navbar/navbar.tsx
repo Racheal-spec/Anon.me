@@ -17,7 +17,7 @@ import {
   LOGIN,
   REGISTER,
 } from "../../Routes/RoutesUrl";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Profile from "../Profile/profile";
 import { userValue } from "@/app/context/userContext";
 import { getUsers } from "@/app/context/Actions/Actions";
@@ -25,6 +25,7 @@ import InputSearch from "../../uikits/Input/inputSearch";
 import classNames from "classnames";
 import { Types } from "@/app/Types/reducerTypes";
 import { UserProp, eventType, userType } from "@/app/Types/user";
+import { UseResizeScreen } from "@/hooks/ResizeScreen";
 
 const Navbar = () => {
   //================HOOKS========================//
@@ -32,8 +33,7 @@ const Navbar = () => {
   const [show, setShow] = useState(false);
   const { state, dispatch } = userValue();
   const [toggleDrawer, setToggleDrawer] = useState(true);
-  const [windowDimension, setWindowDimension] = useState(0);
-  const menuRef = useRef(null);
+  const isMobile = UseResizeScreen();
 
   const fetchUser = async () => {
     let data = await getUsers();
@@ -60,20 +60,6 @@ const Navbar = () => {
       fetchUser();
     }
   }, []);
-  useEffect(() => {
-    setWindowDimension(window.innerWidth);
-  }, []);
-
-  useEffect(() => {
-    function handleResize() {
-      setWindowDimension(window.innerWidth);
-    }
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const isMobile = windowDimension <= 640;
 
   return (
     <>

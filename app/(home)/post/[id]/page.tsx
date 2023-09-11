@@ -1,14 +1,15 @@
 import { useParams } from "next/navigation";
-import React from "react";
+import React, { Suspense } from "react";
 import DetailsComp from "./DetailsComp";
+import Loading from "../../Loading";
 
 const PostDetails = () => {
   return (
-    <div>
+    <Suspense fallback={<Loading />}>
       <div>
         <DetailsComp />
       </div>
-    </div>
+    </Suspense>
   );
 };
 

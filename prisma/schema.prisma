@@ -28,9 +28,8 @@ model Post {
   title     String   @db.VarChar(165)
   content   String
   author    User       @relation(fields: [authorId], references: [id])
- deleted   Boolean  @default(false)
- postimage  String?   
-  //  deleted   DateTime?
+  deleted   Boolean  @default(false)
+  postimage  String?   
   excerpts  String   @default("") @db.VarChar(200)
   authorId   String
   comments   Comments[]

@@ -15,8 +15,6 @@ import Tags from "@/app/components/Tags/Tags";
 import { InView, useInView } from "react-intersection-observer";
 import LoginSideComp from "@/app/components/LoginSideComp/LoginSideComp";
 import { handleuser } from "@/app/services/userdata";
-import empty_state from "../../Assets/images/empty_state.svg";
-import Image from "next/image";
 import Skeleton from "@/app/components/Skeleton/Skeleton";
 
 const ShowHomeHeading = () => {
@@ -27,6 +25,7 @@ const ShowHomeHeading = () => {
   let [lastCursor, setLastCursor] = useState("");
   const [take, setTake] = useState(7);
   const [posts, setPosts] = useState<postType[]>(poststate?.data!);
+  const [isLoading, setLoading] = useState(false);
 
   //Using useCallback stops the double function calls but wont render on initial page load
   const newData = async () => {
@@ -40,10 +39,14 @@ const ShowHomeHeading = () => {
         payload: data,
       });
     }
+    if (data?.status !== "ok") {
+      setLoading(true);
+    }
+    setLoading(false);
     setLastCursor(data?.metaData?.lastCursor);
     setPosts(data?.data);
   };
-
+  console.log(isLoading);
   //const firstRender = useRef(false);
 
   const fetchMorePosts = async () => {
@@ -57,7 +60,11 @@ const ShowHomeHeading = () => {
         payload: moredata?.data,
       });
     }
-    // setTake(take);
+    if (moredata?.status !== "ok") {
+      setLoading(true);
+    }
+
+    setLoading(false);
     setLastCursor(moredata?.metaData?.lastCursor);
     setPosts((prev) => {
       return [...(prev?.length ? prev : []), ...moredata?.data];
@@ -93,19 +100,20 @@ const ShowHomeHeading = () => {
               />
             )}
 
-            {posts?.length === 0 ? (
-              <div className={styles.emptystateImgDiv}>
-                <Image
-                  src={empty_state}
-                  className={styles.emptystateImg}
-                  alt="empty_blog"
-                />
-                <h2>No Available Post Yet</h2>
-                <p>
-                  There's no blog available at the moment, kindly check back
-                  later!
-                </p>
-              </div>
+            {isLoading ? (
+              // <div className={styles.emptystateImgDiv}>
+              //   <Image
+              //     src={empty_state}
+              //     className={styles.emptystateImg}
+              //     alt="empty_blog"
+              //   />
+              //   <h2>No Available Post Yet</h2>
+              //   <p>
+              //     There's no blog available at the moment, kindly check back
+              //     later!
+              //   </p>
+              // </div>
+              <Skeleton />
             ) : (
               <>
                 {posts &&
@@ -114,8 +122,9 @@ const ShowHomeHeading = () => {
                       <BorderCard
                         id={val?.id}
                         title={val?.title}
-                        excerpts={val?.excerpts}
+                        excerpts={val?.content.slice(0, 200)}
                         author={val?.author.anonname}
+                        postimage={val?.postimage}
                         createdAt={val?.createdAt}
                       />
                     </div>
@@ -126,7 +135,8 @@ const ShowHomeHeading = () => {
             <div ref={ref}>
               {lastCursor === null ||
               state?.user === undefined ||
-              state?.user === null ? (
+              state?.user === null ||
+              posts?.length === 0 ? (
                 ""
               ) : (
                 <div>

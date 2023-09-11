@@ -7,19 +7,17 @@ type BookmarkContextType = {
   BMReducer: typeof BookmarkReducer;
   initialBMState: BookmarkStateType;
 };
-
 export const initialBookState: BookmarkStateType = {
   data: localStorage?.getItem("bookmark")
-    ? JSON?.parse(localStorage.getItem("bookmark")!)
+    ? JSON.parse(localStorage.getItem("bookmark")!)
     : [],
 };
-
 const BookmarkContext = createContext<{
   bookmarkstate: BookmarkStateType;
   bookmarkdispatch: React.Dispatch<BookmarkAction>;
 }>({
-  bookmarkstate: initialBookState,
-  bookmarkdispatch: () => [],
+  bookmarkstate: initialBookState || [],
+  bookmarkdispatch: () => [] || null,
 });
 
 export const BookmarkProvider = ({
@@ -42,8 +40,10 @@ export const BookmarkProvider = ({
 
   useEffect(() => {
     if (bookmarkstate) {
-      localStorage.setItem("bookmark", JSON.stringify(bookmarkstate.data));
+      localStorage?.setItem("bookmark", JSON.stringify(bookmarkstate.data));
       console.log("settingggg");
+    } else {
+      return;
     }
   }, [bookmarkstate]);
 

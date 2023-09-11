@@ -17,6 +17,7 @@ const BorderCard = ({
   title,
   excerpts,
   id,
+  postimage,
   author,
   createdAt,
 }: bookmarkType) => {
@@ -41,21 +42,25 @@ const BorderCard = ({
   };
 
   useEffect(() => {
-    let bmList = bookmarkstate.data.find((val) => {
-      return val.id === id;
-    });
-    if (bmList) {
-      setBookmarked(true);
+    if (bookmarkstate?.data.length !== 0) {
+      let bmList = bookmarkstate?.data?.find((val) => {
+        return val.id === id;
+      });
+      if (bmList) {
+        setBookmarked(true);
+      }
     }
-  }, []);
+  }, [bookmarkstate]);
 
   return (
     <div className={styles.cardWrapper}>
       <div className={styles.cardDiv}>
         <div className={styles.imgDiv}>
           <Image
-            src={profileimg}
+            src={postimage ? postimage : profileimg}
             priority={true}
+            width="100"
+            height="20"
             className={styles.blogimg}
             alt="blog-image"
           />
