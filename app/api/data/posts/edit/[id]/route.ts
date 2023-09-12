@@ -13,14 +13,18 @@ export async function PUT(req: Request, { params }: ParamType) {
       data: {
         title: body.title,
         content: body.content,
-        excerpts: body.excerpts,
       },
     });
-    if (!post) {
-      return NextResponse.json({
-        message:
-          "Error getting post: Check that you are passing the correct id!",
-      });
+    if (!post.title || !post.content) {
+      return NextResponse.json(
+        {
+          message:
+            "Error getting post: Check that you are passing the correct id!",
+        },
+        {
+          status: 422,
+        }
+      );
     }
     if (post) {
       return NextResponse.json(post, {

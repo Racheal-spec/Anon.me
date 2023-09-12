@@ -138,8 +138,7 @@ const ShowHomeHeading = () => {
             <div ref={ref}>
               {lastCursor === null ||
               state?.user === undefined ||
-              state?.user === null ||
-              posts?.length === 0 ? (
+              state?.user === null ? (
                 ""
               ) : (
                 <div>
