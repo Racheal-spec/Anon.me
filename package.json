@@ -17,9 +17,11 @@
     "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.2.0",
     "@prisma/client": "^4.16.2",
+    "@types/draftjs-to-html": "^0.8.1",
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
+    "@types/react-draft-wysiwyg": "^1.13.4",
     "bcrypt": "^5.1.0",
     "classnames": "^2.3.2",
     "cloudinary": "^1.40.0",
@@ -42,9 +44,6 @@
     "typescript": "5.1.6",
     "zod": "^3.21.4"
   },
-  "prisma": {
-    "seed": "ts-node -P tsconfig-seed.json -r tsconfig-paths/register --transpileOnly prisma/seed.ts"
-  },
   "devDependencies": {
     "@storybook/addon-essentials": "^7.1.1",
     "@storybook/addon-interactions": "^7.1.1",
@@ -56,9 +55,7 @@
     "@storybook/testing-library": "^0.2.0",
     "@types/bcrypt": "^5.0.0",
     "@types/cookie": "^0.5.1",
-    "@types/draftjs-to-html": "^0.8.1",
     "@types/node": "^20.4.1",
-    "@types/react-draft-wysiwyg": "^1.13.4",
     "eslint-plugin-storybook": "^0.6.13",
     "prisma": "^4.16.2",
     "storybook": "^7.1.1",

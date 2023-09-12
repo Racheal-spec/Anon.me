@@ -26,6 +26,8 @@ import classNames from "classnames";
 import { Types } from "@/app/Types/reducerTypes";
 import { UserProp, eventType, userType } from "@/app/Types/user";
 import { UseResizeScreen } from "@/hooks/ResizeScreen";
+import { UseClickOutside } from "@/hooks/ClickOutside";
+import Modal from "../Modal/modal";
 
 const Navbar = () => {
   //================HOOKS========================//
@@ -34,6 +36,8 @@ const Navbar = () => {
   const { state, dispatch } = userValue();
   const [toggleDrawer, setToggleDrawer] = useState(true);
   const isMobile = UseResizeScreen();
+  const [searchmodal, showSearchModal] = useState(false);
+  const [isBlur, setIsBlur] = useState(false);
 
   const fetchUser = async () => {
     let data = await getUsers();
@@ -51,9 +55,19 @@ const Navbar = () => {
   };
 
   const handleMenu = () => {
-    // if(menuRef.current  )
     setToggleDrawer(!toggleDrawer);
   };
+  const handlefocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    console.log("focusssss", event);
+    showSearchModal(true);
+    setIsBlur(false);
+  };
+  const blurHandler = (event: React.FocusEvent<HTMLInputElement>) => {
+    showSearchModal(false);
+    setIsBlur(true);
+  };
+
+  //const ref = UseClickOutside(handlefocus);
   //===============USEEFFECTS==================//
   useEffect(() => {
     if (!state?.user) {
@@ -76,16 +90,17 @@ const Navbar = () => {
               <p>ANON</p>
             </div>
           )}
-
-          {/* {state.user?.user?.data?.anonname && (
-            <h3>hello {state.user?.user.data?.anonname}</h3>
-          )} */}
         </div>
+
         {isMobile ? (
           <>
             <div className={styles.searchLi}>
               <BiSearch color="#FF9753" className={styles.searchicon} />
-              <InputSearch placeholder="search" />
+              <InputSearch
+                placeholder="search"
+                onFocus={handlefocus}
+                onBlur={blurHandler}
+              />
             </div>
 
             <div className={styles.menuprofilediv}>
@@ -128,7 +143,7 @@ const Navbar = () => {
           ""
         )}
 
-        {/**===========MOBILE VERSION============ */}
+        {/**===========MOBILE NAVBAR VERSION============ */}
         {isMobile ? (
           <ul
             className={classNames(
@@ -138,7 +153,7 @@ const Navbar = () => {
           >
             <li className={isMobile ? styles.display : styles.searchLi}>
               <BiSearch color="#FF9753" className={styles.searchicon} />
-              <InputSearch placeholder="search" />
+              {/* <InputSearch placeholder="search" onFocus={handlefocus} /> */}
             </li>
             <li>
               <Link className={styles.link} href={HOME} onClick={handleMenu}>
@@ -222,7 +237,11 @@ const Navbar = () => {
               >
                 <li className={isMobile ? styles.display : styles.searchLi}>
                   <BiSearch color="#FF9753" className={styles.searchicon} />
-                  <InputSearch placeholder="search" />
+                  <InputSearch
+                    placeholder="search"
+                    onFocus={handlefocus}
+                    onBlur={blurHandler}
+                  />
                 </li>
 
                 <li>
@@ -269,7 +288,14 @@ const Navbar = () => {
           </>
         )}
       </div>
-      <hr className={styles.hrstyle} />
+
+      {searchmodal && (
+        <div>
+          {" "}
+          <Modal />
+        </div>
+      )}
+      {/* <hr className={styles.hrstyle} /> */}
     </>
   );
 };

@@ -1,4 +1,3 @@
-import { useParams } from "next/navigation";
 import React, { Suspense } from "react";
 import DetailsComp from "./DetailsComp";
 import Loading from "../../Loading";

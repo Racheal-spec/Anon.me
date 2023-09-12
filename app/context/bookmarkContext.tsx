@@ -16,7 +16,7 @@ const BookmarkContext = createContext<{
   bookmarkstate: BookmarkStateType;
   bookmarkdispatch: React.Dispatch<BookmarkAction>;
 }>({
-  bookmarkstate: initialBookState || [],
+  bookmarkstate: initialBookState,
   bookmarkdispatch: () => [] || null,
 });
 

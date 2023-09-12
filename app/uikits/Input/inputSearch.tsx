@@ -6,6 +6,8 @@ const InputSearch: FC<Partial<InputProp>> = ({
   className,
   placeholder,
   type,
+  onFocus,
+  onBlur,
   ...props
 }) => {
   return (
@@ -13,6 +15,8 @@ const InputSearch: FC<Partial<InputProp>> = ({
       className={style.InputSearch}
       type={type}
       {...props}
+      onFocus={onFocus}
+      onBlur={onBlur}
       placeholder={placeholder}
     />
   );

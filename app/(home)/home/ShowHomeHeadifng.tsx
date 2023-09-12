@@ -117,18 +117,21 @@ const ShowHomeHeading = () => {
             ) : (
               <>
                 {posts &&
-                  posts?.map((val: postType) => (
-                    <div key={val?.id}>
-                      <BorderCard
-                        id={val?.id}
-                        title={val?.title}
-                        excerpts={val?.content.slice(0, 200)}
-                        author={val?.author.anonname}
-                        postimage={val?.postimage}
-                        createdAt={val?.createdAt}
-                      />
-                    </div>
-                  ))}
+                  posts?.map((val: postType) => {
+                    let excerpt = val?.content.slice(0, 200);
+                    return (
+                      <div key={val?.id}>
+                        <BorderCard
+                          id={val?.id}
+                          title={val?.title}
+                          author={val?.author.anonname}
+                          excerpts={excerpt}
+                          postimage={val?.postimage}
+                          createdAt={val?.createdAt}
+                        />
+                      </div>
+                    );
+                  })}
               </>
             )}
 

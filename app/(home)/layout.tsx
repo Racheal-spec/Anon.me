@@ -4,7 +4,6 @@ import Navbar from "../components/Navbar/navbar";
 import { MainContext } from "../context";
 import { poppins } from "../fonts";
 import "../globalstyles/globals.css";
-import { handleuser } from "../services/userdata";
 import Loading from "./Loading";
 
 export const metadata = {

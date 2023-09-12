@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { UserProp } from "./user";
 
 export type CardProp = {
   children: ReactNode;
@@ -9,6 +8,8 @@ export type InputProp = {
   className: string;
   placeholder: string;
   value: string;
+  onFocus: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
   type: string;
   props: {
     icon: JSX.Element;

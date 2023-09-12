@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  /* padding: 70px 0; */
+  padding: 60px 0;
 }
 .showheader {
   display: flex;
@@ -82,7 +82,7 @@
 @media screen and (min-width: 768px) {
   /* For desktops: */
   .main {
-    padding: 0px 100px;
+    padding: 60px 100px;
     position: relative;
   }
   .showheader {
@@ -132,7 +132,7 @@
 @media (min-width: 768px) and (max-width: 1024px) {
   /* For tablets: */
   .main {
-    padding: 0px 20px;
+    padding: 60px 20px;
   }
   .showheader {
     padding: 50px 0;
