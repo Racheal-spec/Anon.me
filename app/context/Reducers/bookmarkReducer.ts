@@ -15,7 +15,7 @@ const BookmarkReducer = (state: BookmarkStateType, action: BookmarkAction) => {
         toast.warn(`${bookmarkedPost.title} has already been bookmarked`);
       } else {
         state.data?.push({ ...action.payload.data });
-        toast.success("Post has been bookmarked!");
+        toast.success("Story has been bookmarked!");
       }
       return {
         ...state,
@@ -26,7 +26,7 @@ const BookmarkReducer = (state: BookmarkStateType, action: BookmarkAction) => {
         return val.id !== action.payload.data.id;
       });
       if (deletedBookmarks) {
-        toast.success("Post has been deleted!");
+        toast.success("Story has been deleted!");
       }
       return {
         ...state,

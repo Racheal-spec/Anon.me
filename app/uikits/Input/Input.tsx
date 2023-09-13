@@ -6,6 +6,7 @@ const InputField: FC<Partial<InputProp>> = ({
   className,
   placeholder,
   type,
+  onKeyDown,
   ...props
 }) => {
   return (
@@ -14,6 +15,7 @@ const InputField: FC<Partial<InputProp>> = ({
       type={type}
       {...props}
       placeholder={placeholder}
+      onKeyDown={onkeydown}
     />
   );
 };

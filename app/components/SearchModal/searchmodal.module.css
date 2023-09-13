@@ -1,0 +1,111 @@
+.modal {
+  /* visibility: hidden;
+    opacity: 0; */
+  position: fixed;
+  top: 0%;
+  right: 0%;
+  bottom: 0%;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: rgba(77, 77, 77, 0.7);
+  transition: all 0.4s;
+  padding: 0 10px;
+  z-index: 9;
+}
+
+.modal:target {
+  /* visibility: visible;
+    opacity: 1; */
+}
+
+.modalcontent {
+  border-radius: 4px;
+  position: relative;
+  /* width: 500px; */
+  width: 100%;
+  bottom: 6%;
+  height: 500px;
+  overflow-y: scroll;
+  background: #fff;
+  padding: 1em;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.modalcontent p {
+  font-size: 0.8rem;
+  text-align: center;
+  padding: 10px 0;
+}
+.modalclose {
+  position: absolute;
+  top: 0px;
+  right: 8px;
+  font-size: 1.5rem;
+  color: #585858;
+  text-decoration: none;
+}
+.inputClass {
+  padding: 20px 0;
+}
+.searchInput {
+  padding: 14px 10px;
+  width: 100%;
+  border: none;
+  background-color: var(--formInputBg);
+  border-radius: 5px;
+  position: relative;
+}
+.searchInput::placeholder {
+  color: var(--faintgrey);
+}
+.searchInput:focus {
+  border: 2px solid var(--primary);
+  outline: none;
+}
+.searchicon {
+  position: absolute;
+  top: 8%;
+  right: 6%;
+  color: var(--faintgrey);
+}
+.emptystatetext {
+  margin-top: 8em;
+}
+.resultDiv {
+  border-top: 1px solid var(--dividercolor);
+  padding: 15px 0;
+}
+.resultDiv p {
+  text-align: left;
+}
+.btnDiv {
+  padding: 25px 10px;
+  position: relative;
+  z-index: 99999;
+  bottom: 0%;
+  width: 95%;
+  border-top: 1px solid var(--lightgrey);
+}
+/**========================MEDIA QUERIES==================================**/
+
+@media screen and (min-width: 768px) {
+  /* For desktop: */
+  .modal {
+    top: 8%;
+  }
+  .modalcontent {
+    width: 43%;
+    right: 2%;
+    /* bottom: 40%; */
+    bottom: 10.8%;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* For tablets: */
+  .modalcontent {
+    width: 60%;
+    right: 2%;
+    bottom: 10.7%;
+  }
+}

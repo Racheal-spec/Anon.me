@@ -10,6 +10,7 @@ export type InputProp = {
   value: string;
   onFocus: (event: React.FocusEvent<HTMLInputElement>) => void;
   onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   type: string;
   props: {
     icon: JSX.Element;

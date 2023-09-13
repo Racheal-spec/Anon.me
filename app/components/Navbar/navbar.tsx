@@ -24,10 +24,10 @@ import { getUsers } from "@/app/context/Actions/Actions";
 import InputSearch from "../../uikits/Input/inputSearch";
 import classNames from "classnames";
 import { Types } from "@/app/Types/reducerTypes";
-import { UserProp, eventType, userType } from "@/app/Types/user";
+import { eventType } from "@/app/Types/user";
 import { UseResizeScreen } from "@/hooks/ResizeScreen";
+import SearchModal from "../SearchModal/searchmodal";
 import { UseClickOutside } from "@/hooks/ClickOutside";
-import Modal from "../Modal/modal";
 
 const Navbar = () => {
   //================HOOKS========================//
@@ -60,14 +60,12 @@ const Navbar = () => {
   const handlefocus = (event: React.FocusEvent<HTMLInputElement>) => {
     console.log("focusssss", event);
     showSearchModal(true);
-    setIsBlur(false);
   };
-  const blurHandler = (event: React.FocusEvent<HTMLInputElement>) => {
+  const handleclose = () => {
+    console.log("CLOSEEE");
     showSearchModal(false);
-    setIsBlur(true);
   };
 
-  //const ref = UseClickOutside(handlefocus);
   //===============USEEFFECTS==================//
   useEffect(() => {
     if (!state?.user) {
@@ -99,7 +97,7 @@ const Navbar = () => {
               <InputSearch
                 placeholder="search"
                 onFocus={handlefocus}
-                onBlur={blurHandler}
+                // onBlur={blurHandler}
               />
             </div>
 
@@ -240,7 +238,7 @@ const Navbar = () => {
                   <InputSearch
                     placeholder="search"
                     onFocus={handlefocus}
-                    onBlur={blurHandler}
+                    // onBlur={blurHandler}
                   />
                 </li>
 
@@ -292,7 +290,7 @@ const Navbar = () => {
       {searchmodal && (
         <div>
           {" "}
-          <Modal />
+          <SearchModal handleclose={handleclose} handlefocus={handlefocus} />
         </div>
       )}
       {/* <hr className={styles.hrstyle} /> */}

@@ -36,6 +36,7 @@ export default async function middleware(req: NextRequest) {
     pathname.startsWith("/register") ||
     pathname.startsWith("/home") ||
     pathname.startsWith("/feed") ||
+    pathname.startsWith("/search") ||
     regex.test(req.url) ||
     PUBLIC_FILE.test(pathname)
   ) {

@@ -30,13 +30,13 @@ export const BookmarkProvider = ({
     initialBMState
   );
 
-  if (typeof window !== "undefined") {
-    console.log("You are on the browser");
-    // 👉️ can use localStorage here
-  } else {
-    console.log("You are on the server");
-    // 👉️ can't use localStorage
-  }
+  // if (typeof window !== "undefined") {
+  //   console.log("You are on the browser");
+  //   // 👉️ can use localStorage here
+  // } else {
+  //   console.log("You are on the server");
+  //   // 👉️ can't use localStorage
+  // }
 
   useEffect(() => {
     if (bookmarkstate) {

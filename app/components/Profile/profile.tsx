@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from "react";
 import style from "./profile.module.css";
 import { DASHBOARD } from "@/app/Routes/RoutesUrl";
 import { UseClickOutside } from "@/hooks/ClickOutside";
+import { eventType } from "@/app/Types/user";
 
 const deleteUser = async () => {
   // let url = process.env.BASE_URL as string;
@@ -16,7 +17,7 @@ const deleteUser = async () => {
   }
   return await res.json();
 };
-const Profile = ({ handleProfile }) => {
+const Profile = ({ handleProfile }: { handleProfile }) => {
   let router = useRouter();
   const [logout, setLogout] = useState(false);
 

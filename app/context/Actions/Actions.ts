@@ -82,7 +82,28 @@ export const setPublishPost = async (id: string) => {
     console.log(error);
   }
 };
-
+export const searchPosts = async ({
+  take,
+  lastCursor,
+  search,
+}: postParamsType) => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/data/posts/search?title=${search}`,
+      {
+        cache: "no-store",
+      }
+    );
+    if (!res.ok) {
+      let err = await res.json();
+      console.log(err);
+      toast.error(err.message);
+    }
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
 // export const bookmarkDispatchAction = ({
 //   title,
 //   excerpts,
