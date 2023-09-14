@@ -20,9 +20,9 @@ export type ParamType = {
   };
 };
 export type postParamsType = {
-  take?: number;
-  lastCursor?: string;
-  search: string;
+  take: number;
+  lastCursor: string;
+  search?: string;
 };
 
 type bookmarkProp = {

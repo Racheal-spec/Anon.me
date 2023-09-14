@@ -89,7 +89,7 @@ export const searchPosts = async ({
 }: postParamsType) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/data/posts/search?title=${search}`,
+      `http://localhost:3000/api/data/posts/search?title=${search}&take=${take}&lastCursor=${lastCursor}`,
       {
         cache: "no-store",
       }

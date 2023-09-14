@@ -62,7 +62,6 @@ const Navbar = () => {
     showSearchModal(true);
   };
   const handleclose = () => {
-    console.log("CLOSEEE");
     showSearchModal(false);
   };
 
@@ -76,19 +75,21 @@ const Navbar = () => {
   return (
     <>
       <div className={styles.navwrapper}>
-        <div className={styles.logowrapper}>
-          <div>
-            <TfiWrite
-              size={isMobile ? "1.0em" : "1.3em"}
-              className={styles.logoicon}
-            />
-          </div>
-          {isMobile ? null : (
-            <div className={styles.logotext}>
-              <p>ANON</p>
+        <Link href={HOME}>
+          <div className={styles.logowrapper}>
+            <div>
+              <TfiWrite
+                size={isMobile ? "1.0em" : "1.3em"}
+                className={styles.logoicon}
+              />
             </div>
-          )}
-        </div>
+            {isMobile ? null : (
+              <div className={styles.logotext}>
+                <p>ANON</p>
+              </div>
+            )}
+          </div>
+        </Link>
 
         {isMobile ? (
           <>

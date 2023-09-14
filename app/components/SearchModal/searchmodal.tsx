@@ -10,6 +10,7 @@ import Button from "@/app/uikits/Button/button";
 import { useRouter } from "next/navigation";
 import { SEARCH } from "@/app/Routes/RoutesUrl";
 import Link from "next/link";
+import { postType } from "@/app/Types/posts";
 
 type SearchModalType = {
   handleclose: () => void;
@@ -72,7 +73,7 @@ const SearchModal = ({ handleclose, handlefocus }: SearchModalType) => {
         ) : (
           <div>
             {searched
-              ?.map((result) => {
+              ?.map((result: postType) => {
                 let excerpt = `${result?.content.slice(0, 150)}...`;
                 return (
                   <div key={result.id} className={styles.resultDiv}>

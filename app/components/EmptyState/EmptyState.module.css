@@ -1,0 +1,15 @@
+.emptystateImgDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.emptystateImgDiv p {
+  width: 100%;
+  padding: 8px 0;
+  text-align: center;
+}
+.emptystateImg {
+  width: 30%;
+  height: 100%;
+}

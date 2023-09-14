@@ -44,6 +44,7 @@
   font-size: 1.5rem;
   color: #585858;
   text-decoration: none;
+  cursor: pointer;
 }
 .inputClass {
   padding: 20px 0;
@@ -98,7 +99,7 @@
     width: 43%;
     right: 2%;
     /* bottom: 40%; */
-    bottom: 10.8%;
+    bottom: 13.4%;
   }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -106,6 +107,6 @@
   .modalcontent {
     width: 60%;
     right: 2%;
-    bottom: 10.7%;
+    bottom: 25.7%;
   }
 }

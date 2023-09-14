@@ -5,7 +5,9 @@ import {
 } from "../../Types/reducerTypes";
 
 export const initialSearchStateVal: SearchStateType = {
-  results: [] || null,
+  results: {
+    data: [] || null,
+  },
 };
 
 const SearchReducer = (state: SearchStateType, action: SearchAction) => {

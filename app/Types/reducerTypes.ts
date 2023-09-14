@@ -46,7 +46,9 @@ export type SinglePostAction = {
 };
 //==============SEARCH TYPES================//
 export type SearchStateType = {
-  results: postType[] | null;
+  results: {
+    data: postType[] | null;
+  };
 };
 export type SearchAction = {
   type: SearchTypes.GetSearchPost;
