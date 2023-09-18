@@ -15,7 +15,6 @@ const InputField: FC<Partial<InputProp>> = ({
       type={type}
       {...props}
       placeholder={placeholder}
-      onKeyDown={onkeydown}
     />
   );
 };

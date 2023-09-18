@@ -1,14 +1,24 @@
 .formWrapper {
   height: 100vh;
   background: var(--bgGradient);
+  padding: 0 20px;
 }
 .formBg {
-  padding: 50px 60px;
+  padding: 30px;
   border-radius: 8px;
-  width: 35%;
+  width: 100%;
   background-color: var(--white);
-  transform: translate(92%, 8%);
+  transform: translate(0%, 15%);
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  animation: moveup 0.5s;
+}
+@keyframes moveup {
+  0% {
+    transform: translate(92%, 4vh);
+  }
+  100% {
+    transform: translate(92%, 14vh);
+  }
 }
 .btnContentDiv {
   display: flex;
@@ -80,4 +90,22 @@
 }
 .loadingIcon {
   margin: 0 6px;
+}
+/**========================MEDIA QUERIES==================================**/
+
+@media screen and (min-width: 768px) {
+  /* For desktops: */
+  .formBg {
+    padding: 50px 60px;
+    width: 35%;
+    transform: translate(92%, 14%);
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* For tablets: */
+  .formBg {
+    padding: 50px 60px;
+    width: 65%;
+    transform: translate(27%, 18%);
+  }
 }

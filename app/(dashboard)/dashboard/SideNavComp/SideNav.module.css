@@ -1,0 +1,21 @@
+.close {
+  transform: translateX(-100%);
+}
+
+/**========================MEDIA QUERIES==================================**/
+
+@media screen and (min-width: 768px) {
+  /* For desktops: */
+  .sidebarStyles {
+    width: 18%;
+  }
+  .close {
+    transform: translateX(0%);
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* For tablets: */
+  /* .close {
+    transform: translateX(-100%);
+  } */
+}

@@ -20,7 +20,7 @@
   border-right: none;
   width: 120px;
   padding: 4px 5px;
-  border-bottom: 1px solid var(--faintgrey);
+  border-bottom: 1px solid var(--lightgrey);
   background: transparent;
 }
 .InputSearch:focus {

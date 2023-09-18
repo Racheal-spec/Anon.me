@@ -21,7 +21,7 @@ export async function PUT(req: Request, { params }: ParamType) {
           message:
             "Error getting post: Check that you are passing the correct id!",
         },
-        {
+        { 
           status: 422,
         }
       );

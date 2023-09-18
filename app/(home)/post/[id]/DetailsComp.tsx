@@ -1,6 +1,6 @@
 "use client";
 import { useParams } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./pages.module.css";
 import profileimg from "../../../Assets/images/profileimg.png";
 import Image from "next/image";
@@ -8,13 +8,16 @@ import { GrMore } from "react-icons/gr";
 import { getSinglePost } from "@/app/context/Actions/Actions";
 import { usePostValue } from "@/app/context/postContext";
 import { PostTypes } from "@/app/Types/reducerTypes";
+import SearchLoader from "@/app/components/SearchLoader/SearchLoader";
 
 const DetailsComp = () => {
   let params = useParams();
   //console.log(params);
   const { poststate, postdispatch } = usePostValue();
+  const [isLoading, setLoading] = useState(false);
 
   const fetchPost = async () => {
+    setLoading(true);
     let data = await getSinglePost(params.id as string);
 
     if (postdispatch) {
@@ -22,6 +25,7 @@ const DetailsComp = () => {
         type: PostTypes.GetSinglePost,
         payload: data,
       });
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -59,19 +63,21 @@ const DetailsComp = () => {
         <GrMore />
       </div>
       <section className={styles.mainsection}>
-        <div>
+        {!isLoading ? (
           <Image
-            src={
-              poststate?.singlepost?.postimage
-                ? poststate?.singlepost?.postimage
-                : profileimg
-            }
+            src={poststate?.singlepost?.postimage ?? ""}
             width={400}
             height={200}
-            className={styles.blogimage}
-            alt="user-content-image"
+            className={
+              poststate?.singlepost?.postimage
+                ? styles.blogimage
+                : styles.imgnone
+            }
+            alt={poststate?.singlepost?.postimage ? "user-content-image" : ""}
           />
-        </div>
+        ) : (
+          <SearchLoader />
+        )}
         <div className={styles.mainContent}>
           <p>{poststate?.singlepost?.content}</p>
         </div>

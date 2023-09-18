@@ -7,7 +7,6 @@ import Input from "../../uikits/Input/Input";
 import Link from "next/link";
 import Button from "../../uikits/Button/button";
 import style from "./authform.module.css";
-import InputField from "../../uikits/Input/Input";
 import { BsArrowRight } from "react-icons/bs";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { SubmitHandler, useForm } from "react-hook-form";

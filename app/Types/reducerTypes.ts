@@ -16,10 +16,13 @@ export enum BookmarkTypes {
 export enum SearchTypes {
   GetSearchPost = "GET_SEARCHED_POST",
 }
+export enum DashboardTypes {
+  Set_Toggle = "SET_TOGGLE",
+}
 
 //==============USER TYPES================//
 export type ActionType = {
-  type: Types.GetUser;
+  type: Types.GetUser | "SET_TOGGLE";
   payload: UserProp;
 };
 export type UserReducerType = {
@@ -64,5 +67,18 @@ export type BookmarkAction = {
   type: BookmarkTypes.SetBookmarks | BookmarkTypes.DeleteBookmarks;
   payload: {
     data: bookmarkType;
+  };
+};
+
+//===================DASHBOARD TYPES=================//
+
+export type DashboardReducerType = {
+  toggle: boolean;
+};
+
+export type DashboardAction = {
+  type: DashboardTypes.Set_Toggle;
+  payload: {
+    toggle: DashboardReducerType["toggle"];
   };
 };

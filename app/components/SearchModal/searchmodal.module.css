@@ -6,24 +6,25 @@
   right: 0%;
   bottom: 0%;
   left: 0%;
+
   display: flex;
   align-items: center;
   justify-content: flex-end;
   background: rgba(77, 77, 77, 0.7);
-  transition: all 0.4s;
   padding: 0 10px;
   z-index: 9;
+  transition: all 0.1s ease-in-out;
 }
 
 .modal:target {
-  /* visibility: visible;
-    opacity: 1; */
+  /* visibility: visible; */
+  /* opacity: 1; */
 }
 
 .modalcontent {
   border-radius: 4px;
   position: relative;
-  /* width: 500px; */
+
   width: 100%;
   bottom: 6%;
   height: 500px;
@@ -31,7 +32,20 @@
   background: #fff;
   padding: 1em;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  animation: moveup 0.5s;
+  /* transform: translate(0%, 10%);
+  transition: transform 0.3s ease-in-out; */
 }
+
+@keyframes moveup {
+  0% {
+    transform: translate(0, 3vh);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
 .modalcontent p {
   font-size: 0.8rem;
   text-align: center;
@@ -88,6 +102,12 @@
   width: 95%;
   border-top: 1px solid var(--lightgrey);
 }
+.loaderdiv {
+  display: "flex";
+  align-items: "center";
+  justify-content: center;
+  margin-top: 50px;
+}
 /**========================MEDIA QUERIES==================================**/
 
 @media screen and (min-width: 768px) {
@@ -99,7 +119,7 @@
     width: 43%;
     right: 2%;
     /* bottom: 40%; */
-    bottom: 13.4%;
+    bottom: 15%;
   }
 }
 @media (min-width: 768px) and (max-width: 1024px) {

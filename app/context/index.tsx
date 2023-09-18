@@ -8,6 +8,8 @@ import { BookmarkProvider, initialBookState } from "./bookmarkContext";
 import BookmarkReducer from "./Reducers/bookmarkReducer";
 import { SearchProvider } from "./SearchContext";
 import SearchReducer, { initialSearchStateVal } from "./Reducers/searchReducer";
+import { DashboardContextType, DashboardProvider } from "./DashboardContext";
+import DashboardReducer from "./Reducers/dashboardReducer";
 
 type childrenType = {
   children: JSX.Element;
@@ -28,7 +30,12 @@ export const MainContext = ({ children }: childrenType) => {
               Reducer={SearchReducer}
               initialSearchState={initialSearchStateVal}
             >
-              {children}
+              <DashboardProvider
+                reducer={DashboardReducer}
+                initialState={DashboardContextType}
+              >
+                {children}
+              </DashboardProvider>
             </SearchProvider>
           </BookmarkProvider>
         </PostProvider>

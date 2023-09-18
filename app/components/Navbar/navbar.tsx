@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import styles from "./navbar.module.css";
-import { TfiWrite } from "react-icons/tfi";
+
 import Button from "../../uikits/Button/button";
 import Image from "next/image";
 import profileimg from "../../Assets/images/profileimg.png";
@@ -28,6 +28,7 @@ import { eventType } from "@/app/Types/user";
 import { UseResizeScreen } from "@/hooks/ResizeScreen";
 import SearchModal from "../SearchModal/searchmodal";
 import { UseClickOutside } from "@/hooks/ClickOutside";
+import LogoComp from "../LogoComp/LogoComp";
 
 const Navbar = () => {
   //================HOOKS========================//
@@ -75,21 +76,7 @@ const Navbar = () => {
   return (
     <>
       <div className={styles.navwrapper}>
-        <Link href={HOME}>
-          <div className={styles.logowrapper}>
-            <div>
-              <TfiWrite
-                size={isMobile ? "1.0em" : "1.3em"}
-                className={styles.logoicon}
-              />
-            </div>
-            {isMobile ? null : (
-              <div className={styles.logotext}>
-                <p>ANON</p>
-              </div>
-            )}
-          </div>
-        </Link>
+        <LogoComp />
 
         {isMobile ? (
           <>

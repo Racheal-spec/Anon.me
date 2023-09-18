@@ -9,25 +9,31 @@ import BorderCard from "@/app/components/BorderCard/BorderCard";
 import { postType } from "@/app/Types/posts";
 import { IoIosArrowDown } from "react-icons/io";
 import EmptyState from "@/app/components/EmptyState/EmptyState";
+import SearchLoader from "@/app/components/SearchLoader/SearchLoader";
 const SearchComp = () => {
   const param = useSearchParams().get("title");
   const { searchstate, searchdispatch } = useSearchValue();
   const take = 4;
   const [lastCursor, setLastCursor] = useState("");
-  const [searched, setSearched] = useState<postType[]>([]);
-  console.log(param);
+  const [searched, setSearched] = useState<postType[] | null>(
+    searchstate?.results?.data || null
+  );
+  const [isloading, setloading] = useState(false);
+
   const fetchResult = async () => {
+    setloading(true);
     if (param !== null) {
       let data = await searchPosts({
         search: param,
         take: take,
         lastCursor: lastCursor,
       });
-      if (searchdispatch) {
+      if (data) {
         searchdispatch({
           type: SearchTypes.GetSearchPost,
           payload: data,
         });
+        setloading(false);
       }
       setLastCursor(data?.results?.metaData.lastCursor);
       setSearched(data?.data);
@@ -36,7 +42,7 @@ const SearchComp = () => {
   console.log(searched);
   const handleMore = () => {
     setSearched((prev) => {
-      return [...(prev?.length ? prev : []), ...searched];
+      return [...(prev?.length ? prev : []), ...searched!];
     });
     // setSearched((prev) => setSearched([...searchstate.results.data]));
   };
@@ -49,25 +55,32 @@ const SearchComp = () => {
       <h1>
         Search result for <span>"{param}"</span>
       </h1>
-      <div className={styles.resultWrapper}>
-        {searched?.map((result: postType) => {
-          let excerpt = result?.content.slice(0, 200);
-          return (
-            <div key={result.id}>
-              <BorderCard
-                id={result?.id}
-                title={result?.title}
-                author={result?.author.anonname}
-                excerpts={excerpt}
-                postimage={result?.postimage}
-                createdAt={result?.createdAt}
-              />
-            </div>
-          );
-        })}
-      </div>
-      <div>{searched.length === 0 && <EmptyState />}</div>
-      {searched.length !== 0 && (
+      {isloading ? (
+        <div className={styles.loaderdiv}>
+          <SearchLoader />
+        </div>
+      ) : (
+        <div className={styles.resultWrapper}>
+          {searched?.map((result: postType) => {
+            let excerpt = result?.content.slice(0, 200);
+            return (
+              <div key={result.id}>
+                <BorderCard
+                  id={result?.id}
+                  title={result?.title}
+                  author={result?.author.anonname}
+                  excerpts={excerpt}
+                  postimage={result?.postimage}
+                  createdAt={result?.createdAt}
+                />
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      <div>{!isloading && searched?.length === 0 && <EmptyState />}</div>
+      {searched?.length !== 0 && (
         <div className={styles.morediv} onClick={handleMore}>
           <div className={styles.moreText}>See more stories</div>
 

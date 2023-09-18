@@ -10,6 +10,15 @@
   z-index: 999;
   right: 4%;
   transition: all 0.5s ease;
+  animation: moveup 0.5s;
+}
+@keyframes moveup {
+  0% {
+    top: 130%;
+  }
+  100% {
+    top: 100%;
+  }
 }
 .profilelink {
   text-decoration: none;

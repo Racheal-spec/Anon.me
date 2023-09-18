@@ -11,6 +11,8 @@
   border-radius: 20px;
   color: var(--white);
   border: 1px solid var(--red);
+  transition: all 0.8s linear;
+  opacity: 1;
 }
 .rectPrimaryBtn {
   background: var(--mainGradient);
@@ -37,9 +39,9 @@
 .primaryBtn:hover,
 .rectPrimaryBtn:hover {
   background: var(--switchBgGradient);
-
   box-shadow: rgba(255, 112, 176, 0.726) 0px 2px 8px 0px,
     rgba(252, 195, 125, 0.653) 0px 2px 8px 0px;
+  opacity: 0.7;
 }
 
 .outlineBtn {
@@ -48,11 +50,11 @@
   border: 1px solid var(--black);
 }
 
-@keyframes bgcolor {
+/* @keyframes bgcolor {
   0% {
     background: var(--mainGradient);
   }
   100% {
     background: var(--switchBgGradient);
   }
-}
+} */

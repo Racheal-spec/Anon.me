@@ -1,0 +1,36 @@
+.nav {
+  background-color: var(--white);
+  padding: 35px 0px;
+  position: fixed;
+  z-index: 9;
+  width: 100%;
+  margin-left: 0%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.menudiv {
+  display: flex;
+  align-items: center;
+}
+.menuicon {
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  margin-left: 0%;
+}
+.closemenuicon {
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 1.3rem;
+  margin-left: 55%;
+}
+/**========================MEDIA QUERIES==================================**/
+
+@media screen and (min-width: 768px) {
+  /* For desktops: */
+  .nav {
+    margin-left: 18%;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* For tablets: */
+}

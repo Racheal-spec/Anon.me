@@ -29,20 +29,21 @@ const ShowHomeHeading = () => {
 
   //Using useCallback stops the double function calls but wont render on initial page load
   const newData = async () => {
+    setLoading(true);
     const data = await getPosts({
       take: take,
       lastCursor: lastCursor,
     });
+    console.log(data);
+    if (!data && data.data.length === 0) {
+    }
     if (data) {
       postdispatch({
         type: PostTypes.GetPost,
         payload: data,
       });
+      setLoading(false);
     }
-    if (data?.status !== "ok") {
-      setLoading(true);
-    }
-    setLoading(false);
     setLastCursor(data?.metaData?.lastCursor);
     setPosts(data?.data);
   };
@@ -50,6 +51,7 @@ const ShowHomeHeading = () => {
   //const firstRender = useRef(false);
 
   const fetchMorePosts = async () => {
+    setLoading(true);
     const moredata = await getPosts({
       take: take,
       lastCursor: lastCursor,
@@ -59,19 +61,14 @@ const ShowHomeHeading = () => {
         type: PostTypes.GetPost,
         payload: moredata?.data,
       });
-    }
-    if (moredata?.status !== "ok") {
-      setLoading(true);
+      setLoading(false);
     }
 
-    setLoading(false);
     setLastCursor(moredata?.metaData?.lastCursor);
     setPosts((prev) => {
       return [...(prev?.length ? prev : []), ...moredata?.data];
     });
   };
-
-  console.log(lastCursor);
   console.log(posts);
   useEffect(() => {
     if (state?.user === null || state?.user === undefined) {
@@ -113,7 +110,10 @@ const ShowHomeHeading = () => {
               //     later!
               //   </p>
               // </div>
-              <Skeleton />
+              <div>
+                <Skeleton />
+                <Skeleton />
+              </div>
             ) : (
               <>
                 {posts &&

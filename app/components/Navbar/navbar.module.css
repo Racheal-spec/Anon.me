@@ -9,25 +9,7 @@
   background-color: var(--offwhite);
   border-bottom: 1px solid var(--dividercolor);
 }
-.logowrapper {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-.logotext {
-  font-size: 1.8rem;
-  font-weight: bold;
-  padding: 0 5px;
-  background-image: var(--textGradient);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 200% auto;
-}
-.logoicon {
-  color: var(--primary);
-  font-size: 1.5rem;
-}
+
 .navstyle {
   display: flex;
   width: 100%;
