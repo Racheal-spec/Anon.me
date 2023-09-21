@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import style from "./profile.module.css";
-import { DASHBOARD } from "@/app/Routes/RoutesUrl";
+import { DASHBOARDPROFILE } from "@/app/Routes/RoutesUrl";
 import { UseClickOutside } from "@/hooks/ClickOutside";
 import { eventType } from "@/app/Types/user";
 
@@ -39,7 +39,7 @@ const Profile = ({ handleProfile }: { handleProfile }) => {
     <div className={style.profileDiv} ref={ref}>
       <ul>
         <Link
-          href={DASHBOARD}
+          href={DASHBOARDPROFILE}
           className={style.profilelink}
           aria-label="dashboard"
         >

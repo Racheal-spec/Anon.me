@@ -15,7 +15,6 @@ const DetailsComp = () => {
   //console.log(params);
   const { poststate, postdispatch } = usePostValue();
   const [isLoading, setLoading] = useState(false);
-
   const fetchPost = async () => {
     setLoading(true);
     let data = await getSinglePost(params.id as string);
@@ -32,6 +31,7 @@ const DetailsComp = () => {
     fetchPost();
   }, []);
   console.log(poststate);
+
   return (
     <div className={styles.pageWrapper}>
       <h1>{poststate?.singlepost?.title}</h1>

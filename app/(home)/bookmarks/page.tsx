@@ -4,9 +4,11 @@ import styles from "./page.module.css";
 import { useBookmarkValue } from "@/app/context/bookmarkContext";
 import Image from "next/image";
 import empty_state from "../../Assets/images/empty_state.svg";
+
 const Bookmarks = () => {
   const { bookmarkstate, bookmarkdispatch } = useBookmarkValue();
   console.log(bookmarkstate.data);
+
   return (
     <div className={styles.bookmarkWrapper}>
       <div>

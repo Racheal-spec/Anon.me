@@ -14,12 +14,12 @@ import BookmarkSideComp from "@/app/components/BookmarkSideComp/BookmarkSideComp
 import Tags from "@/app/components/Tags/Tags";
 import { InView, useInView } from "react-intersection-observer";
 import LoginSideComp from "@/app/components/LoginSideComp/LoginSideComp";
-import { handleuser } from "@/app/services/userdata";
 import Skeleton from "@/app/components/Skeleton/Skeleton";
 
 const ShowHomeHeading = () => {
-  // const { state } = userValue();
-  let state = handleuser();
+  const { state } = userValue();
+  // let state = handleuser();
+  console.log(state);
   const { poststate, postdispatch } = usePostValue();
   const { ref, inView } = useInView();
   let [lastCursor, setLastCursor] = useState("");

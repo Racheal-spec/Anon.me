@@ -1,7 +1,14 @@
 "use client";
-import { createContext, useContext, useReducer } from "react";
-import { ActionType, UserReducerType } from "../Types/reducerTypes";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
+import { ActionType, Types, UserReducerType } from "../Types/reducerTypes";
 import UserReducer from "./Reducers/userReducer";
+import { getUsers } from "./Actions/Actions";
 
 type UserContextType = {
   children: JSX.Element;
@@ -29,6 +36,22 @@ export const UserProvider = ({
     reducer,
     initialState
   );
+  const fetchUser = () => {
+    async () => {
+      let data = await getUsers();
+
+      if (dispatch) {
+        dispatch({
+          type: Types.GetUser,
+          payload: data,
+        });
+      }
+    };
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, [dispatch]);
   return (
     <UserContext.Provider value={{ state, dispatch }}>
       {children}

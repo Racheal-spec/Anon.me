@@ -4,10 +4,10 @@ import { useInView } from "react-intersection-observer";
 import styles from "./page.module.css";
 import Tags from "@/app/components/Tags/Tags";
 import { MdArrowRightAlt } from "react-icons/md";
-import { handleuser } from "@/app/services/userdata";
+import { userValue } from "@/app/context/userContext";
 
 const BlogHeader = () => {
-  let state = handleuser();
+  const { state } = userValue();
   return (
     <section>
       {state?.user === undefined || state?.user === null ? (

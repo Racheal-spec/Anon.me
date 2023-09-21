@@ -1,14 +1,62 @@
 .sidebarStyles {
   width: 52%;
-  background-color: var(--sidebarcolor);
+  background-color: var(--white);
   z-index: 999999;
   position: fixed;
   height: 100%;
   overflow: auto;
   transition: transform 0.3s;
-  padding: 10px 20px;
+  /* padding: 10px 20px; */
+}
+.sidelogo {
+  padding: 12px 20px;
 }
 
+.menutext {
+  color: var(--menutextcolor);
+  padding: 12px 20px;
+}
+.sidelabeldiv,
+.activeclass {
+  display: flex;
+  align-items: center;
+}
+.activeclass {
+  color: var(--secondary);
+  font-weight: 600px;
+}
+.sideicon {
+  display: flex;
+  align-items: center;
+}
+.sideul {
+  padding: 80px 0;
+}
+.sideli {
+  list-style: none;
+  padding: 12px 20px;
+}
+.sideli:hover {
+  background-color: var(--faintpink);
+  padding: 12px 20px;
+}
+.sidespan {
+  margin: 0 10px;
+}
+.logouttext {
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid var(--bordercolor);
+  width: 100%;
+  padding: 20px;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+}
+.logouttext p {
+  margin: 0 8px;
+  color: var(--secondary);
+}
 /**========================MEDIA QUERIES==================================**/
 
 @media screen and (min-width: 768px) {

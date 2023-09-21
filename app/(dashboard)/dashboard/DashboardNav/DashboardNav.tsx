@@ -17,35 +17,23 @@ type ToggleTypes = {
 };
 const DashboardNav = ({ handleclick, toggle }: ToggleTypes) => {
   const isMobile = UseResizeScreen();
-  //   const [toggle, setToggle] = useState(false);
-  //   const { dashboardstate, dashboarddispatch } = dashboardValue();
+  const { state } = userValue();
 
-  //   const handleclick = () => {
-  //     setToggle(!toggle);
-  //     // if (dashboarddispatch) {
-  //     //   dashboarddispatch({
-  //     //     type: DashboardTypes.Set_Toggle,
-  //     //     payload: {
-  //     //       toggle: !toggle,
-  //     //     },
-  //     //   });
-  //     // }
-  //   };
-  //   console.log(toggle);
   console.log(`servertoggle: ${toggle}`);
+  console.log(state.user);
 
   return (
     <nav className={styles.nav}>
       <div className={styles.menudiv}>
-        {isMobile ? (
-          toggle ? (
-            <GrClose className={styles.closemenuicon} onClick={handleclick} />
-          ) : (
-            <AiOutlineMenu className={styles.menuicon} onClick={handleclick} />
-          )
+        {!isMobile ? null : toggle ? (
+          <GrClose className={styles.closemenuicon} onClick={handleclick} />
         ) : (
-          ""
+          <AiOutlineMenu className={styles.menuicon} onClick={handleclick} />
         )}
+      </div>
+      <div>
+        {/* <h4>{state.user?.user.anonname}</h4>
+        <p>{state.user?.user.uniqueid}</p> */}
       </div>
     </nav>
   );

@@ -1,8 +1,8 @@
 import "../globalstyles/globals.css";
 import { poppins } from "../fonts";
-import DashboardNav from "./dashboard/DashboardNav/DashboardNav";
-import Sidebar from "./dashboard/Sidebar/Sidebar";
 import SideNav from "./dashboard/SideNavComp/SideNav";
+import { MainContext } from "../context";
+import ToastProvider from "../ToastProvider";
 
 export const metadata = {
   title: "Anon.me",
@@ -25,10 +25,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={poppins.className}>
       <body>
-        <div className="dashboardWrapper">
-          <SideNav />
-          <main> {children}</main>
-        </div>
+        <MainContext>
+          <div className="dashboardWrapper">
+            <SideNav />
+            <main className="mainStyle">
+              <ToastProvider>{children}</ToastProvider>
+            </main>
+          </div>
+        </MainContext>
       </body>
     </html>
   );
