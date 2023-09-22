@@ -29,13 +29,15 @@ const Profile = () => {
         <div className={styles.label}>
           <label>Profile Photo</label>
         </div>
-        <Image
-          src={profileimg}
-          className={styles.profileimg}
-          alt="user_image"
-        />
-        <div className={styles.icondiv}>
-          <MdOutlineDeleteOutline className={styles.deleteicon} />
+        <div className={styles.imgdiv}>
+          <Image
+            src={profileimg}
+            className={styles.profileimg}
+            alt="user_image"
+          />
+          <div className={styles.icondiv}>
+            <MdOutlineDeleteOutline className={styles.deleteicon} />
+          </div>
         </div>
       </div>
       <div>

@@ -1,0 +1,26 @@
+.title {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  overflow-x: auto;
+  font-size: 0.8rem;
+  border-bottom: 1px solid var(--bordercolor);
+  width: 100%;
+}
+.active {
+  border-bottom: 1px solid var(--primary);
+  color: var(--primary);
+}
+/**========================MEDIA QUERIES==================================**/
+
+@media screen and (min-width: 768px) {
+  /* For desktop: */
+  .title {
+    grid-template-columns: repeat(3, 120px);
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* For tablets: */
+  .title {
+    grid-template-columns: repeat(3, 67px);
+  }
+}

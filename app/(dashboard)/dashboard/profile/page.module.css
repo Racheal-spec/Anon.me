@@ -12,7 +12,10 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
+}
+.imgdiv {
   position: relative;
+  width: fit-content;
 }
 .icondiv {
   background-color: var(--white);
@@ -20,8 +23,8 @@
   width: 21px;
   height: 21px;
   position: absolute;
-  top: 47%;
-  right: 73%;
+  top: 0;
+  right: 0;
   z-index: 10;
   border-radius: 50%;
   cursor: pointer;
@@ -46,20 +49,14 @@
     padding: 20px 50px;
     margin-left: 18%;
   }
-  .icondiv {
-    top: 53%;
-    right: 72%;
-  }
+
   .select {
     width: 40%;
   }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
   /* For tablets: */
-  .icondiv {
-    top: 37.5%;
-    right: 64%;
-  }
+
   .select {
     width: 60%;
   }

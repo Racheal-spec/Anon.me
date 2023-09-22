@@ -1,0 +1,7 @@
+.tabUl {
+  display: flex;
+  list-style: none;
+  justify-content: flex-start;
+  cursor: pointer;
+  width: 100%;
+}
