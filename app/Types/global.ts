@@ -50,6 +50,7 @@ export type StoriesProp = {
   title: string;
   tags?: string[] | string;
   status: string | JSX.Element;
+  description?: string;
   date: string;
   action: ReactElement | null;
 };

@@ -1,0 +1,33 @@
+.cardWrapper {
+  padding: 50px 20px;
+}
+.cardcontent {
+  padding: 20px;
+  border: 1px solid var(--faintgrey);
+  background-color: var(--white);
+  width: 100%;
+}
+.cardcontent p {
+  padding: 20px 0;
+}
+.btnDiv {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+/**========================MEDIA QUERIES==================================**/
+
+@media screen and (min-width: 768px) {
+  .cardWrapper {
+    margin-left: 18%;
+  }
+  .cardcontent {
+    width: 55%;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* For tablets: */
+  .cardcontent {
+    width: 100%;
+  }
+}

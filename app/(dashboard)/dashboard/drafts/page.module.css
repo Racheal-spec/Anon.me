@@ -1,0 +1,49 @@
+.draftsWrapper {
+  padding: 30px 0;
+  margin-left: 18%;
+}
+.postending {
+  margin: 0 auto;
+  padding: 20px 0;
+}
+.loaderdiv,
+.postending {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}
+.colorDiv {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 20px 0;
+  font-size: 0.9rem;
+}
+.orange {
+  width: 10px;
+  height: 10px;
+  background-color: orange;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+.icondiv {
+  cursor: pointer;
+}
+.iconwrapper {
+  position: relative;
+}
+.modalicondiv {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 0.9rem;
+  margin: 5px 0;
+}
+/**========================MEDIA QUERIES==================================**/
+
+@media screen and (min-width: 768px) {
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* For tablets: */
+}

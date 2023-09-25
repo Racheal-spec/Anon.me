@@ -2,11 +2,19 @@ import React, { ReactElement } from "react";
 import styles from "./page.module.css";
 import { StoriesProp } from "@/app/Types/global";
 
-const AllStories = ({ title, tags, status, date, action }: StoriesProp) => {
+const AllStories = ({
+  title,
+  tags,
+  status,
+  date,
+  action,
+  description,
+}: StoriesProp) => {
   return (
     <div className={styles.bodystyle}>
       <div>
         <h4>{title}</h4>
+        <p>{description}</p>
       </div>
       <div className={styles.seconddiv}>
         <div className={styles.tagsbody}>

@@ -233,6 +233,7 @@ const Stories = () => {
                 <div key={post?.id}>
                   <AllStories
                     title={post.title}
+                    description={post?.content?.slice(0, 100)}
                     status={
                       isMobile ? (
                         <></>
