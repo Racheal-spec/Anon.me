@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactElement, ReactNode } from "react";
 
 export type CardProp = {
   children: ReactNode;
@@ -44,4 +44,16 @@ export type APIProp = {
   method: string;
   body?: {};
   json: boolean;
+};
+
+export type StoriesProp = {
+  title: string;
+  tags?: string[] | string;
+  status: string | JSX.Element;
+  date: string;
+  action: ReactElement | null;
+};
+export type EmptyStateProp = {
+  heading: string;
+  description?: string;
 };

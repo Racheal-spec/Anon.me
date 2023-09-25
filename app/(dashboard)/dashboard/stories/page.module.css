@@ -1,17 +1,129 @@
 .storieswrapper {
   padding: 30px 0;
 }
+.divider {
+  /* border-left: 1px solid var(--lightgrey); */
+  height: 25px;
+  margin: 0 8px;
+  color: var(--dividercolor);
+}
+.secondheader {
+  display: flex;
+  /* justify-content: space-between; */
+  flex-wrap: wrap;
+  padding: 25px 0;
+}
+.countsDiv {
+  display: flex;
+}
+.dividerWrapper,
+.statusDiv {
+  display: flex;
+  font-size: 0.8rem;
+}
+.colorDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.green {
+  width: 10px;
+  height: 10px;
+  background-color: green;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+.orange {
+  width: 10px;
+  height: 10px;
+  background-color: orange;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+.loadingDiv {
+  padding: 20px 0;
+}
+/* .tagsheaderdiv,
+.tagsheaderdiv,
+.tagsbody {
+  text-align: center;
+} */
+
+.actionbody {
+  text-align: center;
+}
+.display {
+  display: none;
+}
+.tableheader,
+.bodystyle {
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 15px 10px;
+}
+
+.tableheader {
+  background-color: var(--faintpink);
+}
+.seconddiv,
+.secondheaderdiv {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.statusbody {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalicondiv {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 0.9rem;
+  margin: 5px 0;
+}
+.modalicondiv span {
+  margin-left: 6px;
+}
+.icondiv {
+  cursor: pointer;
+}
+.iconwrapper {
+  position: relative;
+}
+.postending {
+  margin: 0 auto;
+  padding: 20px 0;
+}
+.loaderdiv,
+.postending {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+}
 /**========================MEDIA QUERIES==================================**/
 
 @media screen and (min-width: 768px) {
   .storieswrapper {
-    padding: 100px 0;
+    padding: 60px 0;
     margin-left: 18%;
+  }
+  .tableheader,
+  .bodystyle {
+    grid-template-columns: 1fr 1fr;
+  }
+  .secondheader {
+    justify-content: space-between;
   }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
   /* For tablets: */
   .storieswrapper {
     padding: 50px 0;
+  }
+  .bodystyle {
+    font-size: 0.8rem;
   }
 }

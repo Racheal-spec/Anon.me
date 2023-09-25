@@ -23,7 +23,6 @@ const BookmarkCard = ({
 }: bookmarkType) => {
   const [show, setShow] = useState(false);
   const { bookmarkstate, bookmarkdispatch } = useBookmarkValue();
-  console.log(show);
   const handleDelete = () => {
     if (bookmarkstate) {
       bookmarkdispatch({
@@ -65,7 +64,7 @@ const BookmarkCard = ({
       </div>
       <Link href={POSTDETAILS(id as string)}>
         <h4 className={styles.mainHeading}>{title}</h4>
-        <p className={styles.desc}>{excerpts}</p>
+        <p className={styles.desc}>{excerpts && excerpts.slice(0, 120)}</p>
       </Link>
 
       <div className={styles.secondSubDiv}>

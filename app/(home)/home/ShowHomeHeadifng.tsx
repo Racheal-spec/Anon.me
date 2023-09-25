@@ -18,71 +18,9 @@ import Skeleton from "@/app/components/Skeleton/Skeleton";
 
 const ShowHomeHeading = () => {
   const { state } = userValue();
-  // let state = handleuser();
-  console.log(state);
-  const { poststate, postdispatch } = usePostValue();
-  const { ref, inView } = useInView();
-  let [lastCursor, setLastCursor] = useState("");
-  const [take, setTake] = useState(7);
-  const [posts, setPosts] = useState<postType[]>(poststate?.data!);
-  const [isLoading, setLoading] = useState(false);
 
-  //Using useCallback stops the double function calls but wont render on initial page load
-  const newData = async () => {
-    setLoading(true);
-    const data = await getPosts({
-      take: take,
-      lastCursor: lastCursor,
-    });
-    console.log(data);
-    if (!data && data.data.length === 0) {
-    }
-    if (data) {
-      postdispatch({
-        type: PostTypes.GetPost,
-        payload: data,
-      });
-      setLoading(false);
-    }
-    setLastCursor(data?.metaData?.lastCursor);
-    setPosts(data?.data);
-  };
-  console.log(isLoading);
-  //const firstRender = useRef(false);
+  const { lastCursor, posts, isLoading, ref } = usePostValue();
 
-  const fetchMorePosts = async () => {
-    setLoading(true);
-    const moredata = await getPosts({
-      take: take,
-      lastCursor: lastCursor,
-    });
-    if (moredata) {
-      postdispatch({
-        type: PostTypes.GetPost,
-        payload: moredata?.data,
-      });
-      setLoading(false);
-    }
-
-    setLastCursor(moredata?.metaData?.lastCursor);
-    setPosts((prev) => {
-      return [...(prev?.length ? prev : []), ...moredata?.data];
-    });
-  };
-  console.log(posts);
-  useEffect(() => {
-    if (state?.user === null || state?.user === undefined) {
-      return;
-    } else if (inView && state.user !== null) {
-      fetchMorePosts();
-      console.log("loaded fetchmore againnnnn");
-    }
-  }, [inView]);
-
-  useEffect(() => {
-    newData();
-    console.log("loaded newdata againnnnn");
-  }, []);
   return (
     <div>
       <section className={styles.blogsection}>
@@ -97,7 +35,7 @@ const ShowHomeHeading = () => {
               />
             )}
 
-            {isLoading ? (
+            {/* {isLoading ? (
               // <div className={styles.emptystateImgDiv}>
               //   <Image
               //     src={empty_state}
@@ -114,32 +52,29 @@ const ShowHomeHeading = () => {
                 <Skeleton />
                 <Skeleton />
               </div>
-            ) : (
-              <>
-                {posts &&
-                  posts?.map((val: postType) => {
-                    let excerpt = val?.content.slice(0, 200);
-                    return (
-                      <div key={val?.id}>
-                        <BorderCard
-                          id={val?.id}
-                          title={val?.title}
-                          author={val?.author.anonname}
-                          excerpts={excerpt}
-                          postimage={val?.postimage}
-                          createdAt={val?.createdAt}
-                        />
-                      </div>
-                    );
-                  })}
-              </>
-            )}
+            ) : ( */}
+            <div>
+              {posts &&
+                posts?.map((val: postType) => {
+                  let excerpt = val?.content.slice(0, 200);
+                  return (
+                    <div key={val?.id}>
+                      <BorderCard
+                        id={val?.id}
+                        title={val?.title}
+                        author={val?.author.anonname}
+                        excerpts={excerpt}
+                        postimage={val?.postimage}
+                        createdAt={val?.createdAt}
+                      />
+                    </div>
+                  );
+                })}
+            </div>
 
             <div ref={ref}>
-              {lastCursor === null ||
-              state?.user === undefined ||
-              state?.user === null ? (
-                ""
+              {lastCursor === null ? (
+                "You have reached the end"
               ) : (
                 <div>
                   {" "}

@@ -1,0 +1,22 @@
+.modalDiv {
+  background-color: #fff;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
+  border-radius: 5px;
+  position: absolute;
+  top: 40%;
+  z-index: 9;
+  right: 62%;
+  transition: all 0.5s ease;
+  animation: moveup 0.5s;
+}
+@keyframes moveup {
+  0% {
+    top: 130%;
+  }
+  100% {
+    top: 100%;
+  }
+}

@@ -44,7 +44,7 @@ export type PostActionType = PostAction | SinglePostAction;
 export type SinglePostAction = {
   type: PostTypes.GetSinglePost;
   payload: {
-    data: postType;
+    data: postType | null;
   };
 };
 //==============SEARCH TYPES================//

@@ -25,7 +25,7 @@
   border-radius: 8px;
 }
 .hrstyles {
-  color: var(--bordercolor);
+  color: var(--dividercolor);
   margin: 10px 0;
 }
 .subElementsDiv {

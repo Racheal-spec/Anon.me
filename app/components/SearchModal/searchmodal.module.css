@@ -6,7 +6,6 @@
   right: 0%;
   bottom: 0%;
   left: 0%;
-
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -23,10 +22,10 @@
 
 .modalcontent {
   border-radius: 4px;
-  position: relative;
-
+  position: absolute;
   width: 100%;
-  bottom: 6%;
+  top: 10%;
+  /* bottom: 6%; */
   height: 500px;
   overflow-y: scroll;
   background: #fff;
@@ -118,6 +117,7 @@
   .modalcontent {
     width: 43%;
     right: 2%;
+    top: 0%;
     /* bottom: 40%; */
     bottom: 15%;
   }
@@ -127,6 +127,7 @@
   .modalcontent {
     width: 60%;
     right: 2%;
-    bottom: 25.7%;
+    top: 0%;
+    /* bottom: 25.7%; */
   }
 }

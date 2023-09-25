@@ -2,8 +2,7 @@
 import BookmarkCard from "@/app/components/BookmarkCard/BookmarkCard";
 import styles from "./page.module.css";
 import { useBookmarkValue } from "@/app/context/bookmarkContext";
-import Image from "next/image";
-import empty_state from "../../Assets/images/empty_state.svg";
+import EmptyState from "@/app/components/EmptyState/EmptyState";
 
 const Bookmarks = () => {
   const { bookmarkstate, bookmarkdispatch } = useBookmarkValue();
@@ -15,19 +14,10 @@ const Bookmarks = () => {
         <h3>Your Bookmarks</h3>
 
         {bookmarkstate.data.length === 0 ? (
-          <div className={styles.emptystateImgDiv}>
-            <div>
-              <Image
-                src={empty_state}
-                className={styles.emptystateImg}
-                alt="empty_blog"
-              />
-            </div>
-            <div>
-              <h2>No Bookmarks Yet</h2>
-              <p>Save your favourite posts here for future references.</p>
-            </div>
-          </div>
+          <EmptyState
+            heading="No Bookmarks Yet"
+            description="Save your favourite posts here for future references."
+          />
         ) : (
           <div className={styles.cardWrapper}>
             {bookmarkstate &&

@@ -17,10 +17,10 @@ type ToggleTypes = {
 };
 const DashboardNav = ({ handleclick, toggle }: ToggleTypes) => {
   const isMobile = UseResizeScreen();
-  const { state } = userValue();
+  //   const { state } = userValue();
 
   console.log(`servertoggle: ${toggle}`);
-  console.log(state.user);
+  //   console.log(state.user);
 
   return (
     <nav className={styles.nav}>

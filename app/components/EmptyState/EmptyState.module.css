@@ -1,3 +1,6 @@
+.emptystatewrapper {
+  padding: 50px 0;
+}
 .emptystateImgDiv {
   display: flex;
   align-items: center;
@@ -10,6 +13,6 @@
   text-align: center;
 }
 .emptystateImg {
-  width: 30%;
+  width: 24%;
   height: 100%;
 }

@@ -34,22 +34,11 @@ const Navbar = () => {
   //================HOOKS========================//
   //const [userdata, setUserData] = useState<UserProp>({});
   const [show, setShow] = useState(false);
-  const { state, dispatch } = userValue();
+  const { state } = userValue();
   const [toggleDrawer, setToggleDrawer] = useState(true);
   const isMobile = UseResizeScreen();
   const [searchmodal, showSearchModal] = useState(false);
   const [isBlur, setIsBlur] = useState(false);
-
-  const fetchUser = async () => {
-    let data = await getUsers();
-
-    if (dispatch) {
-      dispatch({
-        type: Types.GetUser,
-        payload: data,
-      });
-    }
-  };
 
   const handleProfile = (e: eventType) => {
     setShow(!show);
@@ -67,11 +56,6 @@ const Navbar = () => {
   };
 
   //===============USEEFFECTS==================//
-  useEffect(() => {
-    if (!state?.user) {
-      fetchUser();
-    }
-  }, []);
 
   return (
     <>

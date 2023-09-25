@@ -36,17 +36,15 @@ export const UserProvider = ({
     reducer,
     initialState
   );
-  const fetchUser = () => {
-    async () => {
-      let data = await getUsers();
-
-      if (dispatch) {
-        dispatch({
-          type: Types.GetUser,
-          payload: data,
-        });
-      }
-    };
+  const fetchUser = async () => {
+    let data = await getUsers();
+    console.log("userrrrrr");
+    if (dispatch) {
+      dispatch({
+        type: Types.GetUser,
+        payload: data,
+      });
+    }
   };
 
   useEffect(() => {
