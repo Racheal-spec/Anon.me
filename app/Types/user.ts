@@ -8,7 +8,7 @@ export type AuthorProp = {
   photo: string | null;
 };
 export interface UserProp {
-  user: AuthorProp;
+  data: AuthorProp;
 }
 export type eventType = {
   onClick: (

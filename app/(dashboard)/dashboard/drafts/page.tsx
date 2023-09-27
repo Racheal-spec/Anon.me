@@ -13,16 +13,24 @@ import { FiMoreVertical } from "react-icons/fi";
 import SmallModal from "@/app/components/SmallModal/SmallModal";
 import { BiEditAlt } from "react-icons/bi";
 import { MdOutlineDelete } from "react-icons/md";
+import { userValue } from "@/app/context/userContext";
 
 const Drafts = () => {
   const { lastCursor, posts, isLoading, ref } = usePostValue();
   let draftsArray: postType[] = [];
+  let userPosts: postType[] = [];
   const isMobile = UseResizeScreen();
+  const { state } = userValue();
   const [draftmodalitem, setDraftModalItem] = useState<boolean[]>(
     new Array(posts?.length || 0).fill(false)
   );
-
   posts?.map((el) => {
+    console.log(el?.authorId === state?.user?.data?.id);
+    if (el?.authorId === state?.user?.data?.id) {
+      userPosts.push(el);
+    }
+  });
+  userPosts?.map((el) => {
     if (el.published === false) {
       draftsArray.push(el);
     }

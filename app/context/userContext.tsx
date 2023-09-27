@@ -38,7 +38,7 @@ export const UserProvider = ({
   );
   const fetchUser = async () => {
     let data = await getUsers();
-    console.log("userrrrrr");
+
     if (dispatch) {
       dispatch({
         type: Types.GetUser,

@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import styles from "./page.module.css";
 import MainTab from "@/app/components/Tabs/MainTab/MainTab";
 import TabsBody from "@/app/components/Tabs/TabsBody/TabsBody";
@@ -16,9 +16,11 @@ import { MdOutlineDelete } from "react-icons/md";
 import TableTitle from "./TableTitle";
 import EmptyState from "@/app/components/EmptyState/EmptyState";
 import SearchLoader from "@/app/components/SearchLoader/SearchLoader";
+import { userValue } from "@/app/context/userContext";
 const Stories = () => {
   const { lastCursor, posts, isLoading, ref } = usePostValue();
   const isMobile = UseResizeScreen();
+  const { state } = userValue();
   const [modalitem, setModalItem] = useState<boolean[]>(
     new Array(posts?.length || 0).fill(false)
   );
@@ -26,16 +28,27 @@ const Stories = () => {
 
   let publishedArray: postType[] = [];
   let deletedArray: postType[] = [];
+  let userPosts: postType[] = [];
+
   posts?.map((el) => {
+    console.log(el?.authorId === state?.user?.data?.id);
+    if (el?.authorId === state?.user?.data?.id) {
+      // console.log(el);
+      userPosts.push(el);
+    }
+  });
+  console.log(userPosts);
+  userPosts?.map((el) => {
     if (el.published) {
       publishedArray.push(el);
     }
   });
-  posts?.map((el) => {
+  userPosts?.map((el) => {
     if (el.deleted) {
       deletedArray.push(el);
     }
   });
+
   const handleModal = (index: number) => {
     // toggles the modal state for the post at the given index by creating a copy of modalitem,
     //changing the value at that index, and then updating the state using setModalItem.
@@ -50,7 +63,7 @@ const Stories = () => {
       <MainTab>
         <TabsBody title="Stories">
           <StatusComp
-            allpost={posts ? posts?.length : 0}
+            allpost={userPosts ? userPosts?.length : 0}
             published={publishedArray.length}
             deleted={deletedArray.length}
           />
@@ -64,8 +77,8 @@ const Stories = () => {
           />
 
           <>
-            {posts &&
-              posts?.map((post, index) => (
+            {userPosts &&
+              userPosts?.map((post, index) => (
                 <div key={post?.id}>
                   <AllStories
                     title={post.title}
@@ -111,7 +124,7 @@ const Stories = () => {
                   />
                 </div>
               ))}
-            {posts?.length === 0 && (
+            {userPosts?.length === 0 && (
               <div>
                 <EmptyState
                   heading="No Available Story"
@@ -130,8 +143,6 @@ const Stories = () => {
                   <div className={styles.loaderdiv}>
                     <SearchLoader />
                   </div>
-                ) : posts?.length === 0 ? (
-                  "No post"
                 ) : null}
               </div>
             )}
@@ -141,7 +152,7 @@ const Stories = () => {
         {/**================SECOND TAB=================== */}
         <TabsBody title="Published">
           <StatusComp
-            allpost={posts ? posts?.length : 0}
+            allpost={userPosts ? userPosts?.length : 0}
             published={publishedArray.length}
             deleted={deletedArray.length}
           />
@@ -216,7 +227,7 @@ const Stories = () => {
         {/**================THIRD TAB=================== */}
         <TabsBody title="Deleted">
           <StatusComp
-            allpost={posts ? posts?.length : 0}
+            allpost={userPosts ? userPosts?.length : 0}
             published={publishedArray.length}
             deleted={deletedArray.length}
           />
