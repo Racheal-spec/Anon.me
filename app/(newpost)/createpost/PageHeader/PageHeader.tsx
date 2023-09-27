@@ -1,11 +1,13 @@
 import Button from "@/app/uikits/Button/button";
-import React from "react";
+import React, { useState } from "react";
 import styles from "./PageHeader.module.css";
 import { TfiWrite } from "react-icons/tfi";
 import { UseResizeScreen } from "@/hooks/ResizeScreen";
 import { FiDelete } from "react-icons/fi";
 import { CiSaveDown1 } from "react-icons/ci";
 import Loader from "@/app/components/Loader/Loader";
+import Modal from "@/app/components/Modal/Modal";
+import { useRouter } from "next/navigation";
 
 type PageHeaderProp = {
   handleFormSubmit: () => void;
@@ -20,6 +22,15 @@ const PageHeader = ({
   isPublishLoading,
 }: PageHeaderProp) => {
   const isMobile = UseResizeScreen();
+  const [showmodal, setShowModal] = useState(false);
+  const router = useRouter();
+  const handleModal = () => {
+    setShowModal(!showmodal);
+  };
+  console.log(showmodal);
+  const handleLeave = () => {
+    router.back();
+  };
   return (
     <div>
       <div className={styles.headerWrapper}>
@@ -50,10 +61,28 @@ const PageHeader = ({
           </div>
           <hr className={styles.divider} />
           <div>
-            <FiDelete className={styles.deleteIcon} />
+            <FiDelete className={styles.deleteIcon} onClick={handleModal} />
           </div>
         </div>
       </div>
+      {showmodal && (
+        <Modal handlefunction={() => setShowModal(false)}>
+          <div className={styles.modal}>
+            <p>Are you sure you want to leave this page?</p>
+            <div className={styles.btnDiv}>
+              <div>
+                {" "}
+                <Button deepPinkOutline onClick={() => setShowModal(false)}>
+                  Cancel
+                </Button>
+              </div>
+              <Button primary onClick={handleLeave}>
+                Leave Page
+              </Button>
+            </div>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };

@@ -77,6 +77,12 @@
   width: 50%;
   height: 100%;
 }
+.display {
+  display: none;
+}
+.block {
+  display: block;
+}
 /**========================MEDIA QUERIES==================================**/
 
 @media screen and (min-width: 768px) {

@@ -49,12 +49,12 @@ const PostReducer = (state: PostStateType, action: PostActionType) => {
     case PostTypes.GetPost:
       return {
         ...state,
-        post: action.payload,
+        post: action.payload.data,
       };
     case PostTypes.GetSinglePost:
       return {
         ...state,
-        singlepost: action.payload,
+        singlepost: action.payload.data,
       };
     default:
       return state;

@@ -1,25 +1,20 @@
 "use client";
 import { userValue } from "@/app/context/userContext";
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React from "react";
 import styles from "./page.module.css";
-
 import BorderCard from "@/app/components/BorderCard/BorderCard";
 import Trending from "@/app/components/Trending/Trending";
 import LoggedInBorderComp from "@/app/components/LoggedInBorderComp/LoggedInBorderComp";
-import { getPosts } from "@/app/context/Actions/Actions";
-import { PostTypes } from "@/app/Types/reducerTypes";
-import { usePostValue } from "@/app/context/postContext";
 import { postType } from "@/app/Types/posts";
 import BookmarkSideComp from "@/app/components/BookmarkSideComp/BookmarkSideComp";
 import Tags from "@/app/components/Tags/Tags";
-import { InView, useInView } from "react-intersection-observer";
 import LoginSideComp from "@/app/components/LoginSideComp/LoginSideComp";
 import Skeleton from "@/app/components/Skeleton/Skeleton";
+import { usePublishedPostValue } from "@/app/context/publishedpostsContext";
 
 const ShowHomeHeading = () => {
   const { state } = userValue();
-
-  const { lastCursor, posts, isLoading, ref } = usePostValue();
+  const { publishedposts, ref, lastCursor } = usePublishedPostValue();
 
   return (
     <div>
@@ -54,8 +49,8 @@ const ShowHomeHeading = () => {
               </div>
             ) : ( */}
             <div>
-              {posts &&
-                posts?.map((val: postType) => {
+              {publishedposts &&
+                publishedposts?.map((val: postType) => {
                   let excerpt = val?.content.slice(0, 200);
                   return (
                     <div key={val?.id}>
@@ -76,7 +71,11 @@ const ShowHomeHeading = () => {
               {lastCursor === null ? (
                 "You have reached the end"
               ) : (
-                <div>
+                <div
+                  className={
+                    publishedposts?.length! < 4 ? styles.display : styles.block
+                  }
+                >
                   {" "}
                   <Skeleton />
                 </div>

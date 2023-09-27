@@ -44,12 +44,12 @@
 @media screen and (min-width: 768px) {
   /* For desktop: */
   .modal {
-    top: 8%;
+    top: 0%;
   }
   .modalcontent {
     max-width: 44%;
-    right: 2%;
-    bottom: 41%;
+    right: 35%;
+    bottom: 21%;
   }
 }
 @media (min-width: 768px) and (max-width: 1024px) {

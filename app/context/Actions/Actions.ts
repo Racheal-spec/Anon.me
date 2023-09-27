@@ -82,6 +82,25 @@ export const setPublishPost = async (id: string) => {
     console.log(error);
   }
 };
+
+export const getPublishedPosts = async ({
+  take,
+  lastCursor,
+}: postParamsType) => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/data/posts/published?take=${take}&lastCursor=${lastCursor}`
+    );
+    if (!res.ok) {
+      let err = await res.json();
+      console.log(err);
+      toast.error(err.message);
+    }
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
 export const searchPosts = async ({
   take,
   lastCursor,

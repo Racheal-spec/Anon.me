@@ -11,8 +11,6 @@ import { EditorState, convertToRaw } from "draft-js";
 import dynamic from "next/dynamic";
 import draftToHtml from "draftjs-to-html";
 import { toast } from "react-toastify";
-import { StylesProvider } from "@chakra-ui/react";
-import { publishPost } from "@/app/services/api";
 import { createNewPost, setPublishPost } from "@/app/context/Actions/Actions";
 import { postType } from "@/app/Types/posts";
 
@@ -48,7 +46,6 @@ const Createpost = () => {
 
   const handleFormSubmit = async (data: any) => {
     const file = data?.postimage?.[0];
-    console.log("fileeeeeee");
     const formData = new FormData();
     const postData = JSON.stringify({
       title: titleref.current?.innerText,
@@ -75,9 +72,9 @@ const Createpost = () => {
   const handlePublished = async () => {
     try {
       setPublishLoading(true);
-      console.log(postdata);
+
       let data = await setPublishPost(postdata?.id!);
-      console.log(data);
+
       if (data.message.code === "P2025") {
         setPublishLoading(false);
         toast.warning(data.message.meta.cause);

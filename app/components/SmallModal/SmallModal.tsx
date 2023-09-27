@@ -8,12 +8,7 @@ type SmallModalProp = {
   children: ReactNode;
   modalitem: postType;
 };
-const SmallModal = ({
-  handlefunction,
-  children,
-
-  modalitem,
-}: SmallModalProp) => {
+const SmallModal = ({ handlefunction, children }: SmallModalProp) => {
   const ref = UseClickOutside(handlefunction);
   return (
     <>

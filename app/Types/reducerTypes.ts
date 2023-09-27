@@ -19,7 +19,9 @@ export enum SearchTypes {
 export enum DashboardTypes {
   Set_Toggle = "SET_TOGGLE",
 }
-
+export enum PublishedTypes {
+  Get_Published = "GET_PUBLISHED",
+}
 //==============USER TYPES================//
 export type ActionType = {
   type: Types.GetUser | "SET_TOGGLE";
@@ -27,6 +29,16 @@ export type ActionType = {
 };
 export type UserReducerType = {
   user: UserProp | null;
+};
+//==============PUBLISHED POST TYPES================//
+export type PublishedStateType = {
+  data: postType[] | null;
+};
+export type PublishedAction = {
+  type: PublishedTypes.Get_Published;
+  payload: {
+    data: postType[] | null;
+  };
 };
 //==============POST TYPES================//
 export type PostStateType = {

@@ -10,6 +10,10 @@ import { SearchProvider } from "./SearchContext";
 import SearchReducer, { initialSearchStateVal } from "./Reducers/searchReducer";
 import { DashboardContextType, DashboardProvider } from "./DashboardContext";
 import DashboardReducer from "./Reducers/dashboardReducer";
+import { PublishedProvider } from "./publishedpostsContext";
+import PublishedReducer, {
+  initialPublishedStateVal,
+} from "./Reducers/publishedReducer";
 
 type childrenType = {
   children: JSX.Element;
@@ -34,7 +38,12 @@ export const MainContext = ({ children }: childrenType) => {
                 reducer={DashboardReducer}
                 initialState={DashboardContextType}
               >
-                {children}
+                <PublishedProvider
+                  Reducer={PublishedReducer}
+                  initialPublishedState={initialPublishedStateVal}
+                >
+                  {children}
+                </PublishedProvider>
               </DashboardProvider>
             </SearchProvider>
           </BookmarkProvider>

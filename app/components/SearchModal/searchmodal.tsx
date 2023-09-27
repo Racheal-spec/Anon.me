@@ -17,7 +17,7 @@ type SearchModalType = {
   handlefocus: (event: React.FocusEvent<HTMLInputElement>) => void;
 };
 const SearchModal = ({ handleclose, handlefocus }: SearchModalType) => {
-  //  const ref = UseClickOutside(handleclose);
+  const ref = UseClickOutside(handleclose);
   const [searched, setSearched] = useState([]);
   const [isloading, setloading] = useState(false);
   const router = useRouter();
@@ -61,7 +61,7 @@ const SearchModal = ({ handleclose, handlefocus }: SearchModalType) => {
   }, [searchterm]);
   return (
     <div className={styles.modal}>
-      <div className={styles.modalcontent}>
+      <div className={styles.modalcontent} ref={ref}>
         <div className={styles.inputClass}>
           <input
             placeholder="start typing..."

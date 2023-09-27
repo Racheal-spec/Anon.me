@@ -12,7 +12,10 @@ const Account = () => {
           make sure you're absolutely certain before taking this step.
         </p>
         <div className={styles.btnDiv}>
-          <Button deepPinkOutline>Cancel</Button>
+          <div>
+            {" "}
+            <Button deepPinkOutline>Cancel</Button>
+          </div>
           <Button primary>Delete</Button>
         </div>
       </div>
