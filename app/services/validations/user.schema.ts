@@ -8,14 +8,13 @@ export const UserSchema = z.object({
     })
     .min(1, "Anonymous name is required")
     .max(20)
+    .startsWith("Anon")
     .optional(),
-  uniqueid: z
+  email: z
     .string({
-      required_error: "A UniqueID is required",
+      required_error: "A valid email is required",
     })
-    .min(1, "UniqueID is required")
-    .startsWith("anon")
-    .regex(/([0-9])\d+/g),
+    .email("Invalid email format"),
   password: z
     .string({
       required_error: "Password is required",

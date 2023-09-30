@@ -64,7 +64,7 @@ export const getallposts = async () => {
 
 export const createpost: FC<postType> = async (post) => {
   return fetcher({
-    url: "/api/auth/createpost",
+    url: "/api/auth/posts/createpost",
     method: "POST",
     body: post,
     json: true,
@@ -89,9 +89,17 @@ export const publishPost = async () => {
 
 export const editPost: FC<postType> = async (post) => {
   return fetcher({
-    url: "/api/data/post/edit/:id",
+    url: "/api/auth/posts/edit/:id",
     method: "GET",
     body: post,
+    json: true,
+  });
+};
+
+export const getalltags = async () => {
+  return fetcher({
+    url: "/api/data/tags",
+    method: "GET",
     json: true,
   });
 };

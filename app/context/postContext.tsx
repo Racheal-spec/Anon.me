@@ -47,6 +47,7 @@ export const PostProvider = ({
     Reducer,
     initialPostState
   );
+
   const { state } = userValue();
   const { ref, inView } = useInView();
   let [lastCursor, setLastCursor] = useState("");
@@ -68,7 +69,7 @@ export const PostProvider = ({
     }
     setPosts((prev) => [
       ...(prev?.length ? prev : []),
-      ...(moredata?.data.length ? moredata.data : []),
+      ...(moredata?.data?.length ? moredata?.data : []),
     ]);
     setLastCursor(moredata?.metaData?.lastCursor);
     // setTake(take + moredata?.data.length);

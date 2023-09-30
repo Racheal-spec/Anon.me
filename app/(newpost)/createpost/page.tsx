@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import style from "../createpost/page.module.css";
 import PageHeader from "./PageHeader/PageHeader";
 import { BiImageAdd } from "react-icons/bi";
@@ -13,6 +13,8 @@ import draftToHtml from "draftjs-to-html";
 import { toast } from "react-toastify";
 import { createNewPost, setPublishPost } from "@/app/context/Actions/Actions";
 import { postType } from "@/app/Types/posts";
+import ComboBox from "@/app/uikits/ComboBox/ComboBox";
+import { useTagsValue } from "@/app/context/TagsContext";
 
 const Editor = dynamic(
   async () => {
@@ -27,6 +29,8 @@ const Createpost = () => {
   const [imageData, setImageData] = useState<File | null>(null);
   const [isLoading, setLoading] = useState(false);
   const [isPublishLoading, setPublishLoading] = useState(false);
+  const { tagsstate } = useTagsValue();
+  console.log(tagsstate?.data);
   const {
     register,
     handleSubmit,
@@ -36,11 +40,13 @@ const Createpost = () => {
     EditorState.createEmpty()
   );
   const titleref = useRef<HTMLHeadingElement | null>(null);
+  const [data, setdata] = useState();
+  const [categoryId, setCategoryId] = useState("");
 
   const convertContentToRaw = () => {
     return draftToHtml(convertToRaw(editorState.getCurrentContent()));
   };
-  const handleEditorChange = (event) => {
+  const handleEditorChange = (event: any) => {
     setEditorState(event);
   };
 
@@ -50,16 +56,18 @@ const Createpost = () => {
     const postData = JSON.stringify({
       title: titleref.current?.innerText,
       content: convertContentToRaw(),
+      categoryId: categoryId,
     });
     formData.append("postData", postData);
     file ? formData.append("postimage", file) : null;
     try {
       setLoading(true);
+      setdata(data);
       const res = await createNewPost(formData);
       if (res.statusText === "created") {
         setPostData(res);
         setLoading(false);
-        toast.success("Story created successfully!");
+        toast.success("Your post has been saved as draft!");
       }
     } catch (error) {
       console.log(error);
@@ -68,7 +76,10 @@ const Createpost = () => {
       }
     }
   };
-
+  // useEffect(() => {
+  //   handleFormSubmit(data);
+  //   console.log("dataaaa");
+  // }, [data]);
   const handlePublished = async () => {
     try {
       setPublishLoading(true);
@@ -90,18 +101,12 @@ const Createpost = () => {
     }
   };
 
-  console.log(postdata, isLoading);
+  const handleselect = (e: any) => {
+    setCategoryId(e.target.value);
+  };
 
-  // const handleChange = (event) => {
-  //   const name = event?.target.name;
-  //   setPost({
-  //     ...post,
-  //     [name]: event.target.value,
-  //   });
-  //   console.log(post);
-  // };
+  console.log(categoryId);
 
-  //console.log(`userdata: ${JSON.stringify(userdata)}`);
   return (
     <div className={style.mainWrapper}>
       <PageHeader
@@ -137,6 +142,7 @@ const Createpost = () => {
             </div>
           </div>
         )}
+
         {imagefile && (
           <div>
             <Image
@@ -148,6 +154,14 @@ const Createpost = () => {
             />
           </div>
         )}
+        <ComboBox
+          name={"Category"}
+          id={categoryId}
+          value={categoryId}
+          options={tagsstate?.data || []}
+          label={"Choose a Category"}
+          onChange={handleselect}
+        />
         <h1
           ref={titleref}
           contentEditable={true}

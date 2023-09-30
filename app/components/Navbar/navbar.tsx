@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import styles from "./navbar.module.css";
-
 import Button from "../../uikits/Button/button";
 import Image from "next/image";
 import profileimg from "../../Assets/images/profileimg.png";
@@ -17,17 +16,14 @@ import {
   LOGIN,
   REGISTER,
 } from "../../Routes/RoutesUrl";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Profile from "../Profile/profile";
 import { userValue } from "@/app/context/userContext";
-import { getUsers } from "@/app/context/Actions/Actions";
 import InputSearch from "../../uikits/Input/inputSearch";
 import classNames from "classnames";
-import { Types } from "@/app/Types/reducerTypes";
 import { eventType } from "@/app/Types/user";
 import { UseResizeScreen } from "@/hooks/ResizeScreen";
 import SearchModal from "../SearchModal/searchmodal";
-import { UseClickOutside } from "@/hooks/ClickOutside";
 import LogoComp from "../LogoComp/LogoComp";
 
 const Navbar = () => {
@@ -48,13 +44,12 @@ const Navbar = () => {
     setToggleDrawer(!toggleDrawer);
   };
   const handlefocus = (event: React.FocusEvent<HTMLInputElement>) => {
+    // event.stopPropagation();
     console.log("focusssss", event);
     showSearchModal(true);
   };
-  const handleclose = () => {
-    showSearchModal(false);
-  };
 
+  console.log(`navbarfocus: ${searchmodal}`);
   //===============USEEFFECTS==================//
 
   return (
@@ -259,13 +254,13 @@ const Navbar = () => {
         )}
       </div>
 
-      {searchmodal && (
-        <div>
-          {" "}
-          <SearchModal handleclose={handleclose} handlefocus={handlefocus} />
-        </div>
-      )}
-      {/* <hr className={styles.hrstyle} /> */}
+      <div>
+        {" "}
+        <SearchModal
+          searchmodal={searchmodal}
+          showSearchModal={showSearchModal}
+        />
+      </div>
     </>
   );
 };

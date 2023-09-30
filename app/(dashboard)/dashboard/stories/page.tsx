@@ -31,13 +31,10 @@ const Stories = () => {
   let userPosts: postType[] = [];
 
   posts?.map((el) => {
-    console.log(el?.authorId === state?.user?.data?.id);
     if (el?.authorId === state?.user?.data?.id) {
-      // console.log(el);
       userPosts.push(el);
     }
   });
-  console.log(userPosts);
   userPosts?.map((el) => {
     if (el.published) {
       publishedArray.push(el);

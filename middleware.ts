@@ -66,16 +66,15 @@ export default async function middleware(req: NextRequest) {
 
   try {
     if (jwt) {
-      const { uniqueid } = await validateJWT(jwt);
-
-      const requestHeaders = new Headers(req.headers);
+      await validateJWT(jwt);
+      const requestHeaders = new Headers(req?.headers) || {};
       const response = NextResponse.next({
         request: {
           // New request headers
           headers: requestHeaders,
         },
       });
-      response.headers.set("x-user-id", uniqueid);
+      // response.headers.set("x-user-id", anonname);
       return response;
     }
   } catch (e) {

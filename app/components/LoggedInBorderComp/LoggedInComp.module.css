@@ -10,21 +10,18 @@
   padding: 10px;
 }
 .compDiv h3 {
-  text-align: center;
-  padding: 10px 20px;
+  text-align: left;
+  padding: 10px 0;
 }
 .compDiv p {
-  text-align: center;
+  text-align: left;
   padding: 10px 0px;
   font-size: 0.8rem;
 }
 @media screen and (min-width: 768px) {
   /* For desktops: */
   .compDiv {
-    padding: 20px 50px;
-  }
-  .compDiv h3 {
-    padding: 10px 40px;
+    padding: 30px;
   }
 }
 

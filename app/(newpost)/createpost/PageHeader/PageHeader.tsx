@@ -27,7 +27,6 @@ const PageHeader = ({
   const handleModal = () => {
     setShowModal(!showmodal);
   };
-  console.log(showmodal);
   const handleLeave = () => {
     router.back();
   };

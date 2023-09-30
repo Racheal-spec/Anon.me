@@ -72,7 +72,7 @@ export const PublishedProvider = ({
     }
     setPublishedPosts((prev) => [
       ...(prev?.length ? prev : []),
-      ...(publisheddata?.data.length ? publisheddata.data : []),
+      ...(publisheddata?.data?.length ? publisheddata?.data : []),
     ]);
     setLastCursor(publisheddata?.metaData?.lastCursor);
     // setTake(take + moredata?.data.length);

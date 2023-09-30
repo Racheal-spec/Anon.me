@@ -7,6 +7,7 @@ import { userValue } from "@/app/context/userContext";
 import profileimg from "../../../Assets/images/profileimg.png";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import Button from "@/app/uikits/Button/button";
+import ComboBox from "@/app/uikits/ComboBox/ComboBox";
 const Profile = () => {
   const { state } = userValue();
   console.log(state);
@@ -41,14 +42,12 @@ const Profile = () => {
         </div>
       </div>
       <div>
-        <div className={styles.label}>
-          <label>Location</label>
-          <div>
-            <select name="countries" id="country" className={styles.select}>
-              <option value="Nigeria">Nigeria</option>
-            </select>
-          </div>
-        </div>
+        <ComboBox
+          name={"countries"}
+          id={"country"}
+          value={"Nigeria"}
+          label={"Location"}
+        />
         <div className={styles.btndiv}>
           <Button primary>Update</Button>
         </div>

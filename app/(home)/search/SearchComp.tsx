@@ -79,7 +79,11 @@ const SearchComp = () => {
         </div>
       )}
 
-      <div>{!isloading && searched?.length === 0 && <EmptyState />}</div>
+      <div>
+        {!isloading && searched?.length === 0 && (
+          <EmptyState heading="No search results" />
+        )}
+      </div>
       {searched?.length !== 0 && (
         <div className={styles.morediv} onClick={handleMore}>
           <div className={styles.moreText}>See more stories</div>

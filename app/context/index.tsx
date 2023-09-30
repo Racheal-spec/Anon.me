@@ -14,6 +14,8 @@ import { PublishedProvider } from "./publishedpostsContext";
 import PublishedReducer, {
   initialPublishedStateVal,
 } from "./Reducers/publishedReducer";
+import { TagsProvider } from "./TagsContext";
+import TagsReducer, { initialTagsVal } from "./Reducers/TagsReducer";
 
 type childrenType = {
   children: JSX.Element;
@@ -42,7 +44,12 @@ export const MainContext = ({ children }: childrenType) => {
                   Reducer={PublishedReducer}
                   initialPublishedState={initialPublishedStateVal}
                 >
-                  {children}
+                  <TagsProvider
+                    initialState={initialTagsVal}
+                    reducer={TagsReducer}
+                  >
+                    {children}
+                  </TagsProvider>
                 </PublishedProvider>
               </DashboardProvider>
             </SearchProvider>

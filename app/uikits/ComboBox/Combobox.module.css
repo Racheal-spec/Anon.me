@@ -1,0 +1,26 @@
+.label {
+  font-weight: 600;
+  padding: 15px 0;
+  font-size: 0.8rem;
+}
+.select {
+  width: 100%;
+  padding: 14px;
+  margin: 15px 0;
+  background-color: var(--formInputBg);
+  border: none;
+}
+/**========================MEDIA QUERIES==================================**/
+
+@media screen and (min-width: 768px) {
+  .select {
+    width: 40%;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* For tablets: */
+
+  .select {
+    width: 60%;
+  }
+}

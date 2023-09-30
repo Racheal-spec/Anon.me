@@ -49,7 +49,7 @@ const Drafts = () => {
       <div className={styles.colorDiv}>
         <span>Status: &nbsp;</span>
         <div className={styles.orange}></div>
-        <p> Unpublished</p>
+        <p> Unpublished({draftsArray?.length})</p>
       </div>
       <TableTitle
         title="Title"

@@ -3,8 +3,8 @@ import React, { useEffect, useRef } from "react";
 export const UseClickOutside = (callback: () => void) => {
   const ref = useRef<HTMLDivElement | null>(null);
   useEffect(() => {
-    const handleProfileClose = (e: any) => {
-      const target = e.target as HTMLElement;
+    const handleProfileClose = (event: any) => {
+      const target = event.target as HTMLElement;
       if (ref.current && !ref?.current?.contains(target)) {
         callback();
       }
@@ -14,5 +14,6 @@ export const UseClickOutside = (callback: () => void) => {
       document.removeEventListener("click", handleProfileClose);
     };
   }, [ref]);
+
   return ref;
 };

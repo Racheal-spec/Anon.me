@@ -1,5 +1,6 @@
 import { toast } from "react-toastify";
 import { postParamsType } from "../../Types/posts";
+import { getalltags } from "@/app/services/api";
 
 export const getUsers = async () => {
   try {
@@ -7,7 +8,7 @@ export const getUsers = async () => {
     if (!res.ok) {
       let err = await res.json();
       console.log(err);
-      toast.error(err.message);
+      // toast.error(err.message);
     }
     if (res.ok) {
       return await res.json();
@@ -25,7 +26,7 @@ export const getPosts = async ({ take, lastCursor }: postParamsType) => {
     if (!res.ok) {
       let err = await res.json();
       console.log(err);
-      toast.error(err.message);
+      // toast.error(err.message);
     }
     return await res.json();
   } catch (error) {
@@ -38,7 +39,7 @@ export const getSinglePost = async (id: string) => {
     if (!res.ok) {
       let err = await res.json();
       console.log(err);
-      toast.error(err.message);
+      // toast.error(err.message);
     }
     return await res.json();
   } catch (error) {
@@ -48,15 +49,14 @@ export const getSinglePost = async (id: string) => {
 
 export const createNewPost = async (formdata: any) => {
   try {
-    const res = await fetch("http://localhost:3000/api/auth/createpost", {
+    const res = await fetch("http://localhost:3000/api/auth/posts/createpost", {
       method: "POST",
       body: formdata,
-      cache: "no-store",
     });
     if (!res.ok) {
       let err = await res.json();
       console.log(err);
-      toast.error(err.message);
+      // toast.error(err.message);
     }
     return await res.json();
   } catch (error) {
@@ -75,7 +75,7 @@ export const setPublishPost = async (id: string) => {
     if (!res.ok) {
       let err = await res.json();
       console.log(err);
-      toast.error(err.message);
+      // toast.error(err.message);
     }
     return await res.json();
   } catch (error) {
@@ -94,7 +94,7 @@ export const getPublishedPosts = async ({
     if (!res.ok) {
       let err = await res.json();
       console.log(err);
-      toast.error(err.message);
+      // toast.error(err.message);
     }
     return await res.json();
   } catch (error) {
@@ -108,21 +108,37 @@ export const searchPosts = async ({
 }: postParamsType) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/data/posts/search?title=${search}&take=${take}&lastCursor=${lastCursor}`,
-      {
-        cache: "no-store",
-      }
+      `http://localhost:3000/api/data/posts/search?title=${search}&take=${take}&lastCursor=${lastCursor}`
     );
     if (!res.ok) {
       let err = await res.json();
       console.log(err);
-      toast.error(err.message);
+      // toast.error(err.message);
     }
     return await res.json();
   } catch (error) {
     console.log(error);
   }
 };
+
+export const getTags = async () => {
+  try {
+    let res = await getalltags();
+    console.log("tagsssss");
+    return res;
+    // if (!res.ok) {
+    //   let err = await res.json();
+    //   console.log(err);
+    //   // toast.error(err.message);
+    // }
+    // if (res.ok) {
+    //   return await res.json();
+    // }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // export const bookmarkDispatchAction = ({
 //   title,
 //   excerpts,

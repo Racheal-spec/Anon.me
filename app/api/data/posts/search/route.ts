@@ -7,6 +7,7 @@ export async function GET(req: Request) {
 
   const take = url.searchParams.get("take");
   const lastCursor = url.searchParams.get("lastCursor");
+
   const searchedtitle = url.searchParams.get("title");
   try {
     //get prisma to get the post

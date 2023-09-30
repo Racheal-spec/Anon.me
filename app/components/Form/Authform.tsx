@@ -39,12 +39,12 @@ const logininUser = {
 };
 const initialStateReg = {
   anonname: "",
-  uniqueid: "",
+  email: "",
 
   password: "",
 };
 const initialStateLogin = {
-  uniqueid: "",
+  email: "",
   password: "",
   photo: "",
 };
@@ -71,6 +71,7 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
         }
       } else {
         let loginresult = await login(state);
+        console.log(`loginnnnn: ${loginresult}`);
         if (loginresult) {
           router.replace("/home");
         }
@@ -114,16 +115,17 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
         )}
         <div>
           <div className={style.inputlabel}>
-            <label>UniqueID</label>
+            <label>Email</label>
           </div>
           <div>
             <input
-              placeholder="Unique ID"
-              {...register("uniqueid")}
+              placeholder="user@email.com"
+              type="email"
+              {...register("email")}
               className={style.inputStyle}
             />
-            {errors.uniqueid && (
-              <span className={style.spanclass}>{errors.uniqueid.message}</span>
+            {errors.email && (
+              <span className={style.spanclass}>{errors.email.message}</span>
             )}
           </div>
           <div className={style.inputlabel}>

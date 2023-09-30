@@ -1,8 +1,9 @@
 import React from "react";
 import styles from "./Tags.module.css";
+import { useTagsValue } from "@/app/context/TagsContext";
 
-export const tagsArray = ["tech", "domestic abuse", "monday", "ambassador"];
 const Tags = () => {
+  const { tagsstate } = useTagsValue();
   return (
     <section>
       <div>
@@ -10,11 +11,12 @@ const Tags = () => {
       </div>
       <p className={styles.desc}>All your set tags will appear here.</p>
       <div className={styles.tagWrapper}>
-        {tagsArray.map((tag, index) => (
-          <div className={styles.tagdiv} key={index}>
-            <p>{tag}</p>
-          </div>
-        ))}
+        {tagsstate &&
+          tagsstate?.data?.map((tag, index) => (
+            <div className={styles.tagdiv} key={index}>
+              <p>{tag?.title}</p>
+            </div>
+          ))}
       </div>
     </section>
   );

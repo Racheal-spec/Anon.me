@@ -9,7 +9,6 @@ export const initialPostStateVal: PostStateType = {
   data: [] || null,
   singlepost: {
     title: "",
-    excerpts: "",
     content: "",
     id: "",
     createdAt: new Date(),
@@ -23,7 +22,7 @@ export const initialPostStateVal: PostStateType = {
       anonname: "",
       password: "",
       isAdmin: false,
-      uniqueid: "",
+      email: "",
       photo: null,
     },
   },
@@ -49,7 +48,7 @@ const PostReducer = (state: PostStateType, action: PostActionType) => {
     case PostTypes.GetPost:
       return {
         ...state,
-        post: action.payload.data,
+        post: action?.payload?.data,
       };
     case PostTypes.GetSinglePost:
       return {

@@ -10,7 +10,7 @@ export async function POST(req: Request) {
     const usercookies = cookies().get(process.env.COOKIE_NAME as string);
     const jwt = usercookies?.value as string;
     if (req.method === "POST") {
-      const { uniqueid } = await validateJWT(jwt);
+      const { id } = await validateJWT(jwt);
       const body = await req.json();
       // console.log(jwt, uniqueid);
 
@@ -18,13 +18,11 @@ export async function POST(req: Request) {
         data: {
           title: body.title,
           content: body.content,
-          excerpts: body.excerpts,
-          author: { connect: { uniqueid: uniqueid } },
+          author: { connect: { id: id } },
         },
-      },
-      )
-      
-    //   );
+      });
+
+      //   );
       //  console.log(post);
       if (!post) {
         return NextResponse.json({

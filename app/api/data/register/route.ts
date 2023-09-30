@@ -31,7 +31,7 @@ export async function POST(req: Request, res: Response) {
       const user = await db.user.create({
         data: {
           anonname: data.anonname!,
-          uniqueid: data.uniqueid,
+          email: data.email,
           password: await hashPassword(data.password),
           photo: data.photo,
         },
@@ -41,11 +41,7 @@ export async function POST(req: Request, res: Response) {
 
       const jwt = await createJWT(user);
 
-      if (
-        data.anonname === "" ||
-        data.password === "" ||
-        data.uniqueid === ""
-      ) {
+      if (data.anonname === "" || data.password === "" || data.email === "") {
         return NextResponse.json(
           {
             message: "Fields cannot be empty",

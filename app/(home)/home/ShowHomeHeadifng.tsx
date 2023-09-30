@@ -11,6 +11,8 @@ import Tags from "@/app/components/Tags/Tags";
 import LoginSideComp from "@/app/components/LoginSideComp/LoginSideComp";
 import Skeleton from "@/app/components/Skeleton/Skeleton";
 import { usePublishedPostValue } from "@/app/context/publishedpostsContext";
+import EmptyState from "@/app/components/EmptyState/EmptyState";
+import { useTagsValue } from "@/app/context/TagsContext";
 
 const ShowHomeHeading = () => {
   const { state } = userValue();
@@ -30,46 +32,37 @@ const ShowHomeHeading = () => {
               />
             )}
 
-            {/* {isLoading ? (
-              // <div className={styles.emptystateImgDiv}>
-              //   <Image
-              //     src={empty_state}
-              //     className={styles.emptystateImg}
-              //     alt="empty_blog"
-              //   />
-              //   <h2>No Available Post Yet</h2>
-              //   <p>
-              //     There's no blog available at the moment, kindly check back
-              //     later!
-              //   </p>
-              // </div>
+            {publishedposts?.length === 0 ? (
+              <EmptyState
+                heading="No Available Story"
+                description="Create a new story or check back later!"
+              />
+            ) : (
               <div>
-                <Skeleton />
-                <Skeleton />
+                {publishedposts &&
+                  publishedposts?.map((val: postType) => {
+                    let excerpt = val?.content.slice(0, 200);
+                    return (
+                      <div key={val?.id}>
+                        <BorderCard
+                          id={val?.id}
+                          title={val?.title}
+                          author={val?.author.anonname}
+                          excerpts={excerpt}
+                          postimage={val?.postimage}
+                          createdAt={val?.createdAt}
+                        />
+                      </div>
+                    );
+                  })}
               </div>
-            ) : ( */}
-            <div>
-              {publishedposts &&
-                publishedposts?.map((val: postType) => {
-                  let excerpt = val?.content.slice(0, 200);
-                  return (
-                    <div key={val?.id}>
-                      <BorderCard
-                        id={val?.id}
-                        title={val?.title}
-                        author={val?.author.anonname}
-                        excerpts={excerpt}
-                        postimage={val?.postimage}
-                        createdAt={val?.createdAt}
-                      />
-                    </div>
-                  );
-                })}
-            </div>
+            )}
 
             <div ref={ref}>
               {lastCursor === null ? (
-                "You have reached the end"
+                <div className={styles.textcenter}>
+                  You have reached the end
+                </div>
               ) : (
                 <div
                   className={

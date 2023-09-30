@@ -4,7 +4,7 @@ export type AuthorProp = {
   anonname: string;
   password: string;
   isAdmin: boolean;
-  uniqueid: string;
+  email: string;
   photo: string | null;
 };
 export interface UserProp {

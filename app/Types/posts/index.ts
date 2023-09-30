@@ -3,7 +3,6 @@ import { AuthorProp } from "../user";
 
 export type postType = {
   title: string;
-  excerpts: string;
   content: string;
   id: string;
   createdAt: Date;

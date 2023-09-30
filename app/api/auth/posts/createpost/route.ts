@@ -9,6 +9,7 @@ import { connectCloudinary } from "@/app/services/cloudinary.config";
 
 export async function POST(req: Request) {
   connectCloudinary;
+  const unixTimestamp = Math.floor(Date.now() / 1000);
   async function uploadImage(file: Blob) {
     return new Promise<UploadApiResponse>(async (resolve, reject) => {
       if (!file) {
@@ -21,6 +22,7 @@ export async function POST(req: Request) {
           {
             resource_type: "auto",
             folder: "Anon_Blog",
+            timestamp: unixTimestamp,
           },
           (err, result) => {
             if (err) {
@@ -43,11 +45,11 @@ export async function POST(req: Request) {
     const formData = await req.formData();
 
     const postData = JSON.parse(formData.get("postData") as string);
-    if (!postData.title || !postData.content) {
+    if (!postData.title || !postData.content || !postData.categoryId) {
       return NextResponse.json(
         {
           message:
-            "Invalid Data: Check that your title, content are not missing!",
+            "Invalid Data: Check that your title, content and tag are not missing!",
         },
         {
           status: 422,
@@ -55,7 +57,7 @@ export async function POST(req: Request) {
       );
     }
     if (req.method === "POST") {
-      const { uniqueid } = await validateJWT(jwt);
+      const { id } = await validateJWT(jwt);
       // const body = await req.json();
 
       const imagefile = formData.get("postimage") as Blob | null;
@@ -66,12 +68,29 @@ export async function POST(req: Request) {
       } else {
         uploadedImg = null;
       }
+
+      const category = await db.category.findFirst({
+        where: {
+          id: postData.categoryId,
+        },
+      });
+      if (!category) {
+        return NextResponse.json(
+          {
+            message: "Invalid category id",
+          },
+          {
+            status: 422,
+          }
+        );
+      }
       const post = await db.post.create({
         data: {
           title: postData.title,
           content: postData.content,
           postimage: uploadedImg?.url ?? null,
-          author: { connect: { uniqueid: uniqueid } },
+          author: { connect: { id: id } },
+          category: { connect: { id: postData.categoryId } },
         },
         include: {
           author: true,

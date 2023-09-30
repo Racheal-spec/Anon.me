@@ -1,6 +1,9 @@
+import { Suspense } from "react";
 import ToastProvider from "../ToastProvider";
 import { poppins } from "../fonts";
 import "../globalstyles/globals.css";
+import { MainContext } from "../context";
+import Loading from "./Loading";
 
 export const metadata = {
   title: "Next.js",
@@ -14,8 +17,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={poppins.className}>
-      <body className="globalpadding">
-        <ToastProvider>{children}</ToastProvider>
+      <body>
+        <Suspense fallback={<Loading />}>
+          <MainContext>
+            <div className="globalpadding">
+              <ToastProvider>{children}</ToastProvider>
+            </div>
+          </MainContext>
+        </Suspense>
       </body>
     </html>
   );

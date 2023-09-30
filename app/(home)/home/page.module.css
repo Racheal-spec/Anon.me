@@ -62,7 +62,8 @@
   grid-template-columns: 1fr;
   gap: 30px;
 }
-.emptystateImgDiv {
+.emptystateImgDiv,
+.textcenter {
   display: flex;
   align-items: center;
   justify-content: center;

@@ -20,7 +20,7 @@ const PublishedReducer = (
     case PublishedTypes.Get_Published:
       return {
         ...state,
-        data: action.payload.data,
+        data: action?.payload?.data,
       };
 
     default:

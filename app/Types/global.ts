@@ -58,3 +58,10 @@ export type EmptyStateProp = {
   heading: string;
   description?: string;
 };
+
+//===========TAGS PROPS================//
+
+export interface TagsProp {
+  id: string;
+  title: string;
+}

@@ -12,10 +12,10 @@ export async function POST(req: Request) {
     if (req.method === "POST") {
       const user = await db.user.findUnique({
         where: {
-          uniqueid: data.uniqueid,
+          email: data.email,
         },
       });
-
+      console.log(`userrrr: ${JSON.stringify(user)}`);
       const jwt = await createJWT(user!);
       //  console.log(user, jwt);
       if (!user) {
@@ -24,7 +24,7 @@ export async function POST(req: Request) {
             status: 401,
             data: user,
             message:
-              "Invalid login: check that you are using the correct uniqueid",
+              "Invalid login: check that you are using the correct email",
           },
           {
             status: 401,

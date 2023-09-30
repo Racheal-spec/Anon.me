@@ -21,7 +21,7 @@ export const createJWT = (user: AuthorProp) => {
   return new SignJWT({
     payload: {
       id: user?.id,
-      uniqueid: user?.uniqueid,
+      email: user?.email,
     },
   })
     .setProtectedHeader({ alg: "HS256", typ: "JWT" })

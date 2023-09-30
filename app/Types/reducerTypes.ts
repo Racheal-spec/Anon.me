@@ -1,9 +1,13 @@
+import { TagsProp } from "./global";
 import { bookmarkType, postType } from "./posts";
 import { UserProp } from "./user";
 
 //==============ENUMS================//
 export enum Types {
   GetUser = "SET_USER",
+}
+export enum TagsTypes {
+  GetTags = "GET_TAGS",
 }
 export enum PostTypes {
   GetPost = "GET_POST",
@@ -93,4 +97,15 @@ export type DashboardAction = {
   payload: {
     toggle: DashboardReducerType["toggle"];
   };
+};
+
+//==============TAGS TYPES================//
+export type TagsActionType = {
+  type: TagsTypes.GetTags;
+  payload: {
+    data: TagsProp[];
+  };
+};
+export type TagsReducerType = {
+  data: TagsProp[] | null;
 };
