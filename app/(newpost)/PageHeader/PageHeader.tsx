@@ -8,27 +8,52 @@ import { CiSaveDown1 } from "react-icons/ci";
 import Loader from "@/app/components/Loader/Loader";
 import Modal from "@/app/components/Modal/Modal";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import { setPublishPost } from "@/app/context/Actions/Actions";
 
 type PageHeaderProp = {
   handleFormSubmit: () => void;
-  handlePublished: () => void;
   loading: boolean;
-  isPublishLoading: boolean;
+  editstatus?: boolean;
+  id: string;
 };
 const PageHeader = ({
   handleFormSubmit,
-  handlePublished,
   loading,
-  isPublishLoading,
+  editstatus,
+  id,
 }: PageHeaderProp) => {
   const isMobile = UseResizeScreen();
   const [showmodal, setShowModal] = useState(false);
+  const [isPublishLoading, setPublishLoading] = useState(false);
   const router = useRouter();
   const handleModal = () => {
     setShowModal(!showmodal);
   };
   const handleLeave = () => {
     router.back();
+  };
+  console.log(editstatus);
+  const handlePublished = async () => {
+    try {
+      setPublishLoading(true);
+
+      if (id) {
+        let data = await setPublishPost(id);
+        console.log(data);
+        if (data.status === 200) {
+          toast.success("You have just published a new story!");
+        }
+        if (data.status === 400) {
+          setPublishLoading(false);
+          toast.warning(data?.message);
+        }
+        return data;
+      }
+    } catch (error) {
+      console.error(error);
+      setPublishLoading(false);
+    }
   };
   return (
     <div>
@@ -50,12 +75,14 @@ const PageHeader = ({
           </div>
           <div>
             <Button primary onClick={handlePublished}>
-              {isPublishLoading && (
-                <div className={styles.loadingIcon}>
-                  <Loader color="#333333" />
-                </div>
-              )}
-              Publish
+              <div className={styles.btnLoaderDiv}>
+                {isPublishLoading && (
+                  <div className={styles.loadingIcon}>
+                    <Loader color="#333333" />
+                  </div>
+                )}
+                <div> {editstatus ? "Update" : " Publish"}</div>
+              </div>
             </Button>
           </div>
           <hr className={styles.divider} />

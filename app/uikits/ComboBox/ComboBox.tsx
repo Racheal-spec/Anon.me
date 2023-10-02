@@ -17,11 +17,9 @@ const ComboBox = ({ label, id, name, value, onChange, options }) => {
           </option>
           {options &&
             options?.map((option) => (
-              <>
-                <option key={option?.id} value={option?.id}>
-                  {option?.title}
-                </option>
-              </>
+              <option key={option?.id} value={option?.id}>
+                {option?.title}
+              </option>
             ))}
         </select>
       </div>

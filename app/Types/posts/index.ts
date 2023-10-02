@@ -11,6 +11,7 @@ export type postType = {
   deleted: null;
   authorId?: string;
   postimage?: string;
+  categoryId: string;
   author: AuthorProp;
 };
 export type ParamType = {

@@ -1,7 +1,4 @@
-.mainWrapper {
-  padding: 20px 10px;
-}
-/* .post_div {
+.post_div {
   padding: 40px 0px;
 }
 .post_div h1 {
@@ -20,11 +17,12 @@
 }
 .coverImgDiv p {
   font-size: 0.9rem;
-} */
-/* .headingH1 {
+}
+.headingH1 {
   padding: 25px 0;
   font-size: 1.8rem;
   color: var(--black);
+  width: 90%;
 }
 .headingH1::placeholder {
   font-size: 1.8rem;
@@ -33,40 +31,15 @@
 .coverimgshow {
   object-fit: cover;
   background-size: contain;
-} */
-.form_wrapper {
-  display: flex;
-  flex-direction: column;
-  padding: 20px 0;
-}
-.form_input::placeholder,
-.form_excerpts::placeholder,
-.form_mainpost::placeholder {
-  padding: 10px 20px;
-}
-.label {
-  font-weight: bold;
-}
-.form_input {
-  height: 50px;
-  margin-top: 10px;
-  margin-bottom: 30px;
-}
-.form_excerpts {
-  height: 100px;
-  margin-top: 10px;
-  margin-bottom: 30px;
-}
-.form_mainpost {
-  height: 400px;
-  margin-top: 10px;
-  margin-bottom: 30px;
 }
 /**========================MEDIA QUERIES==================================**/
 
 @media screen and (min-width: 768px) {
-  .mainWrapper {
-    padding: 20px 40px;
+  .post_div {
+    padding: 80px 120px;
+  }
+  .headingH1 {
+    font-size: 2.4rem;
   }
   .inputH1::placeholder {
     font-size: 2.8rem;

@@ -47,7 +47,7 @@ export type PublishedAction = {
 //==============POST TYPES================//
 export type PostStateType = {
   data: postType[] | null;
-  singlepost: postType;
+  // singlepost: postType;
 };
 export type PostAction = {
   type: PostTypes.GetPost;
@@ -55,7 +55,7 @@ export type PostAction = {
     data: postType[] | null;
   };
 };
-export type PostActionType = PostAction | SinglePostAction;
+export type PostActionType = PostAction;
 //==============SINGLE POST TYPES================//
 export type SinglePostAction = {
   type: PostTypes.GetSinglePost;

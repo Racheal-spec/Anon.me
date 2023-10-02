@@ -37,6 +37,9 @@ export async function GET(req: Request) {
         if (user) {
           // revalidatePath(req.url);
           user.password = undefined!;
+          user.email = undefined!;
+          //makem location undefined too after you've done it from the frontend.
+          // let nulllocation = (val.author.location = undefined!);
           return NextResponse.json(
             {
               status: "ok",

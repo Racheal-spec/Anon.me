@@ -53,7 +53,17 @@ export async function GET(req: Request, res: NextResponse) {
         },
       }),
     });
-    data.map((val) => (val.author.password = undefined!));
+    data.map((val) => {
+      let nullpassword = (val.author.password = undefined!);
+      let nullemail = (val.author.email = undefined!);
+      //makem location undefined too after you've done it from the frontend.
+      // let nulllocation = (val.author.location = undefined!);
+      return {
+        nullemail,
+        nullpassword,
+      };
+    });
+
     return NextResponse.json(
       {
         status: "ok",

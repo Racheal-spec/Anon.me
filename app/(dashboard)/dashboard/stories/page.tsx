@@ -17,6 +17,8 @@ import TableTitle from "./TableTitle";
 import EmptyState from "@/app/components/EmptyState/EmptyState";
 import SearchLoader from "@/app/components/SearchLoader/SearchLoader";
 import { userValue } from "@/app/context/userContext";
+import Link from "next/link";
+import { EDITDRAFT } from "@/app/Routes/RoutesUrl";
 const Stories = () => {
   const { lastCursor, posts, isLoading, ref } = usePostValue();
   const isMobile = UseResizeScreen();
@@ -107,7 +109,9 @@ const Stories = () => {
                             <div>
                               <div className={styles.modalicondiv}>
                                 <BiEditAlt />
-                                <span>Edit</span>
+                                <Link href={EDITDRAFT(post?.id)}>
+                                  <span>Edit</span>
+                                </Link>
                               </div>
                               <div className={styles.modalicondiv}>
                                 <MdOutlineDelete color="red" />

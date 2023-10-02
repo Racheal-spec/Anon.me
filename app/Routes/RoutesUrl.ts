@@ -9,3 +9,4 @@ export const DASHBOARDDRAFTS = "/dashboard/drafts";
 export const DASHBOARDACCOUNT = "/dashboard/account";
 export const SEARCH = (title: string) => `/search?title=${title}`;
 export const POSTDETAILS = (id: string) => `/post/${id}`;
+export const EDITDRAFT = (id: string) => `/edit?draft=${id}`;

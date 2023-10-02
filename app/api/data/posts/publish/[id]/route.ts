@@ -5,6 +5,17 @@ import { NextResponse } from "next/server";
 export async function PUT(req: Request, { params }: ParamType) {
   const postid = params?.id;
   try {
+    const singlepost = await db.post.findUnique({
+      where: {
+        id: postid,
+      },
+    });
+    if (singlepost && singlepost?.published === true) {
+      return NextResponse.json({
+        status: 400,
+        message: "This post has already been published!",
+      });
+    }
     const post = await db.post.update({
       where: {
         id: postid,
@@ -19,8 +30,10 @@ export async function PUT(req: Request, { params }: ParamType) {
           "Error getting post: Check that you are passing the correct id!",
       });
     }
+
     if (post) {
-      return NextResponse.json(post, {
+      return NextResponse.json({
+        data: post,
         status: 200,
         statusText: "Published!",
       });

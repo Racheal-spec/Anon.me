@@ -12,7 +12,7 @@ import LoginSideComp from "@/app/components/LoginSideComp/LoginSideComp";
 import Skeleton from "@/app/components/Skeleton/Skeleton";
 import { usePublishedPostValue } from "@/app/context/publishedpostsContext";
 import EmptyState from "@/app/components/EmptyState/EmptyState";
-import { useTagsValue } from "@/app/context/TagsContext";
+import { changeTextFromHTML } from "@/app/services/HtmltoText";
 
 const ShowHomeHeading = () => {
   const { state } = userValue();
@@ -41,14 +41,14 @@ const ShowHomeHeading = () => {
               <div>
                 {publishedposts &&
                   publishedposts?.map((val: postType) => {
-                    let excerpt = val?.content.slice(0, 200);
+                    let excerpt = `${val?.content.slice(0, 200)}...`;
                     return (
                       <div key={val?.id}>
                         <BorderCard
                           id={val?.id}
                           title={val?.title}
                           author={val?.author.anonname}
-                          excerpts={excerpt}
+                          excerpts={changeTextFromHTML(excerpt)}
                           postimage={val?.postimage}
                           createdAt={val?.createdAt}
                         />

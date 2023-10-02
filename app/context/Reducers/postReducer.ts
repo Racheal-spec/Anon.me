@@ -7,25 +7,25 @@ import {
 
 export const initialPostStateVal: PostStateType = {
   data: [] || null,
-  singlepost: {
-    title: "",
-    content: "",
-    id: "",
-    createdAt: new Date(),
-    updatedAt: new Date(),
-    published: false,
-    deleted: null,
-    authorId: "",
-    author: {
-      id: "",
-      createdAt: new Date(),
-      anonname: "",
-      password: "",
-      isAdmin: false,
-      email: "",
-      photo: null,
-    },
-  },
+  // singlepost: {
+  //   title: "",
+  //   content: "",
+  //   id: "",
+  //   createdAt: new Date(),
+  //   updatedAt: new Date(),
+  //   published: false,
+  //   deleted: null,
+  //   authorId: "",
+  //   author: {
+  //     id: "",
+  //     createdAt: new Date(),
+  //     anonname: "",
+  //     password: "",
+  //     isAdmin: false,
+  //     email: "",
+  //     photo: null,
+  //   },
+  // },
 };
 
 // export const initialPostStateVal: PostStateType = {
@@ -50,11 +50,11 @@ const PostReducer = (state: PostStateType, action: PostActionType) => {
         ...state,
         post: action?.payload?.data,
       };
-    case PostTypes.GetSinglePost:
-      return {
-        ...state,
-        singlepost: action.payload.data,
-      };
+    // case PostTypes.GetSinglePost:
+    //   return {
+    //     ...state,
+    //     singlepost: action.payload.data,
+    //   };
     default:
       return state;
   }

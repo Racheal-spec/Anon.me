@@ -9,32 +9,31 @@ import { getSinglePost } from "@/app/context/Actions/Actions";
 import { usePostValue } from "@/app/context/postContext";
 import { PostTypes } from "@/app/Types/reducerTypes";
 import SearchLoader from "@/app/components/SearchLoader/SearchLoader";
+import { changeTextFromHTML } from "@/app/services/HtmltoText";
+import { postType } from "@/app/Types/posts";
 
 const DetailsComp = () => {
   let params = useParams();
   //console.log(params);
-  const { poststate, postdispatch } = usePostValue();
+  const [singlepost, setSinglePost] = useState<postType | null>(null);
   const [isLoading, setLoading] = useState(false);
   const fetchPost = async () => {
     setLoading(true);
     let data = await getSinglePost(params.id as string);
 
-    if (postdispatch) {
-      postdispatch({
-        type: PostTypes.GetSinglePost,
-        payload: data,
-      });
+    if (data) {
+      setSinglePost(data);
       setLoading(false);
     }
   };
   useEffect(() => {
     fetchPost();
   }, []);
-  console.log(poststate);
+  console.log(singlepost);
 
   return (
     <div className={styles.pageWrapper}>
-      <h1>{poststate?.singlepost?.title}</h1>
+      <h1>{singlepost?.title}</h1>
       <div className={styles.authorInfo}>
         <div>
           <Image
@@ -47,13 +46,11 @@ const DetailsComp = () => {
         </div>
         <div className={styles.namedetails}>
           <div>
-            <h5 className={styles.anonname}>
-              {poststate?.singlepost?.author?.anonname}
-            </h5>
+            <h5 className={styles.anonname}>{singlepost?.author?.anonname}</h5>
           </div>
           <div>
             <p className={styles.dateStyle}>
-              {new Date(poststate?.singlepost?.createdAt)?.toDateString()}
+              {new Date(singlepost?.createdAt!)?.toDateString()}
             </p>
           </div>
         </div>
@@ -65,21 +62,19 @@ const DetailsComp = () => {
       <section className={styles.mainsection}>
         {!isLoading ? (
           <Image
-            src={poststate?.singlepost?.postimage ?? ""}
+            src={singlepost?.postimage ?? profileimg}
             width={400}
             height={200}
             className={
-              poststate?.singlepost?.postimage
-                ? styles.blogimage
-                : styles.imgnone
+              singlepost?.postimage ? styles.blogimage : styles.imgnone
             }
-            alt={poststate?.singlepost?.postimage ? "user-content-image" : ""}
+            alt={singlepost?.postimage ? "user-content-image" : ""}
           />
         ) : (
           <SearchLoader />
         )}
         <div className={styles.mainContent}>
-          <p>{poststate?.singlepost?.content}</p>
+          <p>{changeTextFromHTML(singlepost?.content!)}</p>
         </div>
       </section>
     </div>

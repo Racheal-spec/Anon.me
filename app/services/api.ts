@@ -79,18 +79,18 @@ export const getsinglepost = async () => {
   });
 };
 
-export const publishPost = async () => {
+export const publishPost = async (id) => {
   return fetcher({
-    url: "/api/data/posts/publish/:id",
+    url: `/api/data/posts/publish/${id}`,
     method: "PUT",
     json: true,
   });
 };
 
-export const editPost: FC<postType> = async (post) => {
+export const editPost: FC<postType> = async (post, id) => {
   return fetcher({
-    url: "/api/auth/posts/edit/:id",
-    method: "GET",
+    url: `/api/auth/posts/edit/${id}`,
+    method: "PUT",
     body: post,
     json: true,
   });

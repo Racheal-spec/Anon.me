@@ -4,7 +4,9 @@ import { getalltags } from "@/app/services/api";
 
 export const getUsers = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/auth/user");
+    const res = await fetch("http://localhost:3000/api/auth/user", {
+      cache: "no-store",
+    });
     if (!res.ok) {
       let err = await res.json();
       console.log(err);
@@ -21,7 +23,10 @@ export const getUsers = async () => {
 export const getPosts = async ({ take, lastCursor }: postParamsType) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/data/posts?take=${take}&lastCursor=${lastCursor}`
+      `http://localhost:3000/api/data/posts?take=${take}&lastCursor=${lastCursor}`,
+      {
+        cache: "no-store",
+      }
     );
     if (!res.ok) {
       let err = await res.json();
@@ -56,7 +61,7 @@ export const createNewPost = async (formdata: any) => {
     if (!res.ok) {
       let err = await res.json();
       console.log(err);
-      // toast.error(err.message);
+      toast.error(err.message);
     }
     return await res.json();
   } catch (error) {
@@ -124,16 +129,24 @@ export const searchPosts = async ({
 export const getTags = async () => {
   try {
     let res = await getalltags();
-    console.log("tagsssss");
     return res;
-    // if (!res.ok) {
-    //   let err = await res.json();
-    //   console.log(err);
-    //   // toast.error(err.message);
-    // }
-    // if (res.ok) {
-    //   return await res.json();
-    // }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const editPost = async (formdata, { id }) => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/auth/posts/edit/${id}`, {
+      method: "PUT",
+      body: formdata,
+    });
+    if (!res.ok) {
+      let err = await res.json();
+      console.log(err);
+      toast.error(err.message);
+    }
+    return await res.json();
   } catch (error) {
     console.log(error);
   }
