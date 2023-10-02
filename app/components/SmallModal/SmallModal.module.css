@@ -1,8 +1,7 @@
 .modalDiv {
   background-color: #fff;
-  width: 100%;
   height: auto;
-  padding: 10px;
+  padding: 10px 15px;
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
   border-radius: 5px;
   position: absolute;
@@ -19,4 +18,15 @@
   100% {
     top: 100%;
   }
+}
+/**========================MEDIA QUERIES==================================**/
+
+@media screen and (min-width: 768px) {
+  .modalDiv {
+    min-width: 100%;
+    padding: 10px;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* For tablets: */
 }

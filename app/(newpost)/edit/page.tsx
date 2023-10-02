@@ -19,28 +19,24 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { CREATEPOST } from "@/app/Routes/RoutesUrl";
 import PostForm from "@/app/components/PostForm/PostForm";
 import PageHeader from "../PageHeader/PageHeader";
+import emptyrect from "../../Assets/images/emptyrect.png";
 
 const Editpost = () => {
   const [imagefile, setImageFile] = useState("");
   const [, setImageData] = useState<File | null>(null);
-
+  const [titledata, setTitleData] = useState();
   const [isUpdatingLoading, setUpdatingLoading] = useState(false);
-
   const [editstatus, setEditStatus] = useState(false);
   const { tagsstate } = useTagsValue();
   const router = useRouter();
-  const {
-    handleSubmit,
-
-    setValue,
-  } = useForm();
+  const { handleSubmit, setValue } = useForm();
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty()
   );
   const edittitleref = useRef<HTMLHeadingElement | null>(null);
-
   const [updatecategoryId, setUpdateCategoryId] = useState("");
   const [singlepostData, setSinglePostData] = useState<postType | null>(null);
+  const firstRender = useRef(true);
 
   //==========================HANDLERS=================================//
   const convertContentToRaw = () => {
@@ -63,6 +59,7 @@ const Editpost = () => {
   };
 
   const handleEdit = async (data: any) => {
+    setTitleData(data);
     const file = data?.postimage?.[0];
     const formData = new FormData();
     const postData = JSON.stringify({
@@ -77,6 +74,7 @@ const Editpost = () => {
     try {
       setUpdatingLoading(true);
       let res = await editPost(formData, { id: postId as string });
+      console.log(res);
       if (res.status === 200) {
         setUpdatingLoading(false);
         toast.success("Post updated successfully!");
@@ -88,8 +86,21 @@ const Editpost = () => {
       }
     }
   };
-  //==============================USEEFFECTS====================================//
 
+  //==============================USEEFFECTS====================================//
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (firstRender.current) {
+        firstRender.current = false;
+        return;
+      } else {
+        handleEdit(titledata);
+      }
+    }, 3000);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [edittitleref, titledata, updatecategoryId, editorState]);
   useEffect(() => {
     const fetchData = async () => {
       let response = await getSinglePost(postId as string);
@@ -127,14 +138,13 @@ const Editpost = () => {
   return (
     <div className={style.mainWrapper}>
       <PageHeader
-        handleFormSubmit={handleSubmit(handleEdit)}
         editstatus={editstatus}
         loading={isUpdatingLoading}
         id={postId ?? ""}
       />
 
       <PostForm
-        imagefile={singlepostData?.postimage}
+        imagefile={singlepostData?.postimage ?? emptyrect}
         titleref={edittitleref}
         handleStateChange={handleEditImageStateChange}
         tagsstate={tagsstate?.data || []}

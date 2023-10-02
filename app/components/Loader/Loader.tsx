@@ -8,8 +8,8 @@ const Loader = ({ color }: { color: string }) => {
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         className={styles.loaderstyles}
-        width="23px"
-        height="23px"
+        width="16px"
+        height="16px"
         viewBox="0 0 100 100"
         preserveAspectRatio="xMidYMid"
       >

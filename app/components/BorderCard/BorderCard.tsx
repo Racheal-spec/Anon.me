@@ -12,6 +12,7 @@ import { BookmarkTypes } from "@/app/Types/reducerTypes";
 import Link from "next/link";
 import { POSTDETAILS } from "@/app/Routes/RoutesUrl";
 import { FormatDate } from "@/app/services/formatDate";
+import emptypost from "../../Assets/images/emptypost.png";
 
 const BorderCard = ({
   title,
@@ -57,7 +58,7 @@ const BorderCard = ({
       <div className={styles.cardDiv}>
         <div className={styles.imgDiv}>
           <Image
-            src={postimage ? postimage : profileimg}
+            src={postimage ?? emptypost}
             priority={true}
             width="100"
             height="20"

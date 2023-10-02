@@ -152,6 +152,26 @@ export const editPost = async (formdata, { id }) => {
   }
 };
 
+export const deletePost = async (id: string) => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/auth/posts/delete/${id}`,
+      {
+        method: "DELETE",
+        cache: "no-store",
+      }
+    );
+    if (!res.ok) {
+      let err = await res.json();
+      console.log(err);
+      toast.error(err.message);
+    }
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // export const bookmarkDispatchAction = ({
 //   title,
 //   excerpts,

@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import { setPublishPost } from "@/app/context/Actions/Actions";
 
 type PageHeaderProp = {
-  handleFormSubmit: () => void;
+  handleFormSubmit?: () => void;
   loading: boolean;
   editstatus?: boolean;
   id: string;
@@ -71,7 +71,13 @@ const PageHeader = ({
             ) : (
               <CiSaveDown1 color="green" fontSize="1.4rem" />
             )}
-            <p>Save Draft</p>
+            <p>
+              {loading ? (
+                <i style-={{ color: "green" }}>saving...</i>
+              ) : (
+                "Save Draft"
+              )}
+            </p>
           </div>
           <div>
             <Button primary onClick={handlePublished}>

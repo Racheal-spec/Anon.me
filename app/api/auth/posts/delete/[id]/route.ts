@@ -10,17 +10,44 @@ export async function DELETE(req: Request, { params }: ParamType) {
         id: postid,
       },
     });
+    const singlepost = await db.post.findUnique({
+      where: {
+        id: postid,
+      },
+    });
+    if (!singlepost) {
+      return NextResponse.json(
+        {
+          status: 400,
+          message: "Record to delete does not exist!",
+        },
+        {
+          status: 400,
+        }
+      );
+    }
     if (!post) {
-      return NextResponse.json({
-        message:
-          "Error deleting post: Check that you are passing the correct id!",
-      });
+      return NextResponse.json(
+        {
+          message:
+            "Error deleting post: Check that you are passing the correct id!",
+        },
+        {
+          status: 400,
+        }
+      );
     }
     if (post) {
-      return NextResponse.json(post, {
-        status: 200,
-        statusText: "ok",
-      });
+      return NextResponse.json(
+        {
+          data: post,
+          status: 200,
+          statusText: "ok",
+        },
+        {
+          status: 200,
+        }
+      );
     }
   } catch (error) {
     console.log(error);

@@ -5,9 +5,8 @@ import { UseResizeScreen } from "@/hooks/ResizeScreen";
 type StatusProp = {
   allpost: number;
   published: number;
-  deleted: number;
 };
-const StatusComp = ({ allpost, published, deleted }: StatusProp) => {
+const StatusComp = ({ allpost, published }: StatusProp) => {
   const isMobile = UseResizeScreen();
   return (
     <div className={styles.secondheader}>
@@ -24,14 +23,6 @@ const StatusComp = ({ allpost, published, deleted }: StatusProp) => {
         <div className={styles.dividerWrapper}>
           <div>
             <p>Published({published})</p>
-          </div>
-          <div>
-            <hr className={styles.divider} />
-          </div>
-        </div>
-        <div className={styles.dividerWrapper}>
-          <div>
-            <p>Deleted({deleted})</p>
           </div>
         </div>
       </div>

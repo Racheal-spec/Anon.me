@@ -19,6 +19,11 @@ import SearchLoader from "@/app/components/SearchLoader/SearchLoader";
 import { userValue } from "@/app/context/userContext";
 import Link from "next/link";
 import { EDITDRAFT } from "@/app/Routes/RoutesUrl";
+import Modal from "@/app/components/Modal/Modal";
+import Button from "@/app/uikits/Button/button";
+import { useRouter } from "next/navigation";
+import { deletePost } from "@/app/context/Actions/Actions";
+import { toast } from "react-toastify";
 const Stories = () => {
   const { lastCursor, posts, isLoading, ref } = usePostValue();
   const isMobile = UseResizeScreen();
@@ -26,10 +31,14 @@ const Stories = () => {
   const [modalitem, setModalItem] = useState<boolean[]>(
     new Array(posts?.length || 0).fill(false)
   );
+  const [showdeletemodal, setShowDeleteModal] = useState<boolean[]>(
+    new Array(posts?.length || 0).fill(false)
+  );
+  const [loadingdelete, setLoadingDelete] = useState(false);
+  const router = useRouter();
   // console.log(posts);
 
   let publishedArray: postType[] = [];
-  let deletedArray: postType[] = [];
   let userPosts: postType[] = [];
 
   posts?.map((el) => {
@@ -42,11 +51,6 @@ const Stories = () => {
       publishedArray.push(el);
     }
   });
-  userPosts?.map((el) => {
-    if (el.deleted) {
-      deletedArray.push(el);
-    }
-  });
 
   const handleModal = (index: number) => {
     // toggles the modal state for the post at the given index by creating a copy of modalitem,
@@ -57,16 +61,38 @@ const Stories = () => {
     // console.log(!updatedStates[index]);
   };
 
+  const handleDeletemodal = (index: number) => {
+    const updatedDeleteStates = [...showdeletemodal];
+    updatedDeleteStates[index] = !updatedDeleteStates[index];
+    setShowDeleteModal(updatedDeleteStates);
+    console.log(updatedDeleteStates);
+  };
+  const handleDeleteStory = async (id: string, index: number) => {
+    try {
+      setLoadingDelete(true);
+      const deleteSinglePost = await deletePost(id);
+      console.log(deleteSinglePost);
+      if (deleteSinglePost.status === 200) {
+        toast.success("Post successfully deleted");
+        setLoadingDelete(false);
+        handleDeletemodal(index);
+      }
+
+      // if (deleteSinglePost === undefined) {
+      //   setLoadingDelete(false);
+      //   handleDeletemodal(index);
+      // }
+    } catch (error) {}
+  };
+
   return (
     <div className={styles.storieswrapper}>
       <MainTab>
-        <TabsBody title="Stories">
+        <TabsBody title="All Stories">
           <StatusComp
             allpost={userPosts ? userPosts?.length : 0}
             published={publishedArray.length}
-            deleted={deletedArray.length}
           />
-
           <TableTitle
             title="Title"
             status="Status"
@@ -115,7 +141,9 @@ const Stories = () => {
                               </div>
                               <div className={styles.modalicondiv}>
                                 <MdOutlineDelete color="red" />
-                                <span>Delete</span>
+                                <span onClick={() => handleDeletemodal(index)}>
+                                  Delete
+                                </span>
                               </div>
                             </div>
                           </SmallModal>
@@ -123,8 +151,45 @@ const Stories = () => {
                       </div>
                     }
                   />
+                  {/************************DELETE MODAL ****************************/}
+                  {showdeletemodal[index] && (
+                    <Modal handlefunction={() => handleDeletemodal(index)}>
+                      <div className={styles.modal}>
+                        <h3>Delete Story</h3>
+                        <p>
+                          Are you sure you want to delete this story? Deleting
+                          this story is permanent and cannot be undone.
+                        </p>
+                        <div className={styles.btnDiv}>
+                          <div>
+                            {" "}
+                            <Button
+                              deepPinkOutline
+                              onClick={() => handleDeletemodal(index)}
+                            >
+                              Cancel
+                            </Button>
+                          </div>
+                          <Button
+                            primary
+                            onClick={() => handleDeleteStory(post?.id, index)}
+                          >
+                            {loadingdelete ? (
+                              <div className={styles.deletediv}>
+                                <Loader color="#fff" />
+                                <span>Deleting</span>
+                              </div>
+                            ) : (
+                              " Delete Story"
+                            )}
+                          </Button>
+                        </div>
+                      </div>
+                    </Modal>
+                  )}
                 </div>
               ))}
+
             {userPosts?.length === 0 && (
               <div>
                 <EmptyState
@@ -155,7 +220,6 @@ const Stories = () => {
           <StatusComp
             allpost={userPosts ? userPosts?.length : 0}
             published={publishedArray.length}
-            deleted={deletedArray.length}
           />
 
           <TableTitle
@@ -220,74 +284,6 @@ const Stories = () => {
                 <EmptyState
                   heading="No Published Story"
                   description="You have no story published at the moment, kindly check back!"
-                />
-              </div>
-            )}
-          </>
-        </TabsBody>
-        {/**================THIRD TAB=================== */}
-        <TabsBody title="Deleted">
-          <StatusComp
-            allpost={userPosts ? userPosts?.length : 0}
-            published={publishedArray.length}
-            deleted={deletedArray.length}
-          />
-          <TableTitle
-            title="Title"
-            status="Status"
-            date="Date/Time"
-            action={null}
-          />
-
-          <>
-            {deletedArray &&
-              deletedArray?.map((post, index) => (
-                <div key={post?.id}>
-                  <AllStories
-                    title={post.title}
-                    description={post?.content?.slice(0, 100)}
-                    status={
-                      isMobile ? (
-                        <></>
-                      ) : post.published ? (
-                        <div className={styles.green}></div>
-                      ) : (
-                        <div className={styles.orange}></div>
-                      )
-                    }
-                    date={`${post?.createdAt} `}
-                    action={
-                      <div className={styles.iconwrapper}>
-                        <FiMoreVertical
-                          onClick={() => {
-                            handleModal(index);
-                          }}
-                          className={styles.icondiv}
-                        />
-
-                        {modalitem[index] && (
-                          <SmallModal
-                            handlefunction={() => handleModal(index)}
-                            modalitem={post}
-                          >
-                            <div>
-                              <div className={styles.modalicondiv}>
-                                <BiEditAlt />
-                                <span>Restore Story</span>
-                              </div>
-                            </div>
-                          </SmallModal>
-                        )}
-                      </div>
-                    }
-                  />
-                </div>
-              ))}
-            {deletedArray.length === 0 && (
-              <div>
-                <EmptyState
-                  heading="No deleted post"
-                  description="You have no deleted story at the moment"
                 />
               </div>
             )}

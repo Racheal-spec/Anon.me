@@ -21,6 +21,8 @@ export async function GET(req: Request, { params }: ParamType) {
     }
     if (post) {
       post.author.password = undefined!;
+      post.author.email = undefined!;
+      post.author.location = undefined!;
       return NextResponse.json(post, {
         status: 200,
         statusText: "ok",

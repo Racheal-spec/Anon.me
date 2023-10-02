@@ -30,7 +30,8 @@ export async function PUT(req: Request, { params }: ParamType) {
       );
     }
     if (post) {
-      return NextResponse.json(post, {
+      return NextResponse.json({
+        data: post,
         status: 200,
         statusText: "Post Edited!",
       });
