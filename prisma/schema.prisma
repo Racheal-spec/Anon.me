@@ -18,6 +18,7 @@ model User {
   location  String   @default("")
   posts     Post[]
   comments  Comments[]
+  likes     Like[]
 }
 
 model Post {
@@ -35,7 +36,8 @@ model Post {
   comments   Comments[]
   category   Category?   @relation(fields: [categoryId], references: [id])
   categoryId  String?
-
+  likes       Like[]
+  trending    Trending?
   //@@index([authorId,id])
 }
 
@@ -48,6 +50,7 @@ model Comments {
   commenter    User    @relation(fields: [commenterId], references: [id])
   commenterId  String
   postId     String
+  likes    Like[]
 }
 
 //consider making the title field below unique
@@ -55,4 +58,21 @@ model Category {
   id    String   @id @default(uuid())
   title  String
   posts   Post[]
+}
+
+model Like {
+  id   String  @id @default(uuid())
+  user User  @relation(fields: [userId], references: [id])
+  userId   String
+  post   Post?  @relation(fields: [postId], references: [id])
+  postId    String
+  comment    Comments?   @relation(fields: [commentId], references: [id])
+  commentId    String   
+}
+
+model Trending {
+  id        String      @id @default(uuid())
+  post      Post        @relation(fields: [postId], references: [id])
+  postId    String      @unique
+  createdAt DateTime    @default(now())
 }
