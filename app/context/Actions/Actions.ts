@@ -135,7 +135,7 @@ export const getTags = async () => {
   }
 };
 
-export const editPost = async (formdata, { id }) => {
+export const editPost = async (formdata: any, { id }: { id: string }) => {
   try {
     const res = await fetch(`http://localhost:3000/api/auth/posts/edit/${id}`, {
       method: "PUT",
@@ -172,6 +172,31 @@ export const deletePost = async (id: string) => {
   }
 };
 
+export const likePost = async ({
+  user,
+  post,
+}: {
+  user: string;
+  post: string;
+}) => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/auth/posts/like?user=${user}&post=${post}`,
+      {
+        method: "POST",
+        cache: "no-store",
+      }
+    );
+    if (!res.ok) {
+      let err = await res.json();
+      console.log(err);
+      toast.error(err.message);
+    }
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
 // export const bookmarkDispatchAction = ({
 //   title,
 //   excerpts,

@@ -18,6 +18,7 @@ export async function PUT(req: Request, { params }: ParamType) {
         category: { connect: { id: postData.categoryId } },
       },
     });
+
     if (!post.title || !post.content || !post.categoryId) {
       return NextResponse.json(
         {

@@ -45,6 +45,7 @@ export async function POST(req: Request) {
       if (isUser) {
         const jwt = await createJWT(user);
         user.password = undefined!;
+        user.email = undefined!;
         return NextResponse.json(
           {
             status: "ok",
