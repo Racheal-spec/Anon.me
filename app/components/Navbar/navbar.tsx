@@ -82,7 +82,7 @@ const Navbar = () => {
                 )}
               </div>
               {/**======================VIEW PROFILE================================ */}
-              {state?.user ? (
+              {state?.user?.status === "ok" ? (
                 <div className={styles.profile_img_div} onClick={handleProfile}>
                   {!profileimg ? (
                     <div className={styles.profile_img}>
@@ -214,7 +214,7 @@ const Navbar = () => {
                 </li>
 
                 {/**======================VIEW PROFILE================================ */}
-                {state?.user ? (
+                {state?.user?.status === "ok" ? (
                   <div
                     className={styles.profile_img_div}
                     onClick={handleProfile}

@@ -19,7 +19,7 @@ const LogoComp = () => {
           </div>
 
           <div className={styles.logotext}>
-            <p>ANON</p>
+            <p>Penbuddy</p>
           </div>
         </div>
       </Link>

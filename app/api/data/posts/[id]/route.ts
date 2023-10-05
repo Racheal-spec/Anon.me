@@ -11,13 +11,19 @@ export async function GET(req: Request, { params }: ParamType) {
       },
       include: {
         author: true,
+        likes: true,
       },
     });
     if (!post) {
-      return NextResponse.json({
-        message:
-          "Error getting post: Check that you are passing the correct id!",
-      });
+      return NextResponse.json(
+        {
+          message:
+            "Error getting post: Check that you are passing the correct id!",
+        },
+        {
+          status: 400,
+        }
+      );
     }
     if (post) {
       post.author.password = undefined!;

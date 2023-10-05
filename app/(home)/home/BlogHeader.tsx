@@ -10,7 +10,9 @@ const BlogHeader = () => {
   const { state } = userValue();
   return (
     <section>
-      {state?.user === undefined || state?.user === null ? (
+      {state?.user?.status !== "ok" ||
+      state?.user === undefined ||
+      state?.user === null ? (
         <main className={styles.showheader}>
           <div className={styles.fakeBtnWrapper}>
             <div>

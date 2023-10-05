@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { AuthorProp } from "../user";
+import { PostLikeProp } from "../global";
 
 export type postType = {
   title: string;
@@ -12,6 +13,7 @@ export type postType = {
   authorId?: string;
   postimage?: string;
   categoryId: string;
+  likes: PostLikeProp[];
   author: AuthorProp;
 };
 export type ParamType = {
@@ -32,6 +34,7 @@ type bookmarkProp = {
   createdAt: any;
   postimage: string;
   author: string;
+  likes: PostLikeProp[];
 };
 
 export type bookmarkType = Partial<bookmarkProp>;

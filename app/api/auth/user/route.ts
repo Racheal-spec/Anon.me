@@ -16,10 +16,15 @@ export async function GET(req: Request) {
   const jwt = usercookies?.value;
   // console.log(`jwt: ${jwt}`);
   if (!jwt) {
-    return NextResponse.json({
-      status: 401,
-      statusText: "You are not logged in, please provide a valid token",
-    });
+    return NextResponse.json(
+      {
+        status: 401,
+        statusText: "You are not logged in, please provide a valid token",
+      },
+      {
+        status: 401,
+      }
+    );
   }
   try {
     if (req.method === "GET") {

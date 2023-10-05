@@ -5,8 +5,28 @@ export async function POST(req: Request) {
   const url = new URL(req.url);
   const userId = url.searchParams.get("user");
   const postId = url.searchParams.get("post");
-
+  const currentpost = await db.post.findFirst({
+    where: {
+      id: postId as string,
+    },
+    include: {
+      likes: true,
+    },
+  });
+  const updatedLikeCount = currentpost?.likes?.length;
+  console.log(`updatedddd: ${updatedLikeCount}`);
   try {
+    if (!userId) {
+      return NextResponse.json(
+        {
+          status: 401,
+          message: "You are not authroized to perform this action!",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
     if (userId && postId) {
       const existingLike = await db.postLike.findFirst({
         where: {
@@ -21,13 +41,13 @@ export async function POST(req: Request) {
             id: existingLike.id,
           },
         });
-        const isLiked = false;
-        // console.log(`User with ID ${userId} unliked the post with ID ${postId}`);
+
         return NextResponse.json(
           {
             status: 200,
             data: removelike,
-            isLiked: isLiked,
+            isLiked: false,
+            count: updatedLikeCount,
           },
           {
             status: 200,
@@ -40,12 +60,13 @@ export async function POST(req: Request) {
             post: { connect: { id: postId } },
           },
         });
-        const isLiked = true;
+
         return NextResponse.json(
           {
             status: 200,
             data: newlike,
-            isLiked: isLiked,
+            isLiked: true,
+            count: updatedLikeCount,
           },
           {
             status: 200,

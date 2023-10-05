@@ -1,0 +1,60 @@
+.commentmodal {
+  position: fixed;
+  top: 0%;
+  right: 0%;
+  bottom: 0px;
+  left: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background: rgba(77, 77, 77, 0.7);
+  transition: all 0.4s;
+  padding: 0 10px;
+  z-index: 9;
+}
+.sidebarStyles {
+  background-color: var(--white);
+  position: relative;
+  z-index: 9;
+  overflow: auto;
+  transition: transform 0.3s;
+  top: 0%;
+  right: 0;
+  max-width: 100%;
+  height: 100%;
+  padding: 1em 2em;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.sidelogo {
+  padding: 12px 20px;
+}
+.modalclose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #585858;
+  text-decoration: none;
+  cursor: pointer;
+}
+/**========================MEDIA QUERIES==================================**/
+
+@media screen and (min-width: 768px) {
+  /* For desktops: */
+  .sidebarStyles {
+    width: 32%;
+  }
+  .commentmodal {
+    top: 0%;
+  }
+  /* .modalcontent {
+    max-width: 34%;
+    right: 30%;
+    bottom: 16%;
+  } */
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* For tablets: */
+  .sidebarStyles {
+    width: 46%;
+  }
+}

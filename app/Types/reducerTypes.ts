@@ -1,4 +1,4 @@
-import { TagsProp } from "./global";
+import { PostLikeProp, TagsProp } from "./global";
 import { bookmarkType, postType } from "./posts";
 import { UserProp } from "./user";
 
@@ -8,6 +8,9 @@ export enum Types {
 }
 export enum TagsTypes {
   GetTags = "GET_TAGS",
+}
+export enum PostlikeTypes {
+  GetPostlike = "GET_POSTLIKE",
 }
 export enum PostTypes {
   GetPost = "GET_POST",
@@ -109,3 +112,12 @@ export type TagsActionType = {
 export type TagsReducerType = {
   data: TagsProp[] | null;
 };
+
+//==============POSTLIKE TYPES================//
+export type PostlikeActionType = {
+  type: PostlikeTypes.GetPostlike;
+  payload: {
+    data: PostLikeProp;
+  };
+};
+export type PostlikeReducerType = PostLikeProp | null;

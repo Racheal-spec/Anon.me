@@ -13,11 +13,14 @@ import Skeleton from "@/app/components/Skeleton/Skeleton";
 import { usePublishedPostValue } from "@/app/context/publishedpostsContext";
 import EmptyState from "@/app/components/EmptyState/EmptyState";
 import { changeTextFromHTML } from "@/app/services/HtmltoText";
+import { useAbly } from "ably/react";
 
 const ShowHomeHeading = () => {
   const { state } = userValue();
   const { publishedposts, ref, lastCursor } = usePublishedPostValue();
+  // const client = useAbly();
 
+  // console.log(client);
   return (
     <div>
       <section className={styles.blogsection}>
@@ -25,7 +28,7 @@ const ShowHomeHeading = () => {
 
         <div className={styles.blogGrid}>
           <div>
-            {state.user && (
+            {state?.user?.status === "ok" && (
               <LoggedInBorderComp
                 title="Share Stories Untold and Let the Anon Community Embrace and Support You"
                 description="Whether you seek advice during challenging times or simply want to let your creativity run wild, our community is here to embrace and support you. By nurturing these connections, you're not only finding solace but also nurturing your mental well-being."
@@ -51,6 +54,7 @@ const ShowHomeHeading = () => {
                           excerpts={changeTextFromHTML(excerpt)}
                           postimage={val?.postimage}
                           createdAt={val?.createdAt}
+                          likes={val?.likes!}
                         />
                       </div>
                     );

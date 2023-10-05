@@ -6,6 +6,10 @@
   padding: 80px 0;
   text-transform: capitalize;
 }
+.close {
+  transform: translateX(180%);
+}
+
 .pageWrapper h1 {
   font-size: 1.8rem;
   text-align: center;
@@ -15,6 +19,13 @@
   align-items: center;
   justify-content: center;
   margin: 10px 0;
+}
+
+.flexicon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 .namedetails {
   margin: 0 10px;
@@ -52,7 +63,48 @@
 .mainContent {
   margin: 20px 0;
 }
-
+.flex {
+  display: flex;
+  align-items: center;
+  margin: 0 5px;
+  cursor: pointer;
+  color: var(--secondary);
+}
+.nocolor {
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  margin: 0 5px;
+  cursor: pointer;
+}
+.flexcommentdiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flex p,
+.nocolor p {
+  margin: 0 5px;
+  font-size: 0.8rem;
+}
+.hrstyles {
+  color: var(--dividercolor);
+  margin: 10px 0;
+}
+.modal {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modal h2 {
+  text-align: center;
+}
+.modal p {
+  text-align: center;
+  padding: 15px 0;
+}
 /**========================MEDIA QUERIES==================================**/
 
 @media screen and (min-width: 768px) {

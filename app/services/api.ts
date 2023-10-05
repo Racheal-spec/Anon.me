@@ -25,6 +25,7 @@ export const fetcher: FC<APIProp> = async ({
   }
   if (json) {
     const data = await res.json();
+    // console.log(data);
     return data;
   }
 };
@@ -79,7 +80,7 @@ export const getsinglepost = async () => {
   });
 };
 
-export const publishPost = async (id) => {
+export const publishPost = async (id: string) => {
   return fetcher({
     url: `/api/data/posts/publish/${id}`,
     method: "PUT",
@@ -103,3 +104,17 @@ export const getalltags = async () => {
     json: true,
   });
 };
+
+// export const postLikes = async ({
+//   user,
+//   post,
+// }: {
+//   user: string;
+//   post: string;
+// }) => {
+//   return fetcher({
+//     url: `http://localhost:3000/api/auth/posts/like?user=${user}&post=${post}`,
+//     method: "POST",
+//     json: true,
+//   });
+// };

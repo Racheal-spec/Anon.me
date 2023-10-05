@@ -58,7 +58,18 @@ export type EmptyStateProp = {
   heading: string;
   description?: string;
 };
-
+export type PostLikeProp = {
+  data: {
+    status: number | null;
+    data: {
+      id: string;
+      userId: string;
+      postId: string;
+    };
+    isLiked: boolean;
+    count: number;
+  };
+};
 //===========TAGS PROPS================//
 
 export interface TagsProp {

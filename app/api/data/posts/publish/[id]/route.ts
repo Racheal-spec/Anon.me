@@ -25,10 +25,15 @@ export async function PUT(req: Request, { params }: ParamType) {
       },
     });
     if (!post) {
-      return NextResponse.json({
-        message:
-          "Error getting post: Check that you are passing the correct id!",
-      });
+      return NextResponse.json(
+        {
+          message:
+            "Error getting post: Check that you are passing the correct id!",
+        },
+        {
+          status: 400,
+        }
+      );
     }
 
     if (post) {

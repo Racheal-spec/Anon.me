@@ -1,11 +1,5 @@
 "use client";
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useReducer,
-} from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import { ActionType, Types, UserReducerType } from "../Types/reducerTypes";
 import UserReducer from "./Reducers/userReducer";
 import { getUsers } from "./Actions/Actions";

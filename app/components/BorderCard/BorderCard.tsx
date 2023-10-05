@@ -3,7 +3,7 @@ import styles from "./BorderCard.module.css";
 import Image from "next/image";
 import profileimg from "../../Assets/images/profileimg.png";
 import { BsBookmark } from "react-icons/bs";
-import { AiOutlineLike } from "react-icons/ai";
+
 import { LiaCommentAlt } from "react-icons/lia";
 import { BsFillBookmarkCheckFill } from "react-icons/bs";
 import { useBookmarkValue } from "@/app/context/bookmarkContext";
@@ -21,6 +21,7 @@ const BorderCard = ({
   postimage,
   author,
   createdAt,
+  likes,
 }: bookmarkType) => {
   const { bookmarkstate, bookmarkdispatch } = useBookmarkValue();
   const [bookmarked, setBookmarked] = useState(false);
@@ -85,8 +86,7 @@ const BorderCard = ({
                 <p> 0 comments</p>
               </div>
               <div className={styles.flex}>
-                <AiOutlineLike />
-                <p>likes</p>
+                <p>{likes?.length === 0 ? 0 : likes?.length} likes</p>
               </div>
               <div className={styles.flex}>
                 {bookmarked ? (

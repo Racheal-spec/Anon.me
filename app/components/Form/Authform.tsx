@@ -18,6 +18,7 @@ import {
 import { toast } from "react-toastify";
 //import loader from "../../Assets/svgs/loader.svg";
 import Loader from "../Loader/Loader";
+import { UserProp } from "@/app/Types/user";
 
 const registerUser = {
   linkurl: "/login",
@@ -66,13 +67,13 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
       console.log("lllll");
       if (mode === "register") {
         let result = await registeruser(state);
-        if (result) {
+        if (result?.status === "ok") {
           router.replace("/home");
         }
       } else {
         let loginresult = await login(state);
         console.log(`loginnnnn: ${loginresult}`);
-        if (loginresult) {
+        if (loginresult?.status === "ok") {
           router.replace("/home");
         }
       }

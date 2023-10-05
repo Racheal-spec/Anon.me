@@ -7,9 +7,10 @@ export type AuthorProp = {
   email: string;
   photo: string | null;
 };
-export interface UserProp {
+export type UserProp = {
   data: AuthorProp;
-}
+  status: string;
+};
 export type eventType = {
   onClick: (
     e: React.MouseEvent<HTMLLIElement> | React.MouseEvent<HTMLElement>

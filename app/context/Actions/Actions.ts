@@ -10,6 +10,7 @@ export const getUsers = async () => {
     if (!res.ok) {
       let err = await res.json();
       console.log(err);
+      return err;
       // toast.error(err.message);
     }
     if (res.ok) {
@@ -189,8 +190,7 @@ export const likePost = async ({
     );
     if (!res.ok) {
       let err = await res.json();
-      console.log(err);
-      toast.error(err.message);
+      return err;
     }
     return await res.json();
   } catch (error) {
