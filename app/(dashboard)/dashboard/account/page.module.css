@@ -15,6 +15,16 @@
   justify-content: flex-end;
   gap: 10px;
 }
+.deletediv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+}
+
+.modal p {
+  padding: 20px 0;
+}
 /**========================MEDIA QUERIES==================================**/
 
 @media screen and (min-width: 768px) {

@@ -21,6 +21,23 @@ export const getUsers = async () => {
   }
 };
 
+export const deleteUser = async () => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/auth/user`, {
+      method: "DELETE",
+      cache: "no-store",
+    });
+    if (!res.ok) {
+      let err = await res.json();
+      console.log(err);
+      toast.error(err.message);
+    }
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const editUsers = async (formdata: any) => {
   try {
     const res = await fetch("http://localhost:3000/api/auth/user", {

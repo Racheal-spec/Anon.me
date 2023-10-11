@@ -148,6 +148,18 @@ export async function PUT(req: Request) {
 export async function DELETE(req: Request) {
   const usercookies = cookies().get(process.env.COOKIE_NAME as string);
   const jwt = usercookies?.value;
+
+  if (!jwt) {
+    return NextResponse.json(
+      {
+        status: 401,
+        message: "You are not allowed to carry out this action!",
+      },
+      {
+        status: 400,
+      }
+    );
+  }
   if (jwt) {
     const { id } = await validateJWT(jwt);
     try {
@@ -156,22 +168,7 @@ export async function DELETE(req: Request) {
           id: id,
         },
       });
-      const singleuser = await db.user.findUnique({
-        where: {
-          id: id,
-        },
-      });
-      if (!singleuser) {
-        return NextResponse.json(
-          {
-            status: 400,
-            message: "User record to delete does not exist!",
-          },
-          {
-            status: 400,
-          }
-        );
-      }
+      cookies().delete(process.env.COOKIE_NAME as string);
       if (!deleteuser) {
         return NextResponse.json(
           {
