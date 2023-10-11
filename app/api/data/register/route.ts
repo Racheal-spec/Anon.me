@@ -33,6 +33,7 @@ export async function POST(req: Request, res: Response) {
           anonname: data.anonname!,
           email: data.email,
           password: await hashPassword(data.password),
+          location: data.location,
           photo: data.photo,
         },
       });

@@ -20,21 +20,80 @@
   transition: transform 0.3s;
   top: 0%;
   right: 0;
-  max-width: 100%;
+  width: 100%;
   height: 100%;
-  padding: 1em 2em;
+
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.firstPadding {
+  padding: 1em 1.3em;
 }
 .sidelogo {
   padding: 12px 20px;
 }
 .modalclose {
   position: absolute;
+  font-size: 2rem;
   top: 10px;
-  right: 10px;
+  right: 20px;
   color: #585858;
   text-decoration: none;
   cursor: pointer;
+}
+.profileimg {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+.borderwrapper {
+  border: 1px solid var(--bordercolor);
+  padding: 14px 15px;
+  margin: 30px 0;
+  border-radius: 10px;
+}
+.textarea {
+  width: 100%;
+  height: 20vh;
+  padding: 25px 0;
+  outline: none;
+  border: none;
+  resize: none;
+}
+.btnDiv {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 25px 0px 7px 0px;
+}
+.openmodal p {
+  font-size: 0.8rem;
+  color: var(--grey);
+}
+.hrstyles {
+  color: var(--dividercolor);
+  margin: 10px 0;
+}
+.commentwrapper {
+  padding: 20px;
+}
+.commenttext {
+  font-size: 0.8rem;
+  padding: 10px 0;
+}
+.authorWrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.authorDiv {
+  background-color: var(--primary);
+  color: var(--white);
+  font-weight: 500;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+.authorDiv p {
+  font-size: 0.5rem;
 }
 /**========================MEDIA QUERIES==================================**/
 

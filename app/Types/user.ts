@@ -5,6 +5,7 @@ export type AuthorProp = {
   password: string;
   isAdmin: boolean;
   email: string;
+  location: string;
   photo: string | null;
 };
 export type UserProp = {

@@ -1,7 +1,6 @@
 import bcrypt from "bcrypt";
 import { SignJWT, jwtVerify } from "jose";
-import { AuthorProp, UserProp } from "../Types/user";
-import { db } from "./db";
+import { AuthorProp } from "../Types/user";
 
 export const hashPassword = (password: string) => bcrypt.hash(password, 10);
 export const comparePasswords = async (
@@ -38,6 +37,13 @@ export const validateJWT = async (jwt: string) => {
   );
 
   return payload.payload;
+};
+
+export const obsfucatedEmail = (email: string) => {
+  // const firstpart = email.split("@")[0];
+  // const lastpart = email.split("@")[1];
+  const obsEmail = email.replace("@", "&#64").replace(".", "&#46");
+  return obsEmail;
 };
 
 // export const getUserFromCookie = async (cookies: any) => {

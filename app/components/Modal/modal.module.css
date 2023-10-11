@@ -25,8 +25,7 @@
   position: relative;
   /* width: 500px; */
   max-width: 100%;
-  bottom: 34%;
-
+  /* bottom: 34%; */
   background: #fff;
   padding: 1em 2em;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -38,6 +37,7 @@
   right: 10px;
   color: #585858;
   text-decoration: none;
+  cursor: pointer;
 }
 /**========================MEDIA QUERIES==================================**/
 

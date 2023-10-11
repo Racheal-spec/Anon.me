@@ -91,7 +91,7 @@ const Navbar = () => {
                   ) : (
                     <Image
                       className={styles.profile_img}
-                      src={profileimg}
+                      src={state?.user?.data?.photo ?? profileimg}
                       width={50}
                       height={50}
                       alt="profile-icon"
@@ -205,6 +205,7 @@ const Navbar = () => {
                   <InputSearch
                     placeholder="search"
                     onFocus={handlefocus}
+                    // onClick={handlefocus}
                     // onBlur={blurHandler}
                   />
                 </li>
@@ -226,7 +227,7 @@ const Navbar = () => {
                     ) : (
                       <Image
                         className={styles.profile_img}
-                        src={profileimg}
+                        src={state?.user?.data?.photo ?? profileimg}
                         width={50}
                         height={50}
                         alt="profile-icon"

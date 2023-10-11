@@ -1,6 +1,10 @@
 import { serialize } from "cookie";
 import { db } from "@/app/services/db";
-import { comparePasswords, createJWT } from "@/app/services/Auth";
+import {
+  comparePasswords,
+  createJWT,
+  obsfucatedEmail,
+} from "@/app/services/Auth";
 import { NextResponse } from "next/server";
 import { UserSchema } from "@/app/services/validations/user.schema";
 import { ZodError } from "zod";
@@ -45,11 +49,15 @@ export async function POST(req: Request) {
       if (isUser) {
         const jwt = await createJWT(user);
         user.password = undefined!;
-        user.email = undefined!;
+        // user.email = undefined!;
+        const obsfucEmail = obsfucatedEmail(user.email);
         return NextResponse.json(
           {
             status: "ok",
-            data: user,
+            data: {
+              ...user,
+              email: obsfucEmail,
+            },
           },
           {
             status: 200,

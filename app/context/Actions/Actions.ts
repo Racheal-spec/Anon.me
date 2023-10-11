@@ -21,6 +21,27 @@ export const getUsers = async () => {
   }
 };
 
+export const editUsers = async (formdata: any) => {
+  try {
+    const res = await fetch("http://localhost:3000/api/auth/user", {
+      cache: "no-store",
+      method: "PUT",
+      body: formdata,
+    });
+    if (!res.ok) {
+      let err = await res.json();
+      console.log(err);
+      return err;
+      // toast.error(err.message);
+    }
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getPosts = async ({ take, lastCursor }: postParamsType) => {
   try {
     const res = await fetch(
@@ -95,7 +116,10 @@ export const getPublishedPosts = async ({
 }: postParamsType) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/data/posts/published?take=${take}&lastCursor=${lastCursor}`
+      `http://localhost:3000/api/data/posts/published?take=${take}&lastCursor=${lastCursor}`,
+      {
+        method: "GET",
+      }
     );
     if (!res.ok) {
       let err = await res.json();
@@ -187,6 +211,50 @@ export const likePost = async ({
         method: "POST",
         cache: "no-store",
       }
+    );
+    if (!res.ok) {
+      let err = await res.json();
+      return err;
+    }
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const createComment = async (
+  commentbody: any,
+  {
+    user,
+    post,
+  }: {
+    user: string;
+    post: string;
+  }
+) => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/auth/posts/comment?user=${user}&post=${post}`,
+      {
+        method: "POST",
+        cache: "no-store",
+        body: commentbody,
+      }
+    );
+    if (!res.ok) {
+      let err = await res.json();
+      return err;
+    }
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const GetPostComments = async ({ post }: { post: string }) => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/auth/posts/comment?post=${post}`
     );
     if (!res.ok) {
       let err = await res.json();

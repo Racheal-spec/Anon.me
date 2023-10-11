@@ -8,6 +8,7 @@ const InputSearch: FC<Partial<InputProp>> = ({
   type,
   onFocus,
   onBlur,
+  onClick,
   ...props
 }) => {
   return (
@@ -17,6 +18,7 @@ const InputSearch: FC<Partial<InputProp>> = ({
       {...props}
       onFocus={onFocus}
       onBlur={onBlur}
+      onClick={onClick}
       placeholder={placeholder}
     />
   );

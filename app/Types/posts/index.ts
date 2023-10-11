@@ -38,3 +38,27 @@ type bookmarkProp = {
 };
 
 export type bookmarkType = Partial<bookmarkProp>;
+
+export type commentProp = {
+  author: any;
+  id: string;
+  text: string;
+  createdAt: string;
+  updatedAt: string;
+  commenterId: string;
+  postId: string;
+  commenter: {
+    id: string;
+    createdAt: string;
+    anonname: string;
+    isAdmin: boolean;
+    photo: string | null;
+  };
+};
+export type commentTypeProp = {
+  data: {
+    data: commentProp[];
+  };
+  status: number;
+  statusText: string;
+};

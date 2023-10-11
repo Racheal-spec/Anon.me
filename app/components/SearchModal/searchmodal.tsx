@@ -51,7 +51,7 @@ const SearchModal = React.memo(
         setloading(false);
       }
     };
-    const ref = UseClickOutside(handleclose);
+    // const ref = UseClickOutside(handleclose);
     const handlekeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === "Enter") {
         router.push(SEARCH(searchterm));
@@ -70,7 +70,7 @@ const SearchModal = React.memo(
       <>
         {searchmodal ? (
           <div className={styles.modal}>
-            <div className={styles.modalcontent} ref={ref}>
+            <div className={styles.modalcontent}>
               <div className={styles.inputClass}>
                 <input
                   placeholder="start typing..."

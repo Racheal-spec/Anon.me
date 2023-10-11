@@ -1,0 +1,32 @@
+.modal {
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modal h2 {
+  text-align: center;
+  color: var(--primary);
+}
+.modal p {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 0.85rem;
+}
+.logoicon {
+  color: var(--primary);
+}
+.signmodalWrapper {
+}
+/**========================MEDIA QUERIES==================================**/
+
+@media screen and (min-width: 768px) {
+  /* For desktop: */
+  .modal {
+    top: 0%;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* For tablets: */
+}

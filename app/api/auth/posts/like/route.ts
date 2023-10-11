@@ -13,7 +13,9 @@ export async function POST(req: Request) {
       likes: true,
     },
   });
-  const updatedLikeCount = currentpost?.likes?.length;
+  const updatedLikeCount = currentpost?.likes
+    ? currentpost?.likes?.length + 1
+    : 0;
   console.log(`updatedddd: ${updatedLikeCount}`);
   try {
     if (!userId) {

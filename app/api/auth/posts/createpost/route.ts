@@ -1,7 +1,5 @@
 import { validateJWT } from "@/app/services/Auth";
-
 import { db } from "@/app/services/db";
-import { serialize } from "cookie";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { UploadApiResponse, v2 } from "cloudinary";
@@ -24,7 +22,7 @@ export async function POST(req: Request) {
             folder: "Anon_Blog",
             timestamp: unixTimestamp,
           },
-          (err, result) => {
+          (err: any, result: any) => {
             if (err) {
               console.log(err);
               return reject(err);
@@ -113,15 +111,6 @@ export async function POST(req: Request) {
           },
           {
             status: 201,
-            headers: {
-              "Set-Cookie":
-                //Below is the cookie i'M Setting
-                serialize(process.env.COOKIE_NAME as string, jwt, {
-                  httpOnly: true,
-                  path: "/",
-                  maxAge: 60 * 6 * 24 * 7,
-                }),
-            },
           }
         );
       }

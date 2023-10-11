@@ -8,14 +8,19 @@ export type InputProp = {
   className: string;
   placeholder: string;
   value: string;
+  defaultValue: string;
   onFocus: (event: React.FocusEvent<HTMLInputElement>) => void;
   onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
   onKeyDown: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   type: string;
+  register: () => void;
+  disabled: boolean;
+  inputname: string;
   props: {
     icon: JSX.Element;
   };
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onClick: () => void;
 };
 export type ButtonProp = {
   title: string;
@@ -59,17 +64,16 @@ export type EmptyStateProp = {
   description?: string;
 };
 export type PostLikeProp = {
+  status: number | null;
   data: {
-    status: number | null;
-    data: {
-      id: string;
-      userId: string;
-      postId: string;
-    };
-    isLiked: boolean;
-    count: number;
+    id: string;
+    userId: string;
+    postId: string;
   };
+  isLiked: boolean;
+  count: number;
 };
+
 //===========TAGS PROPS================//
 
 export interface TagsProp {

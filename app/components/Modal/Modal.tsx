@@ -15,9 +15,9 @@ const Modal = ({ children, handlefunction }: ModalProp) => {
     <div className={styles.modal}>
       <div className={styles.modalcontent} ref={ref}>
         {children}
-        <a href="#" className={styles.modalclose} onClick={handleClose}>
+        <div className={styles.modalclose} onClick={handleClose}>
           &times;
-        </a>
+        </div>
       </div>
     </div>
   );
