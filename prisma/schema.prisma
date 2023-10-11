@@ -20,6 +20,7 @@ model User {
   comments  Comments[]
   postlikes     PostLike[]
   commentlikes   CommentLike[]
+  bookmarks    Bookmarks[]
 }
 
 model Post {
@@ -39,6 +40,7 @@ model Post {
   categoryId  String?
   likes       PostLike[]
   trending    Trending?
+  bookmarks  Bookmarks[]
   //@@index([authorId,id])
 }
 
@@ -82,4 +84,12 @@ model Trending {
   post      Post        @relation(fields: [postId], references: [id])
   postId    String      @unique
   createdAt DateTime    @default(now())
+}
+
+model Bookmarks {
+  id   String  @id @default(uuid())
+  user User  @relation(fields: [userId], references: [id])
+  userId   String
+  post   Post  @relation(fields: [postId], references: [id])
+  postId    String   
 }
