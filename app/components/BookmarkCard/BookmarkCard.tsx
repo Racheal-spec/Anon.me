@@ -13,6 +13,9 @@ import { FormatDate } from "@/app/services/formatDate";
 import { MdOutlineDelete } from "react-icons/md";
 import { useBookmarkValue } from "@/app/context/bookmarkContext";
 import { BookmarkTypes } from "@/app/Types/reducerTypes";
+import { deleteBookmark } from "@/app/context/Actions/Actions";
+import { userValue } from "@/app/context/userContext";
+import { toast } from "react-toastify";
 
 const BookmarkCard = ({
   excerpts,
@@ -23,18 +26,33 @@ const BookmarkCard = ({
 }: bookmarkType) => {
   const [show, setShow] = useState(false);
   const { bookmarkstate, bookmarkdispatch } = useBookmarkValue();
-  const handleDelete = () => {
-    if (bookmarkstate) {
-      bookmarkdispatch({
-        type: BookmarkTypes.DeleteBookmarks,
-        payload: {
-          data: {
-            id,
-          },
-        },
-      });
+  const { state } = userValue();
+
+  const handleDelete = async () => {
+    let deletedBookmark = await deleteBookmark({
+      user: state?.user?.data.id ?? "",
+      post: id ?? "",
+    });
+
+    if (deletedBookmark?.status === 200) {
+      toast.success("Story successfully deleted!");
+    } else {
+      toast.error(deletedBookmark?.message);
     }
   };
+
+  // const handleDelete = () => {
+  //   if (bookmarkstate) {
+  //     bookmarkdispatch({
+  //       type: BookmarkTypes.DeleteBookmarks,
+  //       payload: {
+  //         data: {
+  //           id,
+  //         },
+  //       },
+  //     });
+  //   }
+  // };
   return (
     <div
       className={styles.cardWrapper}

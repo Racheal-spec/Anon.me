@@ -1,8 +1,8 @@
-import { Realtime } from "ably";
+// import { Realtime } from "ably";
 
-const ably = new Realtime({
-  authUrl: process.env.ABLY_AUTH_URL,
-  key: process.env.ABLY_API_KEY,
-});
+// const ably = new Realtime({
+//   authUrl: process.env.ABLY_AUTH_URL,
+//   key: process.env.ABLY_API_KEY,
+// });
 
-export default ably;
+// export default ably;

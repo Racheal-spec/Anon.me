@@ -1,17 +1,20 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
-import { BookmarkAction, BookmarkStateType } from "../Types/reducerTypes";
+import {
+  BookmarkAction,
+  BookmarkStateType,
+  BookmarkTypes,
+} from "../Types/reducerTypes";
 import BookmarkReducer from "./Reducers/bookmarkReducer";
+import { GetBookmarks } from "./Actions/Actions";
+import { userValue } from "./userContext";
 
 type BookmarkContextType = {
   children: JSX.Element;
   BMReducer: typeof BookmarkReducer;
   initialBMState: BookmarkStateType;
 };
-export const initialBookState: BookmarkStateType = {
-  data: localStorage?.getItem("bookmark")
-    ? JSON.parse(localStorage.getItem("bookmark")!)
-    : [],
-};
+export const initialBookState: BookmarkStateType = [];
+
 const BookmarkContext = createContext<{
   bookmarkstate: BookmarkStateType;
   bookmarkdispatch: React.Dispatch<BookmarkAction>;
@@ -29,23 +32,25 @@ export const BookmarkProvider = ({
     BMReducer,
     initialBMState
   );
-
-  // if (typeof window !== "undefined") {
-  //   console.log("You are on the browser");
-  //   // 👉️ can use localStorage here
-  // } else {
-  //   console.log("You are on the server");
-  //   // 👉️ can't use localStorage
-  // }
+  const { state } = userValue();
 
   useEffect(() => {
-    if (bookmarkstate) {
-      localStorage?.setItem("bookmark", JSON.stringify(bookmarkstate.data));
-      console.log("settingggg");
-    } else {
-      return;
-    }
-  }, [bookmarkstate]);
+    const handleAllBookmarks = async () => {
+      console.log(state?.user?.data.id);
+      if (state?.user?.data.id) {
+        let bookmarkdata = await GetBookmarks({
+          userid: state?.user?.data.id as string,
+        });
+        if (bookmarkdata) {
+          bookmarkdispatch({
+            type: BookmarkTypes.SetBookmarks,
+            payload: bookmarkdata?.data,
+          });
+        }
+      }
+    };
+    handleAllBookmarks();
+  }, [bookmarkdispatch, state?.user?.data]);
 
   return (
     <BookmarkContext.Provider value={{ bookmarkstate, bookmarkdispatch }}>

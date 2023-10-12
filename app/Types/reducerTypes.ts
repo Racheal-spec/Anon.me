@@ -48,10 +48,9 @@ export type PublishedAction = {
   };
 };
 //==============POST TYPES================//
-export type PostStateType = {
-  data: postType[] | null;
-  // singlepost: postType;
-};
+export type PostStateType = postType[] | null;
+// singlepost: postType;
+
 export type PostAction = {
   type: PostTypes.GetPost;
   payload: {
@@ -79,13 +78,12 @@ export type SearchAction = {
   };
 };
 //==============BOOKMARK TYPES================//
-export type BookmarkStateType = {
-  data: bookmarkType[];
-};
+export type BookmarkStateType = bookmarkType[];
+
 export type BookmarkAction = {
   type: BookmarkTypes.SetBookmarks | BookmarkTypes.DeleteBookmarks;
   payload: {
-    data: bookmarkType;
+    data: bookmarkType[] | null;
   };
 };
 

@@ -16,7 +16,7 @@ import Button from "@/app/uikits/Button/button";
 import { LOGIN } from "@/app/Routes/RoutesUrl";
 import LogoComp from "@/app/components/LogoComp/LogoComp";
 import { PostLikeProp } from "@/app/Types/global";
-import { useChannel } from "ably/react";
+// import { useChannel } from "ably/react";
 import Commentmodal from "@/app/components/Commentmodal/Commentmodal";
 import { LiaCommentAlt } from "react-icons/lia";
 import SigninModal from "@/app/components/SigninModal/SigninModal";
@@ -51,12 +51,12 @@ const DetailsComp = () => {
     fetchPost();
   }, [likesCount]);
   // console.log(singlepost);
-  const { channel } = useChannel("update", (message: any) => {
-    const likecount = message.data;
-    // console.log(likecount.data);
-    setLikeData(likecount.data);
-    setLikesCount(likecount.data.count);
-  });
+  // const { channel } = useChannel("update", (message: any) => {
+  //   const likecount = message.data;
+  //   // console.log(likecount.data);
+  //   setLikeData(likecount.data);
+  //   setLikesCount(likecount.data.count);
+  // });
   // console.log(likesCount);
 
   const handleLike = async () => {
@@ -70,7 +70,7 @@ const DetailsComp = () => {
 
     if (data) {
       setLikeData(data);
-      channel.publish("update", { data });
+      // channel.publish("update", { data });
       return data;
     }
   };

@@ -19,11 +19,11 @@ const BookmarkSideComp = () => {
           {bookmarkstate &&
             bookmarkstate?.data
               ?.map((post) => (
-                <div key={post.id}>
-                  <h5>{post.title}</h5>
+                <div key={post?.post.id}>
+                  <h5>{post?.post.title}</h5>
                   <div className={styles.smalldiv}>
                     <div>
-                      <p>By {post.author}</p>
+                      <p>By {post?.user?.anonname}</p>
                     </div>
                   </div>
                 </div>

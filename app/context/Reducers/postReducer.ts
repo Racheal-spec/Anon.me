@@ -5,28 +5,26 @@ import {
   PostTypes,
 } from "../../Types/reducerTypes";
 
-export const initialPostStateVal: PostStateType = {
-  data: [] || null,
-  // singlepost: {
-  //   title: "",
-  //   content: "",
-  //   id: "",
-  //   createdAt: new Date(),
-  //   updatedAt: new Date(),
-  //   published: false,
-  //   deleted: null,
-  //   authorId: "",
-  //   author: {
-  //     id: "",
-  //     createdAt: new Date(),
-  //     anonname: "",
-  //     password: "",
-  //     isAdmin: false,
-  //     email: "",
-  //     photo: null,
-  //   },
-  // },
-};
+export const initialPostStateVal: PostStateType = [] || null;
+// singlepost: {
+//   title: "",
+//   content: "",
+//   id: "",
+//   createdAt: new Date(),
+//   updatedAt: new Date(),
+//   published: false,
+//   deleted: null,
+//   authorId: "",
+//   author: {
+//     id: "",
+//     createdAt: new Date(),
+//     anonname: "",
+//     password: "",
+//     isAdmin: false,
+//     email: "",
+//     photo: null,
+//   },
+// }
 
 // export const initialPostStateVal: PostStateType = {
 //   data: [] || null,
@@ -48,7 +46,7 @@ const PostReducer = (state: PostStateType, action: PostActionType) => {
     case PostTypes.GetPost:
       return {
         ...state,
-        post: action?.payload?.data,
+        post: action?.payload,
       };
     // case PostTypes.GetSinglePost:
     //   return {

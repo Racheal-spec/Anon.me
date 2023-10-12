@@ -20,9 +20,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const client = new Ably.Realtime.Promise({
-    authUrl: "http://localhost:3000/api/auth/createTokenReq",
-  });
+  // const client = new Ably.Realtime.Promise({
+  //   authUrl: "http://localhost:3000/api/auth/createTokenReq",
+  // });
 
   return (
     <html lang="en" className={poppins.className}>
@@ -32,8 +32,8 @@ export default function RootLayout({
             <div className="globalpadding">
               <Navbar />
               <ToastProvider>
-                <AblyProvider client={client}>{children}</AblyProvider>
-                {/* {children} */}
+                {/* <AblyProvider client={client}>{children}</AblyProvider> */}
+                {children}
               </ToastProvider>
             </div>
           </MainContext>

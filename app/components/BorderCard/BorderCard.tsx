@@ -13,6 +13,9 @@ import Link from "next/link";
 import { POSTDETAILS } from "@/app/Routes/RoutesUrl";
 import { FormatDate } from "@/app/services/formatDate";
 import emptypost from "../../Assets/images/emptypost.png";
+import { toggleBookmark } from "@/app/context/Actions/Actions";
+import { userValue } from "@/app/context/userContext";
+import { toast } from "react-toastify";
 
 const BorderCard = ({
   title,
@@ -24,33 +27,35 @@ const BorderCard = ({
   likes,
 }: bookmarkType) => {
   const { bookmarkstate, bookmarkdispatch } = useBookmarkValue();
+  const { state } = userValue();
   const [bookmarked, setBookmarked] = useState(false);
 
-  const handleDispatch = () => {
-    if (bookmarkdispatch) {
-      bookmarkdispatch({
-        type: BookmarkTypes.SetBookmarks,
-        payload: {
-          data: {
-            title,
-            excerpts,
-            id,
-            author,
-            createdAt,
-          },
-        },
-      });
+  const handleDispatch = async () => {
+    let bookmarkData = await toggleBookmark({
+      user: state?.user?.data.id ?? "",
+      post: id ?? "",
+    });
+
+    if (bookmarkData?.isBookmarked === true) {
+      toast.success("Story bookmarked");
+      setBookmarked(bookmarkData);
+    } else {
+      toast.success("You have removed story");
+      setBookmarked(bookmarkData);
     }
   };
 
+  console.log(bookmarked);
+  console.log(bookmarkstate);
+
   useEffect(() => {
-    if (bookmarkstate?.data.length !== 0) {
-      let bmList = bookmarkstate?.data?.find((val) => {
-        return val.id === id;
-      });
-      if (bmList) {
-        setBookmarked(true);
-      }
+    let bmList = bookmarkstate?.data?.find((val) => {
+      return val.postId === id;
+    });
+    if (bmList) {
+      setBookmarked(true);
+    } else {
+      setBookmarked(false);
     }
   }, [bookmarkstate]);
 
@@ -90,9 +95,7 @@ const BorderCard = ({
               </div>
               <div className={styles.flex}>
                 {bookmarked ? (
-                  <BsFillBookmarkCheckFill
-                    className={styles.disabledBookmark}
-                  />
+                  <BsFillBookmarkCheckFill onClick={handleDispatch} />
                 ) : (
                   <BsBookmark onClick={handleDispatch} />
                 )}

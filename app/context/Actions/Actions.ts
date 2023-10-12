@@ -282,6 +282,72 @@ export const GetPostComments = async ({ post }: { post: string }) => {
     console.log(error);
   }
 };
+
+export const toggleBookmark = async ({
+  user,
+  post,
+}: {
+  user: string;
+  post: string;
+}) => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/auth/posts/bookmark?user=${user}&post=${post}`,
+      {
+        method: "POST",
+        cache: "no-store",
+      }
+    );
+    if (!res.ok) {
+      let err = await res.json();
+      return err;
+    }
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const GetBookmarks = async ({ userid }: { userid: string }) => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/auth/posts/bookmark?user=${userid}`
+    );
+    if (!res.ok) {
+      let err = await res.json();
+      return err;
+    }
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteBookmark = async ({
+  user,
+  post,
+}: {
+  user: string;
+  post: string;
+}) => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/auth/posts/bookmark?user=${user}&post=${post}`,
+      {
+        method: "DELETE",
+        cache: "no-store",
+      }
+    );
+    if (!res.ok) {
+      let err = await res.json();
+      return err;
+    }
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // export const bookmarkDispatchAction = ({
 //   title,
 //   excerpts,

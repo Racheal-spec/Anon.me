@@ -12,9 +12,9 @@ export async function GET(req: Request) {
       },
       include: {
         post: true,
+        user: true,
       },
     });
-    console.log(`bookmarkssss:${allbookmarks}, ${userId}`);
 
     if (!userId) {
       return NextResponse.json(
@@ -41,6 +41,11 @@ export async function GET(req: Request) {
     }
 
     if (allbookmarks) {
+      allbookmarks.map((el) => {
+        el.user.password = undefined!;
+        el.user.location = undefined!;
+        el.user.email = undefined!;
+      });
       return NextResponse.json(
         {
           data: allbookmarks,
@@ -127,7 +132,74 @@ export async function POST(req: Request) {
       }
     }
   } catch (error) {
-    console.error("Error saving post:", error);
+    console.error("Error saving story:", error);
+    return NextResponse.json(
+      {
+        message: "Internal server error!",
+      },
+      {
+        status: 500,
+      }
+    );
+  }
+}
+
+export async function DELETE(req: Request) {
+  const url = new URL(req.url);
+  const userId = url.searchParams.get("user");
+  const postId = url.searchParams.get("post");
+
+  try {
+    if (!userId) {
+      return NextResponse.json(
+        {
+          status: 401,
+          message: "You are not authroized to perform this action!",
+        },
+        {
+          status: 401,
+        }
+      );
+    }
+    if (userId && postId) {
+      const existingPost = await db.bookmarks.findUnique({
+        where: {
+          id: postId,
+        },
+      });
+
+      if (!existingPost) {
+        return NextResponse.json(
+          {
+            status: 404,
+            message: "Story does not exist!",
+          },
+          {
+            status: 404,
+          }
+        );
+      }
+      if (existingPost) {
+        const deletepost = await db.bookmarks.delete({
+          where: {
+            id: existingPost.id,
+          },
+        });
+
+        return NextResponse.json(
+          {
+            status: 200,
+            data: deletepost,
+            isBookmarked: false,
+          },
+          {
+            status: 200,
+          }
+        );
+      }
+    }
+  } catch (error) {
+    console.error("Error deleting story:", error);
     return NextResponse.json(
       {
         message: "Internal server error!",

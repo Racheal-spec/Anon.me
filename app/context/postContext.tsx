@@ -34,7 +34,7 @@ const PostContext = createContext<{
   postdispatch: () => null,
   ref: () => null,
   isLoading: false,
-  posts: initialPostStateVal.data || null,
+  posts: initialPostStateVal || null,
   lastCursor: "",
 });
 
