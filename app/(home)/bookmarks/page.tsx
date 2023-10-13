@@ -7,7 +7,6 @@ import { postType } from "@/app/Types/posts";
 
 const Bookmarks = () => {
   const { bookmarkstate, bookmarkdispatch } = useBookmarkValue();
-  console.log(bookmarkstate);
 
   return (
     <div className={styles.bookmarkWrapper}>

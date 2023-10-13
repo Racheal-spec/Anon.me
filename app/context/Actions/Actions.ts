@@ -231,11 +231,13 @@ export const likePost = async ({
     );
     if (!res.ok) {
       let err = await res.json();
-      return err;
+      return Promise.reject(err);
     }
-    return await res.json();
+    let data = await res.json();
+    return Promise.resolve(data);
   } catch (error) {
     console.log(error);
+    return Promise.reject(error);
   }
 };
 
@@ -300,11 +302,13 @@ export const toggleBookmark = async ({
     );
     if (!res.ok) {
       let err = await res.json();
-      return err;
+      return Promise.reject(err);
     }
-    return await res.json();
+    let data = await res.json();
+    return Promise.resolve(data);
   } catch (error) {
     console.log(error);
+    return Promise.reject(error);
   }
 };
 

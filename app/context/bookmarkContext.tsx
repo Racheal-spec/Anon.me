@@ -36,7 +36,6 @@ export const BookmarkProvider = ({
 
   useEffect(() => {
     const handleAllBookmarks = async () => {
-      console.log(state?.user?.data.id);
       if (state?.user?.data.id) {
         let bookmarkdata = await GetBookmarks({
           userid: state?.user?.data.id as string,

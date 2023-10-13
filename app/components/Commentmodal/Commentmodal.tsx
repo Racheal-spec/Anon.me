@@ -101,6 +101,8 @@ const Commentmodal = ({
                   src={state?.user?.data?.photo ?? profileimg}
                   alt={`${state.user?.data.anonname}'s anonymous profile picture`}
                   className={styles.profileimg}
+                  width={35}
+                  height={35}
                 />
               </div>
             ) : null}
@@ -152,6 +154,8 @@ const Commentmodal = ({
                       src={comment?.commenter?.photo ?? profileimg}
                       alt={`${comment?.commenter?.anonname}'s anonymous profile picture`}
                       className={styles.profileimg}
+                      width={35}
+                      height={35}
                     />
                     <div className={styles.authorWrapper}>
                       <h5>{comment?.commenter?.anonname}</h5>

@@ -12,6 +12,7 @@ export async function GET(req: Request, { params }: ParamType) {
       include: {
         author: true,
         likes: true,
+        comments: true,
       },
     });
     if (!post) {

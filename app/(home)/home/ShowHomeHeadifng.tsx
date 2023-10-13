@@ -13,14 +13,11 @@ import Skeleton from "@/app/components/Skeleton/Skeleton";
 import { usePublishedPostValue } from "@/app/context/publishedpostsContext";
 import EmptyState from "@/app/components/EmptyState/EmptyState";
 import { changeTextFromHTML } from "@/app/services/HtmltoText";
-import { useAbly } from "ably/react";
 
 const ShowHomeHeading = () => {
   const { state } = userValue();
   const { publishedposts, ref, lastCursor } = usePublishedPostValue();
-  // const client = useAbly();
 
-  // console.log(client);
   return (
     <div>
       <section className={styles.blogsection}>
@@ -45,6 +42,7 @@ const ShowHomeHeading = () => {
                 {publishedposts &&
                   publishedposts?.map((val: postType) => {
                     let excerpt = `${val?.content.slice(0, 200)}...`;
+                    console.log(val.likes);
                     return (
                       <div key={val?.id}>
                         <BorderCard

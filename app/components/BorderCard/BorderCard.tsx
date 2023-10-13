@@ -13,99 +13,126 @@ import Link from "next/link";
 import { POSTDETAILS } from "@/app/Routes/RoutesUrl";
 import { FormatDate } from "@/app/services/formatDate";
 import emptypost from "../../Assets/images/emptypost.png";
-import { toggleBookmark } from "@/app/context/Actions/Actions";
+import { likePost, toggleBookmark } from "@/app/context/Actions/Actions";
 import { userValue } from "@/app/context/userContext";
 import { toast } from "react-toastify";
+import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import SigninModal from "../SigninModal/SigninModal";
+import { PostLikeProp } from "@/app/Types/global";
 
-const BorderCard = ({
-  title,
-  excerpts,
-  id,
-  postimage,
-  author,
-  createdAt,
-  likes,
-}: bookmarkType) => {
-  const { bookmarkstate, bookmarkdispatch } = useBookmarkValue();
-  const { state } = userValue();
-  const [bookmarked, setBookmarked] = useState(false);
+const BorderCard = React.memo(
+  ({
+    title,
+    excerpts,
+    id,
+    postimage,
+    author,
+    createdAt,
+    likes,
+  }: bookmarkType) => {
+    const { bookmarkstate } = useBookmarkValue();
+    const { state } = userValue();
+    const [bookmarked, setBookmarked] = useState(false);
+    const [prevBookmark, setPrevBookmark] = useState(bookmarked);
 
-  const handleDispatch = async () => {
-    let bookmarkData = await toggleBookmark({
-      user: state?.user?.data.id ?? "",
-      post: id ?? "",
-    });
+    const [bookmarkmodal, setBookmarkmodal] = useState(false);
 
-    if (bookmarkData?.isBookmarked === true) {
-      toast.success("Story bookmarked");
-      setBookmarked(bookmarkData);
-    } else {
-      toast.success("You have removed story");
-      setBookmarked(bookmarkData);
-    }
-  };
+    const handleLoginModal = () => {
+      setBookmarkmodal(false);
+    };
 
-  console.log(bookmarked);
-  console.log(bookmarkstate);
+    const handleDispatch = async () => {
+      if (state?.user === undefined) {
+        setBookmarkmodal(true);
+      }
+      setPrevBookmark((prev) => !prev);
 
-  useEffect(() => {
-    let bmList = bookmarkstate?.data?.find((val) => {
-      return val.postId === id;
-    });
-    if (bmList) {
-      setBookmarked(true);
-    } else {
-      setBookmarked(false);
-    }
-  }, [bookmarkstate]);
+      if (prevBookmark) {
+        toast.success("You have removed story");
+      } else {
+        toast.success("Story bookmarked");
+      }
+      try {
+        let bookmarkData = await toggleBookmark({
+          user: state?.user?.data.id ?? "",
+          post: id ?? "",
+        });
 
-  return (
-    <div className={styles.cardWrapper}>
-      <div className={styles.cardDiv}>
-        <div className={styles.imgDiv}>
-          <Image
-            src={postimage ?? emptypost}
-            priority={true}
-            width="100"
-            height="20"
-            className={styles.blogimg}
-            alt="blog-image"
-          />
-        </div>
-        <div className={styles.descWrapper}>
-          <Link href={POSTDETAILS(id as string)}>
-            <div className={styles.descDiv}>
-              <p>{FormatDate(createdAt)}</p>
-              <h5>{title}</h5>
-              <p>{excerpts}</p>
-            </div>
-          </Link>
-          <hr className={styles.hrstyles} />
-          <div className={styles.subElementsDiv}>
-            <div>
-              <p>By: {author}</p>
-            </div>
-            <div className={styles.secondSubDiv}>
-              <div className={styles.flex}>
-                <LiaCommentAlt />
-                <p> 0 comments</p>
+        if (bookmarkData?.status === 200) {
+          setBookmarked(bookmarkData?.isBookmarked);
+        }
+      } catch (error) {
+        toast.error(`Error: ${JSON.stringify(error.message)}`);
+      }
+    };
+
+    useEffect(() => {
+      setPrevBookmark(bookmarked);
+    }, [bookmarked]);
+
+    useEffect(() => {
+      bookmarkstate?.data?.find((val) => {
+        if (val.postId === id) {
+          setBookmarked(true);
+        }
+      });
+    }, [bookmarkstate, likes]);
+
+    return (
+      <div className={styles.cardWrapper}>
+        <div className={styles.cardDiv}>
+          <div className={styles.imgDiv}>
+            <Image
+              src={postimage ?? emptypost}
+              priority={true}
+              width="100"
+              height="20"
+              className={styles.blogimg}
+              alt="blog-image"
+            />
+          </div>
+          <div className={styles.descWrapper}>
+            <Link href={POSTDETAILS(id as string)}>
+              <div className={styles.descDiv}>
+                <p>{FormatDate(createdAt)}</p>
+                <h5>{title}</h5>
+                <p>{excerpts}</p>
               </div>
-              <div className={styles.flex}>
-                <p>{likes?.length === 0 ? 0 : likes?.length} likes</p>
+            </Link>
+            <hr className={styles.hrstyles} />
+            <div className={styles.subElementsDiv}>
+              <div>
+                <p>By: {author}</p>
               </div>
-              <div className={styles.flex}>
-                {bookmarked ? (
-                  <BsFillBookmarkCheckFill onClick={handleDispatch} />
-                ) : (
-                  <BsBookmark onClick={handleDispatch} />
-                )}
+              <div className={styles.secondSubDiv}>
+                <div className={styles.flex}>
+                  <LiaCommentAlt />
+                  <p> 0 comments</p>
+                </div>
+                <div className={styles.flex}>
+                  <p>{likes?.length} likes</p>
+                </div>
+                <div className={styles.flex}>
+                  {prevBookmark ? (
+                    <BsFillBookmarkCheckFill
+                      color="#334155"
+                      onClick={handleDispatch}
+                    />
+                  ) : (
+                    <BsBookmark onClick={handleDispatch} />
+                  )}
+                </div>
+                <SigninModal
+                  modalstate={bookmarkmodal}
+                  handlefunction={handleLoginModal}
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+);
 
 export default BorderCard;
