@@ -179,6 +179,7 @@ export async function DELETE(req: Request) {
           }
         );
       }
+
       if (existingPost) {
         const deletepost = await db.bookmarks.delete({
           where: {

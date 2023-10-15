@@ -33,7 +33,7 @@ const PageHeader = ({
   const handleLeave = () => {
     router.back();
   };
-  console.log(editstatus);
+
   const handlePublished = async () => {
     try {
       setPublishLoading(true);

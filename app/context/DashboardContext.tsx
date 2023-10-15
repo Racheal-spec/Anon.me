@@ -1,10 +1,6 @@
 "use client";
 import { createContext, useContext, useReducer } from "react";
-import {
-  ActionType,
-  DashboardAction,
-  DashboardReducerType,
-} from "../Types/reducerTypes";
+import { DashboardAction, DashboardReducerType } from "../Types/reducerTypes";
 import DashboardReducer from "./Reducers/dashboardReducer";
 
 type DashboardContextType = {

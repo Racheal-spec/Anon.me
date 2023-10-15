@@ -7,7 +7,6 @@ import { useBookmarkValue } from "@/app/context/bookmarkContext";
 
 const BookmarkSideComp = () => {
   const { bookmarkstate } = useBookmarkValue();
-  console.log(bookmarkstate);
 
   return (
     <div className={styles.bookmarkCardWrapper}>
@@ -19,8 +18,8 @@ const BookmarkSideComp = () => {
           {bookmarkstate &&
             bookmarkstate?.data
               ?.map((post) => (
-                <div key={post?.post.id}>
-                  <h5>{post?.post.title}</h5>
+                <div key={post?.post?.id}>
+                  <h5>{post?.post?.title}</h5>
                   <div className={styles.smalldiv}>
                     <div>
                       <p>By {post?.user?.anonname}</p>

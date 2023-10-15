@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { UploadApiResponse, v2 } from "cloudinary";
 import { connectCloudinary } from "@/app/services/cloudinary.config";
+import { JWTProp } from "@/app/Types/global";
 
 export async function POST(req: Request) {
   connectCloudinary;
@@ -54,9 +55,10 @@ export async function POST(req: Request) {
         }
       );
     }
+
     if (req.method === "POST") {
-      const { id } = await validateJWT(jwt);
-      // const body = await req.json();
+      let jwtResult = await validateJWT(jwt);
+      const { id } = jwtResult as JWTProp;
 
       const imagefile = formData.get("postimage") as Blob | null;
 

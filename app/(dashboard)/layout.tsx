@@ -5,8 +5,8 @@ import { MainContext } from "../context";
 import ToastProvider from "../ToastProvider";
 
 export const metadata = {
-  title: "Anon.me",
-  description: "An anonymous blog for everyone",
+  title: "Penbuddy|Dashboard",
+  description: "An anonymous blogging community for everyone",
 };
 
 export default function RootLayout({
@@ -14,14 +14,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  if (typeof window !== "undefined") {
-    console.log("You are on the browser");
-    // 👉️ can use localStorage here
-  } else {
-    console.log("You are on the server");
-    // 👉️ can't use localStorage
-  }
-
   return (
     <html lang="en" className={poppins.className}>
       <body>

@@ -1,7 +1,3 @@
-import PageLoader from "../components/PageLoader/PageLoader";
-import loader from "../../Assets/svgs/loader.svg";
-import Image from "next/image";
-
 export default function Loading() {
   return (
     <div>

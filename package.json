@@ -57,6 +57,7 @@
     "@types/cookie": "^0.5.1",
     "@types/draftjs-to-html": "^0.8.2",
     "@types/node": "^20.4.1",
+    "@types/react-draft-wysiwyg": "^1.13.5",
     "eslint-plugin-storybook": "^0.6.13",
     "prisma": "^4.16.2",
     "storybook": "^7.1.1",

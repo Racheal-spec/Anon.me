@@ -75,8 +75,6 @@ const Sidebar = ({
     handleclick(activeLink);
   }, [activeLink]);
 
-  console.log(activeLink);
-
   return (
     <div className={classNames(styles.sidebarStyles, active)}>
       <div className={styles.sidelogo}>

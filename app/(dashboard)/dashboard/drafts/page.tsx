@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import StatusComp from "../stories/StatusComp";
 import TableTitle from "../stories/TableTitle";
 import { usePostValue } from "@/app/context/postContext";
 import styles from "./page.module.css";

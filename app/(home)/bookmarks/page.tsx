@@ -3,10 +3,9 @@ import BookmarkCard from "@/app/components/BookmarkCard/BookmarkCard";
 import styles from "./page.module.css";
 import { useBookmarkValue } from "@/app/context/bookmarkContext";
 import EmptyState from "@/app/components/EmptyState/EmptyState";
-import { postType } from "@/app/Types/posts";
 
 const Bookmarks = () => {
-  const { bookmarkstate, bookmarkdispatch } = useBookmarkValue();
+  const { bookmarkstate } = useBookmarkValue();
 
   return (
     <div className={styles.bookmarkWrapper}>
@@ -26,10 +25,10 @@ const Bookmarks = () => {
                   <BookmarkCard
                     key={post.id}
                     id={post.id}
-                    title={post.post.title}
-                    author={post.post.author}
-                    excerpts={`${post.post.content?.slice(0, 80)}...`}
-                    createdAt={post.post.createdAt}
+                    title={post?.post?.title}
+                    author={post?.user?.anonname}
+                    excerpts={`${post?.post?.content?.slice(0, 80)}...`}
+                    createdAt={post?.post?.createdAt}
                   />
                 </div>
               ))}

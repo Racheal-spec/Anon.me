@@ -31,22 +31,6 @@ export const UserSchema = z.object({
     .optional(),
 });
 
-// export const LoginUserSchema = z.object({
-//   uniqueid: z
-//     .string({
-//       required_error: "UniqueID is required",
-//       invalid_type_error: "UniqueID is invalid",
-//     })
-//     .min(1, "UniqueID is required"),
-
-//   password: z
-//     .string({
-//       required_error: "Password is required",
-//     })
-//     .min(1, "Password is required")
-//     .min(8, "Password must be at least 8 characters"),
-// });
-
 export type UserSchemaType = z.infer<typeof UserSchema>;
 // type LoginSchemaType = z.infer<typeof LoginUserSchema>;
 //export type FormSchemaType = RegistrationSchemaType | LoginSchemaType;
@@ -68,5 +52,3 @@ export const MainUserSchema = z.object({
 });
 
 export type ProfileUserSchema = z.infer<typeof MainUserSchema>;
-// type LoginSchemaType = z.infer<typeof LoginUserSchema>;
-//export type FormSchemaType = RegistrationSchemaType | LoginSchemaType;

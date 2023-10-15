@@ -15,6 +15,7 @@ export type postType = {
   categoryId: string;
   likes: PostLikeProp[];
   author: AuthorProp;
+  comments: commentProp[];
 };
 export type ParamType = {
   params: {
@@ -26,7 +27,6 @@ export type postParamsType = {
   lastCursor: string;
   search?: string;
 };
-
 type bookmarkProp = {
   title: string;
   excerpts: string;
@@ -35,6 +35,8 @@ type bookmarkProp = {
   postimage: string;
   author: string;
   likes: PostLikeProp[];
+  post: postType;
+  user: AuthorProp;
 };
 
 export type bookmarkType = Partial<bookmarkProp>;
@@ -61,4 +63,10 @@ export type commentTypeProp = {
   };
   status: number;
   statusText: string;
+};
+
+export type LikeProp = {
+  id: string;
+  userId: string;
+  postId: string;
 };

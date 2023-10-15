@@ -7,13 +7,11 @@ import { userValue } from "@/app/context/userContext";
 import profileimg from "../../../Assets/images/profileimg.png";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import Button from "@/app/uikits/Button/button";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { editUsers } from "@/app/context/Actions/Actions";
 import {
   MainUserSchema,
   ProfileUserSchema,
-  UserSchema,
-  UserSchemaType,
 } from "@/app/services/validations/user.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
@@ -28,7 +26,7 @@ export const decryptEmail = (obsfucatedemail: string) => {
 };
 const Profile = () => {
   const { state } = userValue();
-  const [selectedLocValue, setSelectedLocationValue] = useState("");
+  const [, setSelectedLocationValue] = useState("");
   const [profileImgFile, setProfileImageFile] = useState("");
   const [imagedata, setImageData] = useState(null);
   const {

@@ -13,7 +13,9 @@ type BookmarkContextType = {
   BMReducer: typeof BookmarkReducer;
   initialBMState: BookmarkStateType;
 };
-export const initialBookState: BookmarkStateType = [];
+export const initialBookState: BookmarkStateType = {
+  data: [],
+};
 
 const BookmarkContext = createContext<{
   bookmarkstate: BookmarkStateType;
@@ -43,7 +45,7 @@ export const BookmarkProvider = ({
         if (bookmarkdata) {
           bookmarkdispatch({
             type: BookmarkTypes.SetBookmarks,
-            payload: bookmarkdata?.data,
+            payload: bookmarkdata,
           });
         }
       }

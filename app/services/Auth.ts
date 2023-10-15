@@ -45,18 +45,3 @@ export const obsfucatedEmail = (email: string) => {
   const obsEmail = email.replace("@", "&#64").replace(".", "&#46");
   return obsEmail;
 };
-
-// export const getUserFromCookie = async (cookies: any) => {
-//   const jwt = cookies.get(process.env.COOKIE_NAME);
-//   if (jwt) {
-//     const { id } = await validateJWT(jwt?.value);
-//     // console.log(`jwtttttt: ${jwt}`);
-
-//     const user = await db.user.findUnique({
-//       where: {
-//         id: id as string,
-//       },
-//     });
-//     return user;
-//   }
-// };

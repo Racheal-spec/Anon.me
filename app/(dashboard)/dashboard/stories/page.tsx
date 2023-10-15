@@ -36,7 +36,6 @@ const Stories = () => {
   );
   const [loadingdelete, setLoadingDelete] = useState(false);
   const router = useRouter();
-  // console.log(posts);
 
   let publishedArray: postType[] = [];
   let userPosts: postType[] = [];
@@ -65,23 +64,17 @@ const Stories = () => {
     const updatedDeleteStates = [...showdeletemodal];
     updatedDeleteStates[index] = !updatedDeleteStates[index];
     setShowDeleteModal(updatedDeleteStates);
-    console.log(updatedDeleteStates);
   };
   const handleDeleteStory = async (id: string, index: number) => {
     try {
       setLoadingDelete(true);
       const deleteSinglePost = await deletePost(id);
-      console.log(deleteSinglePost);
+
       if (deleteSinglePost.status === 200) {
         toast.success("Post successfully deleted");
         setLoadingDelete(false);
         handleDeletemodal(index);
       }
-
-      // if (deleteSinglePost === undefined) {
-      //   setLoadingDelete(false);
-      //   handleDeletemodal(index);
-      // }
     } catch (error) {}
   };
 

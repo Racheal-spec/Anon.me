@@ -64,25 +64,17 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
   } = useForm<UserSchemaType>({
     resolver: zodResolver(UserSchema),
   });
-  // const {
-  //   field: { value: countryValue, onChange: countryOnchange, ...rest },
-  // } = useController({
-  //   name: "location",
-  //   control,
-  // });
-  console.log(isSubmitting);
+
   const [selectedLocation, setSelectedLocation] = useState(""); // Initial or controlled value
   const handleFormSubmit: SubmitHandler<UserSchemaType> = async (state) => {
     try {
-      console.log("lllll");
       if (mode === "register") {
-        let result = await registeruser(state);
+        let result: any = await registeruser(state);
         if (result?.status === "created") {
           router.replace("/home");
         }
       } else {
-        let loginresult = await login(state);
-        console.log(`loginnnnn: ${loginresult}`);
+        let loginresult: any = await login(state);
         if (loginresult?.status === "ok") {
           router.replace("/home");
         }
@@ -102,11 +94,11 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
 
   const countriesArray = Object.values(countries);
 
-  const handleLocationChange = (selectedValue) => {
-    // Update the selected value in state
+  const handleLocationChange = (
+    event: React.ChangeEvent<HTMLSelectElement>,
+    selectedValue: string
+  ) => {
     setSelectedLocation(selectedValue);
-    // Handle additional logic as needed
-    console.log("Selected Location:", selectedValue);
   };
 
   return (
@@ -131,22 +123,6 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
               {errors.anonname && (
                 <span className={style.spanclass}>
                   {errors.anonname.message}
-                </span>
-              )}
-            </div>
-            <div>
-              <ComboBox
-                options={countriesArray && countriesArray ? countriesArray : []}
-                id={"location"}
-                label={"Location"}
-                value={selectedLocation} // Pass the value from state
-                onChange={handleLocationChange}
-                name="location"
-                control={control}
-              />
-              {errors?.location && (
-                <span className={style.spanclass}>
-                  {errors?.location.message}
                 </span>
               )}
             </div>
@@ -199,6 +175,24 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
             )}
           </div>
 
+          {mode === "register" && (
+            <div>
+              <ComboBox
+                options={countriesArray && countriesArray ? countriesArray : []}
+                id={"location"}
+                label={"Location"}
+                value={selectedLocation} // Pass the value from state
+                onChange={handleLocationChange}
+                name="location"
+                control={control}
+              />
+              {errors?.location && (
+                <span className={style.spanclass}>
+                  {errors?.location.message}
+                </span>
+              )}
+            </div>
+          )}
           <div>
             <div>
               <Button

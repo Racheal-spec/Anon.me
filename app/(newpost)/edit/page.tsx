@@ -22,7 +22,7 @@ import PageHeader from "../PageHeader/PageHeader";
 import emptyrect from "../../Assets/images/emptyrect.png";
 
 const Editpost = () => {
-  const [imagefile, setImageFile] = useState("");
+  const [, setImageFile] = useState("");
   const [, setImageData] = useState<File | null>(null);
   const [titledata, setTitleData] = useState();
   const [isUpdatingLoading, setUpdatingLoading] = useState(false);
@@ -42,8 +42,8 @@ const Editpost = () => {
   const convertContentToRaw = () => {
     return draftToHtml(convertToRaw(editorState.getCurrentContent()));
   };
-  const handleEditEditorChange = (event: any) => {
-    setEditorState(event);
+  const handleEditEditorChange = (newstate: EditorState) => {
+    setEditorState(newstate);
   };
   let params = useSearchParams();
   let postId = params.get("draft");
@@ -132,8 +132,6 @@ const Editpost = () => {
       }
     }
   }, [singlepostData]);
-
-  // console.log(categoryId);
 
   return (
     <div className={style.mainWrapper}>

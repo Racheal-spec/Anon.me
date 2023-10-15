@@ -1,21 +1,11 @@
 "use client";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useReducer,
-} from "react";
-import {
-  ActionType,
   TagsActionType,
   TagsReducerType,
   TagsTypes,
-  Types,
-  UserReducerType,
 } from "../Types/reducerTypes";
-import UserReducer from "./Reducers/userReducer";
-import { getTags, getUsers } from "./Actions/Actions";
+import { getTags } from "./Actions/Actions";
 import TagsReducer from "./Reducers/TagsReducer";
 
 type TagsContextType = {
@@ -24,7 +14,7 @@ type TagsContextType = {
   initialState: TagsReducerType;
 };
 const TagsinitialContextType = {
-  data: null,
+  data: [],
 };
 
 const TagsContext = createContext<{
@@ -32,7 +22,7 @@ const TagsContext = createContext<{
   tagsdispatch: React.Dispatch<TagsActionType>;
 }>({
   tagsstate: TagsinitialContextType,
-  tagsdispatch: () => null,
+  tagsdispatch: () => [],
 });
 
 export const TagsProvider = ({
@@ -47,7 +37,7 @@ export const TagsProvider = ({
   const fetchTags = async () => {
     let tagsdata = await getTags();
 
-    if (tagsdispatch) {
+    if (tagsdata) {
       tagsdispatch({
         type: TagsTypes.GetTags,
         payload: tagsdata,

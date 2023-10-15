@@ -1,5 +1,5 @@
 "use client";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import styles from "./pages.module.css";
 import profileimg from "../../../Assets/images/profileimg.png";
@@ -11,12 +11,7 @@ import { changeTextFromHTML } from "@/app/services/HtmltoText";
 import { postType } from "@/app/Types/posts";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { userValue } from "@/app/context/userContext";
-import Modal from "@/app/components/Modal/Modal";
-import Button from "@/app/uikits/Button/button";
-import { LOGIN } from "@/app/Routes/RoutesUrl";
-import LogoComp from "@/app/components/LogoComp/LogoComp";
 import { PostLikeProp } from "@/app/Types/global";
-// import { useChannel } from "ably/react";
 import Commentmodal from "@/app/components/Commentmodal/Commentmodal";
 import { LiaCommentAlt } from "react-icons/lia";
 import SigninModal from "@/app/components/SigninModal/SigninModal";
@@ -39,8 +34,6 @@ const DetailsComp = () => {
   const handleclick = () => {
     setToggle(!toggle);
   };
-
-  console.log(singlepost?.likes?.length);
 
   let active = toggle ? styles.open : styles.close;
 
@@ -72,12 +65,10 @@ const DetailsComp = () => {
         post: singlepost?.id as string,
       });
       if (data?.status === 200) {
-        console.log(data);
         setLikeData(data?.isLiked);
-
         return data;
       }
-    } catch (error) {
+    } catch (error: any) {
       toast.error(`Error: ${JSON.stringify(error.message)}`);
     }
   };
@@ -87,7 +78,7 @@ const DetailsComp = () => {
   };
 
   useEffect(() => {
-    singlepost?.likes?.find((val) => {
+    singlepost?.likes?.find((val: any) => {
       if (val.userId === state?.user?.data.id) {
         setLiked(true);
       }

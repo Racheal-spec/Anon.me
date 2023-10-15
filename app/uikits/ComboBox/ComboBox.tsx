@@ -1,10 +1,8 @@
 import React from "react";
 import styles from "./Combobox.module.css";
 import { useController } from "react-hook-form";
+import { ComboBoxType } from "@/app/Types/global";
 
-type ComboBoxType = {
-  disabled: boolean;
-};
 const ComboBox = React.forwardRef(
   (
     {
@@ -36,11 +34,11 @@ const ComboBox = React.forwardRef(
             className={styles.select}
             {...fieldProps}
             ref={(e) => {
-              // Ensure that the ref prop is callable (a callback function)
+              // Ensure that the ref prop is a callback function
               if (typeof ref === "function") {
                 ref(e);
               } else if (ref && typeof ref === "object") {
-                // Assign the DOM element to the ref's current property
+                // Then assign the DOM element to the ref's current property
                 ref.current = e;
               }
               // Also, assign the DOM element to the field's ref if available
@@ -52,7 +50,7 @@ const ComboBox = React.forwardRef(
             onChange={(e) => {
               fieldProps.onChange(e);
               const selectedValue = e.target.value;
-              onChange(selectedValue);
+              onChange(e, selectedValue);
             }}
             disabled={disabled}
           >

@@ -1,10 +1,7 @@
 import {
-  ActionType,
   TagsActionType,
   TagsReducerType,
   TagsTypes,
-  Types,
-  UserReducerType,
 } from "../../Types/reducerTypes";
 
 export const initialTagsVal: TagsReducerType = {
@@ -19,7 +16,7 @@ const TagsReducer = (
     case TagsTypes.GetTags:
       return {
         ...state,
-        data: action?.payload?.data,
+        data: action?.payload.data,
       };
 
     default:

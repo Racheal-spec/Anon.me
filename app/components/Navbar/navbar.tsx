@@ -34,9 +34,8 @@ const Navbar = () => {
   const [toggleDrawer, setToggleDrawer] = useState(true);
   const isMobile = UseResizeScreen();
   const [searchmodal, showSearchModal] = useState(false);
-  const [isBlur, setIsBlur] = useState(false);
 
-  const handleProfile = (e: eventType) => {
+  const handleProfile = () => {
     setShow(!show);
   };
 
@@ -61,11 +60,7 @@ const Navbar = () => {
           <>
             <div className={styles.searchLi}>
               <BiSearch color="#FF9753" className={styles.searchicon} />
-              <InputSearch
-                placeholder="search"
-                onFocus={handlefocus}
-                // onBlur={blurHandler}
-              />
+              <InputSearch placeholder="search" onFocus={handlefocus} />
             </div>
 
             <div className={styles.menuprofilediv}>

@@ -13,9 +13,13 @@ export type UserProp = {
   status: string;
 };
 export type eventType = {
-  onClick: (
-    e: React.MouseEvent<HTMLLIElement> | React.MouseEvent<HTMLElement>
-  ) => void;
+  // onClick?: (
+  //   e:
+  //     | React.MouseEvent<HTMLLIElement, MouseEvent>
+  //     | React.MouseEvent<HTMLElement, MouseEvent>
+  //     | React.MouseEvent<HTMLDivElement, MouseEvent>
+  // ) => void;
+  onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 };
 
 export type userType = {

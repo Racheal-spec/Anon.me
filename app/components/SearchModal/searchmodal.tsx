@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./searchmodal.module.css";
-import { UseClickOutside } from "@/hooks/ClickOutside";
 import { useForm } from "react-hook-form";
-import { FaSearch } from "react-icons/fa";
 import { searchPosts } from "@/app/context/Actions/Actions";
-import Loader from "../Loader/Loader";
 import Button from "@/app/uikits/Button/button";
 import { useRouter } from "next/navigation";
 import { SEARCH } from "@/app/Routes/RoutesUrl";
@@ -13,8 +10,6 @@ import { postType } from "@/app/Types/posts";
 import SearchLoader from "../SearchLoader/SearchLoader";
 
 type SearchModalType = {
-  // handleclose: () => void;
-  // handlefocus: (event: React.FocusEvent<HTMLInputElement>) => void;
   searchmodal: boolean;
   showSearchModal: any;
 };

@@ -11,7 +11,7 @@ const SideNav = () => {
     setToggle(!toggle);
   };
 
-  console.log(`sidenav: ${toggle}`);
+  // console.log(`sidenav: ${toggle}`);
 
   let active = toggle ? styles.open : styles.close;
 

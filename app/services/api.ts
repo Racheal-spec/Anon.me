@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { APIProp } from "../Types/global";
+import { APIProp, TagsProp } from "../Types/global";
 import { postType } from "../Types/posts";
 import { UserSchemaType } from "./validations/user.schema";
 import { toast } from "react-toastify";
@@ -30,7 +30,7 @@ export const fetcher: FC<APIProp> = async ({
   }
 };
 
-export const registeruser: FC<UserSchemaType> = async (user) => {
+export const registeruser = async (user: UserSchemaType) => {
   return fetcher({
     url: "/api/data/register",
     method: "POST",
@@ -39,7 +39,7 @@ export const registeruser: FC<UserSchemaType> = async (user) => {
   });
 };
 
-export const login: FC<UserSchemaType> = async (user) => {
+export const login = async (user: UserSchemaType) => {
   return fetcher({
     url: "/api/data/login",
     method: "POST",
@@ -104,17 +104,3 @@ export const getalltags = async () => {
     json: true,
   });
 };
-
-// export const postLikes = async ({
-//   user,
-//   post,
-// }: {
-//   user: string;
-//   post: string;
-// }) => {
-//   return fetcher({
-//     url: `http://localhost:3000/api/auth/posts/like?user=${user}&post=${post}`,
-//     method: "POST",
-//     json: true,
-//   });
-// };

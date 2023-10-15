@@ -5,35 +5,32 @@ import React, { useEffect, useRef, useState } from "react";
 import style from "./profile.module.css";
 import { DASHBOARDPROFILE } from "@/app/Routes/RoutesUrl";
 import { UseClickOutside } from "@/hooks/ClickOutside";
-import { eventType } from "@/app/Types/user";
+import { usePathname } from "next/navigation";
+import { logoutUser } from "@/app/context/Actions/Actions";
 
-const deleteUser = async () => {
-  // let url = process.env.BASE_URL as string;
-  // console.log(url);
-  //http://localhost:3000/api/getposts
-  const res = await fetch("http://localhost:3000/api/auth/logout");
-  if (!res.ok) {
-    console.log(res);
-  }
-  return await res.json();
+type ProfileProp = {
+  handleProfile: () => void;
 };
-const Profile = ({ handleProfile }: { handleProfile }) => {
+
+const Profile = ({ handleProfile }: ProfileProp) => {
   let router = useRouter();
   const [logout, setLogout] = useState(false);
 
+  const pathname = usePathname();
   const ref = UseClickOutside(handleProfile);
-  console.log(logout);
 
   const SignOutUser = async () => {
-    await deleteUser();
+    await logoutUser();
     setLogout(true);
+    if (logout) {
+      router.push(pathname);
+    }
   };
   useEffect(() => {
     if (logout) {
-      router.refresh();
       console.log("deletee");
     }
-  }, [logout]);
+  }, [logout, pathname]);
 
   return (
     <div className={style.profileDiv} ref={ref}>

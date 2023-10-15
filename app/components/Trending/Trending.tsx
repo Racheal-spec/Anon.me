@@ -1,8 +1,8 @@
-import React, { FC } from "react";
+import React from "react";
 import styles from "./Trending.module.css";
 import { bookmarkType } from "@/app/Types/posts";
 
-const Trending = ({ title, authorId, createdAt }: bookmarkType) => {
+const Trending = ({ title, author, createdAt }: bookmarkType) => {
   return (
     <div className={styles.trendingCardWrapper}>
       <h4>Trending Stories</h4>
@@ -10,7 +10,7 @@ const Trending = ({ title, authorId, createdAt }: bookmarkType) => {
         <h5>{title}</h5>
         <div className={styles.smalldiv}>
           <div>
-            <p>{authorId}</p>
+            <p>{author}</p>
           </div>
           <div className={styles.dateDiv}>
             <p>{createdAt}</p>

@@ -30,11 +30,6 @@ const Account = () => {
           router.replace(HOME);
           setLoadingDelete(false);
         }
-        // if (!deleteuser) {
-        //   toast.success("Your account has been successfully deleted!");
-        //   router.replace(HOME);
-        //   setLoadingDelete(false);
-        // }
       }
     } catch (error) {
       console.log(error);

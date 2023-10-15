@@ -2,12 +2,8 @@ import React, { ReactElement, ReactNode } from "react";
 import styles from "./SmallModal.module.css";
 import { UseClickOutside } from "@/hooks/ClickOutside";
 import { postType } from "@/app/Types/posts";
+import { SmallModalProp } from "@/app/Types/global";
 
-type SmallModalProp = {
-  handlefunction: () => void;
-  children: ReactNode;
-  modalitem: postType;
-};
 const SmallModal = ({ handlefunction, children }: SmallModalProp) => {
   const ref = UseClickOutside(handlefunction);
   return (

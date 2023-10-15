@@ -54,9 +54,9 @@ const Createpost = () => {
 
     try {
       setLoading(true);
-      console.log(formData);
+      // console.log(formData);
       const res = await createNewPost(formData);
-      console.log(res);
+      // console.log(res);
       if (res.statusText === "created") {
         setPostData(res);
         setLoading(false);

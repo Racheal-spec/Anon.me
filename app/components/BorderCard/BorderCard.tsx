@@ -61,7 +61,7 @@ const BorderCard = React.memo(
         if (bookmarkData?.status === 200) {
           setBookmarked(bookmarkData?.isBookmarked);
         }
-      } catch (error) {
+      } catch (error: any) {
         toast.error(`Error: ${JSON.stringify(error.message)}`);
       }
     };
@@ -71,7 +71,7 @@ const BorderCard = React.memo(
     }, [bookmarked]);
 
     useEffect(() => {
-      bookmarkstate?.data?.find((val) => {
+      bookmarkstate?.data?.find((val: any) => {
         if (val.postId === id) {
           setBookmarked(true);
         }

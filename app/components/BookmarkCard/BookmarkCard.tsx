@@ -11,8 +11,6 @@ import Link from "next/link";
 import { POSTDETAILS } from "@/app/Routes/RoutesUrl";
 import { FormatDate } from "@/app/services/formatDate";
 import { MdOutlineDelete } from "react-icons/md";
-import { useBookmarkValue } from "@/app/context/bookmarkContext";
-import { BookmarkTypes } from "@/app/Types/reducerTypes";
 import { deleteBookmark } from "@/app/context/Actions/Actions";
 import { userValue } from "@/app/context/userContext";
 import { toast } from "react-toastify";
@@ -25,7 +23,6 @@ const BookmarkCard = ({
   id,
 }: bookmarkType) => {
   const [show, setShow] = useState(false);
-  const { bookmarkstate, bookmarkdispatch } = useBookmarkValue();
   const { state } = userValue();
 
   const handleDelete = async () => {
@@ -41,18 +38,6 @@ const BookmarkCard = ({
     }
   };
 
-  // const handleDelete = () => {
-  //   if (bookmarkstate) {
-  //     bookmarkdispatch({
-  //       type: BookmarkTypes.DeleteBookmarks,
-  //       payload: {
-  //         data: {
-  //           id,
-  //         },
-  //       },
-  //     });
-  //   }
-  // };
   return (
     <div
       className={styles.cardWrapper}

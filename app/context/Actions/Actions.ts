@@ -38,6 +38,14 @@ export const deleteUser = async () => {
   }
 };
 
+export const logoutUser = async () => {
+  const res = await fetch("http://localhost:3000/api/auth/logout");
+  if (!res.ok) {
+    console.log(res);
+  }
+  return await res.json();
+};
+
 export const editUsers = async (formdata: any) => {
   try {
     const res = await fetch("http://localhost:3000/api/auth/user", {
@@ -170,8 +178,13 @@ export const searchPosts = async ({
 
 export const getTags = async () => {
   try {
-    let res = await getalltags();
-    return res;
+    const res = await fetch("http://localhost:3000/api/data/tags");
+    if (!res.ok) {
+      let err = await res.json();
+      console.log(err);
+      // toast.error(err.message);
+    }
+    return await res.json();
   } catch (error) {
     console.log(error);
   }
@@ -351,32 +364,3 @@ export const deleteBookmark = async ({
     console.log(error);
   }
 };
-
-// export const bookmarkDispatchAction = ({
-//   title,
-//   excerpts,
-//   id,
-//   authorId,
-//   createdAt,
-
-// }: bookmarkType) => {
-//   //const { bookmarkstate, bookmarkdispatch } = useBookmarkValue();
-//   if (dispatch) {
-//     dispatch({
-//       type: BookmarkTypes.SetBookmarks,
-//       payload: {
-//         data: [
-//           {
-//             title,
-//             excerpts,
-//             id,
-//             authorId,
-//             createdAt,
-//           },
-//         ],
-//       },
-//     });
-//     console.log(state);
-//     return;
-//   }
-// };

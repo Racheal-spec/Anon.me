@@ -10,8 +10,8 @@ import Loading from "./Loading";
 import { Suspense } from "react";
 
 export const metadata = {
-  title: "Anon.me",
-  description: "An anonymous blog for everyone",
+  title: "Penbuddy|Authentication",
+  description: "An anonymous blogging community for everyone",
 };
 
 export default function RootLayout({

@@ -4,6 +4,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { connectCloudinary } from "@/app/services/cloudinary.config";
 import { UploadApiResponse, v2 } from "cloudinary";
+import { JWTProp } from "@/app/Types/global";
 
 export async function GET(req: Request) {
   // const userId = req.headers.get("x-user-id");
@@ -14,7 +15,6 @@ export async function GET(req: Request) {
 
   const usercookies = cookies().get(process.env.COOKIE_NAME as string);
   const jwt = usercookies?.value;
-  // console.log(`jwt: ${jwt}`);
   if (!jwt) {
     return NextResponse.json(
       {
@@ -29,7 +29,8 @@ export async function GET(req: Request) {
   try {
     if (req.method === "GET") {
       if (jwt) {
-        const { id } = await validateJWT(jwt);
+        let jwtResult = await validateJWT(jwt);
+        const { id } = jwtResult as JWTProp;
         const user = await db.user.findUnique({
           where: {
             id: id,
@@ -106,7 +107,8 @@ export async function PUT(req: Request) {
   const jwt = usercookies?.value;
 
   if (jwt) {
-    const { id } = await validateJWT(jwt);
+    let jwtResult = await validateJWT(jwt);
+    const { id } = jwtResult as JWTProp;
     const formdata = await req.formData();
     const profileData = JSON.parse(formdata.get("profileData") as string);
     const profileimgfile = formdata.get("photo") as Blob | null;
@@ -161,7 +163,8 @@ export async function DELETE(req: Request) {
     );
   }
   if (jwt) {
-    const { id } = await validateJWT(jwt);
+    let jwtResult = await validateJWT(jwt);
+    const { id } = jwtResult as JWTProp;
     try {
       const deleteuser = await db.user.delete({
         where: {

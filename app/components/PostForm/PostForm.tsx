@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import Image from "next/image";
 import ComboBox from "@/app/uikits/ComboBox/ComboBox";
 import dynamic from "next/dynamic";
+import { PostFormType } from "@/app/Types/global";
 
 const Editor = dynamic(
   async () => {
@@ -22,7 +23,7 @@ const PostForm = ({
   titleref,
   editorState,
   onEditorStateChange,
-}) => {
+}: PostFormType) => {
   const {
     register,
     formState: { errors, isSubmitting },

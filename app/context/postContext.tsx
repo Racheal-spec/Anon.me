@@ -19,7 +19,7 @@ import { userValue } from "./userContext";
 type PostContextType = {
   children: JSX.Element;
   Reducer: typeof PostReducer;
-  initialPostState: PostStateType | null;
+  initialPostState: PostStateType;
 };
 
 const PostContext = createContext<{
@@ -31,10 +31,10 @@ const PostContext = createContext<{
   lastCursor: string;
 }>({
   poststate: initialPostStateVal,
-  postdispatch: () => null,
+  postdispatch: () => [] || null,
   ref: () => null,
   isLoading: false,
-  posts: initialPostStateVal || null,
+  posts: initialPostStateVal.data || null,
   lastCursor: "",
 });
 
@@ -63,7 +63,7 @@ export const PostProvider = ({
     if (moredata) {
       postdispatch({
         type: PostTypes.GetPost,
-        payload: moredata?.data,
+        payload: moredata,
       });
       setLoading(false);
     }

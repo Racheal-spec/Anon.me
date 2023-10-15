@@ -1,4 +1,7 @@
+import { EditorProps, EditorState } from "draft-js";
+import { StaticImageData } from "next/image";
 import { ReactElement, ReactNode } from "react";
+import { postType } from "./posts";
 
 export type CardProp = {
   children: ReactNode;
@@ -80,3 +83,36 @@ export interface TagsProp {
   id: string;
   title: string;
 }
+
+export type JWTProp = {
+  id: string;
+  email: string;
+};
+
+export type ComboBoxType = {
+  disabled?: boolean;
+  label: string;
+  id: string;
+  name: string;
+  options: any[];
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLSelectElement>, arg: string) => void;
+  control?: any;
+};
+
+export type PostFormType = {
+  imagefile: string | StaticImageData;
+  handleStateChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  categoryId: string;
+  tagsstate: TagsProp[];
+  editorState: EditorState;
+  onEditorStateChange: (editorState: EditorState) => void;
+  handleselect: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  titleref: React.LegacyRef<HTMLHeadingElement>;
+};
+
+export type SmallModalProp = {
+  handlefunction: () => void;
+  children: ReactNode;
+  modalitem: postType;
+};

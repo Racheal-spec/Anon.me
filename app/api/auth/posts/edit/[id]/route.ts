@@ -39,8 +39,6 @@ export async function PUT(req: Request, { params }: ParamType) {
     }
   } catch (error) {
     console.log(error);
-    // let res = NextResponse.next();
-    // return res.status;
     return NextResponse.json({
       message: error,
     });

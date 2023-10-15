@@ -8,7 +8,6 @@ import { userValue } from "@/app/context/userContext";
 import Image from "next/image";
 import profileimg from "../../Assets/images/profileimg.png";
 import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import SigninModal from "../SigninModal/SigninModal";
 import EmptyState from "../EmptyState/EmptyState";
 import { GetPostComments, createComment } from "@/app/context/Actions/Actions";
@@ -45,21 +44,12 @@ const Commentmodal = ({
     setCommentModal(false);
   };
 
-  // const handleclick = () => {
-  //   if (state?.user !== undefined) {
-  //     setToggle(!toggle);
-  //   } else {
-  //     setCommentModal(true);
-  //   }
-  // };
   const handleComment = async (data: any) => {
-    console.log(data);
     let textdata = JSON.stringify(data);
     let commentdata = await createComment(textdata, {
       user: state?.user ? state?.user?.data.id : "",
       post: postId,
     });
-    console.log(commentdata);
     if (commentdata) {
       setCommentData(commentdata);
     }
