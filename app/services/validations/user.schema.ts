@@ -52,3 +52,10 @@ export const MainUserSchema = z.object({
 });
 
 export type ProfileUserSchema = z.infer<typeof MainUserSchema>;
+
+export const decryptEmail = (obsfucatedemail: string) => {
+  const originalEmail = obsfucatedemail
+    ?.replace("&#64", "@")
+    ?.replace("&#46", ".");
+  return originalEmail;
+};

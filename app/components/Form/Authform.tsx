@@ -1,24 +1,21 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { login, registeruser } from "../../services/api";
-import Input from "../../uikits/Input/Input";
 import Link from "next/link";
 import Button from "../../uikits/Button/button";
 import style from "./authform.module.css";
 import { BsArrowRight } from "react-icons/bs";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-import { SubmitHandler, useForm, useController } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   UserSchema,
   UserSchemaType,
 } from "@/app/services/validations/user.schema";
 import { toast } from "react-toastify";
-//import loader from "../../Assets/svgs/loader.svg";
 import Loader from "../Loader/Loader";
-import { UserProp } from "@/app/Types/user";
 import ComboBox from "@/app/uikits/ComboBox/ComboBox";
 import { countries } from "countries-list";
 
@@ -184,7 +181,7 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
                 value={selectedLocation} // Pass the value from state
                 onChange={handleLocationChange}
                 name="location"
-                control={control}
+                control={control ? control : null}
               />
               {errors?.location && (
                 <span className={style.spanclass}>

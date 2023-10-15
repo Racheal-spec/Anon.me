@@ -1,9 +1,6 @@
-import { Providers } from "../Providers";
-import Navbar from "../components/Navbar/navbar";
 import { MainContext } from "../context";
 import "../globalstyles/globals.css";
 import { poppins } from "../fonts";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ToastProvider from "../ToastProvider";
 import Loading from "./Loading";

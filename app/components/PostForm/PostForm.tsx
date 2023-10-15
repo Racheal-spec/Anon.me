@@ -26,6 +26,7 @@ const PostForm = ({
 }: PostFormType) => {
   const {
     register,
+    control,
     formState: { errors, isSubmitting },
   } = useForm();
 
@@ -70,6 +71,7 @@ const PostForm = ({
         options={tagsstate}
         label={"Choose a Category"}
         onChange={handleselect}
+        control={control ? control : null}
       />
 
       <h1

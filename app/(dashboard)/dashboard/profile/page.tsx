@@ -12,18 +12,13 @@ import { editUsers } from "@/app/context/Actions/Actions";
 import {
   MainUserSchema,
   ProfileUserSchema,
+  decryptEmail,
 } from "@/app/services/validations/user.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 import Loader from "@/app/components/Loader/Loader";
 import { AiOutlineCamera } from "react-icons/ai";
 
-export const decryptEmail = (obsfucatedemail: string) => {
-  const originalEmail = obsfucatedemail
-    ?.replace("&#64", "@")
-    ?.replace("&#46", ".");
-  return originalEmail;
-};
 const Profile = () => {
   const { state } = userValue();
   const [, setSelectedLocationValue] = useState("");
@@ -78,7 +73,7 @@ const Profile = () => {
     }
   }, []);
 
-  console.log(profileImgFile);
+  // console.log(profileImgFile);
 
   return (
     <div className={styles.profilewrapper}>

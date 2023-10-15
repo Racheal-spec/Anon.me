@@ -10,7 +10,6 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
-  "type": "module",
   "dependencies": {
     "@ably-labs/react-hooks": "^2.1.1",
     "@chakra-ui/next-js": "^2.1.5",
