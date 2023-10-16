@@ -10,3 +10,4 @@ export const DASHBOARDACCOUNT = "/dashboard/account";
 export const SEARCH = (title: string) => `/search?title=${title}`;
 export const POSTDETAILS = (id: string) => `/post/${id}`;
 export const EDITDRAFT = (id: string) => `/edit?draft=${id}`;
+export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;

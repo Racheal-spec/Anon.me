@@ -1,10 +1,11 @@
 import { toast } from "react-toastify";
 import { postParamsType } from "../../Types/posts";
 import { getalltags } from "@/app/services/api";
+import { BASE_URL } from "@/app/Routes/RoutesUrl";
 
 export const getUsers = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/auth/user", {
+    const res = await fetch(`${BASE_URL}/api/auth/user`, {
       cache: "no-store",
     });
     if (!res.ok) {
@@ -23,7 +24,7 @@ export const getUsers = async () => {
 
 export const deleteUser = async () => {
   try {
-    const res = await fetch(`http://localhost:3000/api/auth/user`, {
+    const res = await fetch(`${BASE_URL}/api/auth/user`, {
       method: "DELETE",
       cache: "no-store",
     });
@@ -39,7 +40,7 @@ export const deleteUser = async () => {
 };
 
 export const logoutUser = async () => {
-  const res = await fetch("http://localhost:3000/api/auth/logout");
+  const res = await fetch(`${BASE_URL}/api/auth/logout`);
   if (!res.ok) {
     console.log(res);
   }
@@ -48,7 +49,7 @@ export const logoutUser = async () => {
 
 export const editUsers = async (formdata: any) => {
   try {
-    const res = await fetch("http://localhost:3000/api/auth/user", {
+    const res = await fetch(`${BASE_URL}/api/auth/user`, {
       cache: "no-store",
       method: "PUT",
       body: formdata,
@@ -70,7 +71,7 @@ export const editUsers = async (formdata: any) => {
 export const getPosts = async ({ take, lastCursor }: postParamsType) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/data/posts?take=${take}&lastCursor=${lastCursor}`,
+      `${BASE_URL}/api/data/posts?take=${take}&lastCursor=${lastCursor}`,
       {
         cache: "no-store",
       }
@@ -87,7 +88,7 @@ export const getPosts = async ({ take, lastCursor }: postParamsType) => {
 };
 export const getSinglePost = async (id: string) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/data/posts/${id}`);
+    const res = await fetch(`${BASE_URL}/api/data/posts/${id}`);
     if (!res.ok) {
       let err = await res.json();
       console.log(err);
@@ -101,7 +102,7 @@ export const getSinglePost = async (id: string) => {
 
 export const createNewPost = async (formdata: any) => {
   try {
-    const res = await fetch("http://localhost:3000/api/auth/posts/createpost", {
+    const res = await fetch(`${BASE_URL}/api/auth/posts/createpost`, {
       method: "POST",
       body: formdata,
     });
@@ -118,12 +119,9 @@ export const createNewPost = async (formdata: any) => {
 
 export const setPublishPost = async (id: string) => {
   try {
-    const res = await fetch(
-      `http://localhost:3000/api/data/posts/publish/${id}`,
-      {
-        method: "PUT",
-      }
-    );
+    const res = await fetch(`${BASE_URL}/api/data/posts/publish/${id}`, {
+      method: "PUT",
+    });
     if (!res.ok) {
       let err = await res.json();
       console.log(err);
@@ -141,7 +139,7 @@ export const getPublishedPosts = async ({
 }: postParamsType) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/data/posts/published?take=${take}&lastCursor=${lastCursor}`,
+      `${BASE_URL}/api/data/posts/published?take=${take}&lastCursor=${lastCursor}`,
       {
         method: "GET",
       }
@@ -163,7 +161,7 @@ export const searchPosts = async ({
 }: postParamsType) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/data/posts/search?title=${search}&take=${take}&lastCursor=${lastCursor}`
+      `${BASE_URL}/api/data/posts/search?title=${search}&take=${take}&lastCursor=${lastCursor}`
     );
     if (!res.ok) {
       let err = await res.json();
@@ -178,7 +176,7 @@ export const searchPosts = async ({
 
 export const getTags = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/data/tags");
+    const res = await fetch(`${BASE_URL}/api/data/tags`);
     if (!res.ok) {
       let err = await res.json();
       console.log(err);
@@ -192,7 +190,7 @@ export const getTags = async () => {
 
 export const editPost = async (formdata: any, { id }: { id: string }) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/auth/posts/edit/${id}`, {
+    const res = await fetch(`${BASE_URL}/api/auth/posts/edit/${id}`, {
       method: "PUT",
       body: formdata,
     });
@@ -209,13 +207,10 @@ export const editPost = async (formdata: any, { id }: { id: string }) => {
 
 export const deletePost = async (id: string) => {
   try {
-    const res = await fetch(
-      `http://localhost:3000/api/auth/posts/delete/${id}`,
-      {
-        method: "DELETE",
-        cache: "no-store",
-      }
-    );
+    const res = await fetch(`${BASE_URL}/api/auth/posts/delete/${id}`, {
+      method: "DELETE",
+      cache: "no-store",
+    });
     if (!res.ok) {
       let err = await res.json();
       console.log(err);
@@ -236,7 +231,7 @@ export const likePost = async ({
 }) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/auth/posts/like?user=${user}&post=${post}`,
+      `${BASE_URL}/api/auth/posts/like?user=${user}&post=${post}`,
       {
         method: "POST",
         cache: "no-store",
@@ -266,7 +261,7 @@ export const createComment = async (
 ) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/auth/posts/comment?user=${user}&post=${post}`,
+      `${BASE_URL}/api/auth/posts/comment?user=${user}&post=${post}`,
       {
         method: "POST",
         cache: "no-store",
@@ -285,9 +280,7 @@ export const createComment = async (
 
 export const GetPostComments = async ({ post }: { post: string }) => {
   try {
-    const res = await fetch(
-      `http://localhost:3000/api/auth/posts/comment?post=${post}`
-    );
+    const res = await fetch(`${BASE_URL}/api/auth/posts/comment?post=${post}`);
     if (!res.ok) {
       let err = await res.json();
       return err;
@@ -307,7 +300,7 @@ export const toggleBookmark = async ({
 }) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/auth/posts/bookmark?user=${user}&post=${post}`,
+      `${BASE_URL}/api/auth/posts/bookmark?user=${user}&post=${post}`,
       {
         method: "POST",
         cache: "no-store",
@@ -328,7 +321,7 @@ export const toggleBookmark = async ({
 export const GetBookmarks = async ({ userid }: { userid: string }) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/auth/posts/bookmark?user=${userid}`
+      `${BASE_URL}/api/auth/posts/bookmark?user=${userid}`
     );
     if (!res.ok) {
       let err = await res.json();
@@ -349,7 +342,7 @@ export const deleteBookmark = async ({
 }) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/api/auth/posts/bookmark?user=${user}&post=${post}`,
+      `${BASE_URL}/api/auth/posts/bookmark?user=${user}&post=${post}`,
       {
         method: "DELETE",
         cache: "no-store",

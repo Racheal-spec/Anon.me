@@ -3,6 +3,7 @@ import { poppins } from "../fonts";
 import SideNav from "./dashboard/SideNavComp/SideNav";
 import { MainContext } from "../context";
 import ToastProvider from "../ToastProvider";
+import { BASE_URL } from "../Routes/RoutesUrl";
 
 export const metadata = {
   title: "Penbuddy|Dashboard",
@@ -14,6 +15,9 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  if (!BASE_URL) {
+    return null;
+  }
   return (
     <html lang="en" className={poppins.className}>
       <body>

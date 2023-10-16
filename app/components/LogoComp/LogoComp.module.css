@@ -4,7 +4,7 @@
   align-items: center;
 }
 .logotext {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
   padding: 0 5px;
   background-image: var(--textGradient);
