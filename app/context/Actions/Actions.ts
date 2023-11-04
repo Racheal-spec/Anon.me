@@ -139,10 +139,7 @@ export const getPublishedPosts = async ({
 }: postParamsType) => {
   try {
     const res = await fetch(
-      `${BASE_URL}/api/data/posts/published?take=${take}&lastCursor=${lastCursor}`,
-      {
-        method: "GET",
-      }
+      `${BASE_URL}/api/data/posts/published?take=${take}&lastCursor=${lastCursor}`
     );
     if (!res.ok) {
       let err = await res.json();

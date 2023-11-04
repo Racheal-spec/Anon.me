@@ -13,6 +13,7 @@ import { BASE_URL } from "../Routes/RoutesUrl";
 //   description: "An anonymous blogging community for everyone",
 // };
 
+export const dynamic = "force-dynamic";
 export default function RootLayout({
   children,
 }: {
@@ -21,6 +22,7 @@ export default function RootLayout({
   if (!BASE_URL) {
     return null;
   }
+
   return (
     <html lang="en" className={poppins.className}>
       <body>
