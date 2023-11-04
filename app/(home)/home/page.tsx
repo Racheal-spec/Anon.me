@@ -7,12 +7,17 @@ import Loading from "../Loading";
 export default function Home() {
   return (
     <main className={styles.main}>
-      <Suspense fallback={<Loading />}>
+      {/* <Suspense fallback={<Loading />}>
         <BlogHeader />
         <div>
           <ShowHomeHeading />
         </div>
-      </Suspense>
+      </Suspense> */}
+
+      <BlogHeader />
+      <div>
+        <ShowHomeHeading />
+      </div>
     </main>
   );
 }
