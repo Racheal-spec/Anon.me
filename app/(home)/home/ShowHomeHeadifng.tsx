@@ -14,6 +14,8 @@ import { usePublishedPostValue } from "@/app/context/publishedpostsContext";
 import EmptyState from "@/app/components/EmptyState/EmptyState";
 import { changeTextFromHTML } from "@/app/services/HtmltoText";
 
+export const dynamic = "force-dynamic";
+
 const ShowHomeHeading = () => {
   const { state } = userValue();
   const { publishedposts, ref, lastCursor } = usePublishedPostValue();

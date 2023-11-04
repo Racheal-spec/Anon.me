@@ -16,6 +16,9 @@ import Commentmodal from "@/app/components/Commentmodal/Commentmodal";
 import { LiaCommentAlt } from "react-icons/lia";
 import SigninModal from "@/app/components/SigninModal/SigninModal";
 import { toast } from "react-toastify";
+
+export const dynamic = "force-dynamic";
+
 const DetailsComp = () => {
   let params = useParams();
 
