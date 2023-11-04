@@ -12,8 +12,7 @@ import { BASE_URL } from "../Routes/RoutesUrl";
 //   title: "Penbuddy|Home",
 //   description: "An anonymous blogging community for everyone",
 // };
-
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 export default function RootLayout({
   children,
 }: {
