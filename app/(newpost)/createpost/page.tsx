@@ -31,6 +31,7 @@ const Createpost = () => {
   );
   const titleref = useRef<HTMLHeadingElement | null>(null);
   const [categoryId, setCategoryId] = useState("");
+  const firstrender = useRef(false);
 
   //==========================HANDLERS=================================//
   const convertContentToRaw = () => {
@@ -87,6 +88,14 @@ const Createpost = () => {
       router.replace(EDITDRAFT(postdata?.data?.id));
     }
   }, [postdata]);
+
+  // useEffect(() => {
+  //  const firstRender = true;
+  //  if(firstRender)
+  // }, [])
+
+  console.log(tagsstate?.data);
+  console.log(categoryId);
 
   return (
     <div className={style.mainWrapper}>

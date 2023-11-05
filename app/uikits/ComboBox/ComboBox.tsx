@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Combobox.module.css";
 import { useController } from "react-hook-form";
 import { ComboBoxType } from "@/app/Types/global";
@@ -60,7 +60,7 @@ const ComboBox = React.forwardRef(
             {options &&
               options.map((option) => (
                 <option key={option?.id} value={option?.id}>
-                  {option?.name}
+                  {option?.title}
                 </option>
               ))}
           </select>

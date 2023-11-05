@@ -2,13 +2,12 @@ import { db } from "@/app/services/db";
 import { NextResponse } from "next/server";
 
 export async function GET(req: Request, res: NextResponse) {
+  // get page and lastCursor from query
+  const url = new URL(req.url);
+
+  const take = url.searchParams.get("take");
+  const lastCursor = url.searchParams.get("lastCursor");
   try {
-    // get page and lastCursor from query
-    const url = new URL(req.url);
-
-    const take = url.searchParams.get("take");
-    const lastCursor = url.searchParams.get("lastCursor");
-
     //get prisma to get the post
     const data = await db.post.findMany({
       take: take ? parseInt(take as string) : 7,

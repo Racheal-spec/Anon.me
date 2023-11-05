@@ -1,6 +1,5 @@
-import { validateJWT } from "@/app/services/Auth";
 import { db } from "@/app/services/db";
-import { cookies } from "next/headers";
+
 import { NextResponse } from "next/server";
 
 //================GET ALL TAGS==========================//
