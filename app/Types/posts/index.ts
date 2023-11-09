@@ -6,7 +6,7 @@ export type postType = {
   title: string;
   content: string;
   id: string;
-  createdAt: Date;
+  createdAt: any;
   updatedAt: Date;
   published: boolean;
   deleted: null;
@@ -69,4 +69,7 @@ export type LikeProp = {
   id: string;
   userId: string;
   postId: string;
+};
+export type trendingProp = {
+  data: postType[];
 };

@@ -1,6 +1,6 @@
 "use client";
 import { userValue } from "@/app/context/userContext";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import BorderCard from "@/app/components/BorderCard/BorderCard";
 import Trending from "@/app/components/Trending/Trending";
@@ -13,6 +13,7 @@ import Skeleton from "@/app/components/Skeleton/Skeleton";
 import { usePublishedPostValue } from "@/app/context/publishedpostsContext";
 import EmptyState from "@/app/components/EmptyState/EmptyState";
 import { changeTextFromHTML } from "@/app/services/HtmltoText";
+import { TrendingPosts } from "@/app/context/Actions/Actions";
 
 export const dynamic = "force-dynamic";
 
@@ -44,7 +45,6 @@ const ShowHomeHeading = () => {
                 {publishedposts &&
                   publishedposts?.map((val: postType) => {
                     let excerpt = `${val?.content.slice(0, 200)}...`;
-                    console.log(val.likes);
                     return (
                       <div key={val?.id}>
                         <BorderCard
@@ -82,12 +82,9 @@ const ShowHomeHeading = () => {
 
           <div className={styles.trendingCard}>
             <div>
-              <Trending
-                title="Return to Normal: Why I Have Been Gone"
-                author="Richard Norson"
-                createdAt="22.10.2022"
-              />
+              <Trending />
             </div>
+
             <div>
               {state?.user === null || state?.user === undefined ? (
                 <LoginSideComp />

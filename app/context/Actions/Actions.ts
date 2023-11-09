@@ -354,3 +354,22 @@ export const deleteBookmark = async ({
     console.log(error);
   }
 };
+
+export const TrendingPosts = async () => {
+  try {
+    const res = await fetch(`${BASE_URL}/api/data/posts/trending`, {
+      cache: "no-store",
+    });
+    if (!res.ok) {
+      let err = await res.json();
+      console.log(err);
+      return err;
+      // toast.error(err.message);
+    }
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

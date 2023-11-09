@@ -70,8 +70,6 @@ const Commentmodal = ({
     handleAllComments();
   }, [commentData]);
 
-  console.log(commentsArray);
-
   return (
     <div className={styles.commentmodal}>
       <div ref={ref} className={classNames(styles.sidebarStyles, active)}>
@@ -108,7 +106,9 @@ const Commentmodal = ({
                 <textarea
                   placeholder="Write a thoughtful advice..."
                   className={styles.textarea}
-                  {...register("text")}
+                  {...register("text", {
+                    required: true,
+                  })}
                 />
                 <div className={styles.btnDiv}>
                   <Button pinkOutline>Cancel</Button>
