@@ -60,7 +60,7 @@ const ComboBox = React.forwardRef(
             {options &&
               options.map((option) => (
                 <option key={option?.id} value={option?.id}>
-                  {option?.title}
+                  {option?.title || option?.name}
                 </option>
               ))}
           </select>

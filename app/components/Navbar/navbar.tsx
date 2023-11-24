@@ -56,7 +56,7 @@ const Navbar = () => {
       <div className={styles.navwrapper}>
         <LogoComp />
 
-        {isMobile ? (
+        {isMobile && (
           <>
             <div className={styles.searchLi}>
               <BiSearch color="#FF9753" className={styles.searchicon} />
@@ -99,9 +99,7 @@ const Navbar = () => {
               {show && <Profile handleProfile={handleProfile} />}
             </div>
           </>
-        ) : (
-          ""
-        )}
+        ) }
 
         {/**===========MOBILE NAVBAR VERSION============ */}
         {isMobile ? (

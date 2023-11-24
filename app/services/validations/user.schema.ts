@@ -8,7 +8,6 @@ export const UserSchema = z.object({
     })
     .min(1, "Anonymous name is required")
     .max(20)
-    .startsWith("Anon")
     .optional(),
   email: z
     .string({

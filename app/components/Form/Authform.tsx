@@ -18,6 +18,8 @@ import { toast } from "react-toastify";
 import Loader from "../Loader/Loader";
 import ComboBox from "@/app/uikits/ComboBox/ComboBox";
 import { countries } from "countries-list";
+import { HOME } from "@/app/Routes/RoutesUrl";
+import { IoIosArrowRoundBack } from "react-icons/io";
 
 const registerUser = {
   linkurl: "/login",
@@ -61,8 +63,11 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
   } = useForm<UserSchemaType>({
     resolver: zodResolver(UserSchema),
   });
+  const countriesArray = Object.values(countries);
+
 
   const [selectedLocation, setSelectedLocation] = useState(""); // Initial or controlled value
+
   const handleFormSubmit: SubmitHandler<UserSchemaType> = async (state) => {
     try {
       if (mode === "register") {
@@ -89,17 +94,18 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
     setShow(!show);
   };
 
-  const countriesArray = Object.values(countries);
+
 
   const handleLocationChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-    selectedValue: string
+    event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    setSelectedLocation(selectedValue);
+    setSelectedLocation(event.target.value);
+
   };
 
   return (
     <div className={style.formWrapper}>
+       
       <form onSubmit={handleSubmit(handleFormSubmit)} className={style.formBg}>
         <h1 className={style.formheader}>{content.header}</h1>
         <p className={style.formtext}>{content.subheader}</p>
@@ -111,12 +117,19 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
                   Anon Name<span className={style.spancolor}>*</span>
                 </label>
               </div>
+              <div className={style.pwdInputDiv}>
+              <div><p>Anon</p></div>
+          
+                  <div className={style.divider}></div>
+          
               <input
                 placeholder="Anonymous name"
                 {...register("anonname")}
                 className={style.inputStyle}
               />
 
+            
+              </div>
               {errors.anonname && (
                 <span className={style.spanclass}>
                   {errors.anonname.message}
@@ -219,7 +232,14 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
             </div>
           </div>
         </div>
+       
       </form>
+     <div className={style.homelink}>
+<IoIosArrowRoundBack />
+     <Link href={HOME}>
+        Go back home
+      </Link>
+     </div>
     </div>
   );
 };

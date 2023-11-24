@@ -42,7 +42,7 @@ const Profile = ({ handleProfile }: ProfileProp) => {
         >
           <li>Dashboard</li>
         </Link>
-        <hr className={style.hrStyle} />
+        <div className={style.hrStyle}></div>
         <div
           onClick={SignOutUser}
           className={style.profilelink}

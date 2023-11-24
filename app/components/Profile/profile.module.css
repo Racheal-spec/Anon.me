@@ -31,9 +31,10 @@
   cursor: pointer;
 }
 .hrStyle {
-  width: 80%;
+
   margin: 0 auto;
-  color: #eff1f53e;
+
+  border-bottom: 1px solid var(--bordercolor);
 }
 
 /**========================MEDIA QUERIES==================================**/

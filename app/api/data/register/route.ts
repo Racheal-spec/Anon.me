@@ -30,7 +30,7 @@ export async function POST(req: Request, res: Response) {
 
       const user = await db.user.create({
         data: {
-          anonname: data.anonname!,
+          anonname: `Anon${data.anonname!}`,
           email: data.email,
           password: await hashPassword(data.password),
           location: data.location,
@@ -55,6 +55,8 @@ export async function POST(req: Request, res: Response) {
 
       if (user) {
         user.password = undefined!;
+        user.email = undefined!;
+        user.location = undefined!;
         return NextResponse.json(
           {
             status: "created",
