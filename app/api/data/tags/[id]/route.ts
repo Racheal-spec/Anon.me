@@ -11,6 +11,7 @@ export async function GET(req: Request, { params }: ParamType) {
       },
       include: {
         posts: true,
+        author: true
       },
     });
     if (!tag) {

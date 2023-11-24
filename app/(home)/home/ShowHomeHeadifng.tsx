@@ -13,7 +13,6 @@ import Skeleton from "@/app/components/Skeleton/Skeleton";
 import { usePublishedPostValue } from "@/app/context/publishedpostsContext";
 import EmptyState from "@/app/components/EmptyState/EmptyState";
 import { changeTextFromHTML } from "@/app/services/HtmltoText";
-import { TrendingPosts } from "@/app/context/Actions/Actions";
 
 export const dynamic = "force-dynamic";
 

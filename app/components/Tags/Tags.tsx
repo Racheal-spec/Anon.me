@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./Tags.module.css";
 import { useTagsValue } from "@/app/context/TagsContext";
+import Link from "next/link";
+import { TAGSDETAILS } from "@/app/Routes/RoutesUrl";
 
 const Tags = () => {
   const { tagsstate } = useTagsValue();
@@ -14,7 +16,9 @@ const Tags = () => {
         {tagsstate &&
           tagsstate?.data?.map((tag, index) => (
             <div className={styles.tagdiv} key={index}>
-              <p>{tag?.title}</p>
+              <Link href={TAGSDETAILS(tag?.id)}>
+                <p>{tag?.title}</p>
+              </Link>
             </div>
           ))}
       </div>

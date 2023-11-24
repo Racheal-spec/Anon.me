@@ -12,7 +12,7 @@ const Skeleton = () => {
           <div className={classNames(styles.skeleton, styles.desc)}></div>
           <div className={classNames(styles.skeleton, styles.desc)}></div>
           <div className={classNames(styles.skeleton, styles.desc)}></div>
-          <hr className={styles.hrstyles} />
+          <div className={styles.divider}></div>
           <div className={styles.bottomDesc}>
             <div className={classNames(styles.skeleton, styles.name)}></div>
             <div className={styles.rightsideStyle}>

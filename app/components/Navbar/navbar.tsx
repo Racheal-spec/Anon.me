@@ -206,7 +206,7 @@ const Navbar = () => {
                 </li>
 
                 <li>
-                  <hr className={styles.divider} />
+                  <div className={styles.divider}></div>
                 </li>
 
                 {/**======================VIEW PROFILE================================ */}

@@ -21,6 +21,7 @@ model User {
   postlikes     PostLike[]
   commentlikes   CommentLike[]
   bookmarks    Bookmarks[]
+  category     Category[]
 }
 
 model Post {
@@ -62,6 +63,8 @@ model Category {
   id    String   @id @default(uuid())
   title  String
   posts   Post[]
+  author    User       @relation(fields: [authorId], references: [id]) 
+  authorId   String  
 }
 
 model PostLike {

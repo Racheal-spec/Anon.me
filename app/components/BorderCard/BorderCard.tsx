@@ -99,7 +99,7 @@ const BorderCard = React.memo(
                 <p>{excerpts}</p>
               </div>
             </Link>
-            <hr className={styles.hrstyles} />
+            <div className={styles.divider}></div>
             <div className={styles.subElementsDiv}>
               <div>
                 <p>By: {author}</p>

@@ -24,8 +24,9 @@
   object-fit: cover;
   border-radius: 8px;
 }
-.hrstyles {
-  color: var(--dividercolor);
+
+.divider {
+  border-bottom: 1px solid var(--bordercolor);
   margin: 10px 0;
 }
 .subElementsDiv {

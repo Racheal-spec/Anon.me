@@ -185,6 +185,20 @@ export const getTags = async () => {
   }
 };
 
+export const getSingleTag = async (id: string) => {
+  try {
+    const res = await fetch(`${BASE_URL}/api/data/tags/${id}`);
+    if (!res.ok) {
+      let err = await res.json();
+      console.log(err);
+      // toast.error(err.message);
+    }
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const editPost = async (formdata: any, { id }: { id: string }) => {
   try {
     const res = await fetch(`${BASE_URL}/api/auth/posts/edit/${id}`, {

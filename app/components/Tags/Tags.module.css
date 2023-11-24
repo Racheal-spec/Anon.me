@@ -17,4 +17,10 @@
   padding: 5px 6px;
   margin-right: 8px;
   margin-bottom: 8px;
+  cursor: pointer;
+}
+.tagdiv:hover {
+  background-color: var(--secondary);
+  color: var(--lightgrey);
+  transition: all 0.5s;
 }
