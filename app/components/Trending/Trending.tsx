@@ -40,6 +40,13 @@ const Trending = () => {
             </div>
           </div>
         ))}
+        {
+          trending?.data.length === 0 ? (
+            <div className={styles.emptystories}>
+               <p>There are no available stories trending.</p>
+            </div>
+          ) : ("")
+        }
     </div>
   );
 };

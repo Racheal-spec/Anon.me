@@ -18,6 +18,11 @@
 .dateDiv {
   margin: 0 20px;
 }
+.emptystories{
+  font-size: 0.8rem;
+  padding: 20px 0px 5px 0px;
+  color: var(--greytext);
+}
 @media screen and (min-width: 768px) {
   /* For desktops: */
   .trendingCardWrapper {

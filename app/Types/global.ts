@@ -1,8 +1,7 @@
-import { EditorProps, EditorState } from "draft-js";
+import {  EditorState } from "draft-js";
 import { StaticImageData } from "next/image";
 import { ReactElement, ReactNode } from "react";
 import { postType } from "./posts";
-import { Control, FieldValues } from "react-hook-form";
 
 export type CardProp = {
   children: ReactNode;
@@ -83,6 +82,7 @@ export type PostLikeProp = {
 export interface TagsProp {
   id: string;
   title: string;
+  posts: postType[];
 }
 
 export type JWTProp = {
