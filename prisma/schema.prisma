@@ -63,7 +63,7 @@ model Category {
   id    String   @id @default(uuid())
   title  String
   posts   Post[]
-  author    User       @relation(fields: [authorId], references: [id]) 
+  author    User?       @relation(fields: [authorId], references: [id]) 
   authorId   String  
 }
 
