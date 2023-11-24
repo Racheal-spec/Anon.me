@@ -57,10 +57,11 @@ export async function GET(req: Request, res: NextResponse) {
       let nullpassword = (val.author.password = undefined!);
       let nullemail = (val.author.email = undefined!);
       //makem location undefined too after you've done it from the frontend.
-      // let nulllocation = (val.author.location = undefined!);
+       let nulllocation = (val.author.location = undefined!);
       return {
         nullemail,
         nullpassword,
+        nulllocation
       };
     });
 

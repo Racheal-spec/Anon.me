@@ -57,6 +57,8 @@ export async function GET(req: Request, res: NextResponse) {
       }),
     });
     data.map((val) => (val.author.password = undefined!));
+    data.map((val) => (val.author.email = undefined!));
+    data.map((val) => (val.author.location= undefined!));
     return NextResponse.json(
       {
         status: "ok",

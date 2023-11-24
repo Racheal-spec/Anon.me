@@ -3,7 +3,7 @@ import { Suspense } from "react";
 import ToastProvider from "../ToastProvider";
 import Navbar from "../components/Navbar/navbar";
 import { MainContext } from "../context";
-import { poppins } from "../fonts";
+import { inter } from "../fonts";
 import "../globalstyles/globals.css";
 import Loading from "./Loading";
 import { BASE_URL } from "../Routes/RoutesUrl";
@@ -23,7 +23,7 @@ export default function RootLayout({
   }
 
   return (
-    <html lang="en" className={poppins.className}>
+    <html lang="en" className={inter.className}>
       <body>
         <Suspense fallback={<Loading />}>
           <MainContext>

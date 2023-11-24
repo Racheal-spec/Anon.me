@@ -67,12 +67,12 @@ export const PostProvider = ({
       });
       setLoading(false);
     }
-    setPosts((prev) => [
-      ...(prev?.length ? prev : []),
-      ...(moredata?.data?.length ? moredata?.data : []),
-    ]);
+    // setPosts((prev) => [
+    //   ...(prev?.length ? prev : []),
+    //   ...(moredata?.data?.length ? moredata?.data : []),
+    // ]);
+    setPosts(moredata?.data?.length ? moredata?.data : []);
     setLastCursor(moredata?.metaData?.lastCursor);
-    // setTake(take + moredata?.data.length);
   };
 
   useEffect(() => {

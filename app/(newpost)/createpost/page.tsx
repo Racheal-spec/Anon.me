@@ -54,6 +54,7 @@ const Createpost = () => {
     setValue("title", titleref.current?.innerText);
 
     try {
+     if(formData){
       setLoading(true);
       // console.log(formData);
       const res = await createNewPost(formData);
@@ -63,6 +64,7 @@ const Createpost = () => {
         setLoading(false);
         toast.success("Your post has been saved as draft!");
       }
+    }
     } catch (error) {
       console.log(error);
       if (error) {

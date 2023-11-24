@@ -68,15 +68,17 @@ export const PublishedProvider = ({
         type: PublishedTypes.Get_Published,
         payload: publisheddata?.data,
       });
+   
       setLoading(false);
     }
-    setPublishedPosts((prev) => [
-      ...(prev?.length ? prev : []),
-      ...(publisheddata?.data?.length ? publisheddata?.data : []),
-    ]);
+    // setPublishedPosts((prev) => [
+    //   ...(prev?.length ? prev : []),
+    //   ...(publisheddata?.data?.length ? publisheddata?.data : []),
+    // ]);
+    setPublishedPosts(publisheddata?.data?.length ? publisheddata?.data : []);
     setLastCursor(publisheddata?.metaData?.lastCursor);
-    // setTake(take + moredata?.data.length);
   };
+  console.log(publishedposts)
 
   useEffect(() => {
     if (state?.user === null || state?.user === undefined) {

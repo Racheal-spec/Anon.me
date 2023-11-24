@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import ToastProvider from "../ToastProvider";
-import { poppins } from "../fonts";
+import { inter } from "../fonts";
 import "../globalstyles/globals.css";
 import { MainContext } from "../context";
 import Loading from "./Loading";
@@ -20,7 +20,7 @@ export default function RootLayout({
     return null;
   }
   return (
-    <html lang="en" className={poppins.className}>
+    <html lang="en" className={inter.className}>
       <body>
         <Suspense fallback={<Loading />}>
           <MainContext>

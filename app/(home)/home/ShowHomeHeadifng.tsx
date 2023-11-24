@@ -19,7 +19,7 @@ export const dynamic = "force-dynamic";
 const ShowHomeHeading = () => {
   const { state } = userValue();
   const { publishedposts, ref, lastCursor } = usePublishedPostValue();
-
+console.log(publishedposts)
   return (
     <div>
       <section className={styles.blogsection}>
@@ -43,13 +43,13 @@ const ShowHomeHeading = () => {
               <div>
                 {publishedposts &&
                   publishedposts?.map((val: postType) => {
-                    let excerpt = `${val?.content.slice(0, 200)}...`;
+                    let excerpt = `${val?.content?.slice(0, 200)}...`;
                     return (
                       <div key={val?.id}>
                         <BorderCard
                           id={val?.id}
                           title={val?.title}
-                          author={val?.author.anonname}
+                          author={val?.author?.anonname}
                           excerpts={changeTextFromHTML(excerpt)}
                           postimage={val?.postimage}
                           createdAt={val?.createdAt}

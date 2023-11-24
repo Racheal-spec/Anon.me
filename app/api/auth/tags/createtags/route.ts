@@ -7,8 +7,8 @@ export async function POST(req: Request) {
     const tags = await db.category.create({
       data: {
         title: body.title,
-        author: body.author
       },
+    
     });
     if (!tags) {
       return NextResponse.json({

@@ -1,5 +1,5 @@
 import "../globalstyles/globals.css";
-import { poppins } from "../fonts";
+import { inter } from "../fonts";
 import SideNav from "./dashboard/SideNavComp/SideNav";
 import { MainContext } from "../context";
 import ToastProvider from "../ToastProvider";
@@ -19,7 +19,7 @@ export default function RootLayout({
     return null;
   }
   return (
-    <html lang="en" className={poppins.className}>
+    <html lang="en" className={inter.className}>
       <body>
         <MainContext>
           <div className="dashboardWrapper">

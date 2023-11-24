@@ -9,7 +9,7 @@ const LoggedInBorderComp = ({ title, description }: LoggedInBorderType) => {
   return (
     <div className={styles.compBorderWrapper}>
       <div className={styles.compDiv}>
-        <h3>{title}</h3>
+        <h2>{title}</h2>
         <p>{description}</p>
       </div>
     </div>

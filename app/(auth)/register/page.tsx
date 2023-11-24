@@ -8,7 +8,6 @@ const Register = () => {
   return (
     <div className={style.bgWrapper}>
       <Authform mode="register" />
-     
     </div>
   );
 };

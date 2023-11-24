@@ -9,14 +9,14 @@
 .compDiv {
   padding: 10px;
 }
-.compDiv h3 {
+.compDiv h2 {
   text-align: left;
   padding: 10px 0;
 }
 .compDiv p {
   text-align: left;
   padding: 10px 0px;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 @media screen and (min-width: 768px) {
   /* For desktops: */

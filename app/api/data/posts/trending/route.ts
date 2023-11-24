@@ -33,7 +33,8 @@ export async function GET(req: Request, res: NextResponse) {
     }
 
     mostlikedPosts.map((val) => (val.author.password = undefined!));
-
+    mostlikedPosts.map((val) => (val.author.email = undefined!));
+    mostlikedPosts.map((val) => (val.author.location= undefined!));
     return NextResponse.json(
       {
         status: "ok",
