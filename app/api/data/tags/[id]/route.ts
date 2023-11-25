@@ -10,8 +10,7 @@ export async function GET(req: Request, { params }: ParamType) {
         id: tagid,
       },
       include: {
-        posts: true,
-        author: true
+        posts: true
       },
     });
     if (!tag) {
