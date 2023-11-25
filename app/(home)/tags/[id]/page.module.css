@@ -9,3 +9,23 @@
   text-transform: capitalize;
   text-align: center;
 }
+/**========================MEDIA QUERIES==================================**/
+
+@media screen and (min-width: 768px) {
+  /* For desktops: */
+  .tagswrapper {
+    padding: 80px 120px;
+  }
+  .resultWrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 20px 0;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* For tablets: */
+  .tagswrapper {
+    padding: 80px 90px;
+  }
+}
