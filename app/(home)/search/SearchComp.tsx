@@ -10,6 +10,7 @@ import { postType } from "@/app/Types/posts";
 import { IoIosArrowDown } from "react-icons/io";
 import EmptyState from "@/app/components/EmptyState/EmptyState";
 import SearchLoader from "@/app/components/SearchLoader/SearchLoader";
+import { changeTextFromHTML } from "@/app/services/HtmltoText";
 const SearchComp = () => {
   const param = useSearchParams().get("title");
   const { searchstate, searchdispatch } = useSearchValue();
@@ -69,7 +70,7 @@ const SearchComp = () => {
                   id={result?.id}
                   title={result?.title}
                   author={result?.author.anonname}
-                  excerpts={excerpt}
+                  excerpts={changeTextFromHTML(excerpt)}
                   postimage={result?.postimage}
                   createdAt={result?.createdAt}
                 />

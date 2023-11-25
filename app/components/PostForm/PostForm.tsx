@@ -29,6 +29,7 @@ const PostForm = ({
     control,
     formState: { errors, isSubmitting },
   } = useForm();
+console.log(tagsstate)
 
   return (
     <div className={style.post_div}>

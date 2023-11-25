@@ -8,6 +8,7 @@ import { SEARCH } from "@/app/Routes/RoutesUrl";
 import Link from "next/link";
 import { postType } from "@/app/Types/posts";
 import SearchLoader from "../SearchLoader/SearchLoader";
+import { changeTextFromHTML } from "@/app/services/HtmltoText";
 
 type SearchModalType = {
   searchmodal: boolean;
@@ -53,7 +54,14 @@ const SearchModal = React.memo(
         handleclose();
         handleSubmit(handlesearch);
       }
+     
     };
+
+    const handleClick = () => {
+      router.push(SEARCH(searchterm));
+      handleclose();
+      handleSubmit(handlesearch);
+    }
 
     useEffect(() => {
       if (searchterm) {
@@ -91,7 +99,7 @@ const SearchModal = React.memo(
                         <Link href={SEARCH(searchterm)} onClick={handleclose}>
                           <h4>{result?.title}</h4>
                         </Link>
-                        <p>{excerpt}</p>
+                        <p>{changeTextFromHTML(excerpt)}</p>
                       </div>
                     );
                   })}
@@ -106,7 +114,7 @@ const SearchModal = React.memo(
                 </p>
               ) : (
                 <div className={styles.btnDiv}>
-                  <Button pinkOutline>See all results</Button>
+                  <Button pinkOutline onClick={handleClick}>See all results</Button>
                 </div>
               )}
             </div>

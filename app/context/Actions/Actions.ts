@@ -2,7 +2,41 @@ import { toast } from "react-toastify";
 import { postParamsType } from "../../Types/posts";
 import { getalltags } from "@/app/services/api";
 import { BASE_URL } from "@/app/Routes/RoutesUrl";
+import { UserSchemaType } from "@/app/services/validations/user.schema";
 
+export const registerUsers = async (user: any) => {
+  try {
+    const res = await fetch(`${BASE_URL}/api/data/register`, {
+      method: "POST",
+      body: JSON.stringify(user)
+    });
+    if (!res.ok) {
+      let err = await res.json();
+      console.log(err);
+      toast.error(err.message);
+    }
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const loginUsers = async (user: any) => {
+  try {
+    const res = await fetch(`${BASE_URL}/api/data/login`, {
+      method: "POST",
+      body: JSON.stringify(user)
+    });
+    if (!res.ok) {
+      let err = await res.json();
+      console.log(err);
+      toast.error(err.message);
+    }
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+}
 export const getUsers = async () => {
   try {
     const res = await fetch(`${BASE_URL}/api/auth/user`, {
@@ -40,11 +74,15 @@ export const deleteUser = async () => {
 };
 
 export const logoutUser = async () => {
+ try {
   const res = await fetch(`${BASE_URL}/api/auth/logout`);
   if (!res.ok) {
     console.log(res);
   }
   return await res.json();
+ } catch (error) {
+  console.log(error);
+ }
 };
 
 export const editUsers = async (formdata: any) => {

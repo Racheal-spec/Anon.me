@@ -25,7 +25,7 @@ const Trending = () => {
       {trending?.data?.length !== 0 &&
         trending &&
         trending?.data?.map((el) => (
-          <div className={styles.subDiv}>
+          <div key={el?.id} className={styles.subDiv}>
             <Link href={POSTDETAILS(el?.id as string)}>
               <h5>{el.title}</h5>
             </Link>

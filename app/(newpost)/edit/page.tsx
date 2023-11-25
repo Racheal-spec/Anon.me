@@ -37,6 +37,7 @@ const Editpost = () => {
   const [updatecategoryId, setUpdateCategoryId] = useState("");
   const [singlepostData, setSinglePostData] = useState<postType | null>(null);
   const firstRender = useRef(true);
+  const [cat, setCat] = useState("");
 
   //==========================HANDLERS=================================//
   const convertContentToRaw = () => {
@@ -123,15 +124,19 @@ const Editpost = () => {
         router.replace(CREATEPOST);
       }
       if (edittitleref && edittitleref.current && singlepostData) {
+ 
         const title = singlepostData.title || "";
         setValue("title", (edittitleref.current.innerText = title));
-        setUpdateCategoryId(singlepostData?.categoryId);
+        setUpdateCategoryId(singlepostData?.categoryId );
       }
       if (singlepostData?.published === true) {
         setEditStatus(true);
       }
     }
+   
   }, [singlepostData]);
+
+  let catValue = tagsstate?.data?.find((el) =>  el.id === updatecategoryId);
 
   return (
     <div className={style.mainWrapper}>
@@ -149,7 +154,7 @@ const Editpost = () => {
         editorState={editorState}
         onEditorStateChange={handleEditEditorChange}
         handleselect={handleEditselect}
-        categoryId={updatecategoryId}
+        categoryId={catValue?.id || updatecategoryId}
       />
     </div>
   );

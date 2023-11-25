@@ -20,6 +20,7 @@ import ComboBox from "@/app/uikits/ComboBox/ComboBox";
 import { countries } from "countries-list";
 import { HOME } from "@/app/Routes/RoutesUrl";
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { loginUsers, registerUsers } from "@/app/context/Actions/Actions";
 
 const registerUser = {
   linkurl: "/login",
@@ -65,18 +66,17 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
   });
   const countriesArray = Object.values(countries);
 
-
   const [selectedLocation, setSelectedLocation] = useState(""); // Initial or controlled value
 
   const handleFormSubmit: SubmitHandler<UserSchemaType> = async (state) => {
     try {
       if (mode === "register") {
-        let result: any = await registeruser(state);
+        let result: any = await registerUsers(state);
         if (result?.status === "created") {
           router.replace("/home");
         }
       } else {
-        let loginresult: any = await login(state);
+        let loginresult: any = await loginUsers(state);
         if (loginresult?.status === "ok") {
           router.replace("/home");
         }
@@ -102,6 +102,8 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
     setSelectedLocation(event.target.value);
 
   };
+
+  console.log(countriesArray)
 
   return (
     <div className={style.formWrapper}>

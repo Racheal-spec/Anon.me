@@ -56,7 +56,7 @@ const DetailsComp = () => {
     if (state?.user === undefined) {
       setLikemodal(true);
     }
-    if (liked) {
+    if (state?.user !== undefined && liked) {
       setLikesCount((prev) => prev - 1);
     } else {
       setLikesCount((prev) => prev + 1);

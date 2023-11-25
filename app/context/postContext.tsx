@@ -47,7 +47,6 @@ export const PostProvider = ({
     Reducer,
     initialPostState
   );
-
   const { state } = userValue();
   const { ref, inView } = useInView();
   let [lastCursor, setLastCursor] = useState("");
@@ -71,7 +70,12 @@ export const PostProvider = ({
     //   ...(prev?.length ? prev : []),
     //   ...(moredata?.data?.length ? moredata?.data : []),
     // ]);
-    setPosts(moredata?.data?.length ? moredata?.data : []);
+    setPosts((prev) => [
+      ...(prev || []),  
+      ...(moredata?.data || []).filter(
+        (item: any) => !prev.some((prevItem) => prevItem.id === item.id)
+      ),
+    ]);
     setLastCursor(moredata?.metaData?.lastCursor);
   };
 
@@ -80,13 +84,11 @@ export const PostProvider = ({
       return;
     } else if (inView && state.user !== null) {
       fetchMorePosts();
-      console.log("loaded fetchmore againnnnn");
     }
   }, [inView]);
 
   useEffect(() => {
     fetchMorePosts();
-    console.log("loaded newdata againnnnn");
   }, []);
   return (
     <PostContext.Provider

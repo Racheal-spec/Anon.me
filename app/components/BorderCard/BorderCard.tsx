@@ -102,7 +102,11 @@ const BorderCard = React.memo(
             <div className={styles.divider}></div>
             <div className={styles.subElementsDiv}>
               <div>
-                <p>By: {author}</p>
+              {
+                author !== undefined && (
+                    <p>By: {author}</p>
+                )
+              }
               </div>
               <div className={styles.secondSubDiv}>
                 <div className={styles.flex}>

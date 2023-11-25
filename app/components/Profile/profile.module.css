@@ -31,9 +31,7 @@
   cursor: pointer;
 }
 .hrStyle {
-
   margin: 0 auto;
-
   border-bottom: 1px solid var(--bordercolor);
 }
 

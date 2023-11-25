@@ -1,0 +1,59 @@
+
+  .container {
+    background-color: #D7CCC8;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+  }
+  .card {
+    background-color: #fff;
+    max-width: 800px;
+    box-shadow: 2px 2px 5px #9E9E9E, -1px -1px 5px #9E9E9E;
+    border-radius: 3px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+  }
+   .imgcontainer {
+    width: 230px;
+    height: 100%;
+    grid-column: 2;
+    background-color: #c1b7b4;
+    background-image: url('https://www.dropbox.com/s/7d5qt5wb2xpqeww/city-street.jpg?raw=1');
+    background-size: cover;
+    background-position: center center;
+  }
+  .cardcontent {
+    grid-column: 3 / 5;
+    padding: 10px 30px;
+    border-left: 1px solid #ccc;
+  }
+  h2 {
+    text-transform: uppercase;
+    color: #555;
+  }
+  h1 {
+    margin-bottom: 0;
+  }
+   .author {
+    border-top: 1px solid #cdcdcd;
+    font-weight: 700;
+    margin-top: 25px;
+    padding: 25px 0 10px 0;
+    color: #555;
+  }
+  
+  @media only screen and (max-width:600px) {
+    .card {
+      display: block;
+    }
+  .imgcontainer {
+      height: 250px;
+      width: 100%;
+    }
+    .cardcontent {
+      border: 0;
+      border-top: 1px solid #ccc;
+    }
+  }

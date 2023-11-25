@@ -71,14 +71,20 @@ export const PublishedProvider = ({
    
       setLoading(false);
     }
+    setPublishedPosts((prev) => [
+      ...(prev || []),  
+      ...(publisheddata?.data || []).filter(
+        (item: any) => !prev.some((prevItem) => prevItem.id === item.id)
+      ),
+    ]);
+    
     // setPublishedPosts((prev) => [
     //   ...(prev?.length ? prev : []),
     //   ...(publisheddata?.data?.length ? publisheddata?.data : []),
     // ]);
-    setPublishedPosts(publisheddata?.data?.length ? publisheddata?.data : []);
+    //setPublishedPosts(publisheddata?.data?.length ? publisheddata?.data : []);
     setLastCursor(publisheddata?.metaData?.lastCursor);
   };
-  console.log(publishedposts)
 
   useEffect(() => {
     if (state?.user === null || state?.user === undefined) {

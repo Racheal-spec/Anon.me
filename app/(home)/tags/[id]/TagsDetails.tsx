@@ -6,6 +6,8 @@ import { getSingleTag } from "@/app/context/Actions/Actions";
 import SearchLoader from "@/app/components/SearchLoader/SearchLoader";
 import BorderCard from "@/app/components/BorderCard/BorderCard";
 import { TagsProp } from "@/app/Types/global";
+import EmptyState from "@/app/components/EmptyState/EmptyState";
+import Card from "@/app/components/Card/Card";
 
 const TagsDetails = () => {
   let params = useParams();
@@ -26,7 +28,18 @@ const TagsDetails = () => {
   console.log(singletag);
   return (
     <div className={styles.tagswrapper}>
-      <div>{singletag?.title ?? ""}</div>
+      <div className={styles.banner}>
+      {singletag?.posts?.length !== 0 && (
+       <h1>{singletag?.title ?? ""}</h1>
+      )}
+      
+      </div>
+      {singletag?.posts?.length === 0 && (
+          <EmptyState
+            heading={`No ${singletag?.title} post Yet`}
+            description="No available post for this category, kindly check back later"
+          />
+      )}
       {isLoading ? (
         <div className={styles.loaderdiv}>
           <SearchLoader />

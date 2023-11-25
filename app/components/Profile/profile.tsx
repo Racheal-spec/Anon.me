@@ -8,29 +8,29 @@ import { UseClickOutside } from "@/hooks/ClickOutside";
 import { usePathname } from "next/navigation";
 import { logoutUser } from "@/app/context/Actions/Actions";
 
+
 type ProfileProp = {
   handleProfile: () => void;
 };
 
 const Profile = ({ handleProfile }: ProfileProp) => {
-  let router = useRouter();
+ 
+
   const [logout, setLogout] = useState(false);
 
-  const pathname = usePathname();
+ // const pathname = usePathname();
   const ref = UseClickOutside(handleProfile);
 
   const SignOutUser = async () => {
-    await logoutUser();
+   let logoutdata = await logoutUser();
     setLogout(true);
-    if (logout) {
-      router.push(pathname);
+    if (logoutdata){
+      //router.push(pathname);
+    window.location.reload();
     }
+  
   };
-  useEffect(() => {
-    if (logout) {
-      console.log("deletee");
-    }
-  }, [logout, pathname]);
+
 
   return (
     <div className={style.profileDiv} ref={ref}>
