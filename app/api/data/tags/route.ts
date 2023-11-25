@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(req: Request) {
   try {
-    if (req.method === "GET") {
+
       const tags = await db.category.findMany({
         include: {
           posts: true,
@@ -38,7 +38,6 @@ export async function GET(req: Request) {
             statusText: "Success",
           }
         );
-      }
     }
   } catch (error: any) {
     console.log(`error: ${error}`);
