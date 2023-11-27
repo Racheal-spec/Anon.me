@@ -6,7 +6,7 @@
   box-shadow: 0 3px 10px rgb(0 0 0 / 0.4);
   border-radius: 5px;
   position: absolute;
-  top: 100%;
+  top: 70%;
   z-index: 999;
   right: 4%;
   transition: all 0.5s ease;
@@ -14,10 +14,10 @@
 }
 @keyframes moveup {
   0% {
-    top: 130%;
+    top: 100%;
   }
   100% {
-    top: 100%;
+    top: 70%;
   }
 }
 .profilelink {
@@ -37,15 +37,26 @@
 
 /**========================MEDIA QUERIES==================================**/
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1025px) {
   /* For desktops: */
   .profileDiv {
     width: 15%;
+    top: 8%;
+  }
+  @keyframes moveup {
+    0% {
+      top: 13%;
+    }
+    100% {
+      top: 8%;
+    }
   }
 }
 @media screen and (min-width: 600px) {
   /* For tablets: */
   .profileDiv {
     width: 20%;
+  
   }
+ 
 }

@@ -1,24 +1,27 @@
 .navwrapper {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 10px 0px;
+  justify-content: space-between;
+  padding: 15px 0px;
+  width: 90%;
   position: fixed;
-  width: 89%;
+ /* position: relative; */
   z-index: 9;
   background-color: var(--offwhite);
   border-bottom: 1px solid var(--bordercolor);
+
 }
 
 .navstyle {
-  display: flex;
+   display: flex;  
   width: 100%;
   height: 100vh;
   position: absolute;
-  left: -100%;
+  left: -110%;
   transition: all 0.5s ease;
   flex-direction: column;
   list-style-type: none;
+
 }
 .active {
   background: var(--formInputBg);
@@ -35,8 +38,8 @@
 .menuicon {
   display: block;
   position: relative;
-  z-index: 999999;
-  right: 70%;
+  z-index: 99999;
+  right: 120%;
   cursor: pointer;
   transition: all 0.5s ease;
 }
@@ -87,14 +90,16 @@
 @media screen and (min-width: 768px) {
   /* For desktop: */
   .navwrapper {
-    width: 96%;
+    width: 100%;
+    position: static;
+
+     /* justify-content: space-between;  */
   }
   .navstyle {
     list-style: none;
     position: static;
-    display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-direction: row;
     width: 100%;
     height: 0;
@@ -132,5 +137,6 @@
   /* For tablets: */
   .navwrapper {
     width: 93%;
+    position: fixed;
   }
 }
