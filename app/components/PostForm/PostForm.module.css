@@ -32,10 +32,20 @@
   object-fit: cover;
   background-size: contain;
   width: 100%;
+  position: relative;
 }
+.cancelimgbtn{
+  position: absolute;
+  top: 13%;
+  right: 10%;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--grey);
+}
+
 /**========================MEDIA QUERIES==================================**/
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1025px) {
   .post_div {
     padding: 80px 120px;
   }
@@ -45,6 +55,11 @@
   .inputH1::placeholder {
     font-size: 2.8rem;
   }
+  .cancelimgbtn{
+    top: 20%;
+    right: 17%;
+
+  }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
   /* For tablets: */
@@ -53,5 +68,10 @@
   }
   .coverimgshow {
     width: 100%;
+  }
+  .cancelimgbtn{
+    top: 15%;
+    right: 11%;
+
   }
 }

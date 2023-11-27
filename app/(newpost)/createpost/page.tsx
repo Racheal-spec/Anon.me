@@ -21,7 +21,7 @@ type postDataType = {
 const Createpost = () => {
   const [postdata, setPostData] = useState<postDataType>();
   const [imagefile, setImageFile] = useState("");
-  const [, setImageData] = useState<File | null>(null);
+  const [imageData, setImageData] = useState<File | null>(null);
   const [isLoading, setLoading] = useState(false);
   const { tagsstate } = useTagsValue();
   const router = useRouter();
@@ -49,14 +49,14 @@ const Createpost = () => {
       categoryId: categoryId,
     });
     formData.append("postData", postData);
-    file ? formData.append("postimage", file) : null;
+    imageData ? formData.append("postimage", imageData) : null;
     // Use setValue to update the title in React Hook Form
     setValue("title", titleref.current?.innerText);
 
     try {
      if(formData){
       setLoading(true);
-      // console.log(formData);
+       console.log(formData);
       const res = await createNewPost(formData);
       // console.log(res);
       if (res.statusText === "created") {
@@ -78,6 +78,8 @@ const Createpost = () => {
     setImageFile(URL.createObjectURL(file));
   };
 
+  console.log(imageData, imagefile)
+
   const handleselect = (e: any) => {
     setCategoryId(e.target.value);
   };
@@ -96,8 +98,13 @@ const Createpost = () => {
   //  if(firstRender)
   // }, [])
 
-  console.log(tagsstate?.data);
-  console.log(categoryId);
+  const handleCancel = () => {
+
+    setImageData(null);
+    setImageFile("");
+  };
+
+  
 
   return (
     <div className={style.mainWrapper}>
@@ -116,6 +123,7 @@ const Createpost = () => {
         editorState={editorState}
         onEditorStateChange={handleEditorChange}
         handleselect={handleselect}
+        handleCancel={handleCancel}
       />
     </div>
   );

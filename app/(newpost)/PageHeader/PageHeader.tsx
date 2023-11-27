@@ -43,6 +43,7 @@ const PageHeader = ({
         console.log(data);
         if (data.status === 200) {
           toast.success("You have just published a new story!");
+          router.back();
         }
         if (data.status === 400) {
           setPublishLoading(false);

@@ -2,6 +2,10 @@ import { ReactNode } from "react";
 import { AuthorProp } from "../user";
 import { PostLikeProp } from "../global";
 
+export type category = {
+  id: string;
+  title: string;
+}
 export type postType = {
   title: string;
   content: string;
@@ -16,6 +20,7 @@ export type postType = {
   likes: PostLikeProp[];
   author: AuthorProp;
   comments: commentProp[];
+  category: category;
 };
 export type ParamType = {
   params: {

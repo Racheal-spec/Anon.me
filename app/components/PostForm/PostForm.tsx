@@ -6,7 +6,7 @@ import Image from "next/image";
 import ComboBox from "@/app/uikits/ComboBox/ComboBox";
 import dynamic from "next/dynamic";
 import { PostFormType } from "@/app/Types/global";
-
+import { MdCancelPresentation } from "react-icons/md";
 const Editor = dynamic(
   async () => {
     const mod = await import("react-draft-wysiwyg");
@@ -22,6 +22,7 @@ const PostForm = ({
   handleselect,
   titleref,
   editorState,
+  handleCancel,
   onEditorStateChange,
 }: PostFormType) => {
   const {
@@ -29,7 +30,6 @@ const PostForm = ({
     control,
     formState: { errors, isSubmitting },
   } = useForm();
-console.log(tagsstate)
 
   return (
     <div className={style.post_div}>
@@ -62,9 +62,15 @@ console.log(tagsstate)
             className={style.coverimgshow}
             alt="uploaded-image"
           />
+          
         </div>
       )}
+  {
+    imagefile && (
+      <MdCancelPresentation className={style.cancelimgbtn} onClick={handleCancel}  />
 
+    )
+  }
       <ComboBox
         name={"Category"}
         id={categoryId}

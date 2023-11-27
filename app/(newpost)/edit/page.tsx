@@ -36,6 +36,7 @@ const Editpost = () => {
   const edittitleref = useRef<HTMLHeadingElement | null>(null);
   const [updatecategoryId, setUpdateCategoryId] = useState("");
   const [singlepostData, setSinglePostData] = useState<postType | null>(null);
+  const[imgPreview, setImagePreview] = useState("");
   const firstRender = useRef(true);
   const [cat, setCat] = useState("");
 
@@ -75,7 +76,6 @@ const Editpost = () => {
     try {
       setUpdatingLoading(true);
       let res = await editPost(formData, { id: postId as string });
-      console.log(res);
       if (res.status === 200) {
         setUpdatingLoading(false);
         toast.success("Post updated successfully!");
@@ -128,6 +128,8 @@ const Editpost = () => {
         const title = singlepostData.title || "";
         setValue("title", (edittitleref.current.innerText = title));
         setUpdateCategoryId(singlepostData?.categoryId );
+        // setImagePreview(singlepostData?.postimage || "");
+     
       }
       if (singlepostData?.published === true) {
         setEditStatus(true);
@@ -137,6 +139,12 @@ const Editpost = () => {
   }, [singlepostData]);
 
   let catValue = tagsstate?.data?.find((el) =>  el.id === updatecategoryId);
+  const handleCancel = () => {
+    setImageData(null);
+    setImageFile("");
+ 
+  };
+
 
   return (
     <div className={style.mainWrapper}>
@@ -147,13 +155,14 @@ const Editpost = () => {
       />
 
       <PostForm
-        imagefile={singlepostData?.postimage ?? emptyrect}
+        imagefile={singlepostData?.postimage  ?? ""}
         titleref={edittitleref}
         handleStateChange={handleEditImageStateChange}
         tagsstate={tagsstate?.data || []}
         editorState={editorState}
         onEditorStateChange={handleEditEditorChange}
         handleselect={handleEditselect}
+        handleCancel={handleCancel}
         categoryId={catValue?.id || updatecategoryId}
       />
     </div>

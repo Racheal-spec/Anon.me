@@ -23,6 +23,7 @@ export async function GET(req: Request, res: NextResponse) {
       include: {
         author: true,
         likes: true,
+        category: true
       },
       where: {
         published: true,

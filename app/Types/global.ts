@@ -110,6 +110,7 @@ export type PostFormType = {
   onEditorStateChange: (editorState: EditorState) => void;
   handleselect: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   titleref: React.LegacyRef<HTMLHeadingElement>;
+  handleCancel: (event: React.MouseEvent<SVGElement>) => void;
 };
 
 export type SmallModalProp = {

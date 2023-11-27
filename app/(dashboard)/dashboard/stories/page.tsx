@@ -22,7 +22,7 @@ import { EDITDRAFT } from "@/app/Routes/RoutesUrl";
 import Modal from "@/app/components/Modal/Modal";
 import Button from "@/app/uikits/Button/button";
 import { useRouter } from "next/navigation";
-import { deletePost } from "@/app/context/Actions/Actions";
+import { deletePost, getSingleTag } from "@/app/context/Actions/Actions";
 import { toast } from "react-toastify";
 const Stories = () => {
   const { lastCursor, posts, isLoading, ref } = usePostValue();
@@ -110,7 +110,7 @@ const Stories = () => {
                       )
                     }
                     date={`${post?.createdAt} `}
-                    tags={["post, stories"]}
+                    tags={post?.category?.title}
                     action={
                       <div className={styles.iconwrapper}>
                         <FiMoreVertical
@@ -228,7 +228,7 @@ const Stories = () => {
               publishedArray?.map((post, index) => (
                 <div key={post?.id}>
                   <AllStories
-                    title={post.title}
+                    title={post?.title}
                     status={
                       isMobile ? (
                         <></>
@@ -239,7 +239,7 @@ const Stories = () => {
                       )
                     }
                     date={`${post?.createdAt} `}
-                    tags={["post, stories"]}
+                    tags={post?.category?.title}
                     action={
                       <div className={styles.iconwrapper}>
                         <FiMoreVertical

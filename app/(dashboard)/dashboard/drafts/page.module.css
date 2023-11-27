@@ -39,6 +39,7 @@
   justify-content: flex-start;
   font-size: 0.9rem;
   margin: 5px 0;
+  cursor: pointer;
 }
 /**========================MEDIA QUERIES==================================**/
 

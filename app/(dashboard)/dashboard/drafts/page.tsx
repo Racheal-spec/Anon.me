@@ -13,12 +13,18 @@ import SmallModal from "@/app/components/SmallModal/SmallModal";
 import { BiEditAlt } from "react-icons/bi";
 import { MdOutlineDelete } from "react-icons/md";
 import { userValue } from "@/app/context/userContext";
+import Link from "next/link";
+import { EDITDRAFT } from "@/app/Routes/RoutesUrl";
+import { deletePost } from "@/app/context/Actions/Actions";
+import { toast } from "react-toastify";
+import { changeTextFromHTML } from "@/app/services/HtmltoText";
 
 const Drafts = () => {
   const { lastCursor, posts, isLoading, ref } = usePostValue();
   let draftsArray: postType[] = [];
   let userPosts: postType[] = [];
   const isMobile = UseResizeScreen();
+  const [loadingdelete, setLoadingDelete] = useState(false);
   const { state } = userValue();
   const [draftmodalitem, setDraftModalItem] = useState<boolean[]>(
     new Array(posts?.length || 0).fill(false)
@@ -43,6 +49,19 @@ const Drafts = () => {
     // console.log(!updatedStates[index]);
   };
 
+  const handleDeletedraftStory = async (id: string, index: number) => {
+    try {
+      setLoadingDelete(true);
+      const deleteSinglePost = await deletePost(id);
+
+      if (deleteSinglePost.status === 200) {
+        toast.success("Post successfully deleted");
+        setLoadingDelete(false);
+        handleDraftModal(index);
+      }
+    } catch (error) {}
+  };
+
   return (
     <div className={styles.draftsWrapper}>
       <div className={styles.colorDiv}>
@@ -62,7 +81,7 @@ const Drafts = () => {
             <div key={post?.id}>
               <AllStories
                 title={post.title}
-                description={post?.content?.slice(0, 100)}
+                description={changeTextFromHTML(post?.content?.slice(0, 100))}
                 status={
                   isMobile ? (
                     <></>
@@ -90,11 +109,14 @@ const Drafts = () => {
                         <div>
                           <div className={styles.modalicondiv}>
                             <BiEditAlt />
-                            <span>Edit</span>
+                   
+                            <Link href={EDITDRAFT(post?.id)}>
+                                  <span>Edit</span>
+                                </Link>
                           </div>
                           <div className={styles.modalicondiv}>
                             <MdOutlineDelete color="red" />
-                            <span>Delete</span>
+                            <span onClick={() => handleDeletedraftStory( post?.id, index)}>Delete</span>
                           </div>
                         </div>
                       </SmallModal>
