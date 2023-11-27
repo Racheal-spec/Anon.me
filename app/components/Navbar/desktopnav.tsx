@@ -13,8 +13,9 @@ import { BiSearch } from "react-icons/bi";
 import { userValue } from '@/app/context/userContext'
 import { BsFillPersonFill } from "react-icons/bs";
 import LogoComp from '../LogoComp/LogoComp'
+import { NavbarType } from '@/app/Types/global'
 
-const Desktopnav = ({isMobile, toggleDrawer, handlefocus,profileimg, handleProfile,showSearchModal, show, searchmodal }) => {
+const Desktopnav = ({isMobile, toggleDrawer, handlefocus,profileimg, handleProfile, show }: NavbarType) => {
     const { state } = userValue();
   return (
     <>
@@ -58,7 +59,8 @@ const Desktopnav = ({isMobile, toggleDrawer, handlefocus,profileimg, handleProfi
           toggleDrawer !== true ? styles.active : ""
         )}
       >
-        <li className={isMobile ? styles.display : styles.searchLi}>
+       
+        <li className={ styles.searchLi}>
           <BiSearch color="#FF9753" className={styles.searchicon} />
           <InputSearch
             placeholder="search"
@@ -71,8 +73,22 @@ const Desktopnav = ({isMobile, toggleDrawer, handlefocus,profileimg, handleProfi
         <li>
           <div className={styles.divider}></div>
         </li>
-        {state?.user?.status === "ok" ? (
-          <li>
+       
+         {state?.user === undefined ? (
+            <>
+       <li>
+      <Link href={LOGIN} className={styles.link}>
+       Sign In
+     </Link>
+    </li>
+     <li>
+    <Link href={REGISTER} className={styles.link}>
+   <Button primary>Register</Button>
+    </Link>
+    </li>
+ </>
+         ): state?.user?.status === "ok" ? (
+            <li>
             <div
             className={styles.profile_img_div}
             onClick={handleProfile}
@@ -92,20 +108,8 @@ const Desktopnav = ({isMobile, toggleDrawer, handlefocus,profileimg, handleProfi
             )}
           </div>
           </li>
-        ) : (
-            <>
-            <li>
-            <Link href={LOGIN} className={styles.link}>
-              Sign In
-            </Link>
-          </li>
-          <li>
-            <Link href={REGISTER} className={styles.link}>
-              <Button primary>Register</Button>
-            </Link>
-          </li>
-          </>
-        )}
+         ) : ("")}
+          
            
       </ul>
       

@@ -13,8 +13,9 @@ import InputSearch from '@/app/uikits/Input/inputSearch';
 import Profile from '../Profile/profile';
 import { BOOKMARKS, CREATEPOST, HOME, LOGIN, REGISTER } from '@/app/Routes/RoutesUrl';
 import Button from '@/app/uikits/Button/button';
+import { NavbarType } from '@/app/Types/global';
 
-const MobileNav = ({toggleDrawer, handleMenu, isMobile, handlefocus,profileimg, handleProfile,showSearchModal, show }) => {
+const MobileNav = ({toggleDrawer, handleMenu, isMobile, handlefocus,profileimg, handleProfile, show }: NavbarType) => {
   const { state } = userValue();
   return (
 <>

@@ -117,3 +117,14 @@ export type SmallModalProp = {
   children: ReactNode;
   modalitem: postType;
 };
+
+export type NavbarType = {
+  toggleDrawer: boolean;
+  handleMenu?: () => void;
+  isMobile: boolean; 
+  handlefocus:(event: React.FocusEvent<HTMLInputElement>) => void;
+  profileimg: string | StaticImageData;
+  handleProfile: () => void;
+  show: boolean;
+  searchmodal?: boolean;
+}
