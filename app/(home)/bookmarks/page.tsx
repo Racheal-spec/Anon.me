@@ -10,7 +10,7 @@ const Bookmarks = () => {
   return (
     <div className={styles.bookmarkWrapper}>
       <div>
-        <h3>Your Bookmarks</h3>
+        <h2>Your Bookmarks</h2>
 
         {bookmarkstate?.data?.length === 0 ? (
           <EmptyState

@@ -1,5 +1,5 @@
 .searchWrapper {
-  padding: 80px 5px;
+  padding: 90px 5px;
 }
 .searchCompWrapper h1 {
   border: 1px solid var(--bordercolor);
@@ -38,7 +38,7 @@
 @media screen and (min-width: 768px) {
   /* For desktops: */
   .searchWrapper {
-    padding: 100px 80px;
+    padding: 40px 80px;
   }
   .resultWrapper {
     grid-template-columns: repeat(2, 1fr);
@@ -52,4 +52,8 @@
   .resultWrapper {
     grid-template-columns: 1fr;
   }
+  .searchWrapper {
+    padding: 90px 80px;
+  }
+ 
 }

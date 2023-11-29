@@ -1,5 +1,9 @@
+'use client'
 export const changeTextFromHTML = (html: string) => {
-  const el = document.createElement("span");
-  el.innerHTML = html;
-  return el.innerText;
+  if (typeof window !== 'undefined') {
+    const el = document.createElement("span");
+    el.innerHTML = html;
+    return el.innerText;
+  }
+  return '';
 };

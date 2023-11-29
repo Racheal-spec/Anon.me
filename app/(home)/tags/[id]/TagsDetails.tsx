@@ -25,7 +25,6 @@ const TagsDetails = () => {
     fetchTag();
   }, []);
 
-  console.log(singletag);
   return (
     <div className={styles.tagswrapper}>
       <div className={styles.banner}>

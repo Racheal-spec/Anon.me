@@ -70,7 +70,7 @@
   color: var(--grey);
 }
 .hrstyles {
-  color: var(--dividercolor);
+  border-bottom: 1px solid var(--bordercolor);
   margin: 10px 0;
 }
 .commentwrapper {
@@ -79,6 +79,8 @@
 .commenttext {
   font-size: 0.8rem;
   padding: 10px 0;
+  text-transform: none;
+  line-height: 1.4rem;
 }
 .authorWrapper {
   display: flex;

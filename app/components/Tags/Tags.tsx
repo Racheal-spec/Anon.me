@@ -9,7 +9,7 @@ const Tags = () => {
   return (
     <section>
       <div>
-        <h5 className={styles.tagsHeader}>Categories</h5>
+        <h4 className={styles.tagsHeader}>Categories</h4>
       </div>
       <p className={styles.desc}>All story categories will appear here.</p>
       <div className={styles.tagWrapper}>

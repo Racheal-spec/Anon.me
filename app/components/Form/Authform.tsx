@@ -103,8 +103,6 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
 
   };
 
-  console.log(countriesArray)
-
   return (
     <div className={style.formWrapper}>
        
@@ -228,9 +226,16 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
             </div>
             <div className={style.formlinktext}>
               {content.linkText}
-              <span>
+              {mode === "register" ? (
+                <span>
                 <Link href={content.linkurl}>Sign In</Link>
-              </span>
+                </span>
+              ): (
+                <span>
+                <Link href={content.linkurl}>Sign Up</Link>
+                </span>
+              )}
+             
             </div>
           </div>
         </div>

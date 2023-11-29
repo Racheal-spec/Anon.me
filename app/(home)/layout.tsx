@@ -11,7 +11,6 @@ export const metadata = {
   title: "Penbuddy|Home",
   description: "An anonymous blogging community for everyone",
 };
-// export const dynamic = "force-dynamic";
 export default function RootLayout({
   children,
 }: {
@@ -24,14 +23,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <body>
-
           <MainContext>
             <div className="globalpadding">
               <Navbar />
               <ToastProvider>{children}</ToastProvider>
             </div>
           </MainContext>
-  
       </body>
     </html>
   );

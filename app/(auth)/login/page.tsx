@@ -1,10 +1,14 @@
 import Authform from "@/app/components/Form/Authform";
-import React from "react";
+import React, { Suspense } from "react";
+import Loading from "../Loading";
 
 const Login = () => {
   return (
     <div>
-      <Authform mode={"login"} />
+        <Suspense fallback={<Loading />}>
+        <Authform mode={"login"} />
+        </Suspense>
+
     </div>
   );
 };

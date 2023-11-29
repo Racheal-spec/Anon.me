@@ -1,5 +1,5 @@
 .tagswrapper {
-  padding: 80px 0;
+  padding: 90px 0;
 }
 .banner{
   padding: 10px 0;
@@ -14,7 +14,7 @@
 @media screen and (min-width: 768px) {
   /* For desktops: */
   .tagswrapper {
-    padding: 80px 120px;
+    padding: 30px 120px;
   }
   .resultWrapper{
     display: grid;
@@ -26,6 +26,11 @@
 @media (min-width: 768px) and (max-width: 1024px) {
   /* For tablets: */
   .tagswrapper {
-    padding: 80px 90px;
+    padding: 90px;
+  }
+  .resultWrapper{
+    display: grid;
+    grid-template-columns: 1fr;
+ 
   }
 }

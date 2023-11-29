@@ -128,7 +128,7 @@ const Commentmodal = ({
             )}
           </div>
         </div>
-        <hr className={styles.hrstyles} />
+        <div className={styles.hrstyles} ></div>
         <div>
           {commentsArray?.data?.length === 0 ? (
             <EmptyState
@@ -156,7 +156,7 @@ const Commentmodal = ({
                       )}
                     </div>
                     <p className={styles.commenttext}>{comment?.text}</p>
-                    <hr className={styles.hrstyles} />
+                    <div className={styles.hrstyles} ></div>
                   </div>
                 ))}
             </div>

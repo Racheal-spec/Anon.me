@@ -7,7 +7,6 @@ import Image from "next/image";
 import { GrMore } from "react-icons/gr";
 import { getSinglePost, likePost } from "@/app/context/Actions/Actions";
 import SearchLoader from "@/app/components/SearchLoader/SearchLoader";
-import { changeTextFromHTML } from "@/app/services/HtmltoText";
 import { postType } from "@/app/Types/posts";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { userValue } from "@/app/context/userContext";
@@ -16,11 +15,13 @@ import Commentmodal from "@/app/components/Commentmodal/Commentmodal";
 import { LiaCommentAlt } from "react-icons/lia";
 import SigninModal from "@/app/components/SigninModal/SigninModal";
 import { toast } from "react-toastify";
+import { changeTextFromHTML } from "@/app/services/HtmltoText";
 
-export const dynamic = "force-dynamic";
+ export const dynamic = "force-dynamic";
 
 const DetailsComp = () => {
   let params = useParams();
+
 
   const { state } = userValue();
   //console.log(params);
@@ -82,7 +83,7 @@ const DetailsComp = () => {
 
   useEffect(() => {
     singlepost?.likes?.find((val: any) => {
-      if (val.userId === state?.user?.data.id) {
+      if (val.userId === state?.user?.data?.id) {
         setLiked(true);
       }
     });

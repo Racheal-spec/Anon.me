@@ -95,7 +95,7 @@ const BorderCard = React.memo(
             <Link href={POSTDETAILS(id as string)}>
               <div className={styles.descDiv}>
                 <p>{FormatDate(createdAt)}</p>
-                <h5>{title}</h5>
+                <h4>{title}</h4>
                 <p>{excerpts}</p>
               </div>
             </Link>
