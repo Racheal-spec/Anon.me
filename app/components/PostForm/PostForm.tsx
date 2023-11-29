@@ -68,7 +68,6 @@ const PostForm = ({
   {
     imagefile && (
       <MdCancelPresentation className={style.cancelimgbtn} onClick={handleCancel}  />
-
     )
   }
       <ComboBox

@@ -7,7 +7,7 @@ import { postType } from "@/app/Types/posts";
 import EmptyState from "@/app/components/EmptyState/EmptyState";
 import SearchLoader from "@/app/components/SearchLoader/SearchLoader";
 import AllStories from "../stories/AllStories";
-import { UseResizeScreen } from "@/hooks/ResizeScreen";
+import { UseResizeScreen } from "@/app/hooks/ResizeScreen";
 import { FiMoreVertical } from "react-icons/fi";
 import SmallModal from "@/app/components/SmallModal/SmallModal";
 import { BiEditAlt } from "react-icons/bi";

@@ -9,7 +9,7 @@ import Loader from "@/app/components/Loader/Loader";
 import AllStories from "./AllStories";
 import { FiMoreVertical } from "react-icons/fi";
 import { postType } from "@/app/Types/posts";
-import { UseResizeScreen } from "@/hooks/ResizeScreen";
+import { UseResizeScreen } from "@/app/hooks/ResizeScreen";
 import SmallModal from "@/app/components/SmallModal/SmallModal";
 import { BiEditAlt } from "react-icons/bi";
 import { MdOutlineDelete } from "react-icons/md";
@@ -79,6 +79,7 @@ const Stories = () => {
   };
 
   return (
+    
     <div className={styles.storieswrapper}>
       <MainTab>
         <TabsBody title="All Stories">

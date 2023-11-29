@@ -20,15 +20,13 @@ export default function RootLayout({
     return null;
   }
   return (
-    <html lang="en" className={inter.className}>
+    <html lang="en"  className={inter.className}>
       <body>
-        <Suspense fallback={<Loading />}>
           <MainContext>
             <div className="globalpadding">
               <ToastProvider>{children}</ToastProvider>
             </div>
-          </MainContext>
-        </Suspense>
+          </MainContext> 
       </body>
     </html>
   );

@@ -1,6 +1,6 @@
 import React, { ReactElement, ReactNode } from "react";
 import styles from "./modal.module.css";
-import { UseClickOutside } from "@/hooks/ClickOutside";
+import { UseClickOutside } from "@/app/hooks/ClickOutside";
 
 type ModalProp = {
   children: ReactNode;

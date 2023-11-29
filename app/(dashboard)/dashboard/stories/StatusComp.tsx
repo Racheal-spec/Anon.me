@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./page.module.css";
-import { UseResizeScreen } from "@/hooks/ResizeScreen";
+import { UseResizeScreen } from "@/app/hooks/ResizeScreen";
 
 type StatusProp = {
   allpost: number;

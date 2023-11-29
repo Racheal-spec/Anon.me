@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import styles from "./LogoComp.module.css";
 import { TfiWrite } from "react-icons/tfi";
-import { UseResizeScreen } from "@/hooks/ResizeScreen";
+import { UseResizeScreen } from "@/app/hooks/ResizeScreen";
 
 const LogoComp = () => {
   const isMobile = UseResizeScreen();

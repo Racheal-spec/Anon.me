@@ -76,6 +76,7 @@ const Profile = () => {
   // console.log(profileImgFile);
 
   return (
+    
     <div className={styles.profilewrapper}>
       <h2>General Settings</h2>
       <form onSubmit={handleSubmit(handleProfileEdit)}>

@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Commentmodal.module.css";
 import classNames from "classnames";
-import { UseClickOutside } from "@/hooks/ClickOutside";
+import { UseClickOutside } from "@/app/hooks/ClickOutside";
 import Button from "@/app/uikits/Button/button";
 import { userValue } from "@/app/context/userContext";
 import Image from "next/image";

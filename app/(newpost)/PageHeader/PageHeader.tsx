@@ -2,7 +2,7 @@ import Button from "@/app/uikits/Button/button";
 import React, { useState } from "react";
 import styles from "./PageHeader.module.css";
 import { TfiWrite } from "react-icons/tfi";
-import { UseResizeScreen } from "@/hooks/ResizeScreen";
+import { UseResizeScreen } from "@/app/hooks/ResizeScreen";
 import { FiDelete } from "react-icons/fi";
 import { CiSaveDown1 } from "react-icons/ci";
 import Loader from "@/app/components/Loader/Loader";

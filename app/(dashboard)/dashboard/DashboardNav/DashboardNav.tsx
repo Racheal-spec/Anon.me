@@ -2,7 +2,7 @@
 import React from "react";
 import styles from "./Dashboardnav.module.css";
 import { AiOutlineMenu } from "react-icons/ai";
-import { UseResizeScreen } from "@/hooks/ResizeScreen";
+import { UseResizeScreen } from "@/app/hooks/ResizeScreen";
 import { GrClose } from "react-icons/gr";
 
 type ToggleTypes = {

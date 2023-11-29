@@ -6,7 +6,7 @@ import { HOME, LOGIN } from "@/app/Routes/RoutesUrl";
 import styles from "./SigninModal.module.css";
 import { TfiWrite } from "react-icons/tfi";
 import Link from "next/link";
-import { UseResizeScreen } from "@/hooks/ResizeScreen";
+import { UseResizeScreen } from "@/app/hooks/ResizeScreen";
 
 const SigninModal = ({
   handlefunction,

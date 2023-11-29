@@ -9,9 +9,9 @@ const Tags = () => {
   return (
     <section>
       <div>
-        <h6 className={styles.tagsHeader}>TAGS</h6>
+        <h5 className={styles.tagsHeader}>Categories</h5>
       </div>
-      <p className={styles.desc}>All your set tags will appear here.</p>
+      <p className={styles.desc}>All story categories will appear here.</p>
       <div className={styles.tagWrapper}>
         {tagsstate &&
           tagsstate?.data?.map((tag, index) => (

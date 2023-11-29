@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import style from "../createpost/page.module.css";
 import PageHeader from "../PageHeader/PageHeader";
 import "../../globalstyles/globals.css";
@@ -14,6 +14,7 @@ import { useTagsValue } from "@/app/context/TagsContext";
 import { useRouter } from "next/navigation";
 import { EDITDRAFT } from "@/app/Routes/RoutesUrl";
 import PostForm from "@/app/components/PostForm/PostForm";
+import Loading from "../Loading";
 
 type postDataType = {
   data: postType;
@@ -107,6 +108,7 @@ const Createpost = () => {
   
 
   return (
+    <Suspense fallback={<Loading />}>
     <div className={style.mainWrapper}>
       <PageHeader
         handleFormSubmit={handleSubmit(handleFormSubmit)}
@@ -126,6 +128,7 @@ const Createpost = () => {
         handleCancel={handleCancel}
       />
     </div>
+    </Suspense>
   );
 };
 

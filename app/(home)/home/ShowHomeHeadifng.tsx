@@ -19,11 +19,11 @@ export const dynamic = "force-dynamic";
 const ShowHomeHeading = () => {
   const { state } = userValue();
   const { publishedposts, ref, lastCursor } = usePublishedPostValue();
-console.log(publishedposts)
+
   return (
     <div>
       <section className={styles.blogsection}>
-        {!state.user && <h4 className={styles.headingh4}>Recent Blogs</h4>}
+        {!state.user && <h3 className={styles.headingh4}>Recent Blogs</h3>}
 
         <div className={styles.blogGrid}>
           <div>

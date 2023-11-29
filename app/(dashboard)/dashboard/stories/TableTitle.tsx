@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./page.module.css";
-import { UseResizeScreen } from "@/hooks/ResizeScreen";
+import { UseResizeScreen } from "@/app/hooks/ResizeScreen";
 import { StoriesProp } from "@/app/Types/global";
 
 const TableTitle = ({ title, tags, status, date, action }: StoriesProp) => {

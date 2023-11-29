@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import style from "./profile.module.css";
 import { DASHBOARDPROFILE } from "@/app/Routes/RoutesUrl";
-import { UseClickOutside } from "@/hooks/ClickOutside";
+import { UseClickOutside } from "@/app/hooks/ClickOutside";
 import { usePathname } from "next/navigation";
 import { logoutUser } from "@/app/context/Actions/Actions";
 

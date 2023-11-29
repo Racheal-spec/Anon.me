@@ -10,5 +10,4 @@ const Tags = () => {
     </Suspense>
   );
 };
-
 export default Tags;

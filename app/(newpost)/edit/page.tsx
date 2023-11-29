@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { Suspense, useEffect, useRef, useState } from "react";
 import style from "../createpost/page.module.css";
 import "../../globalstyles/globals.css";
 import { useForm } from "react-hook-form";
@@ -20,6 +20,7 @@ import { CREATEPOST } from "@/app/Routes/RoutesUrl";
 import PostForm from "@/app/components/PostForm/PostForm";
 import PageHeader from "../PageHeader/PageHeader";
 import emptyrect from "../../Assets/images/emptyrect.png";
+import Loading from "../Loading";
 
 const Editpost = () => {
   const [, setImageFile] = useState("");
@@ -147,6 +148,7 @@ const Editpost = () => {
 
 
   return (
+    <Suspense fallback={<Loading />}>
     <div className={style.mainWrapper}>
       <PageHeader
         editstatus={editstatus}
@@ -166,6 +168,7 @@ const Editpost = () => {
         categoryId={catValue?.id || updatecategoryId}
       />
     </div>
+    </Suspense>
   );
 };
 

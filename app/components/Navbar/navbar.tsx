@@ -22,7 +22,7 @@ import { userValue } from "@/app/context/userContext";
 import InputSearch from "../../uikits/Input/inputSearch";
 import classNames from "classnames";
 import { eventType } from "@/app/Types/user";
-import { UseResizeScreen } from "@/hooks/ResizeScreen";
+import { UseResizeScreen } from "@/app/hooks/ResizeScreen";
 import SearchModal from "../SearchModal/searchmodal";
 import LogoComp from "../LogoComp/LogoComp";
 import MobileNav from "./mobilenav";

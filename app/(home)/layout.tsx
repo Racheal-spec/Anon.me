@@ -1,4 +1,3 @@
-"use client";
 import { Suspense } from "react";
 import ToastProvider from "../ToastProvider";
 import Navbar from "../components/Navbar/navbar";
@@ -8,10 +7,10 @@ import "../globalstyles/globals.css";
 import Loading from "./Loading";
 import { BASE_URL } from "../Routes/RoutesUrl";
 
-// export const metadata = {
-//   title: "Penbuddy|Home",
-//   description: "An anonymous blogging community for everyone",
-// };
+export const metadata = {
+  title: "Penbuddy|Home",
+  description: "An anonymous blogging community for everyone",
+};
 // export const dynamic = "force-dynamic";
 export default function RootLayout({
   children,
@@ -25,14 +24,14 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className}>
       <body>
-        <Suspense fallback={<Loading />}>
+
           <MainContext>
             <div className="globalpadding">
               <Navbar />
               <ToastProvider>{children}</ToastProvider>
             </div>
           </MainContext>
-        </Suspense>
+  
       </body>
     </html>
   );
