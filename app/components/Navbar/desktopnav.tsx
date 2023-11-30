@@ -12,7 +12,6 @@ import { PiPencilLineFill } from "react-icons/pi";
 import { BiSearch } from "react-icons/bi";
 import { userValue } from '@/app/context/userContext'
 import { BsFillPersonFill } from "react-icons/bs";
-import LogoComp from '../LogoComp/LogoComp'
 import { NavbarType } from '@/app/Types/global'
 
 const Desktopnav = ({isMobile, toggleDrawer, handlefocus,profileimg, handleProfile, show }: NavbarType) => {

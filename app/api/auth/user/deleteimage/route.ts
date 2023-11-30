@@ -40,6 +40,9 @@ export async function DELETE (req: Request, res: NextResponse) {
         }
     })
 
+    updateduser.password = undefined!;
+    updateduser.email = undefined!;
+
     return NextResponse.json({
         status: 200,
         data:updateduser

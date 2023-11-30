@@ -27,7 +27,8 @@ export async function GET(req: Request) {
       },
       where: {
         title: {
-          contains: searchedtitle ?? "",
+          contains: searchedtitle?.toString() ?? "",
+          mode: "insensitive"
         },
       },
     });
