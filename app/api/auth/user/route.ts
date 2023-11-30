@@ -7,11 +7,6 @@ import { UploadApiResponse, v2 } from "cloudinary";
 import { JWTProp } from "@/app/Types/global";
 
 export async function GET(req: Request) {
-  // const userId = req.headers.get("x-user-id");
-  // const userheader = headers();
-  // const userId = userheader;
-  //console.log(`userrrrr: ${JSON.stringify(userId)}`);
-  //console.log(`headerrr: ${JSON.stringify(req.headers)}`);
 
   const usercookies = cookies().get(process.env.COOKIE_NAME as string);
   const jwt = usercookies?.value;
@@ -45,7 +40,7 @@ export async function GET(req: Request) {
           user.password = undefined!;
           user.email = obsfucatedEmail(user.email);
           //makem location undefined too after you've done it from the frontend.
-         user.location = undefined!;
+         //user.location = undefined!;
        
           return NextResponse.json(
             {
@@ -82,7 +77,6 @@ export async function PUT(req: Request) {
       if (!file) {
         return NextResponse.json({ success: false });
       }
-      console.log(`file: ${JSON.stringify(file)}`);
       const buffer = Buffer.from(await file?.arrayBuffer());
       v2.uploader
         .upload_stream(

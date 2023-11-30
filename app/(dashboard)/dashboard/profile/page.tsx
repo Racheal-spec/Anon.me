@@ -8,7 +8,7 @@ import profileimg from "../../../Assets/images/profileimg.png";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import Button from "@/app/uikits/Button/button";
 import { useForm } from "react-hook-form";
-import { editUsers } from "@/app/context/Actions/Actions";
+import { deleteUserImage, editUsers } from "@/app/context/Actions/Actions";
 import {
   MainUserSchema,
   ProfileUserSchema,
@@ -46,7 +46,8 @@ const Profile = () => {
     setImageData(file);
     setProfileImageFile(URL.createObjectURL(file));
   };
-
+  console.log(imagedata)
+  console.log(state?.user)
   const handleProfileEdit = async (data: any) => {
     const formData = new FormData();
     const profileData = JSON.stringify({
@@ -73,7 +74,13 @@ const Profile = () => {
     }
   }, []);
 
-  // console.log(profileImgFile);
+  const handleDeleteImage = async () => {
+    const deleteimg = await deleteUserImage({user: state?.user?.data?.id ?? ""});
+
+    if(deleteimg){
+      toast.success("Profile image deleted successfully");
+    }
+  }
 
   return (
     <div className={styles.profilewrapper}>
@@ -154,7 +161,7 @@ const Profile = () => {
                 title="Dimensions 180 X 180"
               />
             </div>
-            <div className={styles.icondiv}>
+            <div className={styles.icondiv} onClick={handleDeleteImage}>
               <MdOutlineDeleteOutline className={styles.deleteicon} />
             </div>
           </div>

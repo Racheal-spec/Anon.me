@@ -10,23 +10,23 @@
   border-radius: 8px;
   width: 100%;
   background-color: var(--white);
-  transform: translate(0%, 12%);
+  transform: translate(0%, 6%);
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  animation: moveup 0.5s;
+  /* animation: moveup 0.5s; */
 }
 .spancolor {
   color: var(--red);
   padding: 0 1px;
 }
 
-@keyframes moveup {
+/* @keyframes moveup {
   0% {
     transform: translate(92%, 4vh);
   }
   100% {
-    transform: translate(92%, 14vh);
+    transform: translate(92%, 6%);
   }
-}
+} */
 .btnContentDiv {
   display: flex;
   align-items: center;
@@ -113,7 +113,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--secondary);
+  color: var(--fadedblack);
   text-decoration: underline;
 }
 /**========================MEDIA QUERIES==================================**/

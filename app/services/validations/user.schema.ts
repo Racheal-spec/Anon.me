@@ -58,3 +58,18 @@ export const decryptEmail = (obsfucatedemail: string) => {
     ?.replace("&#46", ".");
   return originalEmail;
 };
+
+// export const decodeObfuscatedEmail = (obfuscatedEmail: string) => {
+//   const parts = obfuscatedEmail.split('@');
+
+//   if (parts.length === 2) {
+//     const obfuscatedUsername = parts[0];
+//     const domain = parts[1];
+
+//     const originalUsername = obfuscatedUsername.replace(/\*/g, '');
+
+//     return `${originalUsername}@${domain}`;
+//   }
+  
+//   return obfuscatedEmail;
+// }

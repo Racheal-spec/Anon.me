@@ -104,8 +104,7 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
   };
 
   return (
-    <div className={style.formWrapper}>
-       
+    <div className={style.formWrapper}> 
       <form onSubmit={handleSubmit(handleFormSubmit)} className={style.formBg}>
         <h1 className={style.formheader}>{content.header}</h1>
         <p className={style.formtext}>{content.subheader}</p>
@@ -242,7 +241,7 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
        
       </form>
      <div className={style.homelink}>
-<IoIosArrowRoundBack />
+     <IoIosArrowRoundBack />
      <Link href={HOME}>
         Go back home
       </Link>

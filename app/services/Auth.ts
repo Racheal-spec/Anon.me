@@ -39,9 +39,27 @@ export const validateJWT = async (jwt: string) => {
   return payload.payload;
 };
 
-export const obsfucatedEmail = (email: string) => {
-  // const firstpart = email.split("@")[0];
-  // const lastpart = email.split("@")[1];
-  const obsEmail = email.replace("@", "&#64").replace(".", "&#46");
+export const obsfucatedEmailNew = (email: string) => {
+  const obsEmail = email?.replace("@", "&#64")?.replace(".", "&#46");
   return obsEmail;
 };
+
+export const obsfucatedEmail = (email: string) => {
+  const parts = email.split('@');
+  
+  if (parts.length === 2) {
+    const username = parts[0];
+    const domain = parts[1];
+    
+    const obfuscatedUsername = username.length > 3
+      ? `${username.substring(0, 3)}${'*'.repeat(username.length - 3)}`
+      : '*'.repeat(username.length);
+
+    return `${obfuscatedUsername}@${domain}`;
+  }
+
+  // If the email does not match the expected format, return the initial obsfucated rmail function email
+  return obsfucatedEmailNew(email);
+
+};
+

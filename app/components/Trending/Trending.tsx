@@ -18,7 +18,7 @@ const Trending = () => {
   useEffect(() => {
     trendingposts();
   }, []);
-  console.log(trending);
+  // console.log(trending);
   return (
     <div className={styles.trendingCardWrapper}>
       <h4>Trending Stories</h4>

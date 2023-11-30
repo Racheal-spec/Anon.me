@@ -17,6 +17,7 @@ import { NavbarType } from '@/app/Types/global'
 
 const Desktopnav = ({isMobile, toggleDrawer, handlefocus,profileimg, handleProfile, show }: NavbarType) => {
     const { state } = userValue();
+    console.log(state?.user)
   return (
     <>
     

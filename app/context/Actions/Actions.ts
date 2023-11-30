@@ -106,6 +106,23 @@ export const editUsers = async (formdata: any) => {
   }
 };
 
+export const deleteUserImage = async ({user}: {user: string}) => {
+  try {
+    const res = await fetch(`${BASE_URL}/api/auth/user/deleteimage?user=${user}`, {
+      method: "DELETE",
+      cache: "no-store",
+    });
+    if (!res.ok) {
+      let err = await res.json();
+      console.log(err);
+      toast.error(err.message);
+    }
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const getPosts = async ({ take, lastCursor }: postParamsType) => {
   try {
     const res = await fetch(
