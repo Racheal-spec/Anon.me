@@ -7,18 +7,17 @@ import { BsBookmark } from "react-icons/bs";
 import { LiaCommentAlt } from "react-icons/lia";
 import { BsFillBookmarkCheckFill } from "react-icons/bs";
 import { useBookmarkValue } from "@/app/context/bookmarkContext";
-import { bookmarkType } from "@/app/Types/posts";
+import { bookmarkType, postType } from "@/app/Types/posts";
 import { BookmarkTypes } from "@/app/Types/reducerTypes";
 import Link from "next/link";
 import { POSTDETAILS } from "@/app/Routes/RoutesUrl";
 import { FormatDate } from "@/app/services/formatDate";
 import emptypost from "../../Assets/images/emptypost.png";
-import { likePost, toggleBookmark } from "@/app/context/Actions/Actions";
+import { getSinglePost, likePost, toggleBookmark } from "@/app/context/Actions/Actions";
 import { userValue } from "@/app/context/userContext";
 import { toast } from "react-toastify";
-import { AiFillLike, AiOutlineLike } from "react-icons/ai";
 import SigninModal from "../SigninModal/SigninModal";
-import { PostLikeProp } from "@/app/Types/global";
+
 
 const BorderCard = React.memo(
   ({
@@ -29,17 +28,28 @@ const BorderCard = React.memo(
     author,
     createdAt,
     likes,
+    
   }: bookmarkType) => {
     const { bookmarkstate } = useBookmarkValue();
     const { state } = userValue();
     const [bookmarked, setBookmarked] = useState(false);
     const [prevBookmark, setPrevBookmark] = useState(bookmarked);
-
     const [bookmarkmodal, setBookmarkmodal] = useState(false);
+    const[singlepost, setSinglePost] = useState<postType | null>(null);
 
     const handleLoginModal = () => {
       setBookmarkmodal(false);
     };
+
+    const fetchPost = async () => {
+      let data = await getSinglePost(id as string);
+      if (data) {
+        setSinglePost(data);
+      }
+    };
+    useEffect(() => {
+      fetchPost();
+    }, []);
 
     const handleDispatch = async () => {
       if (state?.user === undefined) {
@@ -110,11 +120,18 @@ const BorderCard = React.memo(
               </div>
               <div className={styles.secondSubDiv}>
                 <div className={styles.flex}>
+                 
                   <LiaCommentAlt />
-                  <p> 0 comments</p>
+                  <Link href={POSTDETAILS(id ?? "")}>
+                  <p>{singlepost?.comments?.length} comments</p>
+                  </Link>
+                
                 </div>
                 <div className={styles.flex}>
-                  <p>{likes?.length} likes</p>
+                <Link href={POSTDETAILS(id ?? "")}>
+                <p>{likes?.length} likes</p>
+                </Link>
+             
                 </div>
                 <div className={styles.flex}>
                   {prevBookmark ? (

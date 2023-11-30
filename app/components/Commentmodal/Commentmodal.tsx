@@ -27,6 +27,7 @@ const Commentmodal = ({
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isSubmitting },
   } = useForm();
   const [commentmodal, setCommentModal] = useState(false);
@@ -52,7 +53,9 @@ const Commentmodal = ({
     });
     if (commentdata) {
       setCommentData(commentdata);
+      reset();
     }
+
   };
 
   useEffect(() => {

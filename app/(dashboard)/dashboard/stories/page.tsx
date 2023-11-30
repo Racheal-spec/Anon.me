@@ -111,7 +111,7 @@ const Stories = () => {
                         <div className={styles.orange}></div>
                       )
                     }
-                    date={`${FormatDate(post?.createdAt)} `}
+                    date={`${FormatDate(post?.createdAt)}`}
                     tags={post?.category?.title}
                     action={
                       <div className={styles.iconwrapper}>
