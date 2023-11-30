@@ -18,11 +18,13 @@ const Commentmodal = ({
   active,
   handleclick,
   postId,
+  authorid
 }: {
   active: string;
   handleclick: () => void;
   toggle: boolean;
   postId: string;
+  authorid: string;
 }) => {
   const {
     register,
@@ -65,7 +67,7 @@ const Commentmodal = ({
         setCommentsArray(data);
         console.log(data);
       }
-      if (data.data.commenterId === state.user?.data.id) {
+      if (authorid === state.user?.data.id) {
         setAuthor(true);
       }
     };

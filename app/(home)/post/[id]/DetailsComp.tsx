@@ -177,6 +177,7 @@ const DetailsComp = () => {
               toggle={toggle}
               active={active}
               postId={params?.id as string}
+              authorid={singlepost?.authorId ?? ""}
             />
           )}
         </>
