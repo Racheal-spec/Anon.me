@@ -40,7 +40,7 @@ const Account = () => {
       <div className={styles.cardcontent}>
         <h4>Permanently Delete Account</h4>
         <p>
-          If you decide to delete your account on Anon, your personal data will
+          If you decide to delete your account on Penbuddy, your personal data will
           be gone for good. We can't bring it back once it's deleted, so please
           make sure you're absolutely certain before taking this step.
         </p>

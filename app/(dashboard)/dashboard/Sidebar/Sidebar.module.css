@@ -53,6 +53,7 @@
   font-size: 1.1rem;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .logouttext p {
   margin: 0 8px;

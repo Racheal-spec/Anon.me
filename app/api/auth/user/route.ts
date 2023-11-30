@@ -45,7 +45,8 @@ export async function GET(req: Request) {
           user.password = undefined!;
           user.email = obsfucatedEmail(user.email);
           //makem location undefined too after you've done it from the frontend.
-          // let nulllocation = (val.author.location = undefined!);
+         user.location = undefined!;
+       
           return NextResponse.json(
             {
               status: "ok",

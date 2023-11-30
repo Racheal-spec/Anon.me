@@ -18,6 +18,7 @@ import { EDITDRAFT } from "@/app/Routes/RoutesUrl";
 import { deletePost } from "@/app/context/Actions/Actions";
 import { toast } from "react-toastify";
 import { changeTextFromHTML } from "@/app/services/HtmltoText";
+import { FormatDate } from "@/app/services/formatDate";
 
 const Drafts = () => {
   const { lastCursor, posts, isLoading, ref } = usePostValue();
@@ -81,7 +82,7 @@ const Drafts = () => {
             <div key={post?.id}>
               <AllStories
                 title={post.title}
-                description={changeTextFromHTML(post?.content?.slice(0, 100))}
+                description={changeTextFromHTML(`${post?.content?.slice(0, 100)}...`)}
                 status={
                   isMobile ? (
                     <></>
@@ -91,7 +92,7 @@ const Drafts = () => {
                     ""
                   )
                 }
-                date={`${post?.createdAt} `}
+                date={`${FormatDate(post?.createdAt)} `}
                 action={
                   <div className={styles.iconwrapper}>
                     <FiMoreVertical
@@ -126,10 +127,10 @@ const Drafts = () => {
               />
             </div>
           ))}
-        {posts?.length === 0 && (
+        {draftsArray?.length === 0 && (
           <div>
             <EmptyState
-              heading="No Available Story"
+              heading="No Drafts Available"
               description="You have no story available at the moment, kindly check back later!"
             />
           </div>

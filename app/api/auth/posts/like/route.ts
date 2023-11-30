@@ -5,25 +5,23 @@ export async function POST(req: Request) {
   const url = new URL(req.url);
   const userId = url.searchParams.get("user");
   const postId = url.searchParams.get("post");
-  const currentpost = await db.post.findFirst({
-    where: {
-      id: postId as string,
-    },
-    include: {
-      likes: true,
-    },
-  });
-
-  const post = await db.post.findUnique({
-    where: {
-      id: postId as string,
-    },
-    select: {
-      likesCount: true,
-    },
-  });
-
+  // const currentpost = await db.post.findFirst({
+  //   where: {
+  //     id: postId as string,
+  //   },
+  //   include: {
+  //     likes: true,
+  //   },
+  // });
   try {
+    const post = await db.post.findUnique({
+      where: {
+        id: postId as string,
+      },
+      select: {
+        likesCount: true,
+      },
+    });
     if (!userId) {
       return NextResponse.json(
         {
@@ -63,6 +61,7 @@ export async function POST(req: Request) {
             },
           });
 
+
           return NextResponse.json(
             {
               status: 200,
@@ -96,6 +95,8 @@ export async function POST(req: Request) {
             },
           },
         });
+
+     
 
         return NextResponse.json(
           {

@@ -13,8 +13,6 @@ export default function Home() {
           <ShowHomeHeading />
         </div>
       </Suspense>
-
-    
     </main>
   );
 }

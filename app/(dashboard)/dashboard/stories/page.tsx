@@ -24,6 +24,7 @@ import Button from "@/app/uikits/Button/button";
 import { useRouter } from "next/navigation";
 import { deletePost, getSingleTag } from "@/app/context/Actions/Actions";
 import { toast } from "react-toastify";
+import { FormatDate } from "@/app/services/formatDate";
 const Stories = () => {
   const { lastCursor, posts, isLoading, ref } = usePostValue();
   const isMobile = UseResizeScreen();
@@ -110,7 +111,7 @@ const Stories = () => {
                         <div className={styles.orange}></div>
                       )
                     }
-                    date={`${post?.createdAt} `}
+                    date={`${FormatDate(post?.createdAt)} `}
                     tags={post?.category?.title}
                     action={
                       <div className={styles.iconwrapper}>

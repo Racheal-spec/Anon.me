@@ -120,7 +120,7 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
               <div className={style.pwdInputDiv}>
               <div><p>Anon</p></div>
           
-                  <div className={style.divider}></div>
+              <div className={style.divider}></div>
           
               <input
                 placeholder="Anonymous name"

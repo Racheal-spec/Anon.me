@@ -18,6 +18,7 @@ import { RiDraftLine } from "react-icons/ri";
 import { BsPencilSquare, BsBookmarks } from "react-icons/bs";
 import { GrUserSettings } from "react-icons/gr";
 import { BiLogOut } from "react-icons/bi";
+import { logoutUser } from "@/app/context/Actions/Actions";
 
 const Sidebar = ({
   active,
@@ -75,6 +76,16 @@ const Sidebar = ({
     handleclick(activeLink);
   }, [activeLink]);
 
+  const SignOutUser = async () => {
+    let logoutdata = await logoutUser();
+     if (logoutdata){
+     window.location.reload();
+     }
+   
+   };
+ 
+ 
+
   return (
     <div className={classNames(styles.sidebarStyles, active)}>
       <div className={styles.sidelogo}>
@@ -104,7 +115,7 @@ const Sidebar = ({
           </li>
         ))}
       </ul>
-      <div className={styles.logouttext}>
+      <div className={styles.logouttext} onClick={SignOutUser}>
         <BiLogOut color="#ff0f7b" />
         <p>Logout</p>
       </div>

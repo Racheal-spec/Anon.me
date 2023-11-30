@@ -23,12 +23,19 @@
 .profilelink {
   text-decoration: none;
 }
-.profilelink li {
+.profilelink li, .profilename {
   color: #202a3b;
   font-size: 0.8rem;
   list-style: none;
   padding: 8px 0;
   cursor: pointer;
+
+}
+.profilespan{
+  color: var(--secondary);
+}
+.profilediv{
+  padding-top: 30px;
 }
 .hrStyle {
   margin: 0 auto;

@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function GET(req: Request, res: NextResponse) {
   try {
-    const mostlikedPosts = await db.post.findMany({
+    const allPosts = await db.post.findMany({
       orderBy: {
         likesCount: "desc",
       },
@@ -16,8 +16,11 @@ export async function GET(req: Request, res: NextResponse) {
         published: true,
       },
     });
-    console.log("reachedddd");
-    console.log(mostlikedPosts);
+
+  //  const mostlikedPosts = await allPosts?.find()?.sort({ likes: -1 }).limit(3);
+
+  const mostlikedPosts = allPosts?.sort((a,b) => b.likes?.length - a.likes.length);
+
 
     if (mostlikedPosts.length === 0) {
       return NextResponse.json(
