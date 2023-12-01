@@ -51,17 +51,22 @@ const BorderCard = React.memo(
       fetchPost();
     }, []);
 
+
     const handleDispatch = async () => {
       if (state?.user === undefined) {
         setBookmarkmodal(true);
       }
-      setPrevBookmark((prev) => !prev);
-
-      if (prevBookmark) {
-        toast.success("You have removed story");
-      } else {
+       setPrevBookmark((prev) => !prev);
+      if (prevBookmark && state?.user !== undefined) {
+ 
+        toast.success("You have removed story from bookmark");
+        console.log(prevBookmark);
+  
+      } else if (!prevBookmark && state?.user !== undefined){
+      
         toast.success("Story bookmarked");
-      }
+      } 
+
       try {
         let bookmarkData = await toggleBookmark({
           user: state?.user?.data.id ?? "",
@@ -77,7 +82,9 @@ const BorderCard = React.memo(
     };
 
     useEffect(() => {
+     
       setPrevBookmark(bookmarked);
+     
     }, [bookmarked]);
 
     useEffect(() => {
@@ -134,7 +141,7 @@ const BorderCard = React.memo(
              
                 </div>
                 <div className={styles.flex}>
-                  {prevBookmark ? (
+                  {prevBookmark && state?.user !== undefined ? (
                     <BsFillBookmarkCheckFill
                       color="#334155"
                       onClick={handleDispatch}
