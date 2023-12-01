@@ -58,12 +58,8 @@ const BorderCard = React.memo(
       }
        setPrevBookmark((prev) => !prev);
       if (prevBookmark && state?.user !== undefined) {
- 
         toast.success("You have removed story from bookmark");
-        console.log(prevBookmark);
-  
       } else if (!prevBookmark && state?.user !== undefined){
-      
         toast.success("Story bookmarked");
       } 
 
@@ -82,9 +78,7 @@ const BorderCard = React.memo(
     };
 
     useEffect(() => {
-     
       setPrevBookmark(bookmarked);
-     
     }, [bookmarked]);
 
     useEffect(() => {
@@ -136,7 +130,7 @@ const BorderCard = React.memo(
                 </div>
                 <div className={styles.flex}>
                 <Link href={POSTDETAILS(id ?? "")}>
-                <p>{likes?.length} likes</p>
+                <p>{likes ? (Array.isArray(likes) ? likes.length : likes) : 0} likes</p>
                 </Link>
              
                 </div>

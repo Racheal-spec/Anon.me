@@ -115,7 +115,6 @@ const DetailsComp = () => {
     });
   }, [singlepost?.likes]);
 
-  console.log(liked)
   return (
     <div className={styles.pageWrapper}>
       {!isLoading ? (

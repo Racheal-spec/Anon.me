@@ -18,6 +18,7 @@ export type postType = {
   postimage?: string;
   categoryId: string;
   likes: PostLikeProp[];
+  likesCount: number;
   author: AuthorProp;
   comments: commentProp[];
   category: category;
@@ -39,7 +40,7 @@ type bookmarkProp = {
   createdAt: any;
   postimage: string;
   author: string;
-  likes: PostLikeProp[];
+  likes: number | PostLikeProp[];
   post: postType;
   user: AuthorProp;
 };

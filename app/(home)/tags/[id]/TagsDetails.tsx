@@ -8,6 +8,7 @@ import BorderCard from "@/app/components/BorderCard/BorderCard";
 import { TagsProp } from "@/app/Types/global";
 import EmptyState from "@/app/components/EmptyState/EmptyState";
 import Card from "@/app/components/Card/Card";
+import { changeTextFromHTML } from "@/app/services/HtmltoText";
 
 const TagsDetails = () => {
   let params = useParams();
@@ -53,9 +54,10 @@ const TagsDetails = () => {
                   id={result?.id}
                   title={result?.title}
                   author={result?.author?.anonname}
-                  excerpts={excerpt}
+                  excerpts={changeTextFromHTML(excerpt)}
                   postimage={result?.postimage}
                   createdAt={result?.createdAt}
+                  likes={result?.likesCount!}
                 />
               </div>
             );

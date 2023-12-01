@@ -19,13 +19,17 @@ const LoginSideComp = () => {
           uniqueness, and encourages open dialogue.
         </p>
         <div className={styles.btnFlex}>
+        <Link href={REGISTER}>
           <Button primary>
-            <Link href={REGISTER}>Get started for free</Link>
+              Get started for free
           </Button>
+          </Link>
           <div className={styles.secondBtn}>
+          <Link href={LOGIN}>
             <Button deepPinkOutline>
-              <Link href={LOGIN}>Login</Link>
+              Login
             </Button>
+            </Link>
           </div>
         </div>
       </div>
