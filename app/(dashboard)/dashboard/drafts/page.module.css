@@ -1,6 +1,5 @@
 .draftsWrapper {
   padding: 30px 0;
-  margin-left: 18%;
 }
 .postending {
   margin: 0 auto;
@@ -44,6 +43,9 @@
 /**========================MEDIA QUERIES==================================**/
 
 @media screen and (min-width: 768px) {
+  .draftsWrapper {
+    margin-left: 18%;
+  }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
   /* For tablets: */

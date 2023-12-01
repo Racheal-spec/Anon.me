@@ -59,12 +59,12 @@ const PageHeader = ({
   return (
     <div>
       <div className={styles.headerWrapper}>
-        <div>
+        {/* <div>
           <TfiWrite
             size={isMobile ? "1.0em" : "1.3em"}
             className={styles.logoicon}
           />
-        </div>
+        </div> */}
         <div className={styles.publishDiv}>
           <div className={styles.draftDiv} onClick={handleFormSubmit}>
             {loading ? (

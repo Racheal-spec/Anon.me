@@ -1,8 +1,7 @@
 "use client";
 import React, { Suspense, useEffect, useRef, useState } from "react";
 import style from "../createpost/page.module.css";
-import PageHeader from "../PageHeader/PageHeader";
-import "../../globalstyles/globals.css";
+import "../../../globalstyles/globals.css";
 import { useForm } from "react-hook-form";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, convertToRaw } from "draft-js";
@@ -14,7 +13,9 @@ import { useTagsValue } from "@/app/context/TagsContext";
 import { useRouter } from "next/navigation";
 import { EDITDRAFT } from "@/app/Routes/RoutesUrl";
 import PostForm from "@/app/components/PostForm/PostForm";
-import Loading from "../Loading";
+import Loading from "../../Loading";
+import PageHeader from "../PageHeader/PageHeader";
+
 
 type postDataType = {
   data: postType;
@@ -110,11 +111,7 @@ const Createpost = () => {
   return (
     <Suspense fallback={<Loading />}>
     <div className={style.mainWrapper}>
-      <PageHeader
-        handleFormSubmit={handleSubmit(handleFormSubmit)}
-        loading={isLoading}
-        id={postdata ? postdata?.data?.id : ""}
-      />
+    
 
       <PostForm
         imagefile={imagefile}
@@ -126,6 +123,11 @@ const Createpost = () => {
         onEditorStateChange={handleEditorChange}
         handleselect={handleselect}
         handleCancel={handleCancel}
+      />
+        <PageHeader
+        handleFormSubmit={handleSubmit(handleFormSubmit)}
+        loading={isLoading}
+        id={postdata ? postdata?.data?.id : ""}
       />
     </div>
     </Suspense>

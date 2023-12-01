@@ -1,11 +1,14 @@
 .headerWrapper {
   display: flex;
   justify-content: space-between;
+  margin-left: 7%;
 }
 .publishDiv {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 10px;
+  width: 100%;
 }
 .divider {
   height: 35px;
@@ -55,9 +58,7 @@
 /**========================MEDIA QUERIES==================================**/
 
 @media screen and (min-width: 768px) {
-  .publishDiv {
-    gap: 20px;
-  }
+ 
 }
 @media (min-width: 768px) and (max-width: 1024px) {
   /* For tablets: */

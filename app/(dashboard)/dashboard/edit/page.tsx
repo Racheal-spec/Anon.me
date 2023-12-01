@@ -1,7 +1,7 @@
 "use client";
 import React, { Suspense, useEffect, useRef, useState } from "react";
 import style from "../createpost/page.module.css";
-import "../../globalstyles/globals.css";
+import "../../../globalstyles/globals.css";
 import { useForm } from "react-hook-form";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import {
@@ -18,9 +18,9 @@ import { useTagsValue } from "@/app/context/TagsContext";
 import { useRouter, useSearchParams } from "next/navigation";
 import { CREATEPOST } from "@/app/Routes/RoutesUrl";
 import PostForm from "@/app/components/PostForm/PostForm";
+import Loading from "../../Loading";
 import PageHeader from "../PageHeader/PageHeader";
-import emptyrect from "../../Assets/images/emptyrect.png";
-import Loading from "../Loading";
+
 
 const Editpost = () => {
   const [, setImageFile] = useState("");
@@ -150,11 +150,7 @@ const Editpost = () => {
   return (
     <Suspense fallback={<Loading />}>
     <div className={style.mainWrapper}>
-      <PageHeader
-        editstatus={editstatus}
-        loading={isUpdatingLoading}
-        id={postId ?? ""}
-      />
+     
 
       <PostForm
         imagefile={singlepostData?.postimage  ?? ""}
@@ -166,6 +162,11 @@ const Editpost = () => {
         handleselect={handleEditselect}
         handleCancel={handleCancel}
         categoryId={catValue?.id || updatecategoryId}
+      />
+       <PageHeader
+        editstatus={editstatus}
+        loading={isUpdatingLoading}
+        id={postId ?? ""}
       />
     </div>
     </Suspense>

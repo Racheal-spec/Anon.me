@@ -1,5 +1,5 @@
 .post_div {
-  padding: 40px 0px;
+  padding: 50px 0px;
 }
 .post_div h1 {
   color: var(--grey);
@@ -19,7 +19,7 @@
   font-size: 0.9rem;
 }
 .headingH1 {
-  padding: 25px 0;
+  padding: 15px 0;
   font-size: 1.8rem;
   color: var(--black);
   width: 90%;
@@ -27,6 +27,8 @@
 .headingH1::placeholder {
   font-size: 1.8rem;
   font-weight: bold;
+  padding: 15px 0;
+ 
 }
 .coverimgshow {
   object-fit: cover;
@@ -36,7 +38,7 @@
 }
 .cancelimgbtn{
   position: absolute;
-  top: 13%;
+  top: 18%;
   right: 10%;
   font-size: 1.8rem;
   cursor: pointer;
@@ -46,9 +48,7 @@
 /**========================MEDIA QUERIES==================================**/
 
 @media screen and (min-width: 1025px) {
-  .post_div {
-    padding: 80px 120px;
-  }
+ 
   .headingH1 {
     font-size: 2.4rem;
   }
@@ -57,20 +57,20 @@
   }
   .cancelimgbtn{
     top: 20%;
-    right: 17%;
+    right: 6%;
 
   }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
   /* For tablets: */
   .post_div {
-    padding: 80px 0px;
+    padding: 50px 0px;
   }
   .coverimgshow {
     width: 100%;
   }
   .cancelimgbtn{
-    top: 15%;
+    top: 13%;
     right: 11%;
 
   }
