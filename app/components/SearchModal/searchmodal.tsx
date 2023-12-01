@@ -27,7 +27,7 @@ const SearchModal = React.memo(
     } = useForm();
     const searchterm = watch("search")?.toLowerCase();
 
-    console.log(searchmodal);
+    // console.log(searchmodal);
     const handleclose = () => {
       showSearchModal(false);
     };

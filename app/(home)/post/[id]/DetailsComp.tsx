@@ -29,9 +29,9 @@ const DetailsComp = () => {
   const [isLoading, setLoading] = useState(false);
   const [likedata, setLikeData] = useState<PostLikeProp | null>(null);
   const [likemodal, setLikemodal] = useState(false);
-  const [liked, setLiked] = useState(likedata || false);
+  const [liked, setLiked] = useState(likedata?.isLiked);
   const [likesCount, setLikesCount] = useState(
-    singlepost?.likes?.length ? singlepost?.likes?.length : 0
+    singlepost?.likes?.length ?  singlepost?.likes?.length : null
   );
   const [toggle, setToggle] = useState(false);
 
@@ -51,32 +51,58 @@ const DetailsComp = () => {
   };
   useEffect(() => {
     fetchPost();
+    console.log('fetchhhh post')
   }, []);
+  console.log(singlepost?.likes?.length);
+  console.log(likesCount);
+
 
   const handleLike = async () => {
     if (state?.user === undefined) {
       setLikemodal(true);
+      setLikesCount((prev) => {
+        if (prev !== null && prev !== undefined ) {
+          return prev + 0
+        }
+        return 0;
+      });
     }
+   
     if (state?.user !== undefined && liked) {
-      setLikesCount((prev) => prev - 1);
-    } else {
-      setLikesCount((prev) => prev + 1);
-    }
-    setLiked(!liked);
+      
+      setLikesCount((prev) => {
+         
+        if (prev !== null && prev !== undefined ) {
+          return prev - 1
+        }
+       return 0
+      });
+      setLiked(!liked)
+    } else if(state?.user !== undefined && !liked)  {
+      setLikesCount((prev) => {
+        if (prev !== null && prev !== undefined ) {
+          return prev + 1
+        }
+       return 0
+    })
+    setLiked(!liked)
+
     try {
       let data = await likePost({
-        user: state.user ? state.user?.data.id : "",
+        user: state?.user && state.user !== undefined ? state.user?.data.id : "",
         post: singlepost?.id as string,
       });
+      console.log(data)
       if (data?.status === 200) {
         setLikeData(data?.isLiked);
+        
         return data;
       }
     } catch (error: any) {
       toast.error(`Error: ${JSON.stringify(error.message)}`);
     }
   };
-
+  }
   const handleLoginModal = () => {
     setLikemodal(false);
   };
@@ -88,6 +114,8 @@ const DetailsComp = () => {
       }
     });
   }, [singlepost?.likes]);
+
+  console.log(liked)
   return (
     <div className={styles.pageWrapper}>
       {!isLoading ? (
@@ -187,5 +215,6 @@ const DetailsComp = () => {
     </div>
   );
 };
+
 
 export default DetailsComp;

@@ -42,7 +42,7 @@ model Post {
   likes       PostLike[]
   trending    Trending?
   bookmarks  Bookmarks[]
-  likesCount Int       @default(0)
+  likesCount Int?       
   //@@index([authorId,id])
 }
 

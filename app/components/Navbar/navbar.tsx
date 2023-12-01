@@ -54,7 +54,7 @@ const Navbar = () => {
   // useEffect(() => {
   // setIsmobile(mobile);
   // }, [isMobile])
-  console.log(`navbarmobile: ${isMobile}`);
+  // console.log(`navbarmobile: ${isMobile}`);
   //===============USEEFFECTS==================//
 
   return (

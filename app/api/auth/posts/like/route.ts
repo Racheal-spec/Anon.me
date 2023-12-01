@@ -48,7 +48,7 @@ export async function POST(req: Request) {
           },
         });
 
-        if (post && post?.likesCount > 0) {
+        if (post?.likesCount ? post?.likesCount > 0 : post?.likesCount) {
           // Decrement the likesCount in the Post model
           const reducelike = await db.post.update({
             where: {
