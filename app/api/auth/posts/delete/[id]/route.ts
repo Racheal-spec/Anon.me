@@ -10,22 +10,25 @@ export async function DELETE(req: Request, { params }: ParamType) {
         id: postid,
       },
     });
-    const singlepost = await db.post.findUnique({
-      where: {
-        id: postid,
-      },
-    });
-    if (!singlepost) {
-      return NextResponse.json(
-        {
-          status: 400,
-          message: "Record to delete does not exist!",
-        },
-        {
-          status: 400,
-        }
-      );
-    }
+    // const singlepost = await db.post.findUnique({
+    //   where: {
+    //     id: postid,
+    //   },
+    //   select: {
+    //     published: true || false
+    //   }
+    // });
+    // if (!singlepost) {
+    //   return NextResponse.json(
+    //     {
+    //       status: 400,
+    //       message: "Record to delete does not exist!",
+    //     },
+    //     {
+    //       status: 400,
+    //     }
+    //   );
+    // }
     if (!post) {
       return NextResponse.json(
         {

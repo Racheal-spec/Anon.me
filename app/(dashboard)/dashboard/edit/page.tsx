@@ -20,6 +20,7 @@ import { CREATEPOST } from "@/app/Routes/RoutesUrl";
 import PostForm from "@/app/components/PostForm/PostForm";
 import Loading from "../../Loading";
 import PageHeader from "../PageHeader/PageHeader";
+import { postDataType } from "../../CreatePageHeader/CreatePageHeader";
 
 
 const Editpost = () => {
@@ -37,7 +38,7 @@ const Editpost = () => {
   const edittitleref = useRef<HTMLHeadingElement | null>(null);
   const [updatecategoryId, setUpdateCategoryId] = useState("");
   const [singlepostData, setSinglePostData] = useState<postType | null>(null);
-  const[imgPreview, setImagePreview] = useState("");
+  const[postEdit, setPostEdit] = useState<postDataType>()
   const firstRender = useRef(true);
   const [cat, setCat] = useState("");
 
@@ -79,7 +80,8 @@ const Editpost = () => {
       let res = await editPost(formData, { id: postId as string });
       if (res.status === 200) {
         setUpdatingLoading(false);
-        toast.success("Post updated successfully!");
+        setPostEdit(res);
+        // toast.success("Post updated successfully!");
       }
     } catch (error) {
       console.log(error);
@@ -150,8 +152,6 @@ const Editpost = () => {
   return (
     <Suspense fallback={<Loading />}>
     <div className={style.mainWrapper}>
-     
-
       <PostForm
         imagefile={singlepostData?.postimage  ?? ""}
         titleref={edittitleref}
@@ -167,6 +167,7 @@ const Editpost = () => {
         editstatus={editstatus}
         loading={isUpdatingLoading}
         id={postId ?? ""}
+        postEdit={postEdit!}
       />
     </div>
     </Suspense>

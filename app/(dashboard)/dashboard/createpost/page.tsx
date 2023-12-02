@@ -11,10 +11,10 @@ import { createNewPost } from "@/app/context/Actions/Actions";
 import { postType } from "@/app/Types/posts";
 import { useTagsValue } from "@/app/context/TagsContext";
 import { useRouter } from "next/navigation";
-import { EDITDRAFT } from "@/app/Routes/RoutesUrl";
+import { CREATEPOST, EDITDRAFT } from "@/app/Routes/RoutesUrl";
 import PostForm from "@/app/components/PostForm/PostForm";
 import Loading from "../../Loading";
-import PageHeader from "../PageHeader/PageHeader";
+import CreatePageHeader from "../../CreatePageHeader/CreatePageHeader";
 
 
 type postDataType = {
@@ -42,8 +42,8 @@ const Createpost = () => {
   const handleEditorChange = (event: any) => {
     setEditorState(event);
   };
-  const handleFormSubmit = async (data: any) => {
-    const file = data?.postimage?.[0];
+  const handleFormSubmit = async () => {
+   // const file = data?.postimage?.[0];
     const formData = new FormData();
     const postData = JSON.stringify({
       title: titleref.current?.innerText,
@@ -80,26 +80,33 @@ const Createpost = () => {
     setImageFile(URL.createObjectURL(file));
   };
 
-  console.log(imageData, imagefile)
+  // console.log(imageData, imagefile)
 
   const handleselect = (e: any) => {
     setCategoryId(e.target.value);
   };
 
   //==============================USEEFFECTS====================================//
-
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (firstrender.current) {
+        firstrender.current = false;
+        return;
+      } else {
+        handleFormSubmit();
+      }
+    }, 5000);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [ categoryId, editorState]);
   //useEffect for the saved action before the page reloads
   useEffect(() => {
     if (postdata) {
       router.replace(EDITDRAFT(postdata?.data?.id));
     }
+    
   }, [postdata]);
-
-  // useEffect(() => {
-  //  const firstRender = true;
-  //  if(firstRender)
-  // }, [])
-
   const handleCancel = () => {
 
     setImageData(null);
@@ -111,8 +118,6 @@ const Createpost = () => {
   return (
     <Suspense fallback={<Loading />}>
     <div className={style.mainWrapper}>
-    
-
       <PostForm
         imagefile={imagefile}
         titleref={titleref}
@@ -124,10 +129,11 @@ const Createpost = () => {
         handleselect={handleselect}
         handleCancel={handleCancel}
       />
-        <PageHeader
+        <CreatePageHeader
         handleFormSubmit={handleSubmit(handleFormSubmit)}
         loading={isLoading}
         id={postdata ? postdata?.data?.id : ""}
+        postdata={postdata!}
       />
     </div>
     </Suspense>

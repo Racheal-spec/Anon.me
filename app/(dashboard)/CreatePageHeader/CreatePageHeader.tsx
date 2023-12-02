@@ -1,8 +1,6 @@
 import Button from "@/app/uikits/Button/button";
 import React, { useState } from "react";
-import styles from "./PageHeader.module.css";
-import { TfiWrite } from "react-icons/tfi";
-import { UseResizeScreen } from "@/app/hooks/ResizeScreen";
+import styles from "../dashboard/PageHeader/PageHeader.module.css";
 import { FiDelete } from "react-icons/fi";
 import { CiSaveDown1 } from "react-icons/ci";
 import Loader from "@/app/components/Loader/Loader";
@@ -10,23 +8,24 @@ import Modal from "@/app/components/Modal/Modal";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { setPublishPost } from "@/app/context/Actions/Actions";
-import { postDataType } from "../../CreatePageHeader/CreatePageHeader";
+import { postType } from "@/app/Types/posts";
 
+export type postDataType = {
+    data: postType;
+  };
 type PageHeaderProp = {
   handleFormSubmit?: () => void;
   loading: boolean;
   editstatus?: boolean;
   id: string;
-  postEdit: postDataType;
+  postdata: postDataType;
 };
-const PageHeader = ({
+const CreatePageHeader = ({
   handleFormSubmit,
   loading,
-  editstatus,
   id,
-  postEdit
+  postdata
 }: PageHeaderProp) => {
-  const isMobile = UseResizeScreen();
   const [showmodal, setShowModal] = useState(false);
   const [isPublishLoading, setPublishLoading] = useState(false);
   const router = useRouter();
@@ -71,12 +70,11 @@ const PageHeader = ({
             )}
             <p>
               {loading ? (
-                <i style={{ color: "red" }}>Saving...</i>
-              ) : postEdit ? ( <i style={{ color: "green" }}>Saved</i>) : (
-                "Save Draft"
-              )}
+                <i style-={{ color: "green" }}>saving...</i>
+              ) : postdata ? (
+                "Saved"
+              ) : "Save Draft"}
             </p>
-            
           </div>
           <div>
             <Button primary onClick={ handlePublished}>
@@ -86,7 +84,7 @@ const PageHeader = ({
                     <Loader color="#333333" />
                   </div>
                 )}
-                <div> {editstatus ? "Update" : " Publish"}</div>
+                <div>Publish</div>
               </div>
             </Button>
           </div>
@@ -118,4 +116,4 @@ const PageHeader = ({
   );
 };
 
-export default PageHeader;
+export default CreatePageHeader;
