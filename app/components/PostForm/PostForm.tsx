@@ -33,7 +33,7 @@ const PostForm = ({
 
   return (
     <div className={style.post_div}>
-      {!imagefile && (
+      {!imagefile ? (
         <div className={style.coverImgDiv}>
           <div>
             <BiImageAdd fontSize={"1.4rem"} />
@@ -51,20 +51,20 @@ const PostForm = ({
             </label>
           </div>
         </div>
+      ): (
+          <div>
+            <Image
+              src={imagefile}
+              width={1000}
+              height={500}
+              className={style.coverimgshow}
+              alt="uploaded-image"
+            />
+            
+          </div>
       )}
 
-      {imagefile && (
-        <div>
-          <Image
-            src={imagefile}
-            width={1000}
-            height={500}
-            className={style.coverimgshow}
-            alt="uploaded-image"
-          />
-          
-        </div>
-      )}
+     
   {
     imagefile && (
       <MdCancelPresentation className={style.cancelimgbtn} onClick={handleCancel}  />
