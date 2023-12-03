@@ -19,7 +19,7 @@ export async function GET(req: Request, res: NextResponse) {
 
   //  const mostlikedPosts = await allPosts?.find()?.sort({ likes: -1 }).limit(3);
 
-  const mostlikedPosts = allPosts?.sort((a,b) => b.likes?.length - a.likes.length);
+  const mostlikedPosts = allPosts?.sort((a,b) => b.likes?.length - a.likes.length)?.slice(0, 4);
 
 
     if (mostlikedPosts.length === 0) {

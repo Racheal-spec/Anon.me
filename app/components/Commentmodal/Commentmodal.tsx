@@ -138,7 +138,7 @@ const Commentmodal = ({
           {commentsArray?.data?.length === 0 ? (
             <EmptyState
               heading="No replies yet"
-              description="Be the first one to say something thoughful1"
+              description="Be the first one to say something thoughful!"
             />
           ) : (
             <div className={styles.commentwrapper}>

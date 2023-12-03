@@ -24,4 +24,4 @@ const InputSearch: FC<Partial<InputProp>> = ({
   );
 };
 
-export default InputSearch;
+export default InputSearch; 

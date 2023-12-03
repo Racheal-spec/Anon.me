@@ -39,6 +39,7 @@
 }
 .dateStyle {
   font-size: 0.7rem;
+  margin: 5px 0;
 }
 .profileImg {
   border-radius: 40%;
@@ -66,6 +67,8 @@
 .mainContent p{
   line-height: 1.8rem;
   text-transform: none;
+  margin: 0 auto;
+
 }
 .flex {
   display: flex;
@@ -130,6 +133,14 @@
   }
   .mainContent {
     margin: 20px 0;
+    width: 100%;
+  }
+  .mainContent p{
+    width: fit-content;
+
+  }
+  .mainsection {
+   width: min-content;
   }
 }
 @media (min-width: 768px) and (max-width: 1024px) {

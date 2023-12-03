@@ -105,7 +105,6 @@ const Createpost = () => {
     if (postdata) {
       router.replace(EDITDRAFT(postdata?.data?.id));
     }
-    
   }, [postdata]);
   const handleCancel = () => {
 

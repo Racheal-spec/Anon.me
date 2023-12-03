@@ -47,14 +47,10 @@ const Navbar = () => {
     setToggleDrawer(!toggleDrawer);
   };
   const handlefocus = (event: React.FocusEvent<HTMLInputElement>) => {
-    // event.stopPropagation();
     showSearchModal(true);
   };
 
-  // useEffect(() => {
-  // setIsmobile(mobile);
-  // }, [isMobile])
-  // console.log(`navbarmobile: ${isMobile}`);
+
   //===============USEEFFECTS==================//
 
   return (
