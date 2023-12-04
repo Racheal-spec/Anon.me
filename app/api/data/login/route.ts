@@ -75,7 +75,7 @@ export async function POST(req: Request) {
         return NextResponse.json(
           {
             message:
-              "Invalid login: Make sure you are using the correct password",
+              "Invalid login: Ensure that you are using the correct password",
           },
           {
             status: 401,

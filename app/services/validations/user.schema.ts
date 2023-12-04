@@ -21,7 +21,17 @@ export const UserSchema = z.object({
     })
     .min(1, "Password is required")
     .min(8, "Password must be more than 7 characters")
-    .max(25, "Password must be less than 25 characters"),
+    .max(25, "Password must be less than 25 characters")
+    .refine((value) => /\d/.test(value), {
+      message: "Password must contain at least one number",
+    })
+    .refine((value) => /[a-zA-Z]/.test(value), {
+      message: "Password must contain at least one alphabet character",
+    })
+    // .refine((value) => /[!@#$%^&*(),.?":{}|<>]/.test(value), {
+    //   message: "Password must contain at least one special character",
+    // })
+  ,
   photo: z.string().optional(),
   location: z
     .string({
@@ -31,8 +41,6 @@ export const UserSchema = z.object({
 });
 
 export type UserSchemaType = z.infer<typeof UserSchema>;
-// type LoginSchemaType = z.infer<typeof LoginUserSchema>;
-//export type FormSchemaType = RegistrationSchemaType | LoginSchemaType;
 
 export const MainUserSchema = z.object({
   anonname: z

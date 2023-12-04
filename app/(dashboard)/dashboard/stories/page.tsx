@@ -25,6 +25,8 @@ import { useRouter } from "next/navigation";
 import { deletePost, getSingleTag } from "@/app/context/Actions/Actions";
 import { toast } from "react-toastify";
 import { FormatDate } from "@/app/services/formatDate";
+
+
 const Stories = () => {
   const { lastCursor, posts, isLoading, ref } = usePostValue();
   const isMobile = UseResizeScreen();
@@ -38,19 +40,34 @@ const Stories = () => {
   const [loadingdelete, setLoadingDelete] = useState(false);
   const router = useRouter();
 
+
   let publishedArray: postType[] = [];
   let userPosts: postType[] = [];
+  const userid = state?.user?.data;
+  console.log(userid?.id)
+
+  console.log(posts)
+
 
   posts?.map((el) => {
-    if (el?.authorId === state?.user?.data?.id) {
-      userPosts.push(el);
+    if (el?.authorId === userid?.id) {
+      console.log(el);
+      userPosts?.push(el);
     }
   });
+  
+  // const userPosts: postType[] = filteredPosts?.filter((el) => {
+  //   console.log(el?.authorId === userid?.id)
+  //   return el?.authorId === userid?.id;
+  // }) || [];
+
   userPosts?.map((el) => {
     if (el.published) {
       publishedArray.push(el);
     }
   });
+
+  console.log(userPosts)
 
   const handleModal = (index: number) => {
     // toggles the modal state for the post at the given index by creating a copy of modalitem,
@@ -95,7 +112,6 @@ const Stories = () => {
             action={null}
             tags="Tags"
           />
-
           <>
             {userPosts &&
               userPosts?.map((post, index) => (
@@ -195,7 +211,7 @@ const Stories = () => {
             )}
           </>
 
-          <div ref={ref}>
+          {/* <div ref={ref}>
             {lastCursor === null ? (
               <div className={styles.postending}>You have reached the end!</div>
             ) : (
@@ -207,7 +223,19 @@ const Stories = () => {
                 ) : null}
               </div>
             )}
+          </div> */}
+
+      <div ref={ref}>
+        {!isLoading ? (
+          <div className={styles.postending}>You have reached the end!</div>
+        ) : (
+          <div>
+              <div className={styles.loaderdiv}>
+                <SearchLoader />
+              </div>
           </div>
+        )}
+      </div>
         </TabsBody>
 
         {/**================SECOND TAB=================== */}

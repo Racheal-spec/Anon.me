@@ -29,7 +29,7 @@ export type ParamType = {
   };
 };
 export type postParamsType = {
-  take: number;
+  take?: number;
   lastCursor: string;
   search?: string;
 };

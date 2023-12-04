@@ -28,6 +28,7 @@ const PostContext = createContext<{
   ref: () => void;
   isLoading: boolean;
   posts: postType[] | null;
+ // fetchMorePosts: (take: number | null) => void;
   lastCursor: string;
 }>({
   poststate: initialPostStateVal,
@@ -35,6 +36,7 @@ const PostContext = createContext<{
   ref: () => null,
   isLoading: false,
   posts: initialPostStateVal.data || null,
+  //fetchMorePosts: () => null,
   lastCursor: "",
 });
 
@@ -50,13 +52,14 @@ export const PostProvider = ({
   const { state } = userValue();
   const { ref, inView } = useInView();
   let [lastCursor, setLastCursor] = useState("");
-  const [take, setTake] = useState(7);
+  //const [take] = useState(7);
   const [isLoading, setLoading] = useState(false);
   const [posts, setPosts] = useState<postType[]>([]);
+
   const fetchMorePosts = async () => {
     setLoading(true);
     const moredata = await getPosts({
-      take: take,
+     // take: take !== null ? take : undefined,
       lastCursor: lastCursor,
     });
     if (moredata) {
@@ -76,6 +79,7 @@ export const PostProvider = ({
         (item: any) => !prev.some((prevItem) => prevItem.id === item.id)
       ),
     ]);
+
     setLastCursor(moredata?.metaData?.lastCursor);
   };
 

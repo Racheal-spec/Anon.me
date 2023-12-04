@@ -10,17 +10,32 @@ export async function POST(req: Request, res: Response) {
     if (req.method === "POST") {
       const body = await req.json();
       const data = UserSchema.parse(body);
-
       const uniquename = await db.user.findFirst({
         where: {
-          anonname: data.anonname,
+          anonname: data?.anonname,
+        },
+      });
+      const uniqueemail = await db.user.findFirst({
+        where: {
+          email: data?.email,
         },
       });
 
-      if (uniquename?.anonname === data.anonname) {
+      if (uniquename?.anonname === data?.anonname) {
         return NextResponse.json(
           {
-            message: `The anonname "${data.anonname}" has already been choosen`,
+            message: `The anonname "${data.anonname}" has already been used`,
+          },
+          {
+            status: 403,
+          }
+        );
+      }
+
+      if (uniqueemail?.email === data?.email) {
+        return NextResponse.json(
+          {
+            message: `The email "${data.email}" has already been used`,
           },
           {
             status: 403,
@@ -30,7 +45,7 @@ export async function POST(req: Request, res: Response) {
 
       const user = await db.user.create({
         data: {
-          anonname: `Anon${data.anonname!}`,
+          anonname: data.anonname! ,
           email: data.email,
           password: await hashPassword(data.password),
           location: data.location,

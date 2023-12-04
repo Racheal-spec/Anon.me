@@ -19,6 +19,7 @@ import { BsPencilSquare, BsBookmarks } from "react-icons/bs";
 import { GrUserSettings } from "react-icons/gr";
 import { BiLogOut } from "react-icons/bi";
 import { logoutUser } from "@/app/context/Actions/Actions";
+import { usePathname, useRouter } from "next/navigation";
 
 const Sidebar = ({
   active,
@@ -42,16 +43,16 @@ const Sidebar = ({
       icon: <MdOutlineAutoStories />,
     },
     {
-      id: "drafts",
-      label: "All Drafts",
-      path: DASHBOARDDRAFTS,
-      icon: <RiDraftLine />,
-    },
-    {
       id: "write",
       label: "Write",
       path: CREATEPOST,
       icon: <BsPencilSquare />,
+    },
+    {
+      id: "drafts",
+      label: "All Drafts",
+      path: DASHBOARDDRAFTS,
+      icon: <RiDraftLine />,
     },
     {
       id: "bookmarks",
@@ -69,12 +70,16 @@ const Sidebar = ({
   ];
   const [activeLink, setActiveLink] = useState("");
 
+  const pathname = usePathname();
+  const newpath = pathname.split("/")[2];
+
   const handleclick = (linkid: string) => {
     setActiveLink(linkid);
   };
   useEffect(() => {
-    handleclick(activeLink);
-  }, [activeLink]);
+    setActiveLink(newpath);
+  }, []);
+
 
   const SignOutUser = async () => {
     let logoutdata = await logoutUser();
@@ -83,8 +88,6 @@ const Sidebar = ({
      }
    
    };
- 
- 
 
   return (
     <div className={classNames(styles.sidebarStyles, active)}>

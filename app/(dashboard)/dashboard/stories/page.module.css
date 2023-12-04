@@ -84,11 +84,11 @@
   align-items: center;
   justify-content: flex-start;
   font-size: 0.9rem;
-  margin: 5px 0;
+  margin: 10px 0;
   cursor: pointer;
 }
 .modalicondiv span {
-  margin-left: 6px;
+  margin: 6px;
 }
 .icondiv {
   cursor: pointer;

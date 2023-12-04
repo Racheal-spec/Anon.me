@@ -59,6 +59,7 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
   const {
     register,
     handleSubmit,
+    setValue,
     control,
     formState: { errors, isSubmitting },
   } = useForm<UserSchemaType>({
@@ -71,7 +72,9 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
   const handleFormSubmit: SubmitHandler<UserSchemaType> = async (state) => {
     try {
       if (mode === "register") {
-        let result: any = await registerUsers(state);
+        const modifiedState = { ...state, anonname: `Anon${state.anonname}` };
+    
+        let result: any = await registerUsers(modifiedState);
         if (result?.status === "created") {
           router.replace("/home");
         }

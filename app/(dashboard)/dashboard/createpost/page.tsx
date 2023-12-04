@@ -107,7 +107,6 @@ const Createpost = () => {
     }
   }, [postdata]);
   const handleCancel = () => {
-
     setImageData(null);
     setImageFile("");
   };

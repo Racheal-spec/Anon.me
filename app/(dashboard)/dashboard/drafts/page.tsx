@@ -19,6 +19,9 @@ import { deletePost } from "@/app/context/Actions/Actions";
 import { toast } from "react-toastify";
 import { changeTextFromHTML } from "@/app/services/HtmltoText";
 import { FormatDate } from "@/app/services/formatDate";
+import Loader from "@/app/components/Loader/Loader";
+import Button from "@/app/uikits/Button/button";
+import Modal from "@/app/components/Modal/Modal";
 
 const Drafts = () => {
   const { lastCursor, posts, isLoading, ref } = usePostValue();
@@ -30,6 +33,10 @@ const Drafts = () => {
   const [draftmodalitem, setDraftModalItem] = useState<boolean[]>(
     new Array(posts?.length || 0).fill(false)
   );
+  const [showdeletedraftmodal, setShowDeleteDraftModal] = useState<boolean[]>(
+    new Array(posts?.length || 0).fill(false)
+  );
+
   posts?.map((el) => {
     console.log(el?.authorId === state?.user?.data?.id);
     if (el?.authorId === state?.user?.data?.id) {
@@ -47,7 +54,12 @@ const Drafts = () => {
     const updatedStates = [...draftmodalitem];
     updatedStates[index] = !updatedStates[index];
     setDraftModalItem(updatedStates);
-    // console.log(!updatedStates[index]);
+  };
+
+  const handleDeleteDraftmodal = (index: number) => {
+    const updatedDeleteStates = [...showdeletedraftmodal];
+    updatedDeleteStates[index] = !updatedDeleteStates[index];
+    setShowDeleteDraftModal(updatedDeleteStates);
   };
 
   const handleDeletedraftStory = async (id: string, index: number) => {
@@ -58,7 +70,7 @@ const Drafts = () => {
       if (deleteSinglePost.status === 200) {
         toast.success("Post successfully deleted");
         setLoadingDelete(false);
-        handleDraftModal(index);
+        handleDeleteDraftmodal(index)
       }
     } catch (error) {}
   };
@@ -117,7 +129,7 @@ const Drafts = () => {
                           </div>
                           <div className={styles.modalicondiv}>
                             <MdOutlineDelete color="red" />
-                            <span onClick={() => handleDeletedraftStory( post?.id, index)}>Delete</span>
+                            <span onClick={() => handleDeleteDraftmodal(index)}>Delete</span>
                           </div>
                         </div>
                       </SmallModal>
@@ -125,6 +137,44 @@ const Drafts = () => {
                   </div>
                 }
               />
+
+             {/************************DELETE MODAL ****************************/}
+             {showdeletedraftmodal[index] && (
+                    <Modal handlefunction={() => handleDeleteDraftmodal(index)}>
+                      <div className={styles.modal}>
+                        <h3>Delete Draft</h3>
+                        <p>
+                          Are you sure you want to delete this draft? Deleting
+                          this draft is permanent and cannot be undone.
+                        </p>
+                        <div className={styles.btnDiv}>
+                          <div>
+                            {" "}
+                            <Button
+                              deepPinkOutline
+                              onClick={() => handleDeleteDraftmodal(index)}
+                            >
+                              Cancel
+                            </Button>
+                          </div>
+                          <Button
+                            primary
+                            onClick={() => handleDeletedraftStory(post?.id, index)}
+                          >
+                            {loadingdelete ? (
+                              <div className={styles.deletediv}>
+                                <Loader color="#fff" />
+                                <span>Deleting</span>
+                              </div>
+                            ) : (
+                              " Delete Story"
+                            )}
+                          </Button>
+                        </div>
+                      </div>
+                    </Modal>
+                  )}
+                
             </div>
           ))}
         {draftsArray?.length === 0 && (
@@ -138,20 +188,30 @@ const Drafts = () => {
       </>
 
       <div ref={ref}>
-        {lastCursor === null ? (
+        {!isLoading ? (
           <div className={styles.postending}>You have reached the end!</div>
         ) : (
           <div>
-            {isLoading || lastCursor !== null ? (
               <div className={styles.loaderdiv}>
                 <SearchLoader />
               </div>
-            ) : posts?.length === 0 ? (
-              "No Draft"
-            ) : null}
           </div>
         )}
       </div>
+      
+
+    {/* <div ref={ref}>
+        {lastCursor === null && draftsArray?.length === 0 ? (
+          <div className={styles.postending}>You have reached the end!</div>
+        ) : (
+          <div className={styles.loaderdiv}>
+          <SearchLoader />
+        </div>
+        )}
+        
+      </div> */}
+
+
     </div>
   );
 };

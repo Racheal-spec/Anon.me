@@ -37,8 +37,26 @@
   align-items: center;
   justify-content: flex-start;
   font-size: 0.9rem;
-  margin: 5px 0;
+  margin: 10px 0;
   cursor: pointer;
+}
+.modal {
+  padding: 10px 0;
+}
+.modal p {
+  padding: 20px 0;
+  text-align: left;
+}
+.btnDiv {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.deletediv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
 }
 /**========================MEDIA QUERIES==================================**/
 

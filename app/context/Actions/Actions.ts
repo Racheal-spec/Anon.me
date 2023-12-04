@@ -8,14 +8,14 @@ export const registerUsers = async (user: any) => {
   try {
     const res = await fetch(`${BASE_URL}/api/data/register`, {
       method: "POST",
-      body: JSON.stringify(user)
+      body: JSON?.stringify(user)
     });
     if (!res.ok) {
-      let err = await res.json();
+      let err = await res?.json();
       console.log(err);
       toast.error(err.message);
     }
-    return await res.json();
+    return await res?.json();
   } catch (error) {
     console.log(error);
   }
@@ -32,7 +32,7 @@ export const loginUsers = async (user: any) => {
       console.log(err);
       toast.error(err.message);
     }
-    return await res.json();
+    return await res?.json();
   } catch (error) {
     console.log(error);
   }
@@ -123,10 +123,10 @@ export const deleteUserImage = async ({user}: {user: string}) => {
   }
 };
 
-export const getPosts = async ({ take, lastCursor }: postParamsType) => {
+export const getPosts = async () => {
   try {
     const res = await fetch(
-      `${BASE_URL}/api/data/posts?take=${take}&lastCursor=${lastCursor}`,
+      `${BASE_URL}/api/data/posts`,
       {
         cache: "no-store",
       }

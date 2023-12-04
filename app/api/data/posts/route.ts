@@ -5,18 +5,13 @@ export async function GET(req: Request, res: NextResponse) {
   // get page and lastCursor from query
   const url = new URL(req.url);
 
-  const take = url.searchParams.get("take");
-  const lastCursor = url.searchParams.get("lastCursor");
+
+  //const takeValue = take !== null ? parseInt(take, 7) : undefined;
   try {
     //get prisma to get the post
     const data = await db.post.findMany({
-      take: take ? parseInt(take as string) : 7,
-      ...(lastCursor && {
-        skip: 1,
-        cursor: {
-          id: lastCursor,
-        },
-      }),
+ 
+     
       orderBy: {
         intId: "desc",
       },
@@ -42,18 +37,8 @@ export async function GET(req: Request, res: NextResponse) {
         }
       );
     }
-    //Get the last post from the data result(i.e based on the "take" functionality)
-    const lastPost: any = data[data.length - 1];
-    const cursor = lastPost.id;
-    const nextPage = await db.post.findMany({
-      take: take ? parseInt(take as string) : 7,
-      ...(lastCursor && {
-        skip: 1,
-        cursor: {
-          id: cursor,
-        },
-      }),
-    });
+
+    const nextPage = await db.post.findMany();
     data.map((val) => {
       let nullpassword = (val.author.password = undefined!);
       let nullemail = (val.author.email = undefined!);
@@ -70,10 +55,7 @@ export async function GET(req: Request, res: NextResponse) {
       {
         status: "ok",
         data: data,
-        metaData: {
-          lastCursor: cursor,
-          hasNextPage: nextPage.length > 0,
-        },
+        
       },
       {
         status: 200,
