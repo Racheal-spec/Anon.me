@@ -16,7 +16,7 @@ export async function POST(req: Request) {
     if (req.method === "POST") {
       const user = await db.user.findUnique({
         where: {
-          email: data.email,
+          email: data?.email,
         },
       });
       console.log(`userrrr: ${JSON.stringify(user)}`);

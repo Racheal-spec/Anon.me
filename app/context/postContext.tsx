@@ -58,10 +58,7 @@ export const PostProvider = ({
 
   const fetchMorePosts = async () => {
     setLoading(true);
-    const moredata = await getPosts({
-     // take: take !== null ? take : undefined,
-      lastCursor: lastCursor,
-    });
+    const moredata = await getPosts();
     if (moredata) {
       postdispatch({
         type: PostTypes.GetPost,
