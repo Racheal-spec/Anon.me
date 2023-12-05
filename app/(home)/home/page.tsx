@@ -4,7 +4,7 @@ import BlogHeader from "./BlogHeader";
 import { Suspense } from "react";
 import Loading from "../Loading";
 
-export default function Home() {
+const Home = () => {
   return (
     <main className={styles.main}>
       <Suspense fallback={<Loading />}>
@@ -16,3 +16,4 @@ export default function Home() {
     </main>
   );
 }
+export default Home;

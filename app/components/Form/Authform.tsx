@@ -73,7 +73,6 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
     try {
       if (mode === "register") {
         const modifiedState = { ...state, anonname: `Anon${state.anonname}` };
-    
         let result: any = await registerUsers(modifiedState);
         if (result?.status === "created") {
           router.replace("/home");
@@ -121,17 +120,14 @@ const Authform = ({ mode }: { mode: "register" | "login" }) => {
               </div>
               <div className={style.pwdInputDiv}>
               <div><p>Anon</p></div>
-          
               <div className={style.divider}></div>
-          
               <input
                 placeholder="Anonymous name"
                 {...register("anonname")}
                 className={style.inputStyle}
               />
-
-            
               </div>
+              <span className={style.hideusername}><i>This username will be visible to the community: Choose wisely</i></span>
               {errors.anonname && (
                 <span className={style.spanclass}>
                   {errors.anonname.message}

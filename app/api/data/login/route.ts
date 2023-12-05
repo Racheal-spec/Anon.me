@@ -19,7 +19,6 @@ export async function POST(req: Request) {
           email: data?.email,
         },
       });
-      console.log(`userrrr: ${JSON.stringify(user)}`);
       const jwt = await createJWT(user!);
       //  console.log(user, jwt);
       if (!user) {

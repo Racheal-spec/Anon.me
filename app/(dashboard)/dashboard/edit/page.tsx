@@ -36,11 +36,10 @@ const Editpost = () => {
     EditorState.createEmpty()
   );
   const edittitleref = useRef<HTMLHeadingElement | null>(null);
-  const [updatecategoryId, setUpdateCategoryId] = useState("");
   const [singlepostData, setSinglePostData] = useState<postType | null>(null);
   const[postEdit, setPostEdit] = useState<postDataType>()
+  const [updatecategoryId, setUpdateCategoryId] = useState(singlepostData?.categoryId || "");
   const firstRender = useRef(true);
-  const [cat, setCat] = useState("");
 
   //==========================HANDLERS=================================//
   const convertContentToRaw = () => {
@@ -110,7 +109,6 @@ const Editpost = () => {
       let response = await getSinglePost(postId as string);
       setSinglePostData(response);
     };
-
     fetchData();
   }, [postId]);
 
@@ -132,7 +130,6 @@ const Editpost = () => {
         setValue("title", (edittitleref.current.innerText = title));
         setUpdateCategoryId(singlepostData?.categoryId );
         // setImagePreview(singlepostData?.postimage || "");
-     
       }
       if (singlepostData?.published === true) {
         setEditStatus(true);

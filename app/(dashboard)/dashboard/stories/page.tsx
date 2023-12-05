@@ -21,14 +21,13 @@ import Link from "next/link";
 import { EDITDRAFT } from "@/app/Routes/RoutesUrl";
 import Modal from "@/app/components/Modal/Modal";
 import Button from "@/app/uikits/Button/button";
-import { useRouter } from "next/navigation";
-import { deletePost, getSingleTag } from "@/app/context/Actions/Actions";
+import { deletePost } from "@/app/context/Actions/Actions";
 import { toast } from "react-toastify";
 import { FormatDate } from "@/app/services/formatDate";
 
 
 const Stories = () => {
-  const { lastCursor, posts, isLoading, ref } = usePostValue();
+  const { posts, isLoading, ref } = usePostValue();
   const isMobile = UseResizeScreen();
   const { state } = userValue();
   const [modalitem, setModalItem] = useState<boolean[]>(
@@ -38,20 +37,15 @@ const Stories = () => {
     new Array(posts?.length || 0).fill(false)
   );
   const [loadingdelete, setLoadingDelete] = useState(false);
-  const router = useRouter();
 
 
   let publishedArray: postType[] = [];
   let userPosts: postType[] = [];
   const userid = state?.user?.data;
-  console.log(userid?.id)
-
-  console.log(posts)
 
 
   posts?.map((el) => {
     if (el?.authorId === userid?.id) {
-      console.log(el);
       userPosts?.push(el);
     }
   });
@@ -66,8 +60,6 @@ const Stories = () => {
       publishedArray.push(el);
     }
   });
-
-  console.log(userPosts)
 
   const handleModal = (index: number) => {
     // toggles the modal state for the post at the given index by creating a copy of modalitem,

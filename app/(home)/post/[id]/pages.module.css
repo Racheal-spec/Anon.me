@@ -68,7 +68,6 @@
   line-height: 1.8rem;
   text-transform: none;
   margin: 0 auto;
-
 }
 .flex {
   display: flex;
@@ -137,11 +136,10 @@
   }
   .mainContent p{
     width: fit-content;
-
   }
-  .mainsection {
-   width: min-content;
-  }
+   .mainsection {
+    width: min-content;
+   }
 }
 @media (min-width: 768px) and (max-width: 1024px) {
   /* For tablets: */

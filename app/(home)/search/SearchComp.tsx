@@ -11,10 +11,11 @@ import { IoIosArrowDown } from "react-icons/io";
 import EmptyState from "@/app/components/EmptyState/EmptyState";
 import SearchLoader from "@/app/components/SearchLoader/SearchLoader";
 import { changeTextFromHTML } from "@/app/services/HtmltoText";
+
 const SearchComp = () => {
   const param = useSearchParams().get("title");
   const { searchstate, searchdispatch } = useSearchValue();
-  const take = 4;
+  const take = 6;
   const [lastCursor, setLastCursor] = useState("");
   const [searched, setSearched] = useState<postType[] | null>(
     searchstate?.results?.data || null

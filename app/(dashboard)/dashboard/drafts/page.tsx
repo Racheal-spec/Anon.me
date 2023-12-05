@@ -24,7 +24,7 @@ import Button from "@/app/uikits/Button/button";
 import Modal from "@/app/components/Modal/Modal";
 
 const Drafts = () => {
-  const { lastCursor, posts, isLoading, ref } = usePostValue();
+  const { posts, isLoading, ref } = usePostValue();
   let draftsArray: postType[] = [];
   let userPosts: postType[] = [];
   const isMobile = UseResizeScreen();
@@ -38,7 +38,6 @@ const Drafts = () => {
   );
 
   posts?.map((el) => {
-    console.log(el?.authorId === state?.user?.data?.id);
     if (el?.authorId === state?.user?.data?.id) {
       userPosts.push(el);
     }

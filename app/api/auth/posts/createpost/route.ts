@@ -14,7 +14,6 @@ export async function POST(req: Request) {
       if (!file) {
         return NextResponse.json({ success: false });
       }
-      console.log(`file: ${JSON.stringify(file)}`);
       const buffer = Buffer.from(await file?.arrayBuffer());
       v2.uploader
         .upload_stream(

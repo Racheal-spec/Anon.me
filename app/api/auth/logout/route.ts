@@ -9,7 +9,6 @@ export async function GET(req: Request) {
   // const userId = req.headers.get("x-user-id");
   const usercookies = cookies();
   const jwt = usercookies.get(process.env.COOKIE_NAME as string)?.value;
-  console.log(jwt);
   try {
     if (req.method === "GET") {
       let res = new NextResponse(JSON.stringify({}), {

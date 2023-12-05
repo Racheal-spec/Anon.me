@@ -39,7 +39,7 @@ const PostForm = ({
             <BiImageAdd fontSize={"1.4rem"} />
           </div>
           <div>
-            <label id="file-input-label" htmlFor="file-input">
+            <label className={style.labelclass} id="file-input-label" htmlFor="file-input">
               Add Cover Image
               <input
                 type="file"

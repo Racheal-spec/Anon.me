@@ -36,6 +36,10 @@ const BorderCard = React.memo(
     const [prevBookmark, setPrevBookmark] = useState(bookmarked);
     const [bookmarkmodal, setBookmarkmodal] = useState(false);
     const[singlepost, setSinglePost] = useState<postType | null>(null);
+    const [toggle, setToggle] = useState(false);
+
+
+    let active = toggle ? styles.open : styles.close;
 
     const handleLoginModal = () => {
       setBookmarkmodal(false);
@@ -120,14 +124,14 @@ const BorderCard = React.memo(
               }
               </div>
               <div className={styles.secondSubDiv}>
-                <div className={styles.flex}>
+              <div className={styles.flex}>
                  
-                  <LiaCommentAlt />
-                  <Link href={POSTDETAILS(id ?? "")}>
-                  <p>{singlepost?.comments?.length} comments</p>
-                  </Link>
-                
-                </div>
+                 <LiaCommentAlt />
+                 <Link href={POSTDETAILS(id ?? "")}>
+                 <p>{singlepost?.comments?.length} comments</p>
+                 </Link>
+               
+               </div>
                 <div className={styles.flex}>
                 <Link href={POSTDETAILS(id ?? "")}>
                 <p>{likes ? (Array.isArray(likes) ? likes.length : likes) : 0} likes</p>
@@ -152,6 +156,7 @@ const BorderCard = React.memo(
             </div>
           </div>
         </div>
+       
       </div>
     );
   }

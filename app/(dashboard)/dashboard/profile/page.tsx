@@ -27,7 +27,6 @@ const Profile = () => {
   const {
     register,
     handleSubmit,
-    control,
     formState: { errors, isSubmitting },
   } = useForm<ProfileUserSchema>({
     resolver: zodResolver(MainUserSchema),
@@ -46,8 +45,6 @@ const Profile = () => {
     setImageData(file);
     setProfileImageFile(URL.createObjectURL(file));
   };
-  console.log(imagedata)
-  console.log(state?.user)
   const handleProfileEdit = async (data: any) => {
     const formData = new FormData();
     const profileData = JSON.stringify({
@@ -59,7 +56,6 @@ const Profile = () => {
     imagedata ? formData.append("photo", imagedata) : null;
     try {
       const editdata = await editUsers(formData);
-      console.log(editdata);
       if (editdata?.status === 200) {
         toast.success("Account details updated successfully!");
       }

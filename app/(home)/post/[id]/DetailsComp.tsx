@@ -21,8 +21,6 @@ import { changeTextFromHTML } from "@/app/services/HtmltoText";
 
 const DetailsComp = () => {
   let params = useParams();
-
-
   const { state } = userValue();
   //console.log(params);
   const [singlepost, setSinglePost] = useState<postType | null>(null);
@@ -51,10 +49,7 @@ const DetailsComp = () => {
   };
   useEffect(() => {
     fetchPost();
-    console.log('fetchhhh post')
   }, []);
-  console.log(singlepost?.likes?.length);
-  console.log(likesCount);
 
 
   const handleLike = async () => {
@@ -92,7 +87,6 @@ const DetailsComp = () => {
         user: state?.user && state.user !== undefined ? state.user?.data.id : "",
         post: singlepost?.id as string,
       });
-      console.log(data)
       if (data?.status === 200) {
         setLikeData(data?.isLiked);
         
@@ -180,7 +174,7 @@ const DetailsComp = () => {
             <GrMore />
           </div>
 
-          <section className={styles.mainsection}>
+          <section className={singlepost?.postimage ? styles.mainsection : ""}>
             {!isLoading ? (
               <Image
                 src={singlepost?.postimage ?? profileimg}

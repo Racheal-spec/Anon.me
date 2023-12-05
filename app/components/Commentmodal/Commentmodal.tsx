@@ -65,7 +65,6 @@ const Commentmodal = ({
       let data = await GetPostComments({ post: postId });
       if (data.status === 200) {
         setCommentsArray(data);
-        console.log(data);
       }
       if (authorid === state.user?.data.id) {
         setAuthor(true);

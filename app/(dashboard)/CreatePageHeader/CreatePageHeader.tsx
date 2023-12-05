@@ -42,7 +42,6 @@ const CreatePageHeader = ({
 
       if (id) {
         let data = await setPublishPost(id);
-        console.log(data);
         if (data.status === 200) {
           toast.success("You have just published a new story!");
           router.back();
@@ -54,7 +53,6 @@ const CreatePageHeader = ({
         return data;
       }
     } catch (error) {
-      console.error(error);
       setPublishLoading(false);
     }
   };

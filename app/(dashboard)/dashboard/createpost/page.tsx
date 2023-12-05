@@ -58,7 +58,6 @@ const Createpost = () => {
     try {
      if(formData){
       setLoading(true);
-       console.log(formData);
       const res = await createNewPost(formData);
       // console.log(res);
       if (res.statusText === "created") {
@@ -99,7 +98,7 @@ const Createpost = () => {
     return () => {
       clearTimeout(timeout);
     };
-  }, [ categoryId, editorState]);
+  }, [editorState]);
   //useEffect for the saved action before the page reloads
   useEffect(() => {
     if (postdata) {
@@ -110,8 +109,6 @@ const Createpost = () => {
     setImageData(null);
     setImageFile("");
   };
-
-  
 
   return (
     <Suspense fallback={<Loading />}>

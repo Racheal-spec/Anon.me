@@ -11,9 +11,11 @@
   width: fit-content;
   transition: color 0.5s ease-in-out;
 }
+.labelclass{
+  cursor: pointer;
+}
 .coverImgDiv:hover {
   color: var(--secondary);
-  cursor: pointer;
 }
 .coverImgDiv p {
   font-size: 0.9rem;

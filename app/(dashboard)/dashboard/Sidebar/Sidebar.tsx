@@ -28,7 +28,6 @@ const Sidebar = ({
   handleclick: () => void;
   toggle: boolean;
 }) => {
-  console.log(active);
   const items = [
     {
       id: "profile",

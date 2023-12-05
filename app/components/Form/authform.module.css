@@ -116,6 +116,10 @@
   color: var(--fadedblack);
   text-decoration: underline;
 }
+.hideusername{
+  font-size: 0.7rem;
+  color: var(--faintgrey);
+}
 /**========================MEDIA QUERIES==================================**/
 
 @media screen and (min-width: 768px) {

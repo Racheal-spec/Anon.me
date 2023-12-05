@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 import { deleteUser } from "@/app/context/Actions/Actions";
 import { useRouter } from "next/navigation";
 import { HOME } from "@/app/Routes/RoutesUrl";
+
 const Account = () => {
   const [accountdelete, showAcctDeleteModal] = useState(false);
   const [loadingdelete, setLoadingDelete] = useState(false);
@@ -24,7 +25,6 @@ const Account = () => {
     try {
       if (state?.user?.data) {
         let deleteuser = await deleteUser();
-        console.log(deleteuser);
         if (deleteuser?.status === 200) {
           toast.success("Your account has been successfully deleted!");
           router.replace(HOME);
