@@ -131,6 +131,12 @@ export async function PUT(req: Request) {
           statusText: "User Information Edited!",
         });
       }
+
+      if (!edituser) {
+        return NextResponse.json({
+          message: 'User not found or information not edited.',
+        });
+      }
     } catch (error) {
       console.log(error);
       // let res = NextResponse.next();

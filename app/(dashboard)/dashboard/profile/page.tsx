@@ -53,7 +53,10 @@ const Profile = () => {
       location: state?.user?.data.location,
     });
     formData.append("profileData", profileData);
-    imagedata ? formData.append("photo", imagedata) : null;
+   
+    if (imagedata) {
+      formData.append("photo", imagedata);
+    }
     try {
       const editdata = await editUsers(formData);
       if (editdata?.status === 200) {
