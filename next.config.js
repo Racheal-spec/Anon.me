@@ -4,7 +4,11 @@ const nextConfig = {
   //   serverComponentsExternalPackages: ["bcrypt"],
   // },
   images: {
-    domains: ["res.cloudinary.com"],
+    remotePatterns: [{
+      protocol: 'http',
+      hostname: 'res.cloudinary.com',
+      pathname: '**'
+    }],
   },
   eslint: {
     ignoreDuringBuilds: true,

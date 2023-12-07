@@ -97,6 +97,7 @@ export const PublishedProvider = ({
   useEffect(() => {
     fetchMorePublishedPosts();
   }, []);
+  
   return (
     <PublishedPostContext.Provider
       value={{
