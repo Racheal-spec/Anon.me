@@ -129,7 +129,6 @@ const Profile = () => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            
             {isHovered && (
               <div className={styles.overlay} onClick={handlePictureClick}>
                 <AiOutlineCamera className={styles.cameraicon} />
@@ -154,6 +153,16 @@ const Profile = () => {
                 height={60}
                 // {...register("photo")}
               />
+            ) : profileImgFile ? (
+              <Image
+              src={profileImgFile
+              }
+              className={styles.profileimg}
+              alt="user_image"
+              width={60}
+              height={60}
+              // {...register("photo")}
+            />
             ) : (
               <Image
                 src={
