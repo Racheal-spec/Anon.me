@@ -71,20 +71,22 @@ export async function GET(req: Request) {
 
 export async function PUT(req: Request) {
   connectCloudinary;
-  const unixTimestamp = Math.floor(Date.now() / 1000);
+  //const unixTimestamp = Math.floor(Date.now() / 1000);
+ 
   async function uploadProfileImage(file: Blob) {
+    const fileBuffer = await file?.arrayBuffer();
+    const buffer = Buffer.from(fileBuffer).toString('base64');
+    const encoding = 'base64';
+    const mime = file?.type;
+    const fileuri = 'data:' + mime + ';' + encoding + ',' + buffer;
     return new Promise<UploadApiResponse>(async (resolve, reject) => {
       if (!file) {
         return NextResponse.json({ success: false });
       }
-      const buffer = Buffer.from(await file?.arrayBuffer());
       v2.uploader
-        .upload_stream(
-          {
-            resource_type: "auto",
-            folder: "Anon_Blog/profile_pics",
-            timestamp: unixTimestamp,
-          },
+        .upload(fileuri, {
+          invalidate: true
+        },
           (err: any, result: any) => {
             if (err) {
               console.log(err);
@@ -94,8 +96,7 @@ export async function PUT(req: Request) {
               return resolve(result);
             }
           }
-        )
-        .end(buffer);
+        );
     });
   }
   const usercookies = cookies().get(process.env.COOKIE_NAME as string);

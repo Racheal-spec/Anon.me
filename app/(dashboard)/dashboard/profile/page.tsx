@@ -91,7 +91,7 @@ const Profile = () => {
             <label>Anon Username</label>
           </div>
           <input
-            defaultValue={state?.user?.data.anonname}
+            defaultValue={state?.user?.data?.anonname}
             className={styles.inputStyle}
             {...register("anonname")}
           />
@@ -122,7 +122,7 @@ const Profile = () => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
-            {!state?.user?.data.photo ? (
+            {!state?.user?.data?.photo ? (
               <Image
                 src={!profileImgFile ? profileimg : profileImgFile}
                 className={styles.profileimg}
