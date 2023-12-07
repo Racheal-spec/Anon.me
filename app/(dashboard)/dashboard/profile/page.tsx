@@ -43,8 +43,9 @@ const Profile = () => {
   const handlePhotoStateChange = (event: any) => {
     const file = event?.target?.files[0];
    if(file){
+    const objectURL = URL.createObjectURL(file);
     setImageData(file);
-    setProfileImageFile(URL.createObjectURL(file));
+    setProfileImageFile(objectURL);
    }
     console.log(`file:${file}`);
     console.log(`imagedata:${imagedata}`);
