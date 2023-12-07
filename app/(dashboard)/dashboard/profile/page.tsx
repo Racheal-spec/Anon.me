@@ -45,7 +45,8 @@ const Profile = () => {
    if(file){
     const objectURL = URL.createObjectURL(file);
     setImageData(file);
-    setProfileImageFile(objectURL);
+    setProfileImageFile(objectURL );
+
    }
     console.log(`file:${file}`);
     console.log(`imagedata:${imagedata}`);
@@ -128,6 +129,22 @@ const Profile = () => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
+            
+            {isHovered && (
+              <div className={styles.overlay} onClick={handlePictureClick}>
+                <AiOutlineCamera className={styles.cameraicon} />
+              </div>
+            )}
+            <div className={styles.profileupload}>
+              <input
+                type="file"
+                accept="image/*"
+                name="logo"
+                onChange={handlePhotoStateChange}
+                ref={fileInputRef}
+                title="Dimensions 180 X 180"
+              />
+            </div>
             {!state?.user?.data?.photo ? (
               <Image
                 src={!profileImgFile ? profileimg : profileImgFile}
@@ -152,21 +169,6 @@ const Profile = () => {
               />
             )}
 
-            {isHovered && (
-              <div className={styles.overlay} onClick={handlePictureClick}>
-                <AiOutlineCamera className={styles.cameraicon} />
-              </div>
-            )}
-            <div className={styles.profileupload}>
-              <input
-                type="file"
-                accept="image/*"
-                name="logo"
-                onChange={handlePhotoStateChange}
-                ref={fileInputRef}
-                title="Dimensions 180 X 180"
-              />
-            </div>
             <div className={styles.icondiv} onClick={handleDeleteImage}>
               <MdOutlineDeleteOutline className={styles.deleteicon} />
             </div>

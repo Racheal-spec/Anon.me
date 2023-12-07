@@ -5,8 +5,8 @@ const nextConfig = {
   // },
   images: {
     remotePatterns: [{
-      protocol: ['http', 'https'],
-      hostname: ['res.cloudinary.com','penbuddies.vercel.app'],
+      protocol: 'http',
+      hostname: 'res.cloudinary.com',
       pathname: '**'
     }],
   },
