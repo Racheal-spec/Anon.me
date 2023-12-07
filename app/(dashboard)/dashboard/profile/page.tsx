@@ -44,6 +44,9 @@ const Profile = () => {
     const file = event?.target?.files[0];
     setImageData(file);
     setProfileImageFile(URL.createObjectURL(file));
+    console.log(`file:${file}`);
+    console.log(`imagedata:${imagedata}`);
+    console.log(`file:${profileImgFile}`);
   };
   const handleProfileEdit = async (data: any) => {
     const formData = new FormData();
