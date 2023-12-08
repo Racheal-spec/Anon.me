@@ -86,19 +86,19 @@ const Createpost = () => {
   };
 
   //==============================USEEFFECTS====================================//
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (firstrender.current) {
-        firstrender.current = false;
-        return;
-      } else {
-        handleFormSubmit();
-      }
-    }, 5000);
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [editorState]);
+  // useEffect(() => {
+  //   const timeout = setTimeout(() => {
+  //     if (firstrender.current) {
+  //       firstrender.current = false;
+  //       return;
+  //     } else {
+  //       handleFormSubmit();
+  //     }
+  //   }, 5000);
+  //   return () => {
+  //     clearTimeout(timeout);
+  //   };
+  // }, [editorState]);
   //useEffect for the saved action before the page reloads
   useEffect(() => {
     if (postdata) {
