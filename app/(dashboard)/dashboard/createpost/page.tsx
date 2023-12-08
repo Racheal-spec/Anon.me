@@ -51,7 +51,9 @@ const Createpost = () => {
       categoryId: categoryId,
     });
     formData.append("postData", postData);
-    imageData ? formData.append("postimage", imageData) : null;
+    if (imageData) {
+      formData.append("photo", imageData);
+    }
     // Use setValue to update the title in React Hook Form
     setValue("title", titleref.current?.innerText);
   //  console.log(`formdata:${formData}`)

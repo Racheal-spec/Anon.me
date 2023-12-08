@@ -48,9 +48,9 @@ const Profile = () => {
     setProfileImageFile(objectURL );
 
    }
-    console.log(`file:${file}`);
-    console.log(`imagedata:${imagedata}`);
-    console.log(`file:${profileImgFile}`);
+    // console.log(`file:${file}`);
+    // console.log(`imagedata:${imagedata}`);
+    // console.log(`file:${profileImgFile}`);
   };
   const handleProfileEdit = async (data: any) => {
     const formData = new FormData();
