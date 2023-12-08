@@ -54,12 +54,12 @@ const Createpost = () => {
     imageData ? formData.append("postimage", imageData) : null;
     // Use setValue to update the title in React Hook Form
     setValue("title", titleref.current?.innerText);
-
+   console.log(`formdata:${formData}`)
     try {
      if(formData){
       setLoading(true);
       const res = await createNewPost(formData);
-      // console.log(res);
+       console.log(res);
       if (res.statusText === "created") {
         setPostData(res);
         setLoading(false);
