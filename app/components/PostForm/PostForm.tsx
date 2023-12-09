@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./PostForm.module.css";
 import { BiImageAdd } from "react-icons/bi";
 import { useForm } from "react-hook-form";
@@ -7,6 +7,7 @@ import ComboBox from "@/app/uikits/ComboBox/ComboBox";
 import dynamic from "next/dynamic";
 import { PostFormType } from "@/app/Types/global";
 import { MdCancelPresentation } from "react-icons/md";
+import { getSingleTag } from "@/app/context/Actions/Actions";
 const Editor = dynamic(
   async () => {
     const mod = await import("react-draft-wysiwyg");
@@ -55,6 +56,7 @@ const PostForm = ({
           <div>
             <Image
               src={imagefile}
+              priority={true}
               width={1000}
               height={500}
               className={style.coverimgshow}
@@ -70,15 +72,20 @@ const PostForm = ({
       <MdCancelPresentation className={style.cancelimgbtn} onClick={handleCancel}  />
     )
   }
-      <ComboBox
+      {
+        tagsstate && (
+        <ComboBox
         name={"Category"}
         id={categoryId}
         value={categoryId}
         options={tagsstate}
         label={"Choose a Category"}
+        defaultValue={categoryId}
         onChange={handleselect}
         control={control ? control : null}
       />
+        )
+      }
 
       <h1
         ref={titleref}

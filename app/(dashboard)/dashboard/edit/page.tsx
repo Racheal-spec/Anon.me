@@ -12,7 +12,7 @@ import {
 } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import { toast } from "react-toastify";
-import { editPost, getSinglePost } from "@/app/context/Actions/Actions";
+import { editPost, getSinglePost, getSingleTag } from "@/app/context/Actions/Actions";
 import { postType } from "@/app/Types/posts";
 import { useTagsValue } from "@/app/context/TagsContext";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -24,8 +24,9 @@ import { postDataType } from "../../CreatePageHeader/CreatePageHeader";
 
 
 const Editpost = () => {
-  const [, setImageFile] = useState("");
-  const [, setImageData] = useState<File | null>(null);
+  const [singlepostData, setSinglePostData] = useState<postType | null>(null);
+  const [, setImageFile] = useState(singlepostData?.postimage || "");
+  const [, setImageData] = useState<File | null>( null);
   const [titledata, setTitleData] = useState();
   const [isUpdatingLoading, setUpdatingLoading] = useState(false);
   const [editstatus, setEditStatus] = useState(false);
@@ -36,10 +37,12 @@ const Editpost = () => {
     EditorState.createEmpty()
   );
   const edittitleref = useRef<HTMLHeadingElement | null>(null);
-  const [singlepostData, setSinglePostData] = useState<postType | null>(null);
   const[postEdit, setPostEdit] = useState<postDataType>()
   const [updatecategoryId, setUpdateCategoryId] = useState(singlepostData?.categoryId || "");
   const firstRender = useRef(true);
+  const [optiontitle, setOptionTitle] = useState("");
+
+
 
   //==========================HANDLERS=================================//
   const convertContentToRaw = () => {
@@ -62,6 +65,7 @@ const Editpost = () => {
   };
 
   const handleEdit = async (data: any) => {
+    // console.log(`data: ${data}`);
     setTitleData(data);
     const file = data?.postimage?.[0];
     const formData = new FormData();
@@ -90,6 +94,8 @@ const Editpost = () => {
     }
   };
 
+  //console.log(updatecategoryId);
+
   //==============================USEEFFECTS====================================//
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -104,6 +110,7 @@ const Editpost = () => {
       clearTimeout(timeout);
     };
   }, [edittitleref, titledata, updatecategoryId, editorState]);
+
   useEffect(() => {
     const fetchData = async () => {
       let response = await getSinglePost(postId as string);
@@ -111,6 +118,10 @@ const Editpost = () => {
     };
     fetchData();
   }, [postId]);
+
+  //console.log(`singlepostdata: ${JSON.stringify(singlepostData)}`);
+
+    // console.log(imageData, imagefile)
 
   //useEffect for when the page reloads
   useEffect(() => {
@@ -129,7 +140,7 @@ const Editpost = () => {
         const title = singlepostData.title || "";
         setValue("title", (edittitleref.current.innerText = title));
         setUpdateCategoryId(singlepostData?.categoryId );
-        // setImagePreview(singlepostData?.postimage || "");
+        //setImagePreview(singlepostData?.postimage || "");
       }
       if (singlepostData?.published === true) {
         setEditStatus(true);
@@ -138,12 +149,19 @@ const Editpost = () => {
    
   }, [singlepostData]);
 
-  let catValue = tagsstate?.data?.find((el) =>  el.id === updatecategoryId);
+  //let catValue = tagsstate?.data?.find((el) =>  el.id === updatecategoryId);
   const handleCancel = () => {
     setImageData(null);
     setImageFile("");
- 
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      let response = await getSingleTag(singlepostData?.categoryId  as string);
+      setOptionTitle(response?.title);
+    };
+    fetchData();
+  }, [singlepostData?.categoryId]);
 
 
   return (
@@ -158,13 +176,14 @@ const Editpost = () => {
         onEditorStateChange={handleEditEditorChange}
         handleselect={handleEditselect}
         handleCancel={handleCancel}
-        categoryId={catValue?.id || updatecategoryId}
+        categoryId={optiontitle ? optiontitle : "" || updatecategoryId}
       />
        <PageHeader
         editstatus={editstatus}
         loading={isUpdatingLoading}
         id={postId ?? ""}
         postEdit={postEdit!}
+        handleFormSubmit={handleSubmit(handleEdit)}
       />
     </div>
     </Suspense>

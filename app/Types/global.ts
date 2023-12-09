@@ -95,6 +95,7 @@ export type ComboBoxType = {
   label: string;
   id: string;
   name: string;
+  defaultValue?: string;
   options: any[];
   value: string;
   onChange: (event: React.ChangeEvent<HTMLSelectElement>, arg: string) => void;

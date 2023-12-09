@@ -25,6 +25,8 @@ const ComboBox = React.forwardRef(
       defaultValue: value || "", // Set the default value from the prop
     });
 
+    //console.log(value)
+
     return (
       <div className={styles.label}>
         <label>{label}</label>
@@ -54,11 +56,11 @@ const ComboBox = React.forwardRef(
             }}
             disabled={disabled}
           >
-            <option value="" disabled={true} aria-disabled>
-              Select an option
+            <option value="" aria-disabled>
+             {value || "Select an option"}
             </option>
             {options &&
-              options.map((option) => (
+              options?.map((option) => (
                 <option key={option?.id} value={option?.id}>
                   {option?.title || option?.name}
                 </option>

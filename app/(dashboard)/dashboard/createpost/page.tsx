@@ -42,6 +42,19 @@ const Createpost = () => {
   const handleEditorChange = (event: any) => {
     setEditorState(event);
   };
+
+  const handleStateChange = (event: any) => {
+    const file = event?.target?.files[0];
+    setImageData(file);
+    setImageFile(URL.createObjectURL(file));
+  };
+
+  // console.log(imageData, imagefile)
+
+  const handleselect = (e: any) => {
+    setCategoryId(e.target.value);
+  };
+
   const handleFormSubmit = async () => {
    // const file = data?.postimage?.[0];
     const formData = new FormData();
@@ -52,7 +65,7 @@ const Createpost = () => {
     });
     formData.append("postData", postData);
     if (imageData) {
-      formData.append("photo", imageData);
+      formData.append("postimage", imageData);
     }
     // Use setValue to update the title in React Hook Form
     setValue("title", titleref.current?.innerText);
@@ -75,17 +88,6 @@ const Createpost = () => {
       }
     }
   };
-  const handleStateChange = (event: any) => {
-    const file = event?.target?.files[0];
-    setImageData(file);
-    setImageFile(URL.createObjectURL(file));
-  };
-
-  // console.log(imageData, imagefile)
-
-  const handleselect = (e: any) => {
-    setCategoryId(e.target.value);
-  };
 
   //==============================USEEFFECTS====================================//
   // useEffect(() => {
@@ -107,6 +109,7 @@ const Createpost = () => {
       router.replace(EDITDRAFT(postdata?.data?.id));
     }
   }, [postdata]);
+
   const handleCancel = () => {
     setImageData(null);
     setImageFile("");
