@@ -180,7 +180,7 @@ const Editpost = () => {
         onEditorStateChange={handleEditEditorChange}
         handleselect={handleEditselect}
         handleCancel={handleCancel}
-        categoryId={optiontitle && optiontitle ? optiontitle : updatecategoryId}
+        categoryId={!optiontitle ? "" : optiontitle || updatecategoryId}
       />
        <PageHeader
         editstatus={editstatus}

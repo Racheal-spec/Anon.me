@@ -35,8 +35,7 @@
 .coverimgshow {
   object-fit: cover;
   background-size: contain;
-  width: 1000px;
-  height: 500px;
+  width: 100%;
   position: relative;
 }
 .cancelimgbtn{
@@ -70,8 +69,8 @@
     padding: 50px 0px;
   }
   .coverimgshow {
-    width: 1000px;
-  height: 500px;
+    width: 100%;
+ 
   }
   .cancelimgbtn{
     top: 13%;

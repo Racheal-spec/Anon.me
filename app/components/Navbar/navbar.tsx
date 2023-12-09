@@ -68,6 +68,8 @@ const Navbar = () => {
         <Desktopnav toggleDrawer={toggleDrawer}  isMobile={isMobile} show={show} handleProfile={handleProfile} searchmodal={searchmodal}  handlefocus={handlefocus}  profileimg={profileimg} />
 
       )}
+
+     
        
     </div>
         {/**SEARCH MODAL */}
