@@ -26,7 +26,7 @@ import { postDataType } from "../../CreatePageHeader/CreatePageHeader";
 const Editpost = () => {
   const [singlepostData, setSinglePostData] = useState<postType | null>(null);
   const [, setImageFile] = useState(singlepostData?.postimage || "");
-  const [, setImageData] = useState<File | null>( null);
+  const [imageEditData, setImageData] = useState<File | null>( null);
   const [titledata, setTitleData] = useState();
   const [isUpdatingLoading, setUpdatingLoading] = useState(false);
   const [editstatus, setEditStatus] = useState(false);
@@ -75,7 +75,11 @@ const Editpost = () => {
       categoryId: updatecategoryId,
     });
     formData.append("postData", postData);
-    file ? formData.append("postimage", file) : null;
+    if (imageEditData) {
+      formData.append("postimage", imageEditData);
+    } else {
+      file ? formData.append("postimage", file) : null;
+    }
     // Use setValue to update the title in React Hook Form
     setValue("title", edittitleref.current?.innerText);
     try {
