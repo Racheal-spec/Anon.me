@@ -25,7 +25,7 @@ import { postDataType } from "../../CreatePageHeader/CreatePageHeader";
 
 const Editpost = () => {
   const [singlepostData, setSinglePostData] = useState<postType | null>(null);
-  const [, setImageFile] = useState(singlepostData?.postimage || "");
+  const [imageEditFile, setImageFile] = useState(singlepostData?.postimage || "");
   const [imageEditData, setImageData] = useState<File | null>( null);
   const [titledata, setTitleData] = useState();
   const [isUpdatingLoading, setUpdatingLoading] = useState(false);
@@ -172,7 +172,7 @@ const Editpost = () => {
     <Suspense fallback={<Loading />}>
     <div className={style.mainWrapper}>
       <PostForm
-        imagefile={singlepostData?.postimage  ?? ""}
+        imagefile={singlepostData?.postimage  ?? imageEditFile}
         titleref={edittitleref}
         handleStateChange={handleEditImageStateChange}
         tagsstate={tagsstate?.data || []}
@@ -180,7 +180,7 @@ const Editpost = () => {
         onEditorStateChange={handleEditEditorChange}
         handleselect={handleEditselect}
         handleCancel={handleCancel}
-        categoryId={optiontitle ? optiontitle : "" || updatecategoryId}
+        categoryId={optiontitle && optiontitle ? optiontitle : updatecategoryId}
       />
        <PageHeader
         editstatus={editstatus}
