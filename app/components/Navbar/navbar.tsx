@@ -69,6 +69,18 @@ const Navbar = () => {
 
       )}
 
+{/* {!isMobile ? (
+        null 
+      ): (
+        <MobileNav isMobile={isMobile} show={show} handleProfile={handleProfile} handleMenu={handleMenu} handlefocus={handlefocus} toggleDrawer={toggleDrawer} profileimg={profileimg} />
+      )}
+
+{!isDesktop ?  (
+      null
+      ): (
+        <Desktopnav toggleDrawer={toggleDrawer}  isMobile={isMobile} show={show} handleProfile={handleProfile} searchmodal={searchmodal}  handlefocus={handlefocus}  profileimg={profileimg} />
+      )} */}
+
      
        
     </div>

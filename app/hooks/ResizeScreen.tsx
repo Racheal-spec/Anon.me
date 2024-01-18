@@ -15,6 +15,7 @@ export const UseResizeScreen = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
   const isMobile = windowDimension <= 640;
+  // const isDesktop = windowDimension > 768;
   // const isTablet = windowDimension > 640 || windowDimension < 810;
   return isMobile;
 };

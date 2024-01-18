@@ -40,10 +40,10 @@
 .flex {
   display: flex;
   align-items: center;
-  margin: 0 5px;
+  /* margin: 0 5px; */
 }
 .flex p {
-  margin: 0 5px;
+  margin: 0 7px;
 }
 .deleteicon {
   cursor: pointer;

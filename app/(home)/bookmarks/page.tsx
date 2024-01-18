@@ -3,6 +3,7 @@ import BookmarkCard from "@/app/components/BookmarkCard/BookmarkCard";
 import styles from "./page.module.css";
 import { useBookmarkValue } from "@/app/context/bookmarkContext";
 import EmptyState from "@/app/components/EmptyState/EmptyState";
+import { changeTextFromHTML } from "@/app/services/HtmltoText";
 
 const Bookmarks = () => {
   const { bookmarkstate } = useBookmarkValue();
@@ -10,7 +11,10 @@ const Bookmarks = () => {
   return (
     <div className={styles.bookmarkWrapper}>
       <div>
-        <h2>Your Bookmarks</h2>
+      {bookmarkstate?.data?.length === 0 ? (
+         <h2>Your Bookmarks</h2>
+      ): ""}
+      
 
         {bookmarkstate?.data?.length === 0 ? (
           <EmptyState
@@ -27,7 +31,7 @@ const Bookmarks = () => {
                     id={post.id}
                     title={post?.post?.title}
                     author={post?.user?.anonname}
-                    excerpts={`${post?.post?.content?.slice(0, 80)}...`}
+                    excerpts={changeTextFromHTML(`${post?.post?.content?.slice(0, 80)}...`)}
                     createdAt={post?.post?.createdAt}
                   />
                 </div>

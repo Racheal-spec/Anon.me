@@ -102,7 +102,6 @@ const PostForm = ({
             padding: "10px",
             marginTop: "0px",
           }}
-          
           placeholder="Start typing your story..."
           editorState={editorState}
           onEditorStateChange={onEditorStateChange}

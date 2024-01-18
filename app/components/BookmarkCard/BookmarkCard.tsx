@@ -67,7 +67,7 @@ const BookmarkCard = ({
       </div>
       <Link href={POSTDETAILS(id as string)}>
         <h4 className={styles.mainHeading}>{title}</h4>
-        <p className={styles.desc}>{excerpts && excerpts.slice(0, 120)}</p>
+        <p className={styles.desc}>{excerpts && excerpts?.slice(0, 120)}</p>
       </Link>
 
       <div className={styles.secondSubDiv}>

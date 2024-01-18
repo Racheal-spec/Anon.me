@@ -41,7 +41,7 @@ const Trending = () => {
           </div>
         ))}
         {
-          trending?.data.length === 0 ? (
+          trending?.data?.length === 0 ? (
             <div className={styles.emptystories}>
                <p>There are no available stories trending.</p>
             </div>

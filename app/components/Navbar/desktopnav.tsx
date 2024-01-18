@@ -49,9 +49,6 @@ const Desktopnav = ({isMobile, toggleDrawer, handlefocus,profileimg, handleProfi
         </li>
       </ul>
   </div>
-
-   
-
     <div>
     <ul
         className={classNames(

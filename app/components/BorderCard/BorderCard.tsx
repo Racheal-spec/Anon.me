@@ -28,7 +28,6 @@ const BorderCard = React.memo(
     author,
     createdAt,
     likes,
-    
   }: bookmarkType) => {
     const { bookmarkstate } = useBookmarkValue();
     const { state } = userValue();
